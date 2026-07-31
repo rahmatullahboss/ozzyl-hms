@@ -1,0 +1,2937 @@
+{
+  "drawerTitle": "Page Help",
+  "drawerSubtitle": "How to use this page",
+  "close": "Close",
+  "notFoundTitle": "Help not available yet",
+  "notFoundDesc": "Detailed help for this page is being prepared. Check the Help Center in the meantime.",
+  "goToHelpCenter": "Go to Help Center",
+  "sections": {
+    "overview": "Overview",
+    "features": "What you can do",
+    "howToUse": "How to use",
+    "tips": "Tips"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "overview": "Overview of today's patients, revenue, appointments and alerts.",
+      "features": [
+        "Patient stats",
+        "Revenue graph",
+        "Pending tasks",
+        "Quick actions"
+      ],
+      "howToUse": [
+        "View cards for summary",
+        "Click graphs for details",
+        "Use Quick Actions"
+      ],
+      "tips": [
+        "Check dashboard every morning",
+        "Don't ignore notifications"
+      ]
+    },
+    "patients": {
+      "title": "Patient Management",
+      "overview": "Register, search and manage patient profiles and history.",
+      "features": [
+        "Profile & history",
+        "Search by UHID",
+        "New registration",
+        "Timeline view"
+      ],
+      "howToUse": [
+        "Search by name/phone/UHID",
+        "Click + New Patient",
+        "Click name for details"
+      ],
+      "tips": [
+        "Search before adding new",
+        "Keep phone/email accurate"
+      ]
+    },
+    "patientDetail": {
+      "title": "Patient Details",
+      "overview": "View all patient info — visits, prescriptions, lab, billing, vitals.",
+      "features": [
+        "Personal info",
+        "Visit history",
+        "Prescriptions",
+        "Billing history",
+        "Vitals & allergies"
+      ],
+      "howToUse": [
+        "Click tabs for sections",
+        "New Visit to start visit",
+        "Prescription tab for meds"
+      ],
+      "tips": [
+        "Always check allergies first",
+        "Use timeline to track progress"
+      ]
+    },
+    "patientPortal": {
+      "title": "Patient Portal",
+      "overview": "Patients can view their info, appointments, prescriptions and bills online.",
+      "features": [
+        "Profile & history",
+        "Online booking",
+        "Download reports",
+        "Video consult"
+      ],
+      "howToUse": [
+        "Give patient login info",
+        "Patient logs in via phone OTP"
+      ],
+      "tips": [
+        "Encourage portal usage",
+        "Include portal info in discharge notes"
+      ]
+    },
+    "patientForm": {
+      "title": "New Patient Form",
+      "overview": "Register a new patient with all required details.",
+      "features": [
+        "Name, age, gender",
+        "Phone & email",
+        "Photo upload",
+        "Blood group & allergies",
+        "Emergency contact"
+      ],
+      "howToUse": [
+        "Fill all fields accurately",
+        "Phone must be 11 digits",
+        "Add known allergies",
+        "Click Save"
+      ],
+      "tips": [
+        "Phone is critical for SMS",
+        "Write name in Bangla & English"
+      ]
+    },
+    "appointments": {
+      "title": "Appointments",
+      "overview": "Book, reschedule or cancel doctor appointments.",
+      "features": [
+        "Calendar view",
+        "Filter by doctor",
+        "Walk-in booking",
+        "SMS reminders",
+        "No-show tracking"
+      ],
+      "howToUse": [
+        "Select date from calendar",
+        "Click + New Appointment",
+        "Find patient & select doctor",
+        "Choose time slot"
+      ],
+      "tips": [
+        "Set doctor schedule first",
+        "Follow up on no-shows"
+      ]
+    },
+    "queueManagement": {
+      "title": "Queue Management",
+      "overview": "View and manage patient queue for today.",
+      "features": [
+        "Queue list",
+        "Token numbers",
+        "Filter by doctor",
+        "Status updates",
+        "Display screen"
+      ],
+      "howToUse": [
+        "View queue list",
+        "Click Next to call patient",
+        "Mark Complete when done"
+      ],
+      "tips": [
+        "Check queue every 15 min",
+        "Call emergency patients directly"
+      ]
+    },
+    "billing": {
+      "title": "Billing",
+      "overview": "Create OPD bills, collect payments and print receipts.",
+      "features": [
+        "New bill & payment",
+        "Auto pricing",
+        "Cash/card/mobile banking",
+        "Receipt print & email",
+        "Due tracking"
+      ],
+      "howToUse": [
+        "Click + New Bill",
+        "Find patient",
+        "Add services",
+        "Select payment method",
+        "Save & Pay"
+      ],
+      "tips": [
+        "Double-check items before finalizing",
+        "IPD billing done in IP Billing module"
+      ]
+    },
+    "billingMaster": {
+      "title": "Billing Master",
+      "overview": "Set service prices, tax rules and packages.",
+      "features": [
+        "Service list & pricing",
+        "Categories",
+        "Tax & discount rules",
+        "Packages"
+      ],
+      "howToUse": [
+        "Add service: name, price, category",
+        "Set tax",
+        "Create packages"
+      ],
+      "tips": [
+        "Note old price before change",
+        "Packages benefit patients"
+      ]
+    },
+    "billingProvisional": {
+      "title": "Provisional Billing",
+      "overview": "Show estimated costs to patient before final bill.",
+      "features": [
+        "Estimated total",
+        "Bed/medicine/test costs",
+        "Compare with final",
+        "Print"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Add items",
+        "View estimated total",
+        "Print"
+      ],
+      "tips": [
+        "This is an estimate only",
+        "Inform patient about estimate"
+      ]
+    },
+    "billingHandover": {
+      "title": "Billing Handover",
+      "overview": "Shift handover of cash and billing records.",
+      "features": [
+        "Total collection",
+        "Cash/card/mobile breakdown",
+        "Print report",
+        "History"
+      ],
+      "howToUse": [
+        "Open at shift end",
+        "Verify collections",
+        "Count cash",
+        "Get next person's signature"
+      ],
+      "tips": [
+        "Count cash before handover",
+        "Finalize all bills before handover"
+      ]
+    },
+    "billCancellation": {
+      "title": "Bill Cancellation",
+      "overview": "Cancel incorrect bills with admin approval.",
+      "features": [
+        "Cancellation request",
+        "Reason",
+        "Admin approval",
+        "History"
+      ],
+      "howToUse": [
+        "Find bill to cancel",
+        "Click Cancel Bill",
+        "Write reason",
+        "Submit for approval"
+      ],
+      "tips": [
+        "Inform patient before cancel",
+        "Write clear reason for audit"
+      ]
+    },
+    "billPrint": {
+      "title": "Bill Print",
+      "overview": "Print or email bill receipts in various formats.",
+      "features": [
+        "Print bill",
+        "Thermal & A4",
+        "Custom templates",
+        "Email & WhatsApp"
+      ],
+      "howToUse": [
+        "Select bill",
+        "Click Print",
+        "Choose template",
+        "Print or email"
+      ],
+      "tips": [
+        "Thermal printer is faster",
+        "Keep two copies — one for patient"
+      ]
+    },
+    "ipBilling": {
+      "title": "IP Billing",
+      "overview": "Manage admitted patient charges, deposits and final bill at discharge.",
+      "features": [
+        "Running cost tracking",
+        "Auto-add from pharmacy/lab",
+        "Deposit offset",
+        "Final bill",
+        "Insurance link"
+      ],
+      "howToUse": [
+        "Click patient name for details",
+        "Generate Final Bill",
+        "Verify charges & apply deposit",
+        "Collect balance & print"
+      ],
+      "tips": [
+        "Keep family informed of running cost",
+        "Verify all charges before discharge"
+      ]
+    },
+    "payments": {
+      "title": "Payments",
+      "overview": "View all payment history.",
+      "features": [
+        "Payment list & filters",
+        "Method-wise report",
+        "Date range",
+        "Refund & adjustment"
+      ],
+      "howToUse": [
+        "Filter by date/method",
+        "Click patient for details",
+        "Refund if needed"
+      ],
+      "tips": [
+        "Send daily report to accounts",
+        "Separate cash & digital records"
+      ]
+    },
+    "deposits": {
+      "title": "Deposits",
+      "overview": "Collect advance payments from admitted patients.",
+      "features": [
+        "Take advance",
+        "Balance check",
+        "Auto-offset in bill",
+        "Refund"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Enter amount",
+        "Select method",
+        "Print receipt"
+      ],
+      "tips": [
+        "Take advance for IPD patients",
+        "Give receipt to patient"
+      ]
+    },
+    "creditNotes": {
+      "title": "Credit Notes",
+      "overview": "Create official notes for refunds and adjustments.",
+      "features": [
+        "Create & approve",
+        "Refund or offset",
+        "Reason",
+        "Audit trail"
+      ],
+      "howToUse": [
+        "Select bill",
+        "Create Credit Note",
+        "Choose refund/offset",
+        "Get approval"
+      ],
+      "tips": [
+        "Write clear reason",
+        "Only admin can approve"
+      ]
+    },
+    "settlements": {
+      "title": "Settlements",
+      "overview": "Settle multiple bills at once — useful for insurance/corporate.",
+      "features": [
+        "Batch settlement",
+        "Insurance claims",
+        "TDS/tax",
+        "Due tracking"
+      ],
+      "howToUse": [
+        "Select patient/company",
+        "Choose bills",
+        "Select payment method",
+        "Click Settle"
+      ],
+      "tips": [
+        "Collect insurance documents",
+        "Follow up on dues"
+      ]
+    },
+    "feeSheet": {
+      "title": "Fee Sheet",
+      "overview": "List of all service charges for patient reference.",
+      "features": [
+        "Price list",
+        "Category view",
+        "Print & export",
+        "Add service"
+      ],
+      "howToUse": [
+        "View or filter list",
+        "Add new service",
+        "Edit to change price"
+      ],
+      "tips": [
+        "Get management approval before price change",
+        "Keep fee sheet updated"
+      ]
+    },
+    "insuranceBilling": {
+      "title": "Insurance Billing",
+      "overview": "Manage insured patient billing, claims and approvals.",
+      "features": [
+        "Patient insurance info",
+        "Pre-auth tracking",
+        "Claims",
+        "Insurance companies"
+      ],
+      "howToUse": [
+        "Add insurance info at admission",
+        "Apply for pre-auth",
+        "Submit claims"
+      ],
+      "tips": [
+        "Add insurance info at admission",
+        "Don't miss claim deadlines"
+      ]
+    },
+    "insuranceClaims": {
+      "title": "Insurance Claims",
+      "overview": "Track claims submitted to insurance companies.",
+      "features": [
+        "Submit & track",
+        "Status (Pending/Approved/Rejected)",
+        "Document checklist",
+        "History"
+      ],
+      "howToUse": [
+        "Submit new claim",
+        "Upload documents",
+        "Check status regularly"
+      ],
+      "tips": [
+        "Submit complete documents",
+        "Follow up regularly"
+      ]
+    },
+    "priorAuth": {
+      "title": "Prior Authorization",
+      "overview": "Get insurance approval before treatment.",
+      "features": [
+        "PA application",
+        "Approval tracking",
+        "PA number & expiry",
+        "Rejection reasons"
+      ],
+      "howToUse": [
+        "Select patient & insurance",
+        "Write treatment details",
+        "Submit application"
+      ],
+      "tips": [
+        "Get PA before treatment",
+        "Renew before expiry"
+      ]
+    },
+    "pharmacy": {
+      "title": "Pharmacy",
+      "overview": "Dispense medicines, manage stock, suppliers and purchase orders.",
+      "features": [
+        "Pending prescriptions",
+        "Dispense & label",
+        "Stock alerts",
+        "Suppliers & PO",
+        "Narcotics register"
+      ],
+      "howToUse": [
+        "Select prescription",
+        "Check stock",
+        "Click Dispense",
+        "Print label",
+        "Create PO for low stock"
+      ],
+      "tips": [
+        "Check allergies before dispense",
+        "Use FIFO method"
+      ]
+    },
+    "pharmacyDashboard": {
+      "title": "Pharmacy Dashboard",
+      "overview": "Summary of pending prescriptions, stock alerts and today's sales.",
+      "features": [
+        "Pending prescriptions",
+        "Low stock alerts",
+        "Today's sales",
+        "Quick dispense"
+      ],
+      "howToUse": [
+        "View pending prescriptions",
+        "Check low stock",
+        "Dispense & print"
+      ],
+      "tips": [
+        "Use FIFO method",
+        "Keep narcotics register updated"
+      ]
+    },
+    "pharmacyItems": {
+      "title": "Pharmacy Items",
+      "overview": "Manage medicine catalog, prices, generics and suppliers.",
+      "features": [
+        "Medicine list",
+        "Generic/brand names",
+        "Price & tax",
+        "Categories",
+        "Dosage templates"
+      ],
+      "howToUse": [
+        "Add Item: name, generic, price",
+        "Select category",
+        "Save"
+      ],
+      "tips": [
+        "Generic names help in prescribing",
+        "Set safety stock levels"
+      ]
+    },
+    "pharmacyStock": {
+      "title": "Pharmacy Stock",
+      "overview": "View current stock levels, expiry dates and low stock alerts.",
+      "features": [
+        "Stock levels",
+        "Expiry tracking",
+        "Low stock alerts",
+        "Adjustments",
+        "Batch tracking"
+      ],
+      "howToUse": [
+        "View stock — red = critical",
+        "Check expiry report",
+        "Adjust if needed",
+        "Order low stock"
+      ],
+      "tips": [
+        "Check expiry weekly",
+        "FIFO — older stock out first"
+      ]
+    },
+    "pharmacyPO": {
+      "title": "Purchase Order",
+      "overview": "Create orders for suppliers.",
+      "features": [
+        "PO creation",
+        "Supplier selection",
+        "Items & quantity",
+        "Status tracking",
+        "Print & email"
+      ],
+      "howToUse": [
+        "Click + New PO",
+        "Select supplier",
+        "Add items",
+        "Print/send"
+      ],
+      "tips": [
+        "Bulk orders may get discount",
+        "Keep PO number for GRN matching"
+      ]
+    },
+    "pharmacyGRN": {
+      "title": "Goods Receipt",
+      "overview": "Receive and add items to stock.",
+      "features": [
+        "PO to GRN",
+        "Verify items",
+        "Batch & expiry",
+        "Auto-add to stock"
+      ],
+      "howToUse": [
+        "Select PO",
+        "Verify items",
+        "Enter batch/expiry",
+        "Confirm Receipt"
+      ],
+      "tips": [
+        "GRN immediately on arrival",
+        "Match with PO"
+      ]
+    },
+    "pharmacyPrescriptions": {
+      "title": "Prescription List",
+      "overview": "View all prescriptions and dispense status.",
+      "features": [
+        "Prescription list",
+        "Dispense status",
+        "Filter by patient/doctor",
+        "Print"
+      ],
+      "howToUse": [
+        "View list",
+        "Click patient for details",
+        "Click Dispense",
+        "Filter pending ones"
+      ],
+      "tips": [
+        "Double-check before dispense",
+        "SMS patient for pending"
+      ]
+    },
+    "pharmacyNarcotics": {
+      "title": "Narcotics Register",
+      "overview": "Register for controlled substances.",
+      "features": [
+        "Controlled drug list",
+        "Usage & stock",
+        "Prescription link",
+        "Print"
+      ],
+      "howToUse": [
+        "Log when dispensing",
+        "Note doctor's prescription",
+        "Patient name & quantity",
+        "Count stock daily"
+      ],
+      "tips": [
+        "Store separately",
+        "Keep ready for inspection"
+      ]
+    },
+    "pharmacySuppliers": {
+      "title": "Suppliers",
+      "overview": "Manage supplier info, ledger and contacts.",
+      "features": [
+        "Supplier list",
+        "Ledger",
+        "PO & GRN history",
+        "Add new"
+      ],
+      "howToUse": [
+        "View list",
+        "Click name for ledger",
+        "Track due payments"
+      ],
+      "tips": [
+        "Keep reliable supplier list",
+        "Pay dues on time"
+      ]
+    },
+    "pharmacyWriteOff": {
+      "title": "Write Off",
+      "overview": "Record expired or damaged stock.",
+      "features": [
+        "Write-off record",
+        "Reason",
+        "Approval",
+        "Auto-stock reduction"
+      ],
+      "howToUse": [
+        "Select item",
+        "Enter quantity & reason",
+        "Submit for approval"
+      ],
+      "tips": [
+        "Take photos of damaged items",
+        "Run expiry check regularly"
+      ]
+    },
+    "prescriptionPrint": {
+      "title": "Prescription Print",
+      "overview": "Print prescriptions for patients.",
+      "features": [
+        "Print prescription",
+        "Template options",
+        "Doctor signature",
+        "Digital copy"
+      ],
+      "howToUse": [
+        "Select prescription",
+        "Choose template",
+        "Click Print",
+        "Send digital copy"
+      ],
+      "tips": [
+        "Verify before printing",
+        "Share digital copy too"
+      ]
+    },
+    "labDashboard": {
+      "title": "Laboratory Workbench",
+      "overview": "Run the daily lab queue from order intake through sample collection, result entry, verification, cancellation and billing follow-up.",
+      "features": [
+        "Pending and STAT orders",
+        "Result entry and verification",
+        "Critical alerts and TAT tracking",
+        "Unpaid test cancellation",
+        "Billing and doctor commission sync"
+      ],
+      "howToUse": [
+        "Open Queue to review pending tests and payment status",
+        "Process STAT orders first",
+        "Use cancel on unpaid tests when the patient refuses before payment",
+        "Enter results and verify reports after sample processing",
+        "Use credit note or billing cancellation flow for paid tests"
+      ],
+      "tips": [
+        "Alert doctor on critical values",
+        "Monitor TAT",
+        "Cancelled unpaid tests automatically cancel linked bill items, visit services and pending doctor commission accruals"
+      ]
+    },
+    "labTests": {
+      "title": "Lab Tests",
+      "overview": "Maintain lab test setup, pricing, reference ranges and operational rules.",
+      "features": [
+        "Test list & prices",
+        "Reference ranges",
+        "Categories",
+        "Add test",
+        "Doctor commission and cost inputs"
+      ],
+      "howToUse": [
+        "View or search",
+        "Add test",
+        "Set reference range",
+        "Set price, estimated cost and commission basis before using it in billing"
+      ],
+      "tips": [
+        "Set ranges accurately",
+        "Get approval for new tests",
+        "Keep reagent/material cost data updated so lab profit reports stay reliable"
+      ]
+    },
+    "labOrders": {
+      "title": "Lab Orders",
+      "overview": "Create and track lab test orders.",
+      "features": [
+        "New order",
+        "Sample tracking",
+        "Order status",
+        "Barcode scan",
+        "Unpaid test cancellation"
+      ],
+      "howToUse": [
+        "Click + New Order",
+        "Select patient",
+        "Add tests",
+        "Use cancel on unpaid tests when the patient refuses"
+      ],
+      "tips": [
+        "Scan barcode at sample collection",
+        "Mark STAT orders clearly",
+        "Use credit note instead of cancellation after payment"
+      ]
+    },
+    "labReports": {
+      "title": "Lab Reports",
+      "overview": "View test results with reference ranges and critical alerts.",
+      "features": [
+        "Report list",
+        "Reference comparison",
+        "Critical alerts",
+        "Print & email"
+      ],
+      "howToUse": [
+        "Search by patient/date",
+        "Click for details",
+        "Critical in red"
+      ],
+      "tips": [
+        "Alert doctor immediately on critical",
+        "Double-check before publish"
+      ]
+    },
+    "labSettings": {
+      "title": "Lab Settings",
+      "overview": "Configure test prices, ranges, report templates and machines.",
+      "features": [
+        "Test catalog & pricing",
+        "Reference ranges",
+        "Report templates",
+        "Machine integration"
+      ],
+      "howToUse": [
+        "Select tab",
+        "Update info",
+        "Save"
+      ],
+      "tips": [
+        "Backup before changes",
+        "Only lab manager should change"
+      ]
+    },
+    "labMachines": {
+      "title": "Lab Machines",
+      "overview": "Manage lab equipment, maintenance and calibration records.",
+      "features": [
+        "Machine list",
+        "Maintenance schedule",
+        "Calibration records",
+        "Integration"
+      ],
+      "howToUse": [
+        "View list",
+        "Add machine",
+        "Set maintenance dates"
+      ],
+      "tips": [
+        "Regular maintenance for accurate results",
+        "Update calibration record"
+      ]
+    },
+    "admissions": {
+      "title": "Admissions (IPD)",
+      "overview": "Admit patients, assign beds, manage discharge and billing.",
+      "features": [
+        "Admit & bed assignment",
+        "Ward/room/bed map",
+        "Discharge summary",
+        "Patient list",
+        "Bed occupancy report"
+      ],
+      "howToUse": [
+        "Click + New Admission",
+        "Find patient",
+        "Select ward & bed",
+        "Enter doctor & diagnosis",
+        "Click Admit"
+      ],
+      "tips": [
+        "Check bed availability first",
+        "Verify charges at discharge"
+      ]
+    },
+    "beds": {
+      "title": "Bed Management",
+      "overview": "View all bed statuses — available, occupied or under maintenance.",
+      "features": [
+        "Color-coded map",
+        "Status updates",
+        "Filter by ward",
+        "History"
+      ],
+      "howToUse": [
+        "Green=free, Red=occupied, Yellow=maintenance",
+        "Click bed to see patient",
+        "Set Maintenance to mark",
+        "Auto-frees on discharge"
+      ],
+      "tips": [
+        "Check before new admission",
+        "Mark clean after maintenance"
+      ]
+    },
+    "nurseStation": {
+      "title": "Nurse Station",
+      "overview": "Manage ward patients, doctor orders, vitals and care plans.",
+      "features": [
+        "Patient list",
+        "Vitals & graphs",
+        "Doctor orders",
+        "MAR (medication admin)",
+        "Handover notes"
+      ],
+      "howToUse": [
+        "View ward patients",
+        "Click name for details",
+        "Record Vitals",
+        "Follow doctor orders"
+      ],
+      "tips": [
+        "Check orders at shift start",
+        "Record vitals for critical patients regularly"
+      ]
+    },
+    "nursingDashboard": {
+      "title": "Nursing Dashboard",
+      "overview": "Daily task summary, pending tasks and patient status.",
+      "features": [
+        "Today's tasks",
+        "Care plans",
+        "New order alerts",
+        "Shift report"
+      ],
+      "howToUse": [
+        "View tasks",
+        "Click notification for details",
+        "Mark Done when complete"
+      ],
+      "tips": [
+        "Update MAR after each medication",
+        "Write clear handover notes"
+      ]
+    },
+    "vitals": {
+      "title": "Vitals",
+      "overview": "Record and track patient vitals — BP, temperature, pulse, SpO2.",
+      "features": [
+        "New entry",
+        "Trend graphs",
+        "Out-of-range alerts",
+        "Auto BMI",
+        "IPD/OPD"
+      ],
+      "howToUse": [
+        "Find patient",
+        "Click + Record Vitals",
+        "Enter values",
+        "Save"
+      ],
+      "tips": [
+        "Use correct units (°C)",
+        "Alert doctor on critical values immediately"
+      ]
+    },
+    "allergies": {
+      "title": "Allergies",
+      "overview": "View and add patient allergy information.",
+      "features": [
+        "Allergy list",
+        "Type (drug/food/other)",
+        "Reaction details",
+        "Add new"
+      ],
+      "howToUse": [
+        "View allergies",
+        "Add Allergy: type & details",
+        "Save"
+      ],
+      "tips": [
+        "Always check before treatment",
+        "Mark severe allergies in red"
+      ]
+    },
+    "dischargePlanning": {
+      "title": "Discharge Planning",
+      "overview": "Prepare discharge checklist and follow-up plan.",
+      "features": [
+        "Checklist",
+        "Medication & follow-up",
+        "Bill verification",
+        "Family instructions"
+      ],
+      "howToUse": [
+        "Create checklist",
+        "Mark all Done",
+        "Verify bill",
+        "Set follow-up date"
+      ],
+      "tips": [
+        "Start a day before discharge",
+        "Write follow-up instructions"
+      ]
+    },
+    "dischargeSummary": {
+      "title": "Discharge Summary",
+      "overview": "Complete summary of patient's hospital stay.",
+      "features": [
+        "Full medical record",
+        "Treatment list",
+        "Discharge medications",
+        "Follow-up plan"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Write summary",
+        "Print"
+      ],
+      "tips": [
+        "Write in simple language",
+        "Include follow-up date & doctor"
+      ]
+    },
+    "wardSupply": {
+      "title": "Ward Supply",
+      "overview": "Manage ward supplies — requisitions, stock and distribution.",
+      "features": [
+        "Requisitions",
+        "Stock & distribution",
+        "Supplier list",
+        "Low stock alerts"
+      ],
+      "howToUse": [
+        "Create requisition",
+        "Send to store",
+        "Receive when delivered"
+      ],
+      "tips": [
+        "Check stock regularly",
+        "Order emergency items early"
+      ]
+    },
+    "carePlans": {
+      "title": "Care Plans",
+      "overview": "Create personalized patient care plans.",
+      "features": [
+        "Care plan creation",
+        "Medication & care list",
+        "Nurse instructions",
+        "Tracking"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Create plan",
+        "Assign nurse",
+        "Review daily"
+      ],
+      "tips": [
+        "Write clearly",
+        "Review plan daily"
+      ]
+    },
+    "clinicalAssessments": {
+      "title": "Clinical Assessments",
+      "overview": "Document patient physical exam, diagnosis and assessment.",
+      "features": [
+        "Exam forms",
+        "Diagnosis & ICD codes",
+        "Notes",
+        "Follow-up plan"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Fill form",
+        "Add ICD code",
+        "Save"
+      ],
+      "tips": [
+        "ICD codes important for insurance",
+        "Timestamp each assessment"
+      ]
+    },
+    "clinicalReminders": {
+      "title": "Clinical Reminders",
+      "overview": "Set reminders for patient care tasks.",
+      "features": [
+        "Create & manage",
+        "Date & time",
+        "Notifications",
+        "History"
+      ],
+      "howToUse": [
+        "Add new reminder",
+        "Set patient, topic, time",
+        "Choose who to notify",
+        "Save"
+      ],
+      "tips": [
+        "Use both SMS & email for critical",
+        "Check reminders every morning"
+      ]
+    },
+    "orderSets": {
+      "title": "Order Sets",
+      "overview": "Pre-defined order sets for common conditions.",
+      "features": [
+        "Create & save",
+        "Category",
+        "Quick use",
+        "History"
+      ],
+      "howToUse": [
+        "Create new set: name, category, orders",
+        "Save",
+        "Use later with one click"
+      ],
+      "tips": [
+        "Create sets for common conditions",
+        "Update regularly"
+      ]
+    },
+    "procedureOrders": {
+      "title": "Procedure Orders",
+      "overview": "Create orders for procedures like injections, dressing, catheter.",
+      "features": [
+        "Order creation",
+        "Status tracking",
+        "Nurse instructions",
+        "History"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Choose procedure",
+        "Add instructions",
+        "Mark Done when complete"
+      ],
+      "tips": [
+        "Get patient consent first",
+        "Write procedure notes"
+      ]
+    },
+    "physicalExam": {
+      "title": "Physical Exam",
+      "overview": "Document complete physical examination results.",
+      "features": [
+        "Full exam form",
+        "System-wise check",
+        "Abnormal marking",
+        "History"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Check each system",
+        "Mark normal/abnormal",
+        "Save"
+      ],
+      "tips": [
+        "Review patient history first",
+        "Write detailed notes for abnormal"
+      ]
+    },
+    "eyeExam": {
+      "title": "Eye Exam",
+      "overview": "Vision, IOP and retina examination.",
+      "features": [
+        "Vision test",
+        "IOP",
+        "Retina exam",
+        "Prescription"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Enter results",
+        "Save"
+      ],
+      "tips": [
+        "Record both eyes separately",
+        "Check glasses history"
+      ]
+    },
+    "emergency": {
+      "title": "Emergency",
+      "overview": "Rapid registration, triage and treatment for emergency patients.",
+      "features": [
+        "Quick registration",
+        "Triage (Critical/Urgent/Non-Urgent)",
+        "Dashboard & queue",
+        "Admit or discharge"
+      ],
+      "howToUse": [
+        "Click + New Emergency Case",
+        "Enter patient info",
+        "Set triage level",
+        "Assign doctor"
+      ],
+      "tips": [
+        "Critical patients first",
+        "Never leave triage empty"
+      ]
+    },
+    "ot": {
+      "title": "Operation Theatre",
+      "overview": "Schedule surgeries, assign team, pre-op and post-op notes.",
+      "features": [
+        "Surgery schedule",
+        "Room & team assignment",
+        "Pre/post-op checklist",
+        "Status tracking"
+      ],
+      "howToUse": [
+        "Click + Schedule Operation",
+        "Select admitted patient",
+        "Assign surgeon & room",
+        "Complete checklist"
+      ],
+      "tips": [
+        "Ensure blood & equipment ready",
+        "Track surgery time"
+      ]
+    },
+    "triageChatbot": {
+      "title": "Triage Chatbot",
+      "overview": "AI-powered initial triage based on symptoms.",
+      "features": [
+        "Auto triage",
+        "Initial advice",
+        "Doctor referral",
+        "History"
+      ],
+      "howToUse": [
+        "Enter symptoms",
+        "Answer questions",
+        "Get triage level & advice"
+      ],
+      "tips": [
+        "Chatbot advice is not final",
+        "Input accurate symptoms"
+      ]
+    },
+    "mortuary": {
+      "title": "Mortuary",
+      "overview": "Manage deceased patient records and body handling.",
+      "features": [
+        "Registration",
+        "Storage tracking",
+        "Release",
+        "Death certificate"
+      ],
+      "howToUse": [
+        "Register deceased",
+        "Assign storage slot",
+        "Release to family"
+      ],
+      "tips": [
+        "Verify ID before release",
+        "Keep records confidential"
+      ]
+    },
+    "mlc": {
+      "title": "Medico-Legal Case",
+      "overview": "Manage medico-legal cases.",
+      "features": [
+        "MLC registration",
+        "Police & legal info",
+        "MLC report",
+        "Documents"
+      ],
+      "howToUse": [
+        "Register MLC case",
+        "Add police/legal info",
+        "Create report"
+      ],
+      "tips": [
+        "Write accurate & detailed info",
+        "Keep police communication records"
+      ]
+    },
+    "ePrescribing": {
+      "title": "E-Prescribing",
+      "overview": "Digital prescription with drug safety checks.",
+      "features": [
+        "Digital prescription",
+        "Drug-allergy interaction check",
+        "Generic/brand search",
+        "Dose & frequency",
+        "Send to pharmacy"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Type medicine name",
+        "Set dose & frequency",
+        "Check safety report",
+        "Save"
+      ],
+      "tips": [
+        "Never ignore high severity interactions",
+        "Generic names save patient money"
+      ]
+    },
+    "medicalRecords": {
+      "title": "Medical Records",
+      "overview": "Electronic medical records with diagnosis, notes and ICD codes.",
+      "features": [
+        "EMR",
+        "Diagnosis & ICD",
+        "Medical history",
+        "Prescriptions & reports"
+      ],
+      "howToUse": [
+        "Open patient EMR",
+        "Add visit note",
+        "Search & add ICD code"
+      ],
+      "tips": [
+        "ICD codes important for insurance/reporting",
+        "Notes sorted by time"
+      ]
+    },
+    "consultationNotes": {
+      "title": "Consultation Notes",
+      "overview": "Doctor's consultation notes.",
+      "features": [
+        "Note creation",
+        "Templates",
+        "History",
+        "Print & share"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Write note using template",
+        "Save"
+      ],
+      "tips": [
+        "Keep notes concise",
+        "Use voice dictation to save time"
+      ]
+    },
+    "dictation": {
+      "title": "Dictation",
+      "overview": "Voice-to-text for faster note-taking.",
+      "features": [
+        "Voice to text",
+        "Bangla & English",
+        "Edit notes",
+        "Save templates"
+      ],
+      "howToUse": [
+        "Allow microphone",
+        "Press record",
+        "Speak clearly",
+        "Edit if needed",
+        "Save"
+      ],
+      "tips": [
+        "Speak in a quiet place",
+        "Pronounce Bangla clearly"
+      ]
+    },
+    "radiology": {
+      "title": "Radiology",
+      "overview": "Order and report X-ray, CT, MRI, Ultrasound.",
+      "features": [
+        "Imaging orders",
+        "PACS integration",
+        "Radiologist report",
+        "Image archive"
+      ],
+      "howToUse": [
+        "New order: patient → type → schedule",
+        "Write report",
+        "Publish to doctor"
+      ],
+      "tips": [
+        "Link images with reports",
+        "Process STAT orders fast"
+      ]
+    },
+    "telemedicine": {
+      "title": "Telemedicine",
+      "overview": "Video consultations with online prescriptions.",
+      "features": [
+        "Video call & chat",
+        "Screen share",
+        "Online prescription",
+        "Session notes"
+      ],
+      "howToUse": [
+        "Start from appointment list",
+        "Click Start Session",
+        "Consult via video",
+        "Write prescription",
+        "End session"
+      ],
+      "tips": [
+        "Check camera & mic before starting",
+        "Need stable internet"
+      ]
+    },
+    "telemedicineRoom": {
+      "title": "Telemedicine Room",
+      "overview": "Direct video call room for doctor and patient.",
+      "features": [
+        "Video & audio",
+        "Text chat",
+        "Screen share",
+        "Call recording"
+      ],
+      "howToUse": [
+        "Click Join",
+        "Allow camera & mic",
+        "Speak with patient",
+        "Write prescription at end"
+      ],
+      "tips": [
+        "Sit in quiet, well-lit place",
+        "Review history before call"
+      ]
+    },
+    "dental": {
+      "title": "Dental",
+      "overview": "Dental treatment appointments, chart, plan and billing.",
+      "features": [
+        "Tooth chart",
+        "Treatment plan",
+        "Appointments",
+        "Billing"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Mark problem on chart",
+        "Create plan",
+        "Schedule appointment"
+      ],
+      "tips": [
+        "Take photos before each treatment",
+        "Keep chart accurate"
+      ]
+    },
+    "psychiatry": {
+      "title": "Psychiatry",
+      "overview": "Mental health assessment, therapy, medication and follow-up.",
+      "features": [
+        "Assessment forms",
+        "Therapy tracking",
+        "Medication management",
+        "Follow-up plan"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Assess",
+        "Create therapy & medication plan"
+      ],
+      "tips": [
+        "Respect patient privacy",
+        "Keep family contact with consent"
+      ]
+    },
+    "maternity": {
+      "title": "Maternity",
+      "overview": "Antenatal care, delivery, postnatal care and newborn records.",
+      "features": [
+        "Mother record",
+        "Checkup tracking",
+        "Delivery record",
+        "Newborn info"
+      ],
+      "howToUse": [
+        "Register mother",
+        "Set checkup dates",
+        "Create delivery record"
+      ],
+      "tips": [
+        "Set reminder for checkups",
+        "Monitor high-risk pregnancies closely"
+      ]
+    },
+    "vaccination": {
+      "title": "Vaccination",
+      "overview": "Track patient vaccination schedule and stock.",
+      "features": [
+        "Vaccine list",
+        "Given/pending tracking",
+        "Stock management",
+        "Vaccination card"
+      ],
+      "howToUse": [
+        "Select patient",
+        "View schedule",
+        "Mark Given after vaccine",
+        "Set pending reminders"
+      ],
+      "tips": [
+        "Check stock & expiry",
+        "Give card to patient"
+      ]
+    },
+    "documentManager": {
+      "title": "Document Manager",
+      "overview": "Store patient documents digitally.",
+      "features": [
+        "Upload & store",
+        "Categorize",
+        "Search",
+        "Share"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Upload file",
+        "Choose category",
+        "Save"
+      ],
+      "tips": [
+        "Name files clearly",
+        "Keep backups"
+      ]
+    },
+    "consentManagement": {
+      "title": "Consent Management",
+      "overview": "Collect and store patient consent forms.",
+      "features": [
+        "Consent forms",
+        "Digital signature",
+        "Templates",
+        "History"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Choose form",
+        "Get patient signature",
+        "Save digital copy"
+      ],
+      "tips": [
+        "Write risks & benefits clearly",
+        "Ensure patient understands"
+      ]
+    },
+    "importRecords": {
+      "title": "Import Records",
+      "overview": "Import patient data from CSV/Excel files.",
+      "features": [
+        "CSV/Excel import",
+        "Data mapping",
+        "Duplicate detection",
+        "History"
+      ],
+      "howToUse": [
+        "Prepare file in correct format",
+        "Click Import",
+        "Map columns",
+        "Preview & confirm"
+      ],
+      "tips": [
+        "Backup before import",
+        "Import in small batches"
+      ]
+    },
+    "healthRecordSharing": {
+      "title": "Health Record Sharing",
+      "overview": "Securely share patient records with other hospitals/doctors.",
+      "features": [
+        "Share link",
+        "Expiry setting",
+        "Password protection",
+        "History"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Click Share",
+        "Set password & expiry",
+        "Send via email/WhatsApp"
+      ],
+      "tips": [
+        "Link has expiry",
+        "Keep sensitive data secure"
+      ]
+    },
+    "questionnaires": {
+      "title": "Questionnaires",
+      "overview": "Create and send questionnaires to patients.",
+      "features": [
+        "Create form",
+        "Question types (MCQ/text)",
+        "Send to patients",
+        "View results"
+      ],
+      "howToUse": [
+        "Create new questionnaire",
+        "Add questions",
+        "Send to patients",
+        "View responses"
+      ],
+      "tips": [
+        "Keep questions simple & clear",
+        "Mark important questions"
+      ]
+    },
+    "customFormBuilder": {
+      "title": "Form Builder",
+      "overview": "Build custom forms for any purpose.",
+      "features": [
+        "Form creation",
+        "Field types (text, number, options)",
+        "Save templates",
+        "Assign to patients"
+      ],
+      "howToUse": [
+        "Create new form",
+        "Add fields",
+        "Save template",
+        "Assign to patients"
+      ],
+      "tips": [
+        "Save as template for reuse",
+        "Update regularly"
+      ]
+    },
+    "inventory": {
+      "title": "Inventory",
+      "overview": "Manage supplies, stock, purchase orders and distribution.",
+      "features": [
+        "Stock & ledger",
+        "PO & GR",
+        "Requisitions",
+        "Dispatch",
+        "Low stock alerts"
+      ],
+      "howToUse": [
+        "View stock list",
+        "+ New PO to order",
+        "GR on arrival",
+        "Approve & dispatch requisitions"
+      ],
+      "tips": [
+        "Always link GR to PO",
+        "Set minimum stock levels"
+      ]
+    },
+    "inventoryDashboard": {
+      "title": "Inventory Dashboard",
+      "overview": "Stock, order and requisition summary.",
+      "features": [
+        "Stock summary",
+        "Pending orders",
+        "Requisitions",
+        "Low stock alerts"
+      ],
+      "howToUse": [
+        "View dashboard for overview",
+        "Order low stock items"
+      ],
+      "tips": [
+        "Check every morning",
+        "Order critical items early"
+      ]
+    },
+    "inventoryStock": {
+      "title": "Inventory Stock",
+      "overview": "View current stock levels.",
+      "features": [
+        "Stock list",
+        "Levels",
+        "Adjustments",
+        "Ledger"
+      ],
+      "howToUse": [
+        "View list"
+      ],
+      "tips": [
+        "Check stock regularly"
+      ]
+    },
+    "accounting": {
+      "title": "Accounting",
+      "overview": "Manage income, expenses, P&L and balance sheet.",
+      "features": [
+        "Income & expense dashboard",
+        "Journal entries & ledger",
+        "P&L & balance sheet",
+        "Chart of accounts"
+      ],
+      "howToUse": [
+        "View dashboard",
+        "+ New Entry for transactions",
+        "Generate reports"
+      ],
+      "tips": [
+        "Attach voucher to each entry",
+        "Daily cash reconciliation"
+      ]
+    },
+    "accountingDashboard": {
+      "title": "Accounting Dashboard",
+      "overview": "Income, expense and financial health summary.",
+      "features": [
+        "Today's income/expense",
+        "Monthly summary",
+        "P&L",
+        "Charts"
+      ],
+      "howToUse": [
+        "View dashboard"
+      ],
+      "tips": [
+        "Check financial health daily"
+      ]
+    },
+    "accountingIncome": {
+      "title": "Income",
+      "overview": "View and add hospital income.",
+      "features": [
+        "Income list",
+        "Add new",
+        "Category view",
+        "Report"
+      ],
+      "howToUse": [
+        "View list",
+        "Add new income"
+      ],
+      "tips": [
+        "Track income sources",
+        "Monthly tracking"
+      ]
+    },
+    "accountingExpenses": {
+      "title": "Expenses",
+      "overview": "View and add hospital expenses.",
+      "features": [
+        "Expense list",
+        "Add new",
+        "Category view",
+        "Report"
+      ],
+      "howToUse": [
+        "View list",
+        "Add new expense"
+      ],
+      "tips": [
+        "Attach expense vouchers",
+        "Match with budget"
+      ]
+    },
+    "accountingRecurring": {
+      "title": "Recurring Expenses",
+      "overview": "Set expenses that repeat monthly (salary, rent).",
+      "features": [
+        "List",
+        "Add new",
+        "Frequency set",
+        "Auto-post"
+      ],
+      "howToUse": [
+        "Add new recurring expense",
+        "Set amount & frequency",
+        "Save"
+      ],
+      "tips": [
+        "Check at start of each month",
+        "Disable when needed"
+      ]
+    },
+    "accountingAccounts": {
+      "title": "Chart of Accounts",
+      "overview": "Define account heads (cash, bank, income, expense).",
+      "features": [
+        "Account list",
+        "Create new",
+        "Category",
+        "Balance view"
+      ],
+      "howToUse": [
+        "View list",
+        "Create new account"
+      ],
+      "tips": [
+        "Name codes properly",
+        "Check balances regularly"
+      ]
+    },
+    "accountingJournal": {
+      "title": "Journal Entries",
+      "overview": "Record debit/credit journal entries.",
+      "features": [
+        "Entry creation",
+        "Debit & credit",
+        "Voucher attachment",
+        "History"
+      ],
+      "howToUse": [
+        "Create new entry",
+        "Enter debit & credit",
+        "Add description",
+        "Save"
+      ],
+      "tips": [
+        "Keep debit = credit",
+        "Attach vouchers"
+      ]
+    },
+    "accountingReports": {
+      "title": "Accounting Reports",
+      "overview": "Generate P&L, balance sheet, trial balance.",
+      "features": [
+        "P&L",
+        "Balance sheet",
+        "Trial balance",
+        "Cash flow"
+      ],
+      "howToUse": [
+        "Select report",
+        "Set date range",
+        "Generate"
+      ],
+      "tips": [
+        "Monthly reports for management",
+        "Keep P&L and balance sheet updated"
+      ]
+    },
+    "accountingAudit": {
+      "title": "Audit Log",
+      "overview": "Track who changed what in accounting.",
+      "features": [
+        "Transaction history",
+        "User filter",
+        "Date filter",
+        "Export"
+      ],
+      "howToUse": [
+        "View log",
+        "Use filters",
+        "Export"
+      ],
+      "tips": [
+        "Check audit log regularly",
+        "Investigate suspicious entries"
+      ]
+    },
+    "shareholders": {
+      "title": "Shareholders",
+      "overview": "Manage shareholder info, dividends and shares.",
+      "features": [
+        "Shareholder list",
+        "Shares & dividends",
+        "Transfer",
+        "Reports"
+      ],
+      "howToUse": [
+        "View list",
+        "Add new shareholder",
+        "Record dividends"
+      ],
+      "tips": [
+        "Keep info confidential",
+        "Distribute dividends regularly"
+      ]
+    },
+    "reports": {
+      "title": "Reports",
+      "overview": "Generate departmental and analytical reports.",
+      "features": [
+        "Departmental reports",
+        "Date & filter",
+        "Charts & graphs",
+        "CSV/PDF export"
+      ],
+      "howToUse": [
+        "Select report type",
+        "Set date & filter",
+        "Generate"
+      ],
+      "tips": [
+        "Monthly reports for management",
+        "Export to share"
+      ]
+    },
+    "reportLab": {
+      "title": "Lab Report",
+      "overview": "See lab volume, revenue, reagent cost, doctor commission, gross profit, TAT, and doctor-wise performance.",
+      "features": [
+        "Category and top-test volume",
+        "Turn-around time monitoring",
+        "Test profitability with consumable cost",
+        "Doctor-wise lab revenue and commission"
+      ],
+      "howToUse": [
+        "Choose a report tab",
+        "Set the date range",
+        "Review revenue, cost, commission, and profit columns",
+        "Use doctor-wise results for payable reconciliation"
+      ],
+      "tips": [
+        "Map consumables to each lab test before relying on profit margins",
+        "Configure doctor commission rules before generating payable reports"
+      ]
+    },
+    "labMonitoring": {
+      "title": "Lab Monitoring",
+      "overview": "Track reagent, tube, strip, film, and other consumable stock used by lab tests.",
+      "features": [
+        "Consumable master list",
+        "Batch-wise stock ledger",
+        "Test-to-consumable mapping",
+        "Operation logs and low-stock alerts"
+      ],
+      "howToUse": [
+        "Add consumables with unit cost and reorder level",
+        "Receive stock by batch and expiry date",
+        "Map each lab test to the consumables it uses",
+        "Complete lab results to auto-deduct mapped stock"
+      ],
+      "tips": [
+        "Keep purchase price updated for accurate test cost",
+        "Review stock alerts before running high-volume tests"
+      ]
+    },
+    "reportPharmacy": {
+      "title": "Pharmacy Report",
+      "overview": "Pharmacy sales, stock and revenue reports.",
+      "features": [
+        "Sales report",
+        "Stock report",
+        "Revenue",
+        "Export"
+      ],
+      "howToUse": [
+        "Set date",
+        "Generate",
+        "Export"
+      ],
+      "tips": [
+        "Monthly sales report for management",
+        "Check low stock report"
+      ]
+    },
+    "reportAppointments": {
+      "title": "Appointment Report",
+      "overview": "Appointment statistics and analysis.",
+      "features": [
+        "Total appointments",
+        "Per doctor",
+        "No-show report",
+        "Export"
+      ],
+      "howToUse": [
+        "Set date",
+        "Generate",
+        "Export"
+      ],
+      "tips": [
+        "Identify busy doctors & times",
+        "Act on no-show data"
+      ]
+    },
+    "predictiveAnalytics": {
+      "title": "Predictive Analytics",
+      "overview": "Data-driven predictions for patient volume, revenue etc.",
+      "features": [
+        "Patient prediction",
+        "Revenue forecast",
+        "Busy periods",
+        "Charts"
+      ],
+      "howToUse": [
+        "View dashboard",
+        "Understand trends",
+        "Make decisions"
+      ],
+      "tips": [
+        "Predictions are not 100% accurate",
+        "Use for planning"
+      ]
+    },
+    "qualityKpi": {
+      "title": "Quality KPI",
+      "overview": "Hospital performance indicators — satisfaction, wait times.",
+      "features": [
+        "KPI dashboard",
+        "Target vs achievement",
+        "Charts",
+        "Reports"
+      ],
+      "howToUse": [
+        "View KPIs",
+        "Compare with targets",
+        "Plan improvements"
+      ],
+      "tips": [
+        "Monthly KPI reports",
+        "Identify improvement areas"
+      ]
+    },
+    "settings": {
+      "title": "Settings",
+      "overview": "Configure hospital info, tax, billing, users and permissions.",
+      "features": [
+        "Hospital profile & logo",
+        "Tax & billing config",
+        "User & role management",
+        "Permissions",
+        "System preferences"
+      ],
+      "howToUse": [
+        "Open Settings from sidebar",
+        "Select tab",
+        "Update & Save"
+      ],
+      "tips": [
+        "Backup before changes",
+        "Only admin can modify"
+      ]
+    },
+    "websiteSettings": {
+      "title": "Website Settings",
+      "overview": "Configure hospital website content.",
+      "features": [
+        "Website content",
+        "Homepage & pages",
+        "SEO settings",
+        "Social media links"
+      ],
+      "howToUse": [
+        "Select tab",
+        "Update info",
+        "Save"
+      ],
+      "tips": [
+        "Keep website updated",
+        "Add useful patient info"
+      ]
+    },
+    "printTemplates": {
+      "title": "Print Templates",
+      "overview": "Customize print formats for bills, prescriptions, reports.",
+      "features": [
+        "Template list",
+        "Edit & customize",
+        "Preview",
+        "New template"
+      ],
+      "howToUse": [
+        "Select template",
+        "Edit",
+        "Preview & Save"
+      ],
+      "tips": [
+        "Preview before printing",
+        "Add logo & hospital info"
+      ]
+    },
+    "permissions": {
+      "title": "Permissions",
+      "overview": "Define role-based access permissions.",
+      "features": [
+        "Role list",
+        "Permission matrix",
+        "New role",
+        "User assignment"
+      ],
+      "howToUse": [
+        "Select role",
+        "Set permissions",
+        "Save"
+      ],
+      "tips": [
+        "Grant minimum permissions for security",
+        "Create admin roles carefully"
+      ]
+    },
+    "staff": {
+      "title": "Staff Management",
+      "overview": "Manage staff info, roles, permissions and attendance.",
+      "features": [
+        "Staff list & profiles",
+        "Role & permissions",
+        "Invite new",
+        "Activate/deactivate"
+      ],
+      "howToUse": [
+        "View list",
+        "+ Invite Staff to add",
+        "Assign role",
+        "Deactivate when leaving"
+      ],
+      "tips": [
+        "Grant minimum permissions",
+        "Deactivate departed staff"
+      ]
+    },
+    "inviteStaff": {
+      "title": "Invite Staff",
+      "overview": "Send system invitation to new staff.",
+      "features": [
+        "Email invitation",
+        "Role selection",
+        "Access scope",
+        "Invitation history"
+      ],
+      "howToUse": [
+        "Enter staff email & phone",
+        "Select role",
+        "Send Invitation"
+      ],
+      "tips": [
+        "Use correct email",
+        "Set initial appropriate permissions"
+      ]
+    },
+    "hr": {
+      "title": "HR Management",
+      "overview": "Staff attendance, leave, roster and payroll.",
+      "features": [
+        "Attendance tracking",
+        "Leave applications",
+        "Duty roster",
+        "Payroll"
+      ],
+      "howToUse": [
+        "Check attendance",
+        "Approve leave",
+        "Create roster",
+        "Run payroll"
+      ],
+      "tips": [
+        "Check attendance daily",
+        "Keep leave balance accurate"
+      ]
+    },
+    "leaveManagement": {
+      "title": "Leave Management",
+      "overview": "Staff leave applications, approvals and balance.",
+      "features": [
+        "Leave application",
+        "Approve/reject",
+        "Balance view",
+        "History"
+      ],
+      "howToUse": [
+        "View new applications",
+        "Approve or reject",
+        "Check balance"
+      ],
+      "tips": [
+        "Keep leave balance accurate",
+        "Plan ahead for long leaves"
+      ]
+    },
+    "dutyRoster": {
+      "title": "Duty Roster",
+      "overview": "Assign staff shifts and duties.",
+      "features": [
+        "Roster creation",
+        "Shift assignment",
+        "Staff assignment",
+        "Print"
+      ],
+      "howToUse": [
+        "Create new roster",
+        "Set shifts & assign staff",
+        "Save",
+        "Print for notice board"
+      ],
+      "tips": [
+        "Create before month starts",
+        "Inform staff in advance"
+      ]
+    },
+    "attendancePunch": {
+      "title": "Attendance",
+      "overview": "Record staff attendance.",
+      "features": [
+        "Punch in/out",
+        "Attendance log",
+        "Manual entry",
+        "Report"
+      ],
+      "howToUse": [
+        "Staff punches themselves",
+        "Manual edit for corrections",
+        "View report"
+      ],
+      "tips": [
+        "Check attendance daily",
+        "Ask reason for late arrivals"
+      ]
+    },
+    "groupAttendance": {
+      "title": "Group Attendance",
+      "overview": "Mark attendance for multiple staff at once.",
+      "features": [
+        "Group view",
+        "Bulk marking",
+        "Date select",
+        "Report"
+      ],
+      "howToUse": [
+        "Select staff group",
+        "Mark attendance",
+        "Save"
+      ],
+      "tips": [
+        "Take at morning meeting",
+        "Edit if wrong"
+      ]
+    },
+    "doctorDashboard": {
+      "title": "Doctor Dashboard",
+      "overview": "Your daily command center. See today's patient queue, manage consultations, write prescriptions, order labs, and track follow-ups — all from one screen. The dashboard auto-refreshes every 30 seconds.",
+      "features": [
+        "Today's Queue — view all patients with status tabs (Waiting, In Room, Completed, Report Show, Follow-up, Emergency)",
+        "7 KPI badges — real-time counts for Waiting, In Room, Completed, Report Show, Follow-up, Emergency, and Total",
+        "Session selector — switch between Morning, Evening, Chamber 1, Chamber 2 sessions",
+        "Next Patient banner — shows the next patient in queue with token and chief complaint",
+        "Patient cards — each card shows token, name, age, gender, chief complaint, vitals, last visit, last diagnosis, visit type, billing status, allergy/Rx/lab counts",
+        "Start Consultation — opens the full workspace drawer with SOAP notes, prescription builder, lab orders, and advice",
+        "Quick status actions — Call (waiting→in room), Hold (in room→waiting), Done (complete visit)",
+        "AI Clinical Summary — AI-generated patient overview from chart records",
+        "Reassign — transfer patient to another doctor",
+        "Right panel — visit type breakdown, pending orders, IPD patients, recent prescriptions, upcoming follow-ups",
+        "Schedule Timeline — hourly visual view of patient slots (9AM-5PM)",
+        "Fast Rx — quick prescription without going through queue",
+        "Quick links — IPD, Reports, Schedule"
+      ],
+      "howToUse": [
+        "After login, you see Today's Queue with all patients for the day",
+        "Use status filter tabs (All, Waiting, In Room, Completed, etc.) to filter patients",
+        "Search patients by name, code, token, mobile, or visit type",
+        "Click 'Start Consultation' on a patient card to open the workspace drawer",
+        "In the workspace: view patient context (left), fill SOAP notes (center), write prescription (right)",
+        "Use chief complaint chips (Fever, Cough, Chest pain, etc.) for quick entry",
+        "Use diagnosis templates (Fever, DM, HTN, Gastritis) to auto-fill SOAP fields",
+        "Search medicine from formulary, use quick-add pills, or repeat last prescription",
+        "Order labs with quick chips (CBC, RBS, HbA1c, Creatinine) or search",
+        "Add advice chips (Drink water, Avoid oily food, Low salt diet, etc.)",
+        "Set follow-up date and click 'Save & Complete' to finish the visit",
+        "Use the sticky bottom bar for Save Rx, Print, Full Rx Page, Full History, Follow-up"
+      ],
+      "tips": [
+        "Patient cards show red 'Alert' badge if the patient has drug allergies or abnormal lab results",
+        "Use 'Repeat Last Rx' button for follow-up patients — loads previous prescription for quick editing",
+        "Diagnosis templates pre-fill Chief Complaint, Assessment, and Plan fields in one click",
+        "The 'Save & Complete' button records SOAP notes, finalizes the prescription, and then completes the visit; confirm completion before moving to the next patient",
+        "Drug safety system auto-checks allergies, drug interactions, and dose limits when you prescribe",
+        "AI Summary is generated from the patient's chart — verify source reports before clinical decisions",
+        "Clinical prescription lifecycle: Draft → Final. Optional hospital dispensing is tracked separately and does not change the finalized prescription",
+        "Use keyboard shortcuts: Alt+S to save, Alt+P to print, Alt+N for next patient",
+        "The dashboard auto-refreshes every 30s — no need to manually reload",
+        "IPD patients appear in the right panel — click to go to their admission detail"
+      ]
+    },
+    "doctorSchedule": {
+      "title": "Doctor Schedule",
+      "overview": "Set doctor appointment availability.",
+      "features": [
+        "Schedule creation",
+        "Days & times",
+        "Weekly routine",
+        "Holiday marking"
+      ],
+      "howToUse": [
+        "Select days & times",
+        "Set patients per slot",
+        "Save"
+      ],
+      "tips": [
+        "Required for appointment booking",
+        "Mark holidays in advance"
+      ]
+    },
+    "receptionDashboard": {
+      "title": "Reception Dashboard",
+      "overview": "Today's appointments, check-in, billing and registration summary.",
+      "features": [
+        "Appointments & check-in",
+        "Patient registration",
+        "OPD billing",
+        "Doctor schedule"
+      ],
+      "howToUse": [
+        "View appointments list",
+        "Check-in arriving patients",
+        "Register new patients",
+        "Collect OPD fees"
+      ],
+      "tips": [
+        "Search old patients by UHID",
+        "Don't make emergency patients wait for billing"
+      ]
+    },
+    "mdDashboard": {
+      "title": "MD Dashboard",
+      "overview": "Hospital financial KPIs, staff performance and operations summary.",
+      "features": [
+        "Financial KPIs & P&L",
+        "Staff performance",
+        "Department revenue",
+        "Quality metrics"
+      ],
+      "howToUse": [
+        "View KPI cards",
+        "Click graphs for details",
+        "Review notifications"
+      ],
+      "tips": [
+        "Check KPIs every morning",
+        "Set budget overrun alerts"
+      ]
+    },
+    "directorDashboard": {
+      "title": "Administration Dashboard",
+      "overview": "Hospital governance, shareholder summary and strategic metrics.",
+      "features": [
+        "Governance metrics",
+        "Shareholder summary",
+        "P&L & cash flow",
+        "Strategic indicators"
+      ],
+      "howToUse": [
+        "View high-level metrics",
+        "Review shareholder reports",
+        "Check pending approvals"
+      ],
+      "tips": [
+        "Monitor cash flow & EBITDA",
+        "Prepare reports before board meeting"
+      ]
+    },
+    "superAdminDashboard": {
+      "title": "Super Admin Dashboard",
+      "overview": "Platform-wide hospital, user, revenue and system health overview.",
+      "features": [
+        "Platform stats",
+        "Hospital onboarding",
+        "System health",
+        "Audit log"
+      ],
+      "howToUse": [
+        "View total hospitals & users",
+        "Approve onboarding queue",
+        "Check system health"
+      ],
+      "tips": [
+        "Check onboarding queue daily",
+        "Investigate security alerts immediately"
+      ]
+    },
+    "superAdminHospitals": {
+      "title": "Hospitals",
+      "overview": "View all hospitals on platform.",
+      "features": [
+        "Hospital list",
+        "Status (active/inactive)",
+        "Details view",
+        "Onboarding"
+      ],
+      "howToUse": [
+        "View list",
+        "Click for details",
+        "Change status"
+      ],
+      "tips": [
+        "Onboard new hospitals fast",
+        "Check inactive hospitals"
+      ]
+    },
+    "superAdminHospitalDetail": {
+      "title": "Hospital Details",
+      "overview": "View single hospital detail and configuration.",
+      "features": [
+        "Hospital info",
+        "Users",
+        "Subscription",
+        "Settings"
+      ],
+      "howToUse": [
+        "View info",
+        "Change settings",
+        "Manage users"
+      ],
+      "tips": [
+        "Keep config accurate",
+        "Provide support when needed"
+      ]
+    },
+    "superAdminOnboarding": {
+      "title": "Onboarding Queue",
+      "overview": "Approve new hospital registrations.",
+      "features": [
+        "Pending applications",
+        "Approve/reject",
+        "Verify info",
+        "History"
+      ],
+      "howToUse": [
+        "View application",
+        "Verify details",
+        "Approve or reject"
+      ],
+      "tips": [
+        "Approve quickly — hospitals waiting",
+        "Verify all details"
+      ]
+    },
+    "superAdminAudit": {
+      "title": "Audit Log",
+      "overview": "Platform-wide activity log.",
+      "features": [
+        "Log list",
+        "Filters",
+        "Export",
+        "Search"
+      ],
+      "howToUse": [
+        "View log",
+        "Use filters",
+        "Export"
+      ],
+      "tips": [
+        "Check regularly",
+        "Investigate suspicious activity"
+      ]
+    },
+    "superAdminHealth": {
+      "title": "System Health",
+      "overview": "System performance, uptime and errors.",
+      "features": [
+        "System status",
+        "Uptime",
+        "Error log",
+        "Performance"
+      ],
+      "howToUse": [
+        "View status",
+        "Check errors",
+        "Take action"
+      ],
+      "tips": [
+        "Check system health regularly",
+        "Fix errors quickly"
+      ]
+    },
+    "superAdminSettings": {
+      "title": "Super Admin Settings",
+      "overview": "Global settings, subscription plans, payment config.",
+      "features": [
+        "Global settings",
+        "Subscription plans",
+        "Payment config",
+        "Email & SMS"
+      ],
+      "howToUse": [
+        "Update settings",
+        "Save"
+      ],
+      "tips": [
+        "Change settings carefully",
+        "Keep backups"
+      ]
+    },
+    "helpCenter": {
+      "title": "Help Center",
+      "overview": "Find step-by-step guides for all modules and features.",
+      "features": [
+        "All module tutorials",
+        "Role-based guides",
+        "Search & filter",
+        "Tips & warnings"
+      ],
+      "howToUse": [
+        "Search by keyword",
+        "Filter by category",
+        "Expand to read"
+      ],
+      "tips": [
+        "Encourage new staff to use",
+        "Modules & Roles tabs available"
+      ]
+    },
+    "inbox": {
+      "title": "Inbox",
+      "overview": "Internal messages and notifications.",
+      "features": [
+        "Message list",
+        "Read/unread",
+        "Reply",
+        "Filter"
+      ],
+      "howToUse": [
+        "View messages",
+        "Read",
+        "Reply"
+      ],
+      "tips": [
+        "Mark important messages",
+        "Check inbox regularly"
+      ]
+    },
+    "notifications": {
+      "title": "Notifications",
+      "overview": "Important alerts and notifications.",
+      "features": [
+        "Notification list",
+        "Read/unread",
+        "Filter",
+        "Settings"
+      ],
+      "howToUse": [
+        "View notifications",
+        "Read important ones"
+      ],
+      "tips": [
+        "Don't disable notifications",
+        "Check daily"
+      ]
+    },
+    "ambulance": {
+      "title": "Ambulance",
+      "overview": "Manage ambulance dispatching, drivers and billing.",
+      "features": [
+        "Ambulance list",
+        "Booking & dispatch",
+        "Driver info",
+        "Reports"
+      ],
+      "howToUse": [
+        "Create booking",
+        "Assign ambulance & driver",
+        "Mark complete"
+      ],
+      "tips": [
+        "Keep status updated",
+        "Ready for emergencies"
+      ]
+    },
+    "bloodBank": {
+      "title": "Blood Bank",
+      "overview": "Manage blood stock, donors and distribution.",
+      "features": [
+        "Blood stock",
+        "Donor list",
+        "Distribution",
+        "Screening"
+      ],
+      "howToUse": [
+        "View stock",
+        "Add donor",
+        "Distribute"
+      ],
+      "tips": [
+        "Call donors when low",
+        "Check each unit expiry"
+      ]
+    },
+    "biomedicalWaste": {
+      "title": "Biomedical Waste",
+      "overview": "Record medical waste collection and disposal.",
+      "features": [
+        "Collection record",
+        "Type separation",
+        "Disposal record",
+        "Report"
+      ],
+      "howToUse": [
+        "Record collection",
+        "Separate by type",
+        "Record disposal"
+      ],
+      "tips": [
+        "Update records regularly",
+        "Follow safety guidelines"
+      ]
+    },
+    "cssd": {
+      "title": "CSSD",
+      "overview": "Sterilization and distribution of instruments.",
+      "features": [
+        "Sterilization record",
+        "Instrument list",
+        "Distribution record",
+        "Stock"
+      ],
+      "howToUse": [
+        "Create record",
+        "Sterilize instruments",
+        "Distribute"
+      ],
+      "tips": [
+        "Sterilize regularly",
+        "Keep records"
+      ]
+    },
+    "housekeeping": {
+      "title": "Housekeeping",
+      "overview": "Hospital cleaning and maintenance scheduling.",
+      "features": [
+        "Cleaning schedule",
+        "Staff assignment",
+        "Checklist",
+        "Report"
+      ],
+      "howToUse": [
+        "Assign staff",
+        "Mark complete"
+      ],
+      "tips": [
+        "Regular cleaning essential",
+        "Use checklists"
+      ]
+    },
+    "kitchen": {
+      "title": "Kitchen",
+      "overview": "Patient meal preparation and distribution.",
+      "features": [
+        "Meal list",
+        "Diet chart",
+        "Distribution time",
+        "Stock"
+      ],
+      "howToUse": [
+        "Prepare meals per diet chart",
+        "Distribute on time"
+      ],
+      "tips": [
+        "Follow diet chart strictly",
+        "Maintain cleanliness"
+      ]
+    },
+    "laundry": {
+      "title": "Laundry",
+      "overview": "Hospital linen and uniform cleaning and distribution.",
+      "features": [
+        "Laundry record",
+        "Linen list",
+        "Distribution record",
+        "Stock"
+      ],
+      "howToUse": [
+        "Collect linen",
+        "Wash & distribute"
+      ],
+      "tips": [
+        "Check stock regularly",
+        "Maintain hygiene"
+      ]
+    },
+    "assetManagement": {
+      "title": "Asset Management",
+      "overview": "Track hospital equipment and assets.",
+      "features": [
+        "Asset list",
+        "Value & depreciation",
+        "Maintenance schedule",
+        "Report"
+      ],
+      "howToUse": [
+        "Add asset",
+        "Set maintenance date",
+        "View report"
+      ],
+      "tips": [
+        "Keep asset list updated",
+        "Regular maintenance"
+      ]
+    },
+    "camos": {
+      "title": "CAMOS",
+      "overview": "Asset location and status tracking.",
+      "features": [
+        "Asset location",
+        "QR tracking",
+        "Status",
+        "History"
+      ],
+      "howToUse": [
+        "Search asset",
+        "View location & status"
+      ],
+      "tips": [
+        "Use QR codes for tracking",
+        "Report loss/theft immediately"
+      ]
+    },
+    "marketing": {
+      "title": "Marketing",
+      "overview": "Campaigns, referrals and promotions.",
+      "features": [
+        "Campaigns",
+        "Referral tracking",
+        "Lead management",
+        "Reports"
+      ],
+      "howToUse": [
+        "Create campaign",
+        "Track referrals",
+        "View reports"
+      ],
+      "tips": [
+        "Incentivize referral sources",
+        "Track campaign results"
+      ]
+    },
+    "whatsapp": {
+      "title": "WhatsApp Dashboard",
+      "overview": "Communicate with patients via WhatsApp.",
+      "features": [
+        "WhatsApp messages",
+        "Templates",
+        "Bulk messaging",
+        "History"
+      ],
+      "howToUse": [
+        "Send message",
+        "Use template",
+        "View history"
+      ],
+      "tips": [
+        "Use templates for speed",
+        "Get consent for bulk messaging"
+      ]
+    },
+    "createReferral": {
+      "title": "Create Referral",
+      "overview": "Refer patient to another doctor or hospital.",
+      "features": [
+        "Referral form",
+        "Destination selection",
+        "Patient info",
+        "Tracking"
+      ],
+      "howToUse": [
+        "Select patient",
+        "Select destination doctor",
+        "Write reason",
+        "Send"
+      ],
+      "tips": [
+        "Provide complete patient info",
+        "Follow up on referral"
+      ]
+    },
+    "incomingReferrals": {
+      "title": "Incoming Referrals",
+      "overview": "View and accept referrals from other hospitals.",
+      "features": [
+        "Referral list",
+        "Accept/reject",
+        "Patient info",
+        "History"
+      ],
+      "howToUse": [
+        "View referrals",
+        "Accept or reject",
+        "Schedule appointment"
+      ],
+      "tips": [
+        "Respond quickly",
+        "Review referral info carefully"
+      ]
+    },
+    "marketplace": {
+      "title": "Marketplace",
+      "overview": "Find doctors and hospitals for referrals.",
+      "features": [
+        "Doctor directory",
+        "Hospital directory",
+        "Search & filter",
+        "Profile view"
+      ],
+      "howToUse": [
+        "Search for doctor/hospital",
+        "View profile",
+        "Read reviews"
+      ],
+      "tips": [
+        "Find right specialist for patient",
+        "Check reviews before referral"
+      ]
+    },
+    "marketplaceDoctors": {
+      "title": "Doctor Directory",
+      "overview": "All registered doctors.",
+      "features": [
+        "Doctor list",
+        "Specialty filter",
+        "Profile view",
+        "Reviews"
+      ],
+      "howToUse": [
+        "Search doctor",
+        "View profile"
+      ],
+      "tips": [
+        "Filter by specialty",
+        "Check reviews"
+      ]
+    },
+    "marketplaceHospitals": {
+      "title": "Hospital Directory",
+      "overview": "All registered hospitals.",
+      "features": [
+        "Hospital list",
+        "Location filter",
+        "Profile view",
+        "Reviews"
+      ],
+      "howToUse": [
+        "Search hospital",
+        "View profile"
+      ],
+      "tips": [
+        "Search by location",
+        "Check reviews"
+      ]
+    },
+    "marketplaceQueue": {
+      "title": "Marketplace Booking Queue",
+      "overview": "Manage bookings from marketplace.",
+      "features": [
+        "Booking list",
+        "Status view",
+        "Accept/reject",
+        "History"
+      ],
+      "howToUse": [
+        "View bookings",
+        "Accept or reject"
+      ],
+      "tips": [
+        "Respond quickly",
+        "Explain rejection reason"
+      ]
+    },
+    "marketplaceReviews": {
+      "title": "Marketplace Reviews",
+      "overview": "Moderate doctor and hospital reviews.",
+      "features": [
+        "Review list",
+        "Moderation",
+        "Approve/reject",
+        "Report"
+      ],
+      "howToUse": [
+        "View reviews",
+        "Approve or reject"
+      ],
+      "tips": [
+        "Remove fake reviews",
+        "Promote good reviews"
+      ]
+    },
+    "hospitalProfile": {
+      "title": "Hospital Profile",
+      "overview": "Hospital detailed info and services.",
+      "features": [
+        "Hospital info",
+        "Service list",
+        "Doctor list",
+        "Reviews"
+      ],
+      "howToUse": [
+        "View profile",
+        "Check reviews"
+      ],
+      "tips": [
+        "Keep profile updated",
+        "List all services"
+      ]
+    },
+    "doctorProfile": {
+      "title": "Doctor Profile",
+      "overview": "Doctor detailed info, specialty and reviews.",
+      "features": [
+        "Doctor info",
+        "Specialty",
+        "Reviews",
+        "Appointments"
+      ],
+      "howToUse": [
+        "View profile",
+        "Check reviews",
+        "Book appointment"
+      ],
+      "tips": [
+        "Keep info accurate",
+        "Moderate reviews"
+      ]
+    },
+    "hospitalSetup": {
+      "title": "Hospital Setup",
+      "overview": "Initial hospital setup and configuration.",
+      "features": [
+        "Hospital info",
+        "Admin settings",
+        "User creation",
+        "Module activation"
+      ],
+      "howToUse": [
+        "Follow all steps",
+        "Fill required info",
+        "Save"
+      ],
+      "tips": [
+        "All features available after setup",
+        "Can modify later"
+      ]
+    },
+    "trackAnything": {
+      "title": "Track Anything",
+      "overview": "Create custom trackers for any data.",
+      "features": [
+        "Tracker creation",
+        "Data points",
+        "Charts",
+        "Report"
+      ],
+      "howToUse": [
+        "Create new tracker",
+        "Set data points",
+        "Collect data",
+        "View charts"
+      ],
+      "tips": [
+        "Track useful metrics",
+        "Input data regularly"
+      ]
+    },
+    "aiAssistant": {
+      "title": "AI Assistant",
+      "overview": "AI-powered assistant for questions and help.",
+      "features": [
+        "Ask questions",
+        "Suggestions",
+        "History",
+        "Multi-language"
+      ],
+      "howToUse": [
+        "Type question",
+        "View answer",
+        "Ask more"
+      ],
+      "tips": [
+        "AI advice not final",
+        "Make important decisions yourself"
+      ]
+    },
+    "commission": {
+      "title": "Commission & Incentives",
+      "overview": "Manage financial incentives for doctors and referrers. The system automatically calculates earnings based on your rules when billing is completed.",
+      "features": [
+        "Dynamic rule creation for visits and lab tests",
+        "Automatic accrual calculation upon bill payment",
+        "Referrer and Performer based splits",
+        "Settlement tracking and payment history",
+        "Marketing partner (Referrer) ledger"
+      ],
+      "howToUse": [
+        "Rule Setup: Create rules by selecting Doctor, Service Type, and Rate (Fixed or %).",
+        "Billing Link: When a patient is billed, the system looks for an active rule matching the service and doctor.",
+        "Automation: Earnings are marked as 'Accrued' once the bill is fully paid.",
+        "Settlement: Review accrued amounts in the Ledger and mark as 'Paid' once transferred to the doctor."
+      ],
+      "tips": [
+        "Active rules cannot be edited; delete and create new ones for changes.",
+        "Deleting a rule won't affect past accruals; history remains safe.",
+        "For Lab Tests, earnings are only generated after the result is published."
+      ]
+    },
+    "systemAudit": {
+      "title": "System Audit",
+      "overview": "System change and user activity log.",
+      "features": [
+        "Audit log",
+        "Filters",
+        "Export",
+        "Search"
+      ],
+      "howToUse": [
+        "View log",
+        "Filter",
+        "Export"
+      ],
+      "tips": [
+        "Check audit log regularly",
+        "Investigate suspicious activity"
+      ]
+    },
+    "multiBranch": {
+      "title": "Multi-Branch Dashboard",
+      "overview": "Compare data across branches.",
+      "features": [
+        "Branch list",
+        "Comparison",
+        "Revenue & expense",
+        "Report"
+      ],
+      "howToUse": [
+        "Select branches",
+        "View comparison"
+      ],
+      "tips": [
+        "Compare performance",
+        "Improve weak areas"
+      ]
+    }
+  }
+}

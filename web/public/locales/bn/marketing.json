@@ -1,0 +1,137 @@
+{
+  "landing": {
+    "heroTitle": "সেরা স্বাস্থ্যসেবা খুঁজুন এবং বুক করুন",
+    "heroSubtitle": "আপনার এলাকার শীর্ষ ডাক্তার এবং হাসপাতাল খুঁজুন। তাৎক্ষণিকভাবে এবং নিরাপদে অ্যাপয়েন্টমেন্ট বুক করুন।",
+    "searchPlaceholder": "নাম, বিশেষত্ব বা হাসপাতাল দিয়ে খুঁজুন...",
+    "browseHospitals": "হাসপাতাল দেখুন",
+    "findDoctors": "ডাক্তার খুঁজুন",
+    "registerChamber": "আপনার চেম্বার নিবন্ধন করুন",
+    "browseBySpecialty": "বিশেষত্ব অনুযায়ী দেখুন",
+    "topHospitals": "সেরা হাসপাতালসমূহ",
+    "topDoctors": "সেরা ডাক্তারগণ",
+    "viewAll": "সব দেখুন",
+    "doctorCta": {
+      "title": "আপনি কি একজন ডাক্তার?",
+      "subtitle": "আপনার অ্যাপয়েন্টমেন্ট, রোগীর রেকর্ড পরিচালনা করতে এবং আপনার প্র্যাকটিস বাড়াতে আমাদের প্ল্যাটফর্মে যোগ দিন।",
+      "register": "বিনামূল্যে নিবন্ধন করুন",
+      "login": "ডাক্তার লগইন"
+    },
+    "specialties": {
+      "cardiology": "কার্ডিওলজি",
+      "dermatology": "ডার্মাটোলজি",
+      "ent": "ইএনটি (নাক-কান-গলা)",
+      "gastroenterology": "গ্যাস্ট্রোএন্টারোলজি",
+      "general_medicine": "জেনারেল মেডিসিন",
+      "general_surgery": "জেনারেল সার্জারি",
+      "gynecology": "গাইনোকোলজি",
+      "neurology": "নিউরোলজি",
+      "oncology": "অনকোলজি",
+      "ophthalmology": "চক্ষুবিজ্ঞান (Ophthalmology)",
+      "orthopedics": "অর্থোপেডিকস",
+      "pediatrics": "পেডিয়াট্রিক্স (শিশু)",
+      "psychiatry": "মনোরোগবিদ্যা (Psychiatry)",
+      "pulmonology": "পালমোনোলজি",
+      "urology": "ইউরোলজি"
+    }
+  },
+  "directory": {
+    "doctors": {
+      "title": "ডাক্তারগণ",
+      "marketplace": "মার্কেটপ্লেস",
+      "searchPlaceholder": "নাম বা বিশেষত্ব দিয়ে খুঁজুন...",
+      "resultsCount": "{{count}} জন ডাক্তার পাওয়া গেছে",
+      "resultsCount_plural": "{{count}} জন ডাক্তার পাওয়া গেছে",
+      "searching": "খোঁজা হচ্ছে...",
+      "noResults": "কোনো ডাক্তার পাওয়া যায়নি",
+      "adjustFilters": "আপনার অনুসন্ধান বা ফিল্টার পরিবর্তন করে দেখুন"
+    },
+    "hospitals": {
+      "title": "হাসপাতালসমূহ",
+      "marketplace": "মার্কেটপ্লেস",
+      "searchPlaceholder": "হাসপাতাল খুঁজুন...",
+      "resultsCount": "{{count}} টি হাসপাতাল পাওয়া গেছে",
+      "resultsCount_plural": "{{count}} টি হাসপাতাল পাওয়া গেছে",
+      "searching": "খোঁজা হচ্ছে...",
+      "noResults": "কোনো হাসপাতাল পাওয়া যায়নি",
+      "adjustFilters": "আপনার অনুসন্ধান বা ফিল্টার পরিবর্তন করে দেখুন"
+    }
+  },
+  "filters": {
+    "title": "ফিল্টার",
+    "specialty": "বিশেষত্ব",
+    "allSpecialties": "সব বিশেষত্ব",
+    "language": "ভাষা",
+    "allLanguages": "সব ভাষা",
+    "maxFee": "সর্বোচ্চ ফি (৳)",
+    "type": "ধরন",
+    "allTypes": "সব ধরন",
+    "typeHospital": "হাসপাতাল",
+    "typeChamber": "ডাক্তারের চেম্বার",
+    "minRating": "নূন্যতম রেটিং",
+    "anyRating": "যেকোনো রেটিং"
+  },
+  "cards": {
+    "experience": "{{years}} বছরের অভিজ্ঞতা",
+    "fee": "পরামর্শ ফি: ৳{{amount}}",
+    "feeUnit": "প্রতি ভিজিট",
+    "visitHospital": "হাসপাতাল দেখুন",
+    "viewProfile": "প্রোফাইল দেখুন",
+    "bookNow": "বুক করুন",
+    "reviews": "{{count}} টি রিভিউ",
+    "reviews_plural": "{{count}} টি রিভিউ",
+    "noReviews": "এখনো কোনো রিভিউ নেই",
+    "verifiedVisit": "ভেরিফাইড ভিজিট"
+  },
+  "profile": {
+    "bmdcReg": "বিএমডিসি রেজি.",
+    "qualifications": "যোগ্যতা",
+    "bio": "জীবনী",
+    "schedule": "শিডিউল / সময়সূচী",
+    "maxPatients": "সর্বোচ্চ {{count}} জন রোগী",
+    "noSchedule": "কোনো সময়সূচী নেই",
+    "bookAppointment": "অ্যাপয়েন্টমেন্ট বুক করুন",
+    "date": "তারিখ",
+    "availableTimes": "উপলব্ধ সময়সমূহ",
+    "noSlots": "এই তারিখে কোনো সময় ফাঁকা নেই",
+    "confirmBooking": "অ্যাপয়েন্টমেন্ট নিশ্চিত করুন",
+    "booking": "বুকিং হচ্ছে...",
+    "bookingSuccess": "অ্যাপয়েন্টমেন্ট সফলভাবে বুক করা হয়েছে!",
+    "bookingFailed": "বুকিং ব্যর্থ হয়েছে",
+    "connect": "কানেক্ট করুন",
+    "connecting": "কানেক্ট করা হচ্ছে...",
+    "connected": "কানেক্ট হয়েছে!",
+    "alreadyConnected": "ইতিমধ্যেই কানেক্ট আছে",
+    "connectionFailed": "কানেক্ট করতে ব্যর্থ হয়েছে",
+    "operatingHours": "অপারেটিং আওয়ার / খোলা থাকার সময়"
+  },
+  "languages": {
+    "english": "ইংরেজি",
+    "bengali": "বাংলা",
+    "hindi": "হিন্দি",
+    "arabic": "আরবি",
+    "urdu": "উর্দু"
+  },
+  "schemes": {
+    "toast": {
+      "added": "স্কিম যোগ করা হয়েছে",
+      "saveFailed": "স্কিম সংরক্ষণ করতে ব্যর্থ"
+    },
+    "count": "{{count}} স্কিম",
+    "addScheme": "স্কিম যোগ করুন",
+    "schemeName": "স্কিম নাম",
+    "commissionPercent": "কমিশন %",
+    "description": "বিবরণ",
+    "noSchemesYet": "এখনো কোন স্কিম নেই",
+    "noSchemesDesc": "আপনার প্রথম রেফারেল স্কিম তৈরি করুন।",
+    "addSchemeTitle": "রেফারেল স্কিম যোগ করুন",
+    "schemeNameLabel": "স্কিম নাম *",
+    "schemeNamePlaceholder": "যেমন: স্ট্যান্ডার্ড রেফারেল",
+    "commissionPercentLabel": "কমিশন শতাংশ *",
+    "commissionPlaceholder": "যেমন: 10",
+    "descriptionLabel": "বিবরণ",
+    "descriptionPlaceholder": "ঐচ্ছিক বিবরণ...",
+    "cancel": "বাতিল",
+    "saving": "সংরক্ষণ হচ্ছে...",
+    "addSchemeButton": "স্কিম যোগ করুন"
+  }
+}

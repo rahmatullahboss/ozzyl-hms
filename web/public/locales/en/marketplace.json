@@ -1,0 +1,119 @@
+{
+  "title": "Marketplace Booking Queue",
+  "subtitle": "Manage incoming appointments from marketplace and telemedicine",
+  "backToDashboard": "Back to Dashboard",
+  "stats": {
+    "total": "Total",
+    "confirmed": "Confirmed",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "sources": {
+    "marketplace": "Marketplace",
+    "telemedicine": "Telemedicine",
+    "reset": "Reset"
+  },
+  "filters": {
+    "allStatuses": "All Statuses",
+    "allSources": "All Sources",
+    "confirmed": "Confirmed",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "noShow": "No Show"
+  },
+  "table": {
+    "id": "ID",
+    "patient": "Patient",
+    "doctor": "Doctor",
+    "dateTime": "Date & Time",
+    "fee": "Fee",
+    "source": "Source",
+    "status": "Status",
+    "actions": "Actions",
+    "noBookings": "No marketplace bookings found",
+    "bookingsDesc": "Bookings from marketplace and telemedicine will appear here",
+    "unknown": "Unknown",
+    "token": "Token #{{token}}"
+  },
+  "notifications": {
+    "statusUpdated": "Booking status updated",
+    "updateFailed": "Failed to update",
+    "cancelReason": "Cancellation reason (optional):"
+  },
+  "reviews": {
+    "title": "Patient Experience Reviews",
+    "subtitle": "Review patient feedback, record moderation evidence, and publish professional replies",
+    "loading": "Loading reviews...",
+    "error": "Reviews could not be loaded.",
+    "retry": "Try again",
+    "noReviews": "No reviews found.",
+    "noReviewText": "No review text",
+    "anonymous": "Anonymous",
+    "hospital": "Hospital",
+    "doctorPrefix": "Dr.",
+    "filtersLabel": "Review status filters",
+    "openReview": "Open review",
+    "approveSuccess": "Review approved",
+    "rejectSuccess": "Review rejected",
+    "replySuccess": "Reply posted",
+    "approve": "Approve",
+    "reject": "Reject",
+    "reply": "Reply",
+    "status": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "table": {
+      "patient": "Patient",
+      "type": "Target",
+      "rating": "Rating",
+      "review": "Review",
+      "status": "Publication state",
+      "date": "Submitted",
+      "actions": "Actions"
+    },
+    "reasons": {
+      "abusive_language": "Abusive language",
+      "personal_information": "Personal information",
+      "spam": "Spam",
+      "irrelevant_content": "Irrelevant content",
+      "conflict_of_interest": "Conflict of interest",
+      "fraudulent_review": "Fraudulent review",
+      "other": "Other"
+    },
+    "events": {
+      "approved": "Review approved",
+      "rejected": "Review rejected",
+      "reply_posted": "Provider reply posted"
+    },
+    "drawer": {
+      "patientExperience": "Patient experience",
+      "title": "Review details",
+      "close": "Close review details",
+      "conflict": "This review was already moderated. Refresh the review before taking another action.",
+      "refresh": "Refresh review",
+      "actionError": "The action could not be completed. Review the form and try again.",
+      "providerReply": "Provider reply",
+      "noReply": "No provider reply has been posted.",
+      "actions": "Review actions",
+      "timeline": "Moderation timeline",
+      "timelineLoading": "Loading moderation timeline...",
+      "timelineError": "The moderation timeline could not be loaded.",
+      "timelineEmpty": "No moderation events have been recorded.",
+      "system": "System",
+      "approveTitle": "Approve review",
+      "rejectTitle": "Reject review",
+      "replyTitle": "Post provider reply",
+      "reason": "Rejection reason",
+      "selectReason": "Select a reason",
+      "reasonRequired": "Select a rejection reason.",
+      "noteOptional": "Moderation note (optional)",
+      "replyText": "Provider reply",
+      "confirmApprove": "Approve review",
+      "confirmReject": "Reject review",
+      "postReply": "Post reply"
+    }
+  }
+}

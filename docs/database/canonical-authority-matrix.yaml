@@ -1,0 +1,3604 @@
+{
+  "version": 1,
+  "program": "hms-canonical-data-architecture",
+  "scope": "full_hms_business_fact_authority_and_legacy_cutover",
+  "generatedAt": "2026-07-27T16:49:54+06:00",
+  "branch": "program/cdb-main-continuous-20260725",
+  "authorityPolicy": {
+    "oneAuthorityPerFact": true,
+    "canonicalOnlyImplementationRoots": [
+      "src/lib/canonical/**",
+      "src/db/schema/canonical/**",
+      "scripts/canonical/**",
+      "test/canonical/**"
+    ],
+    "rejectedParallelArchitectures": [
+      "src/lib/financial-reconciliation/**",
+      "program/canonical-finance-continuous-execution-20260721"
+    ],
+    "productionMutationAuthorized": false,
+    "destructiveRetirementAuthorized": false,
+    "localSyncExpansionPaused": true,
+    "productionScopePolicy": "docs/architecture/hms-production-scope-policy.md",
+    "parallelExecutionBoard": "docs/architecture/hms-canonical-parallel-execution-board.yaml",
+    "protectedCoreCutoverRunbook": "docs/database/canonical-core-v1-production-cutover-runbook.md",
+    "nonProductionRewritePlaybook": "docs/architecture/non-production-canonical-rewrite-playbook.md",
+    "protectedCoreTransitionPrimary": true,
+    "broadAuthorityExpansionFrozenAfter": "CDB-127E",
+    "deferredCheckpoint": "CDB-128A-OPERATION-THEATRE-PROCEDURE-AUTHORITY-DESIGN",
+    "nextCheckpoint": "CDB-V1-010-PROTECTED-PRODUCTION-CORE-SURFACE-INVENTORY",
+    "nonProductionMode": "canonical_only_greenfield_parallel"
+  },
+  "classificationPolicy": {
+    "operational_authority": "Current write/read authority that must be cut over or explicitly retained.",
+    "duplicate_authority": "Competing source for the same business fact; must merge or lose authority.",
+    "projection_cache": "Derived or mutable cache; may remain only if rebuildable from authority.",
+    "compatibility_surface": "Temporary adapter or view during cutover.",
+    "audit_history": "Immutable lineage, receipt, or historical evidence.",
+    "workflow_document": "Approval, request, or orchestration state that is not the financial/clinical fact itself.",
+    "domain_extension": "Specialized metadata linked to a canonical core entity.",
+    "external_platform_authority": "Governed authority intentionally outside src/db/schema/canonical.",
+    "retirement_candidate": "No future write authority; archive after mapping and observation."
+  },
+  "evidence": {
+    "currentRepositoryScan": [
+      "src/db/schema/**",
+      "src/routes/**",
+      "src/lib/**",
+      "src/services/**",
+      "migrations/**",
+      "docs/database/audits/**"
+    ],
+    "primaryAudits": [
+      "docs/database/audits/P01-clinical-current-state-audit.md",
+      "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md",
+      "docs/database/audits/P01-finance-current-state-audit.md",
+      "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md",
+      "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+    ],
+    "limitations": [
+      "Repository and migration evidence does not prove every production row shape.",
+      "Production or staging data checks require separate explicit authorization.",
+      "Writer and reader arrays are the reviewed high-risk entry points, not an assertion that no test, seed, or disabled path exists elsewhere.",
+      "A table is not a duplicate merely because it links to the same patient or encounter; duplication means competing authority for the same business fact."
+    ]
+  },
+  "summary": {
+    "conceptCount": 46,
+    "implementedCanonicalCount": 18,
+    "partialCanonicalCount": 16,
+    "canonicalGapCount": 10,
+    "externalGovernedCount": 2,
+    "canonicalTableCount": 121,
+    "registeredLegacyTableCount": 5
+  },
+  "priorityOrder": [
+    "Preserve and checkpoint verified CDB-122 through CDB-127E work without starting CDB-128A.",
+    "Inventory every active protected-core writer, reader, route, table, report, job, provider and shared dependency.",
+    "Freeze Canonical Core V1 scope for Reception, hospital setup, patient/practitioner identity, appointment/visit linkage, billing/invoice/payment/allocation and doctor commission.",
+    "Complete protected-core canonical command coverage, provider-selected reads, exact money reconciliation and rollback tooling.",
+    "Pass protected-clone migration, backfill, second-pass, shadow comparison and rollback rehearsal with zero unexplained variance.",
+    "Obtain a fresh exact authorization before any production access, migration, backfill, provider activation, deployment, traffic change or legacy retirement.",
+    "Retire protected legacy authority route-by-route after observed canonical read/write promotion; physical deletion remains a later destructive gate.",
+    "Rewrite verified non-production domains canonical-only in parallel branches without preserving unused legacy parity or creating parallel shared authorities."
+  ],
+  "concepts": [
+    {
+      "id": "schema_migration_governance",
+      "domain": "platform",
+      "fact": "Canonical schema lifecycle, migration runs, backfill checkpoints, and feature flags",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_schema_versions",
+          "canonical_migration_runs",
+          "canonical_backfill_checkpoints",
+          "canonical_feature_flags"
+        ],
+        "modules": [
+          "src/db/schema/canonical/meta.ts",
+          "scripts/canonical/check-schema-governance.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "canonical_schema_versions",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "canonical_migration_runs",
+          "classification": "audit_history",
+          "disposition": "Retain as immutable audit history."
+        },
+        {
+          "table": "canonical_backfill_checkpoints",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "canonical_feature_flags",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "scripts/canonical/apply-production-canonical-migrations.ts",
+        "scripts/canonical/set-production-canonical-flag.ts"
+      ],
+      "readConsumers": [
+        "scripts/canonical/cutover-check.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "docs/database/migration-runs/P11-canonical-network-authentication-evidence.md"
+        ]
+      },
+      "cutover": {
+        "status": "local_ready",
+        "blockers": [
+          "production execution remains separately authorized",
+          "historical feature flags cannot be reused as current authorization"
+        ],
+        "nextAction": "Keep governance local-only until a separately approved production cutover window."
+      },
+      "retirement": {
+        "status": "not_applicable",
+        "action": "Retain permanently as governance and execution evidence."
+      }
+    },
+    {
+      "id": "source_mapping_issue_reconciliation",
+      "domain": "platform",
+      "fact": "Legacy-to-canonical mappings, processing exceptions, and reconciliation runs",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_source_mappings",
+          "canonical_processing_issues",
+          "canonical_reconciliation_runs"
+        ],
+        "modules": [
+          "src/db/schema/canonical/meta.ts",
+          "src/lib/canonical/source-mapping.ts",
+          "scripts/canonical/baseline-reconciliation.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "canonical_source_mappings",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "canonical_processing_issues",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "canonical_reconciliation_runs",
+          "classification": "audit_history",
+          "disposition": "Retain as immutable audit history."
+        }
+      ],
+      "directWriters": [
+        "scripts/canonical/backfill-invoices.ts",
+        "scripts/canonical/backfill-practitioners.ts"
+      ],
+      "readConsumers": [
+        "scripts/canonical/tenant-financial-reconciliation.ts",
+        "src/routes/tenant/canonicalReporting.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "full-system domain mappings are incomplete",
+          "non-financial production exception disposition is incomplete"
+        ],
+        "nextAction": "Extend mappings and issue taxonomies to every gap concept before any legacy authority is frozen."
+      },
+      "retirement": {
+        "status": "not_applicable",
+        "action": "Retain permanently; mappings and issue history are required after legacy archival."
+      }
+    },
+    {
+      "id": "canonical_outbox_atomic_assertions",
+      "domain": "platform",
+      "fact": "Durable canonical outbox and transaction-local financial row-count assertions",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_outbox_events",
+          "canonical_financial_batch_assertions"
+        ],
+        "modules": [
+          "src/db/schema/canonical/meta.ts",
+          "src/lib/canonical/command-batch.ts",
+          "src/lib/canonical/financial-batch-assertion.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "canonical_outbox_events",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "canonical_financial_batch_assertions",
+          "classification": "audit_history",
+          "disposition": "Retain as immutable audit history."
+        },
+        {
+          "table": "accounting_posting_events",
+          "classification": "compatibility_surface",
+          "disposition": "Keep temporarily for compatibility."
+        }
+      ],
+      "directWriters": [
+        "src/lib/canonical/command-batch.ts",
+        "src/lib/canonical/accounting-poster.ts"
+      ],
+      "readConsumers": [
+        "src/lib/canonical/accounting-poster.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "docs/database/migration-runs/P11-canonical-network-authentication-evidence.md"
+        ]
+      },
+      "cutover": {
+        "status": "local_ready",
+        "blockers": [
+          "some legacy commands still enqueue accounting after source commit"
+        ],
+        "nextAction": "Require every cutover command to create source facts and canonical outbox rows in the same D1 batch."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retire parallel post-commit event creation only after source coverage and replay reconciliation pass."
+      }
+    },
+    {
+      "id": "canonical_sync_protocol_state",
+      "domain": "sync",
+      "fact": "Canonical sync inbox, dependency, applied-version, and batch assertion evidence",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_sync_inbox_events",
+          "canonical_sync_inbox_dependencies",
+          "canonical_sync_entity_versions",
+          "canonical_sync_batch_assertions"
+        ],
+        "modules": [
+          "src/db/schema/canonical/meta.ts",
+          "src/lib/canonical/local-sync-inbox.ts",
+          "src/lib/canonical/local-sync-protocol.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "canonical_sync_inbox_events",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "canonical_sync_inbox_dependencies",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "canonical_sync_entity_versions",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "canonical_sync_batch_assertions",
+          "classification": "audit_history",
+          "disposition": "Retain as immutable audit history."
+        }
+      ],
+      "directWriters": [
+        "src/lib/canonical/local-sync-consumer.ts",
+        "src/lib/canonical/local-sync-network-auth.ts"
+      ],
+      "readConsumers": [
+        "scripts/canonical/check-canonical-local-sync-readiness.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/database/migration-runs/P11-canonical-network-authentication-evidence.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "docs/database/migration-runs/P11-canonical-network-authentication-evidence.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "runtime consumption is disconnected",
+          "actual transport and key provisioning are absent"
+        ],
+        "nextAction": "Keep local-sync expansion paused until business authority and legacy cutover gaps are closed."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Do not retire legacy sync or activate canonical sync until explicit runtime authorization and entity cutover evidence exist."
+      }
+    },
+    {
+      "id": "practitioner_identity",
+      "domain": "identity",
+      "fact": "Tenant-scoped practitioner person, identifiers, specialties, and departments",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_practitioners",
+          "canonical_practitioner_identifiers",
+          "canonical_practitioner_specialties",
+          "canonical_practitioner_departments"
+        ],
+        "modules": [
+          "src/db/schema/canonical/identity.ts",
+          "src/lib/canonical/commands/manage-practitioner.ts",
+          "src/lib/canonical/practitioner-provider.ts",
+          "scripts/canonical/backfill-practitioners.ts",
+          "scripts/canonical/reconcile-practitioner-operational-adoption.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "doctors",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "external_referring_doctors",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "canonical_practitioners",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/doctors.ts",
+        "src/routes/tenant/externalReferringDoctors.ts"
+      ],
+      "readConsumers": [
+        "src/routes/marketplace.ts",
+        "src/routes/tenant/global-search.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "scripts/canonical/backfill-practitioners.ts",
+          "test/canonical/practitioner-backfill.test.ts",
+          "docs/database/audits/2026-07-26-practitioner-operational-adoption-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "scripts/canonical/reconcile-practitioner-operational-adoption.ts",
+          "test/canonical/practitioner-operational-reconciliation.test.ts",
+          "docs/database/audits/2026-07-26-practitioner-operational-adoption-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "doctor CRUD still writes legacy doctors",
+          "marketplace and operational reads still depend on doctors"
+        ],
+        "nextAction": "Route doctor and external-referrer writes through one practitioner command and add compatibility reads."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Archive doctors and external_referring_doctors only after deterministic mappings and all readers use practitioner IDs."
+      }
+    },
+    {
+      "id": "practitioner_account_links",
+      "domain": "identity",
+      "fact": "Explicit practitioner-to-user and practitioner-to-employee links",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_practitioner_user_links",
+          "canonical_practitioner_employee_links"
+        ],
+        "modules": [
+          "src/db/schema/canonical/identity.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "doctors",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "doctor_auth",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "users",
+          "classification": "external_platform_authority",
+          "disposition": "Retain as governed external authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/public-invite.ts",
+        "src/routes/doctor-auth.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/doctors.ts",
+        "src/routes/marketplace.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "doctor_auth remains active",
+          "doctor-user-employee cardinality and tenant mismatches need staging evidence"
+        ],
+        "nextAction": "Backfill exact practitioner links, surface ambiguity as processing issues, then disable doctor_auth creation."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Retain users; archive doctor_auth and doctors.user_id compatibility after authentication cutover."
+      }
+    },
+    {
+      "id": "encounter_care_episode",
+      "domain": "clinical",
+      "fact": "Actual care encounter, explicit participants, signatures, and addenda",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_encounters",
+          "canonical_encounter_participants",
+          "canonical_encounter_addenda"
+        ],
+        "modules": [
+          "src/db/schema/canonical/clinical.ts",
+          "src/lib/canonical/commands/start-encounter.ts",
+          "scripts/canonical/backfill-encounters.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "encounters",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "visits",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "consultations",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "doctor_visits",
+          "classification": "retirement_candidate",
+          "disposition": "Map, freeze writes, then archive."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/clinical/encounters.ts",
+        "src/routes/tenant/doctors.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/patients-timeline.ts",
+        "src/routes/tenant/patients-summary.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "multiple episode writers remain",
+          "appointment and admission grouping ambiguity remains"
+        ],
+        "nextAction": "Create one encounter command boundary for walk-in, appointment, telemedicine, emergency, and inpatient starts."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Retain legacy episode sources read-only after mappings; never delete signed clinical history."
+      }
+    },
+    {
+      "id": "inpatient_admission_link",
+      "domain": "clinical",
+      "fact": "Inpatient admission extension linked to one canonical encounter",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_admissions",
+          "canonical_admission_status_events",
+          "canonical_encounter_admission_links"
+        ],
+        "modules": [
+          "src/db/schema/canonical/clinical.ts",
+          "src/lib/canonical/ipd-discharge-billing-finalization.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "admissions",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "visits",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "canonical_encounter_admission_links",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/admissions.ts",
+        "src/routes/tenant/reception.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/ipdReports.ts",
+        "src/routes/tenant/doctors.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "admission writes remain legacy",
+          "participant roles and admission lifecycle are not universally canonical"
+        ],
+        "nextAction": "Backfill admission-to-encounter mappings and route admit, transfer, discharge, and cancel through one command layer."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Keep admissions as compatibility source until all IPD readers use the canonical encounter extension."
+      }
+    },
+    {
+      "id": "bed_occupancy_interval",
+      "domain": "clinical",
+      "fact": "Immutable bed-stay intervals as occupancy truth",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_care_locations",
+          "canonical_beds",
+          "canonical_bed_stays"
+        ],
+        "modules": [
+          "src/db/schema/canonical/clinical.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "patient_bed_infos",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "admissions",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "beds",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "canonical_bed_stays",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/admissions.ts",
+        "src/routes/tenant/ipBilling.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/doctors.ts",
+        "src/routes/tenant/ipdReports.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "open-stay and bed status reconciliation is not production-verified",
+          "bed resource master has no canonical owner table"
+        ],
+        "nextAction": "Backfill non-overlapping stay intervals and prove one open stay per active admission and occupied bed."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Archive patient_bed_infos charge caches after stay and service-event cutover; retain source snapshots for audit."
+      }
+    },
+    {
+      "id": "service_catalog_pricing",
+      "domain": "services",
+      "fact": "Unified service identity and effective-dated price authority",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_service_catalog_items",
+          "canonical_service_prices"
+        ],
+        "modules": [
+          "src/db/schema/canonical/services.ts",
+          "scripts/canonical/backfill-service-catalog.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "billing_service_items",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "lab_test_catalog",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        },
+        {
+          "table": "radiology_imaging_items",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        },
+        {
+          "table": "billing_item_price_category_maps",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/billingMaster.ts",
+        "src/routes/tenant/lab.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/appointments.ts",
+        "src/routes/tenant/lab.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "money units differ across catalogs",
+          "active code/link cardinality is not production-verified"
+        ],
+        "nextAction": "Normalize source units and codes, reconcile one active mapping per service, then route all price writes to canonical history."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Retain lab and radiology extension metadata; archive duplicate billing and price-map authority after read cutover."
+      }
+    },
+    {
+      "id": "service_request_intent",
+      "domain": "services",
+      "fact": "Typed request or order for planned clinical work",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_service_requests"
+        ],
+        "modules": [
+          "src/db/schema/canonical/service-operations.ts",
+          "src/lib/canonical/commands/service-operations.ts",
+          "scripts/canonical/backfill-service-operations.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "lab_orders",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "lab_order_items",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "radiology_requisitions",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "procedure_orders",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/lab.ts",
+        "src/routes/tenant/radiology/orders.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/labWorkflow.ts",
+        "src/routes/tenant/radiology/reports.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "request writers use different atomic boundaries",
+          "free-text orders remain unresolved"
+        ],
+        "nextAction": "Backfill typed request mappings and make all new diagnostic and procedure orders use the canonical request command."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Retain domain request extensions and archive independent request headers only after compatibility reads are proven."
+      }
+    },
+    {
+      "id": "service_delivery_event",
+      "domain": "services",
+      "fact": "Delivered or accepted service occurrence with explicit participant roles",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_service_events",
+          "canonical_service_participants"
+        ],
+        "modules": [
+          "src/db/schema/canonical/service-operations.ts",
+          "src/lib/canonical/commands/service-operations.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "visit_services",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "billing_provisional_items",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "ipd_doctor_rounds",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        },
+        {
+          "table": "lab_order_items",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/billingProvisional.ts",
+        "src/routes/tenant/ipdDoctorRounds.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/canonicalReporting.ts",
+        "src/routes/tenant/billingReports.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "performed state and billed state are inconsistent",
+          "participant roles are inferred in legacy routes"
+        ],
+        "nextAction": "Route every chargeable delivery through one canonical service-event command with typed participants."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Convert visit_services and billing_provisional_items to read projections and archive independent write authority."
+      }
+    },
+    {
+      "id": "invoice_document",
+      "domain": "finance",
+      "fact": "Posted invoice header, typed lines, and encounter linkage",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_invoices",
+          "canonical_invoice_lines",
+          "canonical_invoice_encounter_links"
+        ],
+        "modules": [
+          "src/db/schema/canonical/billing.ts",
+          "src/lib/canonical/commands/issue-invoice.ts",
+          "scripts/canonical/backfill-invoices.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "bills",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "invoice_items",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "billing_provisional_items",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "ipd_ledger_entries",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/billing.ts",
+        "src/routes/tenant/billingProvisional.ts"
+      ],
+      "readConsumers": [
+        "src/services/actionCenter/collections/liveSource.ts",
+        "src/routes/tenant/canonicalReporting.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_production_snapshot",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy bills and invoice_items writers are still registered",
+          "not every reader is canonical"
+        ],
+        "nextAction": "Finish provider-aware canonical reads, re-run zero-variance reconciliation, then canary strict invoice authority."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retire bills and invoice_items writes only after canary observation; retain compatibility views and immutable source mappings."
+      }
+    },
+    {
+      "id": "payment_receipt_tender_allocation",
+      "domain": "finance",
+      "fact": "Receipt identity, tender instruments, and immutable invoice allocations",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_payment_receipts",
+          "canonical_payment_tenders",
+          "canonical_payment_allocations"
+        ],
+        "modules": [
+          "src/db/schema/canonical/billing.ts",
+          "src/lib/canonical/commands/collect-payment.ts",
+          "scripts/canonical/backfill-payments.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "payments",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "billing_settlements",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "payment_gateway_logs",
+          "classification": "audit_history",
+          "disposition": "Retain as immutable audit history."
+        },
+        {
+          "table": "income",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/billing.ts",
+        "src/routes/tenant/payments.ts"
+      ],
+      "readConsumers": [
+        "src/lib/executive-doctor-analytics.ts",
+        "src/lib/executive-test-analytics.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_production_snapshot",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy payment readers reconstruct allocation",
+          "settlement cancellation can delete history"
+        ],
+        "nextAction": "Switch collection analytics and settlement workflows to persisted canonical allocations before strict promotion."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Archive payments compatibility only after every receipt, tender, allocation, refund, and reversal is reconciled."
+      }
+    },
+    {
+      "id": "patient_deposit_liability",
+      "domain": "finance",
+      "fact": "Patient deposit liability and immutable applications",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_deposits",
+          "canonical_deposit_applications"
+        ],
+        "modules": [
+          "src/db/schema/canonical/billing.ts",
+          "src/lib/canonical/commands/apply-deposit.ts",
+          "scripts/canonical/backfill-deposit-lifecycle.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "billing_deposits",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "bills",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "billing_settlements",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/deposits.ts",
+        "src/routes/tenant/ipBilling.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/canonicalReporting.ts",
+        "src/services/actionCenter/collections/liveSource.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_production_snapshot",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "several direct deposit writers remain",
+          "original tender lineage is incomplete in legacy refunds"
+        ],
+        "nextAction": "Route all collect, apply, refund, overpayment, IPD, settlement, and pharmacy deposit actions through canonical commands."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Stop billing_deposits writes after exact liability reconciliation and canary observation; retain a compatibility view."
+      }
+    },
+    {
+      "id": "credit_refund_payment_reversal",
+      "domain": "finance",
+      "fact": "Invoice credits, cash refunds, tender attribution, and payment reversals",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_credit_notes",
+          "canonical_credit_note_lines",
+          "canonical_credit_note_cash_refunds",
+          "canonical_credit_note_cash_refund_reversals",
+          "canonical_credit_note_refund_receipts",
+          "canonical_credit_note_refund_allocations",
+          "canonical_credit_note_refund_tender_attributions",
+          "canonical_refunds",
+          "canonical_payment_reversals"
+        ],
+        "modules": [
+          "src/db/schema/canonical/billing.ts",
+          "src/lib/canonical/commands/issue-credit-note.ts",
+          "src/lib/canonical/commands/issue-credit-note-cash-refund.ts",
+          "src/lib/canonical/commands/reverse-credit-note-cash-refund.ts",
+          "src/lib/canonical/commands/reverse-payment.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "billing_credit_notes",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "billing_credit_note_items",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "billing_refund_cash_holds",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "income",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/creditNotes.ts",
+        "src/routes/tenant/approvals.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/canonicalReporting.ts",
+        "src/services/actionCenter/collections/liveSource.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "parallel approval routes remain",
+          "some cancellation paths mutate or delete legacy history"
+        ],
+        "nextAction": "Consolidate every approval, cancellation, void, and refund entry point behind canonical append-only commands."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Archive mutable legacy refund effects only after exact original-receipt and allocation lineage is proven."
+      }
+    },
+    {
+      "id": "practitioner_compensation_rule",
+      "domain": "finance",
+      "fact": "Effective-dated practitioner compensation calculation rules",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_compensation_rules"
+        ],
+        "modules": [
+          "src/db/schema/canonical/compensation.ts",
+          "src/lib/canonical/commands/accrue-compensation.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "doctor_commission_rules",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "diagnostic_performer_payout_rules",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "fraction_percents",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/commissions.ts",
+        "src/routes/tenant/fractions.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/canonicalReporting.ts",
+        "src/lib/executive-doctor-analytics.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy rule CRUD remains active",
+          "role and money-unit normalization is not production-complete"
+        ],
+        "nextAction": "Route all rule changes through effective-dated canonical rule commands and prohibit overlapping scopes."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Archive legacy rule tables after all accruals reference immutable canonical rule snapshots."
+      }
+    },
+    {
+      "id": "practitioner_compensation_accrual_adjustment",
+      "domain": "finance",
+      "fact": "Line-linked role-explicit compensation accruals, adjustments, and refund reservations",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_compensation_accruals",
+          "canonical_compensation_reporting_context",
+          "canonical_compensation_adjustments",
+          "canonical_compensation_refund_reservations",
+          "canonical_compensation_adjustment_reversals"
+        ],
+        "modules": [
+          "src/db/schema/canonical/compensation.ts",
+          "src/lib/canonical/live-doctor-compensation.ts",
+          "src/lib/canonical/live-refund-compensation.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "doctor_commission_accruals",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "diagnostic_performer_reserves",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "billing_provisional_items",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "fraction_calculations",
+          "classification": "retirement_candidate",
+          "disposition": "Map, freeze writes, then archive."
+        }
+      ],
+      "directWriters": [
+        "src/lib/billing-finalization.ts",
+        "src/lib/lab-finance.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/canonicalReporting.ts",
+        "src/lib/executive-doctor-analytics.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_production_snapshot",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy direct writers remain registered",
+          "dashboard/provider promotion is incomplete"
+        ],
+        "nextAction": "Make every billable participant accrual and every refund/cancellation adjustment use canonical compensation commands."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retire doctor_commission_accruals only after settlement and reporting read promotion with zero unexplained balance."
+      }
+    },
+    {
+      "id": "practitioner_compensation_settlement",
+      "domain": "finance",
+      "fact": "Practitioner payout documents and immutable allocations to accruals",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_compensation_settlements",
+          "canonical_compensation_settlement_allocations"
+        ],
+        "modules": [
+          "src/db/schema/canonical/compensation.ts",
+          "src/lib/canonical/compensation-settlement-allocation.ts",
+          "src/lib/canonical/live-compensation-settlement.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "doctor_commission_settlements",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "doctor_commission_settlement_items",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "cash_drawer_movements",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/commissions.ts",
+        "src/routes/tenant/receptionDoctorPayouts.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/canonicalReporting.ts",
+        "src/lib/billing-counter-session.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "two payout implementations have different atomicity",
+          "accounting and cash projections may be post-commit"
+        ],
+        "nextAction": "Unify all single, bulk, counter, performer, and reversal flows behind one settlement command."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Archive legacy settlement tables after allocations, custody, and accounting reconcile exactly."
+      }
+    },
+    {
+      "id": "inventory_item_lot_location_policy",
+      "domain": "inventory",
+      "fact": "Unified inventory item, location, lot, unit conversion, and stock policy identity",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_inventory_items",
+          "canonical_inventory_locations",
+          "canonical_inventory_lots",
+          "canonical_inventory_unit_conversions",
+          "canonical_inventory_stock_policies"
+        ],
+        "modules": [
+          "src/db/schema/canonical/inventory.ts",
+          "scripts/canonical/backfill-inventory.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "InventoryItem",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "pharmacy_items",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "medicines",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "lab_consumables",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/inventory/items.ts",
+        "src/routes/tenant/pharmacy/master.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/inventory/dashboard.ts",
+        "src/routes/tenant/reportPharmacy.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "pharmacy and legacy medicine masters remain writable",
+          "automatic name-based bridge matching is unsafe"
+        ],
+        "nextAction": "Build deterministic product and lot mappings, prohibit name-only merges, and route master writes to canonical identity."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Archive medicines and duplicate pharmacy master authority after dispense and stock cutover; retain approved domain extensions."
+      }
+    },
+    {
+      "id": "inventory_movement_transfer",
+      "domain": "inventory",
+      "fact": "Immutable typed stock movements and linked transfers",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_inventory_transfers",
+          "canonical_inventory_movements"
+        ],
+        "modules": [
+          "src/db/schema/canonical/inventory.ts",
+          "src/lib/canonical/commands/record-stock-movement.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "InventoryStockTransaction",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "pharmacy_stock_transactions",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "medicine_stock_movements",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "lab_consumable_movements",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        }
+      ],
+      "directWriters": [
+        "src/lib/inventory-issue-atomic.ts",
+        "src/lib/inventory-goods-receipt-atomic.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/inventory/reports.ts",
+        "src/lib/inventory-issue-diagnostics.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "many route-specific stock mutations remain",
+          "generic source references are not reconstructive"
+        ],
+        "nextAction": "Adapt every issue, receipt, transfer, return, count, adjustment, write-off, dispense, and reagent use to one movement posting engine."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retire all legacy movement writes only after canonical movements reconstruct every balance by tenant, item, location, and lot."
+      }
+    },
+    {
+      "id": "inventory_balance_projection",
+      "domain": "inventory",
+      "fact": "Rebuildable quantity balance projection derived from immutable movements",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_inventory_balances"
+        ],
+        "modules": [
+          "src/db/schema/canonical/inventory.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "InventoryStock",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "pharmacy_stock",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "medicine_stock_batches",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "lab_consumable_stock",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/lib/inventory-movement-service.ts",
+        "src/routes/tenant/pharmacy/advanced.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/inventory/stock.ts",
+        "src/routes/tenant/inventory/dashboard.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "movement-to-balance deltas are not fully reconciled",
+          "linked pharmacy and lab balances can diverge"
+        ],
+        "nextAction": "Rebuild canonical balances from opening and signed movements and require zero unexplained quantity delta."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Convert all legacy balances to compatibility projections after one movement engine owns quantity changes."
+      }
+    },
+    {
+      "id": "accounting_master_period",
+      "domain": "accounting",
+      "fact": "Canonical chart of accounts, semantic mappings, and accounting periods",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_accounting_accounts",
+          "canonical_accounting_mappings",
+          "canonical_accounting_periods"
+        ],
+        "modules": [
+          "src/db/schema/canonical/accounting.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "accounts",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "fiscal_years",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "cost_centers",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/accounts.ts",
+        "src/routes/tenant/fiscalYears.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/accounting.ts",
+        "src/routes/tenant/reports.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy chart and period readers remain",
+          "production mapping completeness is not proven"
+        ],
+        "nextAction": "Reconcile every posting key and account, then make canonical periods the only close/reopen authority."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Retain cost-center dimensions; archive superseded account/period write surfaces after read promotion."
+      }
+    },
+    {
+      "id": "accounting_posting_voucher",
+      "domain": "accounting",
+      "fact": "Idempotent posting jobs and immutable balanced vouchers with entries",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_accounting_posting_jobs",
+          "canonical_accounting_vouchers",
+          "canonical_accounting_entries"
+        ],
+        "modules": [
+          "src/db/schema/canonical/accounting.ts",
+          "src/lib/canonical/accounting-poster.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "accounting_posting_events",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "accounting_vouchers",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "accounting_journal_lines",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "journal_entries",
+          "classification": "retirement_candidate",
+          "disposition": "Map, freeze writes, then archive."
+        }
+      ],
+      "directWriters": [
+        "src/lib/accounting-posting.ts",
+        "src/routes/tenant/journal.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/accounting.ts",
+        "src/routes/tenant/vouchers.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy posting can create partial vouchers",
+          "money remains mixed in legacy engine"
+        ],
+        "nextAction": "Move posting to canonical jobs and exact minor-unit balanced entries, with source outbox inserted atomically."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Archive journal_entries and old voucher mutation only after every source event maps to one balanced canonical voucher."
+      }
+    },
+    {
+      "id": "cash_custody",
+      "domain": "accounting",
+      "fact": "Physical cash custody movements and guarded balances independent of revenue recognition",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_cash_custody_movements",
+          "canonical_cash_custody_balances"
+        ],
+        "modules": [
+          "src/db/schema/canonical/accounting.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "emp_cash_transactions",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "cash_drawer_movements",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "cash_ledger_entries",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "billing_counter_sessions",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/receptionDrawerCustody.ts",
+        "src/routes/tenant/cashOperations.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/cashLedger.ts",
+        "src/routes/tenant/cash-book.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "cash source aliases overlap",
+          "shadow ledger failures are non-blocking"
+        ],
+        "nextAction": "Normalize every cash in, out, handover, bank deposit, payout, refund, and expense to canonical custody movements."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retire employee cash and shadow ledger authority only after zero coverage variance and canary observation."
+      }
+    },
+    {
+      "id": "user_auth_actor",
+      "domain": "identity",
+      "fact": "Application authentication actor, role, and tenant access",
+      "targetAuthority": {
+        "status": "external_governed",
+        "tables": [
+          "users"
+        ],
+        "modules": [
+          "src/db/schema/schema.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "users",
+          "classification": "external_platform_authority",
+          "disposition": "Retain as governed external authority."
+        },
+        {
+          "table": "doctor_auth",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/auth.ts",
+        "src/routes/doctor-auth.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/users.ts",
+        "src/routes/tenant/access-control.ts"
+      ],
+      "backfill": {
+        "status": "not_required",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "doctor_auth remains active",
+          "platform and tenant user semantics require explicit constraints"
+        ],
+        "nextAction": "Keep users outside clinical canonical identity but require every practitioner credential to resolve through explicit links."
+      },
+      "retirement": {
+        "status": "retain_external_authority",
+        "action": "Retain users permanently; archive doctor_auth after migration and observation."
+      }
+    },
+    {
+      "id": "patient_identity",
+      "domain": "identity",
+      "fact": "Global patient person identity and tenant patient linkage",
+      "targetAuthority": {
+        "status": "external_governed",
+        "tables": [
+          "global_patient_identity"
+        ],
+        "modules": [
+          "src/db/schema/mpi.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "patients",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "global_patient_identity",
+          "classification": "external_platform_authority",
+          "disposition": "Retain as governed external authority."
+        },
+        {
+          "table": "patient_aliases",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        },
+        {
+          "table": "mpi_duplicate_suspects",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/patients.ts",
+        "src/routes/tenant/mpi.ts"
+      ],
+      "readConsumers": [
+        "src/routes/global-portal.ts",
+        "src/routes/tenant/global-search.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "tenant patient and global identity cardinality is outside canonical source registry",
+          "duplicate merge and hospital-link rules need unified governance"
+        ],
+        "nextAction": "Register the MPI/patient authority boundary in canonical governance without creating another patient table."
+      },
+      "retirement": {
+        "status": "retain_external_authority",
+        "action": "Retain global MPI and tenant patient records with explicit links; archive only superseded duplicate rows through merge audit."
+      }
+    },
+    {
+      "id": "tenant_patient_linkage",
+      "domain": "identity",
+      "fact": "Current tenant-patient relationship to governed global patient identity and immutable relationship history",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_tenant_patient_links",
+          "canonical_tenant_patient_link_events"
+        ],
+        "modules": [
+          "src/db/schema/canonical/patient-identity.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "patients",
+          "classification": "operational_authority",
+          "disposition": "Retain tenant demographics authority while migrating identity relationships to explicit canonical links."
+        },
+        {
+          "table": "global_patient_identity",
+          "classification": "external_platform_authority",
+          "disposition": "Retain global/MPI person identity and reference it only through reviewed relationship evidence."
+        },
+        {
+          "table": "mpi_duplicate_suspects",
+          "classification": "workflow_document",
+          "disposition": "Retain duplicate-review workflow without allowing it to become relationship authority."
+        }
+      ],
+      "directWriters": [
+        "src/lib/canonical/commands/register-or-link-patient.ts",
+        "scripts/canonical/backfill-tenant-patient-links.ts"
+      ],
+      "readConsumers": [],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "test/canonical/patient-link-backfill.test.ts"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "test/canonical/patient-link-foundation-schema.test.ts",
+          "test/canonical/patient-link-lifecycle.test.ts",
+          "test/canonical/patient-link-backfill.test.ts"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "patient and MPI runtime readers are not yet promoted to a canonical relationship provider",
+          "production backfill, reconciliation, observation, and rollback evidence are not authorized or complete"
+        ],
+        "nextAction": "Keep patient and MPI runtime authority unchanged until CDB-113F provider promotion and authorised observation prove zero unexplained relationship variance."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Do not retire patients or global_patient_identity; retire only implicit relationship assumptions after canonical provider promotion and explicit authorization."
+      }
+    },
+    {
+      "id": "appointment_intent",
+      "domain": "scheduling",
+      "fact": "Planned appointment intent, token, schedule, modality, and status history",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "tables": [
+          "canonical_appointments",
+          "canonical_appointment_status_events",
+          "canonical_appointment_encounter_links"
+        ],
+        "modules": [
+          "src/db/schema/canonical/appointments.ts",
+          "src/lib/canonical/commands/manage-appointment.ts",
+          "src/lib/canonical/appointment-provider.ts",
+          "scripts/canonical/backfill-appointments.ts",
+          "scripts/canonical/reconcile-appointment-authority.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "appointments",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "consultations",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "doctor_schedules",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/appointments.ts",
+        "src/routes/marketplace-patient.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/doctors.ts",
+        "src/routes/global-portal.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "scripts/canonical/backfill-appointments.ts",
+          "test/canonical/appointment-backfill.test.ts",
+          "docs/database/audits/2026-07-26-appointment-authority-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "scripts/canonical/reconcile-appointment-authority.ts",
+          "test/canonical/appointment-reconciliation.test.ts",
+          "docs/database/audits/2026-07-26-appointment-authority-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "legacy appointment, consultation, marketplace, doctor, queue, patient-portal, patient-workflow, and billing compatibility writers remain active",
+          "provider feature flag remains disabled and route readers are not promoted",
+          "production backfill, shadow observation, rollback evidence, and owner authorization are absent"
+        ],
+        "nextAction": "Keep the provider disabled until authorised production backfill and reconciliation, shadow parity observation, rollback evidence, and reviewed route promotion are complete."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Do not archive appointments; first split planning authority from billing and encounter projections."
+      }
+    },
+    {
+      "id": "prescription_medication_intent",
+      "domain": "clinical",
+      "fact": "Encounter-linked prescription and medication-order intent with immutable versions",
+      "targetAuthority": {
+        "status": "implemented_canonical",
+        "tables": [
+          "canonical_prescriptions",
+          "canonical_prescription_versions",
+          "canonical_medication_orders",
+          "canonical_medication_order_status_events",
+          "canonical_prescription_safety_events"
+        ],
+        "modules": [
+          "src/db/schema/canonical/medication.ts",
+          "src/lib/canonical/commands/manage-prescription-medication-intent.ts",
+          "scripts/canonical/backfill-prescription-medication-intent.ts",
+          "scripts/canonical/reconcile-prescription-medication-intent.ts",
+          "src/lib/canonical/prescription-medication-provider.ts",
+          "src/lib/canonical/prescription-medication-read-adapters.ts",
+          "scripts/canonical/check-prescription-medication-readiness.ts"
+        ]
+      },
+      "currentSources": [
+        {
+          "table": "prescriptions",
+          "classification": "operational_authority",
+          "disposition": "Retain as the active doctor-issued clinical authority until canonical commands, backfill, providers, observation, and authorised cutover are complete."
+        },
+        {
+          "table": "prescription_items",
+          "classification": "operational_authority",
+          "disposition": "Retain structured legacy medication lines until version-preserving canonical cutover."
+        },
+        {
+          "table": "prescription_versions",
+          "classification": "audit_history",
+          "disposition": "Preserve immutable source snapshots and map exact version lineage without rewriting history."
+        },
+        {
+          "table": "prescription_overrides",
+          "classification": "audit_history",
+          "disposition": "Preserve safety override evidence and map only exact prescription/version/order scope."
+        },
+        {
+          "table": "prescription_safety_checks",
+          "classification": "audit_history",
+          "disposition": "Preserve safety evaluation evidence and map without copying PHI into aggregate receipts."
+        },
+        {
+          "table": "cln_medication_orders",
+          "classification": "duplicate_authority",
+          "disposition": "Map exact encounter-linked CPOE intent; never merge with prescription items through medicine text or time similarity."
+        },
+        {
+          "table": "medication_orders",
+          "classification": "workflow_document",
+          "disposition": "Retain fulfilment, provider, sale, payment, and delivery workflow; it never creates clinical medication intent by itself."
+        },
+        {
+          "table": "pharmacy_prescriptions",
+          "classification": "compatibility_surface",
+          "disposition": "Retain pharmacy workflow compatibility; create no duplicate clinical authority without explicit source mapping."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/prescriptions.ts",
+        "src/routes/tenant/orderSets.ts",
+        "src/routes/tenant/nursing/medication-orders.ts"
+      ],
+      "readConsumers": [
+        "src/routes/global-portal.ts",
+        "src/routes/tenant/patients-chart.ts",
+        "src/routes/tenant/nursing/clinical-summary.ts"
+      ],
+      "backfill": {
+        "status": "complete",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md",
+          "docs/database/audits/2026-07-27-prescription-medication-intent-authority-audit.md",
+          "scripts/canonical/backfill-prescription-medication-intent.ts",
+          "test/canonical/prescription-medication-intent-backfill.test.ts"
+        ]
+      },
+      "reconciliation": {
+        "status": "verified_local",
+        "evidence": [
+          "test/canonical/prescription-medication-intent-schema.test.ts",
+          "scripts/canonical/reconcile-prescription-medication-intent.ts",
+          "test/canonical/prescription-medication-intent-reconciliation.test.ts"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "provider remains disabled and selected library adapters are not connected to live routes",
+          "legacy prescription, CPOE, pharmacy, portal, nursing, and fulfilment writers/readers remain active",
+          "production migration, backfill, observation, rollback evidence, and exact owner authorization are absent"
+        ],
+        "nextAction": "Keep the provider disabled and advance to the next safe local clinical authority checkpoint; any production migration, observation, route cutover, or retirement requires separate exact authorization."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retain all prescription, CPOE, safety, pharmacy, and fulfilment history; retire competing authority only after version-preserving migration, read promotion, observation, rollback evidence, and explicit authorization."
+      }
+    },
+    {
+      "id": "clinical_document_diagnosis",
+      "domain": "clinical",
+      "fact": "Encounter-linked signed notes, diagnoses, assessments, and document versions",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "developmentReadiness": "local_ready",
+        "tables": [
+          "canonical_clinical_documents",
+          "canonical_clinical_document_versions",
+          "canonical_clinical_document_signatures",
+          "canonical_clinical_document_attachments",
+          "canonical_diagnosis_assertions",
+          "canonical_diagnosis_status_events"
+        ],
+        "modules": [
+          "migrations/0555_canonical_clinical_document_diagnosis.sql",
+          "src/db/schema/canonical/clinical-documents.ts",
+          "src/db/schema/canonical/clinical.ts",
+          "src/lib/canonical/commands/manage-clinical-document-diagnosis.ts",
+          "scripts/canonical/backfill-clinical-document-diagnosis.ts",
+          "scripts/canonical/reconcile-clinical-document-diagnosis.ts",
+          "src/lib/canonical/clinical-document-diagnosis-provider.ts",
+          "src/lib/canonical/clinical-document-diagnosis-read-adapters.ts"
+        ],
+        "gap": "CDB-122E completes local schema, nine commands, ten-partition bounded backfill, twenty-check reconciliation, disabled-safe providers, selected library adapters, coverage, and readiness. Runtime reader/writer cutover, production observation, rollback proof, production activation, and retirement authorization remain incomplete."
+      },
+      "currentSources": [
+        {
+          "table": "clinical_notes",
+          "classification": "operational_authority",
+          "disposition": "Retain until immutable Canonical documents, versions, signatures, exact mappings, and authorised read/write cutover are complete."
+        },
+        {
+          "table": "FormSOAP",
+          "classification": "duplicate_authority",
+          "disposition": "Map as an exact SOAP-document source; never merge by narrative or timestamp similarity."
+        },
+        {
+          "table": "FormTreatmentPlan",
+          "classification": "operational_authority",
+          "disposition": "Map as a treatment-plan document only with exact patient, encounter, and author evidence."
+        },
+        {
+          "table": "ClinicalDiagnosis",
+          "classification": "operational_authority",
+          "disposition": "Retain coded diagnosis assertions and review evidence until Canonical assertion/event cutover."
+        },
+        {
+          "table": "final_diagnosis",
+          "classification": "duplicate_authority",
+          "disposition": "Retain as a competing diagnosis source; the table name alone is not final/review evidence."
+        },
+        {
+          "table": "document_records",
+          "classification": "operational_authority",
+          "disposition": "Converge exact file metadata to Canonical attachments; never treat file metadata as signed document body."
+        },
+        {
+          "table": "clinical_images",
+          "classification": "operational_authority",
+          "disposition": "Converge exact image metadata, content hash, patient/encounter scope, and lifecycle to Canonical attachments."
+        },
+        {
+          "table": "encounter_addenda",
+          "classification": "audit_history",
+          "disposition": "Retain and map to the existing canonical_encounter_addenda authority; do not create duplicate document-addendum ownership."
+        },
+        {
+          "table": "encounters",
+          "classification": "compatibility_surface",
+          "disposition": "Preserve signed encounter snapshots as selected document sources while encounter state remains separately authoritative."
+        },
+        {
+          "table": "consultations",
+          "classification": "duplicate_authority",
+          "disposition": "Preserve mixed free text as compatibility evidence; never infer document identity from text or time."
+        },
+        {
+          "table": "visits",
+          "classification": "compatibility_surface",
+          "disposition": "Treat ICD and note fields as projections unless exact Canonical document/diagnosis lineage exists."
+        },
+        {
+          "table": "medical_records",
+          "classification": "workflow_document",
+          "disposition": "Retain MRD filing/chart-completion workflow separately; it may link Canonical documents but does not own document content."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/clinical/notes.ts",
+        "src/lib/ipd-doctor-rounds.ts",
+        "src/routes/tenant/clinical/assessments.ts",
+        "src/routes/tenant/doctors.ts",
+        "src/routes/tenant/clinical/diagnosis.ts",
+        "src/routes/tenant/medicalRecords.ts",
+        "src/routes/tenant/nursing/index.ts",
+        "src/routes/tenant/nursing/opd.ts",
+        "src/routes/tenant/clinical/images.ts",
+        "src/routes/tenant/patientPortal.ts",
+        "src/routes/tenant/clinical/encounters.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/clinical/notes.ts",
+        "src/routes/tenant/clinical/encounters.ts",
+        "src/routes/tenant/patients-chart.ts",
+        "src/routes/tenant/patients-timeline.ts",
+        "src/routes/tenant/medicalRecords.ts",
+        "src/routes/tenant/patientPortal.ts",
+        "src/routes/tenant/healthRecord.ts",
+        "src/routes/tenant/patients-summary.ts",
+        "src/routes/tenant/nursing/clinical-summary.ts",
+        "src/routes/tenant/nursing/investigation-results.ts",
+        "src/lib/health-summary.ts",
+        "src/lib/ot-programmatic-overview.ts",
+        "src/lib/family-risk.ts",
+        "src/routes/sync.ts"
+      ],
+      "backfill": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/backfill-clinical-document-diagnosis.ts",
+          "test/canonical/clinical-document-diagnosis-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P11-canonical-clinical-document-diagnosis-authority.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/reconcile-clinical-document-diagnosis.ts",
+          "test/canonical/clinical-document-diagnosis-backfill-reconciliation.test.ts",
+          "docs/database/clinical-document-diagnosis-readiness.json"
+        ]
+      },
+      "cutover": {
+        "status": "blocked_external_gate",
+        "blockers": [
+          "runtime note, SOAP, diagnosis, attachment, portal, nursing, MRD, timeline, and sync readers/writers remain legacy-active",
+          "provider flag remains disabled and no runtime route is wired",
+          "production migration, bounded production backfill, observation, rollback evidence, and exact owner authorization are absent",
+          "legacy retirement is not approved"
+        ],
+        "nextAction": "Keep the CDB-122 provider disabled. Treat this non-production domain as a canonical-only rewrite lane under the parallel board; do not let it displace Canonical Core V1, and require separate exact authorization before production activation or legacy retirement."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Never delete signed history; retire duplicate notes, diagnoses, projections, or attachment metadata only after exact mapping, immutable migration, read promotion, observation, rollback evidence, and explicit authorization."
+      }
+    },
+    {
+      "id": "patient_vital_measurement",
+      "domain": "clinical",
+      "fact": "Patient vital observations with encounter, provenance, device, and time semantics",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "developmentReadiness": "local_ready",
+        "tables": [
+          "canonical_vital_observation_sets",
+          "canonical_vital_observation_components",
+          "canonical_vital_observation_status_events"
+        ],
+        "modules": [
+          "migrations/0556_canonical_patient_vital_measurement.sql",
+          "src/db/schema/canonical/vital-observations.ts",
+          "src/lib/canonical/commands/manage-vital-observations.ts",
+          "scripts/canonical/backfill-patient-vital-measurement.ts",
+          "scripts/canonical/reconcile-patient-vital-measurement.ts",
+          "src/lib/canonical/patient-vital-measurement-provider.ts",
+          "src/lib/canonical/patient-vital-measurement-read-adapters.ts",
+          "docs/database/migration-runs/P12-canonical-patient-vital-measurement-authority.md"
+        ],
+        "gap": "CDB-123E completes local schema, four commands, nine-partition bounded backfill, fixed twenty-check reconciliation, disabled-safe provider, two selected adapters, coverage, and readiness. Runtime reader/writer cutover, production migration/backfill, observation, rollback proof, production activation, and retirement authorization remain incomplete."
+      },
+      "currentSources": [
+        {
+          "table": "patient_vitals",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "clinical_vitals",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "global_patient_vitals",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "nur_patient_monitoring",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/vitals.ts",
+        "src/routes/tenant/clinical/vitals.ts",
+        "src/routes/tenant/nursing/monitoring.ts",
+        "src/routes/patient-phr.ts",
+        "src/routes/wellness.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/globalHealth.ts",
+        "src/routes/tenant/patients-timeline.ts",
+        "src/routes/tenant/patientPortal.ts",
+        "src/routes/tenant/nursing/monitoring.ts"
+      ],
+      "backfill": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/backfill-patient-vital-measurement.ts",
+          "test/canonical/patient-vital-measurement-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-patient-vital-measurement-authority.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/reconcile-patient-vital-measurement.ts",
+          "test/canonical/patient-vital-measurement-backfill-reconciliation.test.ts",
+          "docs/database/patient-vital-measurement-readiness.json"
+        ]
+      },
+      "cutover": {
+        "status": "blocked_external_gate",
+        "blockers": [
+          "legacy vital writers and readers remain active and four reviewed readers are intentionally legacy_unchanged",
+          "provider flag remains disabled and runtime route activation count is zero",
+          "production migration, bounded production backfill, shadow observation, rollback evidence, and exact owner authorization are absent",
+          "legacy retirement is not approved"
+        ],
+        "nextAction": "Keep the CDB-123 provider disabled. Continue only as a claimed non-production canonical-only rewrite lane under the parallel board; Canonical Core V1 remains primary and production activation or legacy retirement requires separate exact authorization."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retain source measurements until provenance-preserving migration and duplicate detection complete."
+      }
+    },
+    {
+      "id": "medication_administration",
+      "domain": "clinical",
+      "fact": "Medication administration record, reconciliation, and nurse execution evidence",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "developmentReadiness": "local_ready",
+        "tables": [
+          "canonical_medication_administration_events",
+          "canonical_medication_reconciliations",
+          "canonical_medication_reconciliation_versions",
+          "canonical_medication_reconciliation_items",
+          "canonical_medication_reconciliation_status_events"
+        ],
+        "modules": [
+          "migrations/0557_canonical_medication_administration.sql",
+          "src/db/schema/canonical/medication-administration.ts",
+          "src/lib/canonical/commands/manage-medication-administration.ts",
+          "scripts/canonical/backfill-medication-administration.ts",
+          "scripts/canonical/reconcile-medication-administration.ts",
+          "src/lib/canonical/medication-administration-provider.ts",
+          "src/lib/canonical/medication-administration-read-adapters.ts",
+          "scripts/canonical/check-medication-administration-readiness.ts",
+          "docs/database/canonical-medication-administration-provider-coverage.json",
+          "docs/database/medication-administration-readiness.json",
+          "docs/database/migration-runs/P12-canonical-medication-administration-authority.md"
+        ],
+        "gap": "CDB-124A through CDB-124E complete the local medication-administration and reconciliation authority, commands, bounded backfill, fixed reconciliation, disabled-safe provider, selected adapters, coverage, rollback, and readiness. Provider activation, runtime cutover, production migration and observation, owner authorization, and legacy retirement remain blocked external gates."
+      },
+      "currentSources": [
+        {
+          "table": "nur_medication_admin",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "cln_medication_reconciliation",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "cln_medication_reconciliation_items",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "prescription_items",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/nursing/mar.ts",
+        "src/routes/tenant/nursing/medication-orders.ts",
+        "src/routes/tenant/nursing/medication-reconciliation.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/nursing/medication-due.ts",
+        "src/routes/tenant/nursing/clinical-summary.ts",
+        "src/routes/tenant/patients-timeline.ts",
+        "src/routes/tenant/patients-chart.ts",
+        "src/lib/health-summary.ts"
+      ],
+      "backfill": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/backfill-medication-administration.ts",
+          "test/canonical/medication-administration-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-medication-administration-backfill-reconciliation.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/reconcile-medication-administration.ts",
+          "test/canonical/medication-administration-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-medication-administration-backfill-reconciliation.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked_external_gate",
+        "blockers": [
+          "provider remains disabled and all five known runtime readers remain legacy_unchanged",
+          "legacy MAR and reconciliation writers/readers remain active",
+          "production migration, shadow observation, rollback execution evidence, and exact owner authorization are absent",
+          "legacy retirement has not been authorized"
+        ],
+        "nextAction": "Keep CDB-124 provider disabled. Medication administration remains a non-production canonical-only lane; do not advance broad CDB sequencing while Canonical Core V1 is primary, and require separate exact authorization before any production activation."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retain MAR and reconciliation history; archive duplicate status caches after medication cutover."
+      }
+    },
+    {
+      "id": "lab_result_specimen",
+      "domain": "diagnostics",
+      "fact": "Lab specimen, result version, verification, and analyzer provenance",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "developmentReadiness": "local_ready_provider_disabled",
+        "tables": [
+          "canonical_lab_specimens",
+          "canonical_lab_specimen_service_items",
+          "canonical_lab_specimen_status_events",
+          "canonical_lab_result_sets",
+          "canonical_lab_result_versions",
+          "canonical_lab_result_observations",
+          "canonical_lab_result_status_events",
+          "canonical_lab_analyzer_evidence"
+        ],
+        "modules": [
+          "src/db/schema/canonical/service-operations.ts",
+          "migrations/0558_canonical_lab_result_specimen.sql",
+          "src/db/schema/canonical/lab-result-specimen.ts",
+          "src/lib/canonical/commands/manage-lab-result-specimen.ts",
+          "scripts/canonical/backfill-lab-result-specimen.ts",
+          "scripts/canonical/reconcile-lab-result-specimen.ts",
+          "src/lib/canonical/lab-result-specimen-provider.ts",
+          "src/lib/canonical/lab-result-specimen-read-adapters.ts",
+          "docs/database/canonical-lab-result-specimen-provider-coverage.json",
+          "docs/database/lab-result-specimen-readiness.json",
+          "docs/database/migration-runs/P12-canonical-lab-result-specimen-authority.md"
+        ],
+        "gap": "CDB-125E completes the local schema, commands, bounded backfill, fixed reconciliation, disabled-safe provider, selected adapters, complete coverage, rollback contract, and fail-closed readiness. Runtime cutover, production migration and observation, rollback execution, owner authorization, and retirement remain blocked."
+      },
+      "currentSources": [
+        {
+          "table": "lab_order_items",
+          "classification": "operational_authority",
+          "disposition": "Retain as active request/specimen/result compatibility source until exact Canonical mapping and cutover; mutable result fields become projections."
+        },
+        {
+          "table": "lab_specimens",
+          "classification": "operational_authority",
+          "disposition": "Retain as active specimen workflow source until immutable identity and custody migration."
+        },
+        {
+          "table": "lab_specimen_items",
+          "classification": "domain_extension",
+          "disposition": "Map exact specimen-to-service-request links; never infer by accession, barcode, or test name."
+        },
+        {
+          "table": "lab_specimen_events",
+          "classification": "audit_history",
+          "disposition": "Preserve custody evidence and reconstruct only validated same-specimen transitions."
+        },
+        {
+          "table": "lab_reports",
+          "classification": "projection_cache",
+          "disposition": "Retain report/review/delivery compatibility; rebuild clinical report content from immutable result versions."
+        },
+        {
+          "table": "lab_results",
+          "classification": "operational_authority",
+          "disposition": "Retain current-value compatibility until version-preserving migration; stop treating mutable rows as final history."
+        },
+        {
+          "table": "lab_observation_audit",
+          "classification": "audit_history",
+          "disposition": "Preserve version and analyzer evidence; replace MAX(version)+1 convention with database-enforced Canonical versions."
+        },
+        {
+          "table": "lab_result_corrections",
+          "classification": "workflow_document",
+          "disposition": "Preserve correction requests while migrating complete immutable replacement versions."
+        },
+        {
+          "table": "lis_ingestion_messages",
+          "classification": "audit_history",
+          "disposition": "Retain immutable raw analyzer transport evidence; Canonical stores hashes and exact source references."
+        },
+        {
+          "table": "lis_analyzer_inbox",
+          "classification": "workflow_document",
+          "disposition": "Retain staged matching/QC/acceptance workflow and map exact accepted observations to Canonical analyzer evidence."
+        },
+        {
+          "table": "lis_result_retraction_requests",
+          "classification": "workflow_document",
+          "disposition": "Retain two-person retraction workflow; Canonical retraction preserves immutable result-version evidence."
+        },
+        {
+          "table": "tests",
+          "classification": "duplicate_authority",
+          "disposition": "Map or retire competing test/result authority; never merge by test name."
+        },
+        {
+          "table": "visit_services",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable service projection."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/lab.ts",
+        "src/routes/tenant/lab-results.ts",
+        "src/routes/tenant/labWorkflow.ts",
+        "src/routes/tenant/labValidation.ts",
+        "src/services/lis-result-acceptance.ts",
+        "src/services/lis-result-retraction.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/reportLab.ts",
+        "src/routes/tenant/patients-timeline.ts",
+        "src/lib/health-summary.ts",
+        "src/routes/tenant/lab.ts",
+        "src/routes/tenant/lab-results.ts",
+        "src/routes/tenant/labWorkflow.ts",
+        "src/routes/tenant/labValidation.ts",
+        "src/routes/tenant/patientPortal.ts",
+        "src/routes/hospital-links.ts",
+        "src/routes/tenant/ccda.ts",
+        "src/routes/tenant/labNotifications.ts",
+        "src/routes/tenant/labMachines.ts"
+      ],
+      "backfill": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/backfill-lab-result-specimen.ts",
+          "test/canonical/lab-result-specimen-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-lab-result-specimen-backfill-reconciliation.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/reconcile-lab-result-specimen.ts",
+          "test/canonical/lab-result-specimen-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-lab-result-specimen-backfill-reconciliation.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked_local_ready_provider_disabled",
+        "blockers": [
+          "provider remains disabled and runtime route activation count is zero",
+          "legacy specimen result report analyzer writers and readers remain active",
+          "production migration backfill observation and rollback execution evidence are absent",
+          "exact owner authorization for provider activation or retirement is absent"
+        ],
+        "nextAction": "Keep the lab provider disabled. Lab runtime conversion may proceed only as a claimed non-production canonical-only rewrite lane that reuses reviewed Inventory and shared Canonical contracts; production activation remains a separately authorized future gate."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain lab-specific specimen/result data as domain extensions; archive tests and mixed legacy result authority after mapping."
+      }
+    },
+    {
+      "id": "radiology_acquisition_report",
+      "domain": "diagnostics",
+      "fact": "Imaging acquisition, report versions, performer, reporter, and PACS provenance",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "developmentReadiness": "local_ready_provider_disabled",
+        "tables": [
+          "canonical_imaging_acquisitions",
+          "canonical_imaging_acquisition_status_events",
+          "canonical_imaging_studies",
+          "canonical_imaging_series",
+          "canonical_imaging_instances",
+          "canonical_imaging_provenance_events",
+          "canonical_imaging_report_sets",
+          "canonical_imaging_report_versions",
+          "canonical_imaging_report_status_events"
+        ],
+        "modules": [
+          "src/db/schema/canonical/service-operations.ts",
+          "docs/database/audits/2026-07-28-radiology-acquisition-report-authority-audit.md",
+          "docs/superpowers/specs/2026-07-28-cdb-126a-radiology-acquisition-report-authority-design.md",
+          "docs/superpowers/plans/2026-07-28-cdb-126-radiology-acquisition-report-authority.md",
+          "migrations/0559_canonical_radiology_acquisition_report.sql",
+          "src/db/schema/canonical/radiology-acquisition-report.ts",
+          "src/lib/canonical/commands/manage-radiology-acquisition-report.ts",
+          "scripts/canonical/backfill-radiology-acquisition-report.ts",
+          "scripts/canonical/reconcile-radiology-acquisition-report.ts",
+          "src/lib/canonical/radiology-acquisition-report-provider.ts",
+          "src/lib/canonical/radiology-acquisition-report-read-adapters.ts",
+          "scripts/canonical/check-radiology-acquisition-report-readiness.ts",
+          "docs/database/canonical-radiology-acquisition-report-provider-coverage.json",
+          "docs/database/radiology-acquisition-report-readiness.json",
+          "docs/database/migration-runs/P12-canonical-radiology-acquisition-report-commands.md",
+          "docs/database/migration-runs/P12-canonical-radiology-acquisition-report-backfill-reconciliation.md",
+          "docs/database/migration-runs/P12-canonical-radiology-acquisition-report-authority.md"
+        ],
+        "gap": "CDB-126E completes the local nine-table schema, sixteen commands, ten-partition bounded backfill, fixed thirty-check reconciliation, disabled-safe legacy/shadow/canonical provider, four selected library adapters, complete coverage, rollback contract, and fail-closed readiness. Runtime cutover, production migration and observation, rollback execution, owner authorization, and retirement remain blocked external gates."
+      },
+      "currentSources": [
+        {
+          "table": "radiology_requisitions",
+          "classification": "operational_authority",
+          "disposition": "Retain active order, billing, worklist, scan, cancellation, accession, film, and report compatibility until exact acquisition migration; service request and billing authority remain Canonical/financial."
+        },
+        {
+          "table": "radiology_reports",
+          "classification": "operational_authority",
+          "disposition": "Retain mutable report compatibility until complete immutable report-version and signed lifecycle migration."
+        },
+        {
+          "table": "radiology_dicom_studies",
+          "classification": "domain_extension",
+          "disposition": "Retain study/PACS cache while mapping exact Study Instance UID; do not infer missing series or SOP instances from counters."
+        },
+        {
+          "table": "ris_study_reconciliation_queue",
+          "classification": "workflow_document",
+          "disposition": "Preserve ambiguity/manual-resolution evidence; accession, patient name, modality, date, and suggested similarity never create identity."
+        },
+        {
+          "table": "radiology_report_templates",
+          "classification": "projection_cache",
+          "disposition": "Keep as report rendering configuration, never clinical report content authority."
+        },
+        {
+          "table": "radiology_film_usage",
+          "classification": "workflow_document",
+          "disposition": "Keep as film workflow/inventory evidence, outside acquisition and report authority."
+        },
+        {
+          "table": "invoice_items",
+          "classification": "projection_cache",
+          "disposition": "Keep as governed billing line authority/projection; payment does not prove acquisition, DICOM storage, report, or signature."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/radiology/orders.ts",
+        "src/routes/tenant/radiology/reports.ts",
+        "src/routes/tenant/radiology/pacs.ts",
+        "src/lib/radiology-cancellation.ts",
+        "src/lib/canonical/radiology-order-billing.ts",
+        "src/lib/canonical/patient-chart-radiology-billing.ts",
+        "src/routes/tenant/labMonitoring.ts",
+        "src/routes/tenant/radiology/catalog.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/radiology/orders.ts",
+        "src/routes/tenant/radiology/reports.ts",
+        "src/routes/tenant/radiology/pacs.ts",
+        "src/routes/tenant/radiology/catalog.ts",
+        "src/routes/tenant/patients-chart.ts",
+        "src/routes/tenant/patients-timeline.ts",
+        "src/routes/tenant/nursing/investigation-results.ts",
+        "src/routes/tenant/doctors.ts",
+        "src/lib/executive-inventory-kpis.ts",
+        "src/routes/tenant/labMonitoring.ts",
+        "src/lib/diagnostic-performer-reserve.ts"
+      ],
+      "backfill": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/backfill-radiology-acquisition-report.ts",
+          "test/canonical/radiology-acquisition-report-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-radiology-acquisition-report-backfill-reconciliation.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/reconcile-radiology-acquisition-report.ts",
+          "test/canonical/radiology-acquisition-report-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-radiology-acquisition-report-backfill-reconciliation.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked_local_ready_provider_disabled",
+        "blockers": [
+          "provider remains disabled and runtime route activation count is zero",
+          "legacy requisition report PACS RIS film billing rendering notification and downstream writers/readers remain active",
+          "production migration exact bounded backfill shadow observation and rollback execution evidence are absent",
+          "exact owner authorization for provider activation route cutover or retirement is absent"
+        ],
+        "nextAction": "Keep the radiology provider disabled. Radiology runtime conversion may proceed only as a claimed non-production canonical-only rewrite lane under the parallel board; production activation and legacy retirement remain separately authorized future gates."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain imaging reports, exact DICOM UID hierarchy, and PACS/storage provenance as domain extensions; retire mixed requisition/report/study caches only after exact migration, observation, rollback proof, and authorization."
+      }
+    },
+    {
+      "id": "emergency_case_extension",
+      "domain": "clinical",
+      "fact": "Emergency arrival, lifecycle, triage, classification, and disposition extension linked to one Canonical encounter",
+      "targetAuthority": {
+        "status": "partial_canonical",
+        "developmentReadiness": "local_ready_provider_disabled",
+        "tables": [
+          "canonical_emergency_cases",
+          "canonical_emergency_arrival_assessments",
+          "canonical_emergency_case_status_events",
+          "canonical_emergency_triage_assessments",
+          "canonical_emergency_case_classifications",
+          "canonical_emergency_disposition_events"
+        ],
+        "modules": [
+          "src/db/schema/canonical/clinical.ts",
+          "docs/database/audits/2026-07-28-emergency-case-triage-authority-audit.md",
+          "docs/superpowers/specs/2026-07-28-cdb-127a-emergency-case-triage-authority-design.md",
+          "docs/superpowers/plans/2026-07-28-cdb-127-emergency-case-triage-authority.md",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-authority-design.md",
+          "migrations/0560_canonical_emergency_case_triage.sql",
+          "src/db/schema/canonical/emergency-case-triage.ts",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-schema.md",
+          "src/lib/canonical/commands/manage-emergency-case-triage.ts",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-commands.md",
+          "scripts/canonical/backfill-emergency-case-triage.ts",
+          "scripts/canonical/reconcile-emergency-case-triage.ts",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-backfill-reconciliation.md",
+          "src/lib/canonical/emergency-case-triage-provider.ts",
+          "src/lib/canonical/emergency-case-triage-read-adapters.ts",
+          "scripts/canonical/check-emergency-case-triage-readiness.ts",
+          "docs/database/canonical-emergency-case-triage-provider-coverage.json",
+          "docs/database/emergency-case-triage-readiness.json",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-authority.md"
+        ],
+        "gap": "CDB-127E completes the local six-table schema, nine atomic commands, eight-partition bounded backfill, fixed twenty-four-check reconciliation, disabled-safe legacy/shadow/canonical provider, three selected library adapters, complete reviewed coverage and fail-closed readiness. Runtime provider activation, production migration/backfill/observation, rollback execution, owner authorization and legacy retirement remain blocked external gates."
+      },
+      "currentSources": [
+        {
+          "table": "er_patients",
+          "classification": "operational_authority",
+          "disposition": "Retain as the active legacy registration, arrival, current triage, and disposition compatibility source until exact Canonical migration and authorised cutover; copied demographics never become Canonical identity."
+        },
+        {
+          "table": "er_patient_cases",
+          "classification": "operational_authority",
+          "disposition": "Retain exact emergency classification evidence; migrate only reviewed codes and typed details through immutable versioned classifications."
+        },
+        {
+          "table": "er_discharge_summaries",
+          "classification": "duplicate_authority",
+          "disposition": "Retain as a legacy clinical-document compatibility source; map signed narrative into existing Canonical clinical-document and diagnosis authorities instead of copying it into emergency tables."
+        },
+        {
+          "table": "er_file_uploads",
+          "classification": "domain_extension",
+          "disposition": "Retain inactive attachment metadata until exact patient, encounter, content-hash, and Canonical attachment mapping exists."
+        },
+        {
+          "table": "er_mode_of_arrival",
+          "classification": "domain_extension",
+          "disposition": "Retain as tenant configuration; a Canonical arrival assessment stores normalized code and exact source evidence only."
+        },
+        {
+          "table": "visits",
+          "classification": "duplicate_authority",
+          "disposition": "Retain as episode compatibility while exact visit-to-canonical_encounters mappings converge; never create an emergency case through name, phone, date, or time proximity."
+        },
+        {
+          "table": "admissions",
+          "classification": "compatibility_surface",
+          "disposition": "Retain separate inpatient authority/compatibility; admitted emergency disposition requires an exact Canonical admission link and never creates a duplicate admission."
+        },
+        {
+          "table": "emergency_visits",
+          "classification": "projection_cache",
+          "disposition": "Treat as a stale or missing quality-KPI projection because current repository schema/migrations do not define it; never use it as authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/emergency.ts",
+        "src/routes/tenant/reception.ts",
+        "src/routes/tenant/admissions.ts",
+        "src/routes/tenant/appointments.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/emergency.ts",
+        "src/routes/tenant/qualityKpi.ts",
+        "src/routes/tenant/doctors.ts",
+        "src/routes/tenant/ipdReports.ts",
+        "src/routes/tenant/patients-timeline.ts",
+        "src/lib/patient-reference-registry.ts"
+      ],
+      "backfill": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/backfill-emergency-case-triage.ts",
+          "test/canonical/emergency-case-triage-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-backfill-reconciliation.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "implemented_local_verified",
+        "evidence": [
+          "scripts/canonical/reconcile-emergency-case-triage.ts",
+          "test/canonical/emergency-case-triage-backfill-reconciliation.test.ts",
+          "docs/database/migration-runs/P12-canonical-emergency-case-triage-backfill-reconciliation.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked_local_ready_provider_disabled",
+        "blockers": [
+          "provider remains disabled and runtime route activation count is zero",
+          "legacy emergency, visit, admission, discharge-document, quality-KPI, doctor/IPD-report, and patient-reference writers/readers remain active",
+          "production migration, exact bounded backfill, shadow observation and rollback execution evidence are absent",
+          "exact owner authorization for provider activation, route cutover or retirement is absent"
+        ],
+        "nextAction": "Keep the emergency provider disabled. Emergency runtime conversion may proceed only as a claimed non-production canonical-only rewrite lane under the parallel board; CDB-128A is deferred, and production activation or legacy retirement remains separately authorized."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain all legacy ER, visit, admission, discharge-summary, file and classification history; retire only competing mutable authority after exact migration, read promotion, observation, rollback proof, and explicit authorization."
+      }
+    },
+    {
+      "id": "operation_theatre_procedure",
+      "domain": "clinical",
+      "fact": "Operation-theatre booking, team, checklist, performed procedure, and summary",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/service-operations.ts",
+          "src/db/schema/canonical/clinical.ts"
+        ],
+        "gap": "Canonical service events do not yet own the complete OT procedure lifecycle."
+      },
+      "currentSources": [
+        {
+          "table": "ot_bookings",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "ot_team_members",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        },
+        {
+          "table": "ot_checklist_items",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "ot_summaries",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/ot.ts",
+        "src/routes/tenant/procedureOrders.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/reports.ts",
+        "src/routes/tenant/patients-timeline.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "no canonical procedure/OT extension exists",
+          "booking, performed event, clinical summary, and charge are separate authorities"
+        ],
+        "nextAction": "Model OT booking as intent and performed procedure as canonical service event plus encounter-linked domain extension."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain checklist and operative summaries; archive only duplicate charge/status projections."
+      }
+    },
+    {
+      "id": "nursing_care_execution",
+      "domain": "clinical",
+      "fact": "Nursing care plans, notes, handovers, monitoring, and interventions",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/clinical.ts"
+        ],
+        "gap": "Canonical clinical schema lacks nursing care-plan and intervention authority."
+      },
+      "currentSources": [
+        {
+          "table": "nur_care_plans",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "nur_notes",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "nur_handover",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "nur_patient_monitoring",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/nursing/care-plan.ts",
+        "src/routes/tenant/nursing/notes.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/nursing/clinical-summary.ts",
+        "src/routes/tenant/patients-timeline.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-clinical-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "nursing facts are not registered under encounter/document/observation authority",
+          "several tables repeat patient/visit/admission context"
+        ],
+        "nextAction": "Define encounter-linked nursing documents, care-plan tasks, and intervention events without creating duplicate patient episodes."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain nursing domain tables as governed extensions after canonical encounter and observation links are enforced."
+      }
+    },
+    {
+      "id": "insurance_claim_lifecycle",
+      "domain": "finance",
+      "fact": "Insurance policy, authorization, claim, adjudication, and receivable allocation",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/billing.ts"
+        ],
+        "gap": "Canonical finance currently models patient financial documents but not insurance claim/adjudication authority."
+      },
+      "currentSources": [
+        {
+          "table": "insurance_policies",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "insurance_claims",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "bills",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "billing_credit_bill_status",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/insurance.ts",
+        "src/routes/tenant/billingInsurance.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/billingReports.ts",
+        "src/routes/tenant/reports.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "canonical billing has no payer claim/adjudication tables",
+          "claim allocations to invoices and receipts are not canonical"
+        ],
+        "nextAction": "Design claim and adjudication authority linked to canonical invoices, credits, receipts, and patient responsibility."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain policy and claim history as finance-domain extensions; archive duplicate invoice status projections."
+      }
+    },
+    {
+      "id": "expense_workflow",
+      "domain": "finance",
+      "fact": "Expense request, approval, execution, recovery, and payment source",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/accounting.ts"
+        ],
+        "gap": "Canonical accounting posts effects but does not own expense approval and execution workflow."
+      },
+      "currentSources": [
+        {
+          "table": "expenses",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "expense_recoveries",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "cash_drawer_movements",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "accounting_posting_events",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/expenses.ts",
+        "src/routes/tenant/recurring.ts"
+      ],
+      "readConsumers": [
+        "src/lib/executive-expense-analytics.ts",
+        "src/routes/admin/index.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "no canonical expense document exists",
+          "multiple interactive, scheduled, payroll, staff, and accounting writers exist"
+        ],
+        "nextAction": "Create one expense command and canonical document lifecycle before routing recurring, staff, payroll, and manual expense writers."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retain expenses and recoveries until a canonical expense authority and exact accounting/custody reconciliation are operational."
+      }
+    },
+    {
+      "id": "payroll_lifecycle",
+      "domain": "hr_finance",
+      "fact": "Payroll run, payslip, adjustment, approval, payable, and actual payment lifecycle",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/accounting.ts"
+        ],
+        "gap": "Canonical finance has compensation and accounting, but employee payroll lifecycle is not modeled."
+      },
+      "currentSources": [
+        {
+          "table": "hr_payroll_runs",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "hr_payslips",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "hr_payslip_adjustments",
+          "classification": "workflow_document",
+          "disposition": "Retain workflow state, not fact authority."
+        },
+        {
+          "table": "expenses",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/hr/payroll.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/hr/payroll.ts",
+        "src/lib/executive-expense-analytics.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "no canonical payroll payable/payment document exists",
+          "legacy workflow can create expense linkage without complete payment semantics"
+        ],
+        "nextAction": "Separate payroll calculation, approval, payable recognition, settlement, custody, and accounting into explicit lifecycle facts."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retain HR payroll sources; do not import the rejected parallel finance/payroll architecture."
+      }
+    },
+    {
+      "id": "direct_income_event",
+      "domain": "finance",
+      "fact": "Non-patient direct income source event distinct from patient collection",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/accounting.ts"
+        ],
+        "gap": "Canonical accounting can post income, but there is no canonical direct-income source document."
+      },
+      "currentSources": [
+        {
+          "table": "income",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "payments",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "accounting_posting_events",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/income.ts",
+        "src/routes/seed.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/dashboard.ts",
+        "src/routes/admin/index.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-finance-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "income mixes direct source and patient collection mirrors",
+          "source, outbox, and audit are separate commits"
+        ],
+        "nextAction": "Create a typed direct-income command and migrate bill-derived income rows to compatibility reporting only."
+      },
+      "retirement": {
+        "status": "compatibility_then_archive",
+        "action": "Retain genuine direct-income history; archive patient collection mirror authority after reporting cutover."
+      }
+    },
+    {
+      "id": "procurement_goods_receipt",
+      "domain": "inventory",
+      "fact": "Supplier, purchase order, goods receipt, return, and source-line workflow",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/inventory.ts"
+        ],
+        "gap": "Canonical inventory tables do not include purchase-order, goods-receipt, or supplier document authority."
+      },
+      "currentSources": [
+        {
+          "table": "InventoryPurchaseOrder",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "InventoryPurchaseOrderItem",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "InventoryGoodsReceipt",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "InventoryGoodsReceiptItem",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/inventory/po.ts",
+        "src/routes/tenant/inventory/gr.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/inventory/reports.ts",
+        "src/routes/tenant/inventory/dashboard.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "canonical inventory owns movement but not procurement documents",
+          "enterprise and pharmacy procurement stacks remain parallel"
+        ],
+        "nextAction": "Design or formally govern one procurement/receipt authority whose accepted lines post canonical movements."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain supplier and procurement workflow documents; archive duplicate pharmacy procurement authority after convergence."
+      }
+    },
+    {
+      "id": "pharmacy_dispense_sale",
+      "domain": "pharmacy",
+      "fact": "Medication dispense or OTC sale linked to lot allocation, invoice, return, and participants",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/inventory.ts",
+          "src/db/schema/canonical/billing.ts",
+          "src/db/schema/canonical/service-operations.ts"
+        ],
+        "gap": "Canonical billing and inventory exist, but pharmacy dispense/OTC event and lot-allocation authority is missing."
+      },
+      "currentSources": [
+        {
+          "table": "pharmacy_invoices",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "pharmacy_invoice_items",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        },
+        {
+          "table": "pharmacy_sales",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "pharmacy_sale_items",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/pharmacy/invoices.ts",
+        "src/routes/tenant/pharmacy/advanced.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/reportPharmacy.ts",
+        "src/routes/tenant/pharmacy/stock.ts"
+      ],
+      "backfill": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "not_started",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "legacy, rich pharmacy, and enterprise inventory remain parallel",
+          "prescription fulfilment writes legacy stock"
+        ],
+        "nextAction": "Implement one dispense/OTC event command that atomically posts canonical movement, invoice, payment/deposit, COGS outbox, and participants."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retain sale history; archive legacy and rich duplicate stock/sale authority only after exact lot, invoice, return, and COGS reconciliation."
+      }
+    },
+    {
+      "id": "lab_reagent_domain_extension",
+      "domain": "diagnostics_inventory",
+      "fact": "Reagent QC, analyzer assignment, open-vial expiry, and usage context linked to canonical lot and movement",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/db/schema/canonical/inventory.ts"
+        ],
+        "gap": "Canonical inventory lacks a reagent-specific lot metadata extension for QC and onboard expiry."
+      },
+      "currentSources": [
+        {
+          "table": "lab_consumables",
+          "classification": "domain_extension",
+          "disposition": "Retain as canonical-linked domain extension."
+        },
+        {
+          "table": "lab_consumable_stock",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "lab_consumable_movements",
+          "classification": "projection_cache",
+          "disposition": "Keep only as rebuildable projection."
+        },
+        {
+          "table": "InventoryStock",
+          "classification": "operational_authority",
+          "disposition": "Cut over to the target authority."
+        }
+      ],
+      "directWriters": [
+        "src/routes/tenant/labMonitoring.ts",
+        "src/lib/lab-inventory-bridge.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/labMonitoring.ts",
+        "src/routes/tenant/inventory/reports.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/database/audits/P01-diagnostics-inventory-current-state-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "not_started",
+        "blockers": [
+          "linked and unlinked consumables use different balance authorities",
+          "receipt mirroring duplicates quantity-bearing rows"
+        ],
+        "nextAction": "Create reagent-domain metadata keyed to canonical item and lot, then eliminate quantity-copy mirroring."
+      },
+      "retirement": {
+        "status": "retain_domain_extension",
+        "action": "Retain QC, analyzer, and open-vial facts; archive independent lab quantity balance after inventory cutover."
+      }
+    },
+    {
+      "id": "reporting_metric_read_promotion",
+      "domain": "reporting",
+      "fact": "Governed metric definitions and provider-selected canonical dashboard reads",
+      "targetAuthority": {
+        "status": "canonical_gap",
+        "tables": [],
+        "modules": [
+          "src/lib/canonical/reporting/common.ts",
+          "src/routes/tenant/canonicalReporting.ts"
+        ],
+        "gap": "Canonical reporting queries exist, but the metric registry and full dashboard read promotion are incomplete."
+      },
+      "currentSources": [
+        {
+          "table": "bills",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "payments",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "invoice_items",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        },
+        {
+          "table": "doctor_commission_accruals",
+          "classification": "duplicate_authority",
+          "disposition": "Merge or remove competing authority."
+        }
+      ],
+      "directWriters": [
+        "src/lib/executive-doctor-analytics.ts",
+        "src/lib/executive-test-analytics.ts"
+      ],
+      "readConsumers": [
+        "src/routes/tenant/dashboard.ts",
+        "src/routes/tenant/managerDashboard.ts"
+      ],
+      "backfill": {
+        "status": "partial",
+        "evidence": [
+          "docs/architecture/2026-07-21-main-canonical-completion-gap-audit.md"
+        ]
+      },
+      "reconciliation": {
+        "status": "partial",
+        "evidence": [
+          "docs/architecture/2026-07-22-canonical-tenant100-readiness-audit.md"
+        ]
+      },
+      "cutover": {
+        "status": "blocked",
+        "blockers": [
+          "metric registry has no canonical metric ownership entries",
+          "only selected providers can switch"
+        ],
+        "nextAction": "Define metric ownership and move each dashboard endpoint through an explicit legacy, shadow, canonical provider with parity evidence."
+      },
+      "retirement": {
+        "status": "blocked",
+        "action": "Retire legacy dashboard SQL only metric-by-metric after canonical parity, observation, and rollback evidence."
+      }
+    }
+  ]
+}

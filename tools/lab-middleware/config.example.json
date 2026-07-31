@@ -1,0 +1,58 @@
+{
+  "// NOTE": "Copy this to config.json and edit for your hospital",
+  "api": {
+    "baseUrl": "https://your-hospital.ozzyl.com",
+    "tenantId": "your-tenant-id",
+    "keyId": "your-bridge-key-id",
+    "signingSecret": "[REDACTED_SECRET]"
+  },
+  "queue": {
+    "dir": "./queue",
+    "retryIntervalMs": 30000,
+    "maxAttempts": 10,
+    "baseDelayMs": 30000,
+    "maxDelayMs": 900000,
+    "encryptionKey": "[REDACTED_SECRET]",
+    "journalDirectory": "./journal"
+  },
+  "agent": {
+    "code": "local-lis-bridge",
+    "name": "Ozzyl Local LIS Bridge",
+    "siteName": "your-hospital-name",
+    "version": "1.0.0",
+    "heartbeatIntervalMs": 60000
+  },
+  "astm": {
+    "enabled": true,
+    "port": 9100,
+    "machines": [
+      {
+        "name": "Mindray BC-5000",
+        "ip": "192.168.1.100",
+        "machineCode": "MINDRAY-BC5000"
+      },
+      {
+        "name": "Beckman AU480",
+        "ip": "192.168.1.101",
+        "machineCode": "BECKMAN-AU480"
+      }
+    ]
+  },
+  "hl7": {
+    "enabled": true,
+    "port": 2575,
+    "ackMode": "always_ack_after_queue",
+    "machines": [
+      {
+        "name": "Sysmex XN-1000",
+        "ip": "192.168.1.102",
+        "machineCode": "SYSMEX-XN1000"
+      }
+    ]
+  },
+  "logging": {
+    "level": "info",
+    "file": "./logs/middleware.log",
+    "rawMessages": false
+  }
+}

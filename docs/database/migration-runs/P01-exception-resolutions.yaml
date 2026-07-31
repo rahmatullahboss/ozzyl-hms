@@ -1,0 +1,20 @@
+version: 1
+resolved_at: "2026-07-13T15:25:03Z"
+source_registry: "docs/database/migration-runs/P01-exceptions.yaml"
+resolution_report: "docs/database/migration-runs/P01-production-migration-reconciliation.md"
+resolutions:
+  - exception_id: "P01-MIGRATION_REPOSITORY_NOT_APPLIED-2BB029E94BB2"
+    migration_name: "0421_billing_refund_cash_holds.sql"
+    status: resolved
+    production_migration_id: 445
+    resolution: "Existing live schema validated and migration ledger reconciled through the protected Wrangler rehearsal/apply flow."
+  - exception_id: "P01-MIGRATION_REPOSITORY_NOT_APPLIED-2096F2842B4C"
+    migration_name: "0421_lab_reagent_stock_in_idempotency.sql"
+    status: resolved
+    production_migration_id: 446
+    resolution: "Unique index applied after confirming zero conflicting duplicate groups; migration recorded by Wrangler."
+  - exception_id: "P01-MIGRATION_REPOSITORY_NOT_APPLIED-A7F4E6FFD309"
+    migration_name: "0422_diagnostic_performer_reserve_payout.sql"
+    status: resolved
+    production_migration_id: 447
+    resolution: "Already-existing tables, columns, and indexes validated; duplicate ALTER statements omitted only in the protected reconciliation copy and migration recorded by Wrangler."

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "domain": "lab_result_specimen",
+  "checkpoint": "CDB-125E",
+  "claims": {
+    "localReady": true,
+    "productionReady": false,
+    "providerEnabled": false,
+    "routeCutoverPerformed": false,
+    "productionObservationPresent": false,
+    "rollbackExecutionEvidencePresent": false,
+    "ownerAuthorizationPresent": false,
+    "legacyRetirementApproved": false,
+    "productionMutationPerformed": false,
+    "productionQueryPerformed": false,
+    "localSyncActivated": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  },
+  "verifiedContracts": {
+    "schema": true,
+    "commands": true,
+    "boundedBackfill": true,
+    "backfillPartitionCount": 10,
+    "reconciliationCheckCount": 28,
+    "providerDefaultLegacy": true,
+    "providerDisabledSafe": true,
+    "exactSourceMappingRequired": true,
+    "textTimeValueSimilarityForbidden": true,
+    "specimenCustodyHistoryVisible": true,
+    "resultVersionHistoryVisible": true,
+    "observationHistoryVisible": true,
+    "signatureHistoryVisible": true,
+    "analyzerProvenanceVisible": true,
+    "reportProjectionOnly": true,
+    "shadowEvidencePhiMinimised": true,
+    "rollbackMode": "legacy",
+    "runtimeRoutesUnchanged": true
+  },
+  "requiredEvidence": [
+    { "kind": "design", "path": "docs/superpowers/specs/2026-07-28-cdb-125a-lab-result-specimen-authority-design.md" },
+    { "kind": "schema", "path": "migrations/0558_canonical_lab_result_specimen.sql" },
+    { "kind": "commands", "path": "src/lib/canonical/commands/manage-lab-result-specimen.ts" },
+    { "kind": "backfill", "path": "scripts/canonical/backfill-lab-result-specimen.ts" },
+    { "kind": "reconciliation", "path": "scripts/canonical/reconcile-lab-result-specimen.ts" },
+    { "kind": "provider", "path": "src/lib/canonical/lab-result-specimen-provider.ts" },
+    { "kind": "adapters", "path": "src/lib/canonical/lab-result-specimen-read-adapters.ts" },
+    { "kind": "coverage", "path": "docs/database/canonical-lab-result-specimen-provider-coverage.json" },
+    { "kind": "schema_receipt", "path": "docs/database/migration-runs/P12-canonical-lab-result-specimen-schema.md" },
+    { "kind": "commands_receipt", "path": "docs/database/migration-runs/P12-canonical-lab-result-specimen-commands.md" },
+    { "kind": "backfill_receipt", "path": "docs/database/migration-runs/P12-canonical-lab-result-specimen-backfill-reconciliation.md" },
+    { "kind": "final_receipt", "path": "docs/database/migration-runs/P12-canonical-lab-result-specimen-authority.md" }
+  ],
+  "blockedGates": [
+    {
+      "gate": "production_activation",
+      "status": "blocked",
+      "reason": "Provider flag is disabled, runtime routes are unchanged, and production migration, observation, rollback execution evidence, and exact owner authorization are absent."
+    },
+    {
+      "gate": "legacy_retirement",
+      "status": "blocked",
+      "reason": "Specimen, result, report, correction, LIS inbox, analyzer, and downstream reader/writer surfaces remain active and no production observation or explicit retirement authorization exists."
+    }
+  ]
+}

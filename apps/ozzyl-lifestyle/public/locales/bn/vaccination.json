@@ -1,0 +1,150 @@
+{
+  "title": "টিকাকরণ মডিউল",
+  "subtitle": "টিকা, রেকর্ড পরিচালনা এবং নির্ধারিত সময় ট্র্যাক করুন",
+  "kpi": {
+    "vaccineTypes": "টিকার ধরন",
+    "totalRecords": "মোট রেকর্ড",
+    "dueToday": "আজ নির্ধারিত",
+    "overdue": "মেয়াদ উত্তীর্ণ",
+    "thisMonth": "এই মাসে"
+  },
+  "tabs": {
+    "records": "রেকর্ড",
+    "catalog": "ক্যাটালগ",
+    "reports": "রিপোর্ট"
+  },
+  "actions": {
+    "refresh": "রিফ্রেশ",
+    "search": "অনুসন্ধান",
+    "cancel": "বাতিল",
+    "save": "সংরক্ষণ",
+    "update": "আপডেট"
+  },
+  "records": {
+    "searchPlaceholder": "রোগীর নাম, ফোন বা আইডি দিয়ে অনুসন্ধান করুন...",
+    "recordVaccination": "টিকা রেকর্ড করুন",
+    "certificate": "সনদ",
+    "noRecords": "এই রোগীর কোনো টিকার রেকর্ড নেই",
+    "tableHeaders": {
+      "vaccine": "টিকা",
+      "dose": "ডোজ",
+      "date": "তারিখ",
+      "route": "পথ",
+      "batch": "ব্যাচ",
+      "status": "অবস্থা",
+      "nextDose": "পরবর্তী ডোজ",
+      "actions": "কর্ম"
+    }
+  },
+  "catalog": {
+    "searchPlaceholder": "টিকা অনুসন্ধান...",
+    "addVaccine": "টিকা যোগ করুন",
+    "active": "সক্রিয়",
+    "inactive": "নিষ্ক্রিয়",
+    "noVaccines": "ক্যাটালগে কোনো টিকা নেই। উপরে আপনার প্রথম টিকা যোগ করুন।",
+    "tableHeaders": {
+      "code": "কোড",
+      "name": "নাম",
+      "doses": "ডোজ",
+      "interval": "ব্যবধান",
+      "ageGroup": "বয়সের গ্রুপ",
+      "status": "অবস্থা",
+      "actions": "কর্ম"
+    }
+  },
+  "reports": {
+    "dueOverdue": "নির্ধারিত / মেয়াদ উত্তীর্ণ",
+    "dateRange": "তারিখ পরিসর",
+    "from": "থেকে",
+    "to": "পর্যন্ত",
+    "generate": "তৈরি করুন",
+    "noDueVaccinations": "কোনো নির্ধারিত টিকা পাওয়া যায়নি",
+    "clickGenerate": "রিপোর্ট লোড করতে \"তৈরি করুন\" এ ক্লিক করুন",
+    "kpi": {
+      "totalDue": "মোট নির্ধারিত",
+      "overdue": "মেয়াদ উত্তীর্ণ",
+      "dueToday": "আজ নির্ধারিত",
+      "total": "মোট",
+      "completed": "সম্পন্ন",
+      "missed": "বাদ পড়া",
+      "uniquePatients": "অনন্য রোগী"
+    },
+    "tableHeaders": {
+      "patient": "রোগী",
+      "vaccine": "টিকা",
+      "dose": "ডোজ",
+      "dueDate": "নির্ধারিত তারিখ",
+      "date": "তারিখ",
+      "status": "অবস্থা",
+      "mobile": "মোবাইল"
+    }
+  },
+  "recordModal": {
+    "editTitle": "টিকা সম্পাদনা",
+    "addTitle": "টিকা রেকর্ড করুন",
+    "vaccineLabel": "টিকা *",
+    "selectVaccine": "টিকা নির্বাচন করুন...",
+    "doseLabel": "ডোজ #",
+    "dateLabel": "তারিখ *",
+    "routeLabel": "পথ",
+    "siteLabel": "স্থান",
+    "sitePlaceholder": "যেমন: Left deltoid",
+    "batchLabel": "ব্যাচ #",
+    "manufacturerLabel": "প্রস্তুতকারক",
+    "statusLabel": "অবস্থা",
+    "nextDoseDateLabel": "পরবর্তী ডোজের তারিখ",
+    "adverseEffectsLabel": "পার্শ্বপ্রতিক্রিয়া",
+    "remarksLabel": "মন্তব্য"
+  },
+  "vaccineModal": {
+    "editTitle": "টিকা সম্পাদনা",
+    "addTitle": "টিকা যোগ করুন",
+    "codeLabel": "কোড *",
+    "codePlaceholder": "যেমন: BCG",
+    "nameLabel": "নাম *",
+    "nameBnLabel": "নাম (বাংলা)",
+    "descriptionLabel": "বিবরণ",
+    "dosesLabel": "ডোজ",
+    "intervalLabel": "ব্যবধান (দিন)",
+    "ageGroupLabel": "বয়সের গ্রুপ",
+    "ageGroupPlaceholder": "যেমন: 0-1y"
+  },
+  "routeOptions": {
+    "IM": "IM (ইন্ট্রামাসকুলার)",
+    "SC": "SC (সাবকিউটেনিয়াস)",
+    "ID": "ID (ইন্ট্রাডার্মাল)",
+    "PO": "PO (ওরাল)",
+    "IN": "IN (ইন্ট্রানাসাল)"
+  },
+  "statusOptions": {
+    "completed": "সম্পন্ন",
+    "scheduled": "নির্ধারিত",
+    "missed": "বাদ পড়া",
+    "cancelled": "বাতিল"
+  },
+  "confirm": {
+    "deleteRecord": "এই টিকার রেকর্ড মুছে ফেলবেন?"
+  },
+  "toast": {
+    "success": {
+      "recordUpdated": "রেকর্ড আপডেট হয়েছে",
+      "vaccinationRecorded": "টিকা রেকর্ড হয়েছে",
+      "recordDeleted": "রেকর্ড মুছে ফেলা হয়েছে",
+      "vaccineUpdated": "টিকা আপডেট হয়েছে",
+      "vaccineAdded": "টিকা যোগ হয়েছে",
+      "vaccineDeactivated": "টিকা নিষ্ক্রিয় হয়েছে",
+      "vaccineActivated": "টিকা সক্রিয় হয়েছে"
+    },
+    "error": {
+      "searchPatientsFailed": "রোগী অনুসন্ধান ব্যর্থ",
+      "loadVaccinationFailed": "টিকার রেকর্ড লোড ব্যর্থ",
+      "saveRecordFailed": "রেকর্ড সংরক্ষণ ব্যর্থ",
+      "deleteRecordFailed": "রেকর্ড মুছে ফেলতে ব্যর্থ",
+      "loadVaccineCatalog": "টিকা ক্যাটালগ লোড ব্যর্থ",
+      "saveVaccineFailed": "টিকা সংরক্ষণ ব্যর্থ",
+      "updateVaccineStatus": "টিকার অবস্থা আপডেট ব্যর্থ",
+      "loadDueVaccinations": "নির্ধারিত টিকা লোড ব্যর্থ",
+      "loadReport": "রিপোর্ট লোড ব্যর্থ"
+    }
+  }
+}

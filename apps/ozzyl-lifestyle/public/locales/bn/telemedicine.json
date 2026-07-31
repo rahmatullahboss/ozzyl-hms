@@ -1,0 +1,15 @@
+{
+  "title": "টেলিমেডিসিন",
+  "joinRoom": "রুমে যোগ দিন",
+  "room": "রুম",
+  "startCall": "কল শুরু করুন",
+  "endCall": "কল শেষ করুন",
+  "mute": "মিউট",
+  "unmute": "আনমিউট",
+  "videoOff": "ভিডিও বন্ধ",
+  "videoOn": "ভিডিও চালু",
+  "noRooms": "কোনো সক্রিয় রুম নেই",
+  "consultationRoom": "কনসালটেশন রুম",
+  "scheduleSession": "সেশন নির্ধারণ করুন",
+  "chat": "চ্যাট"
+}

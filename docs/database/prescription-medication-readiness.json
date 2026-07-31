@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "checkpoint": "CDB-121E-CANONICAL-PRESCRIPTION-MEDICATION-DISABLED-PROVIDERS-READINESS",
+  "scope": "local_disabled_provider_readiness_only",
+  "provider": {
+    "modulePath": "src/lib/canonical/prescription-medication-provider.ts",
+    "adapterPath": "src/lib/canonical/prescription-medication-read-adapters.ts",
+    "coveragePath": "docs/database/canonical-prescription-medication-provider-coverage.json",
+    "flagKey": "canonical_prescription_medication_provider_v1",
+    "enabledByDefault": false,
+    "defaultMode": "legacy",
+    "rollbackMode": "legacy"
+  },
+  "requiredEvidence": [
+    {
+      "kind": "schema",
+      "path": "migrations/0554_canonical_prescription_medication_intent.sql"
+    },
+    {
+      "kind": "schema_test",
+      "path": "test/canonical/prescription-medication-intent-schema.test.ts"
+    },
+    {
+      "kind": "commands",
+      "path": "src/lib/canonical/commands/manage-prescription-medication-intent.ts"
+    },
+    {
+      "kind": "command_test",
+      "path": "test/canonical/prescription-medication-intent-commands.test.ts"
+    },
+    {
+      "kind": "backfill",
+      "path": "scripts/canonical/backfill-prescription-medication-intent.ts"
+    },
+    {
+      "kind": "backfill_test",
+      "path": "test/canonical/prescription-medication-intent-backfill.test.ts"
+    },
+    {
+      "kind": "reconciliation",
+      "path": "scripts/canonical/reconcile-prescription-medication-intent.ts"
+    },
+    {
+      "kind": "reconciliation_test",
+      "path": "test/canonical/prescription-medication-intent-reconciliation.test.ts"
+    },
+    {
+      "kind": "provider",
+      "path": "src/lib/canonical/prescription-medication-provider.ts"
+    },
+    {
+      "kind": "adapter",
+      "path": "src/lib/canonical/prescription-medication-read-adapters.ts"
+    },
+    {
+      "kind": "provider_test",
+      "path": "test/canonical/prescription-medication-provider.test.ts"
+    },
+    {
+      "kind": "backfill_reconciliation_receipt",
+      "path": "docs/database/migration-runs/P11-canonical-prescription-medication-intent-backfill-reconciliation.md"
+    }
+  ],
+  "gates": {
+    "schema": "passed",
+    "commands": "passed",
+    "backfill": "passed",
+    "reconciliation": "passed",
+    "provider": "passed_disabled",
+    "selectedReaders": "passed_local_contracts",
+    "production": "blocked",
+    "retirement": "blocked"
+  },
+  "claims": {
+    "localReady": true,
+    "productionReady": false,
+    "providerEnabled": false,
+    "routeCutoverPerformed": false,
+    "productionObservationPresent": false,
+    "legacyRetirementApproved": false,
+    "legacyRuntimeChanged": false,
+    "productionMutationPerformed": false,
+    "productionQueryPerformed": false,
+    "localSyncActivated": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  },
+  "blockers": [
+    "production migration and backfill authorization is absent",
+    "provider flag activation and route cutover are not authorized",
+    "production shadow observation and rollback evidence are absent",
+    "legacy prescription and medication readers/writers remain active",
+    "legacy retirement approval is absent"
+  ],
+  "safety": {
+    "phiMinimisedEvidence": true,
+    "prescriptionAndMedicationOrderSeparated": true,
+    "administrationExcluded": true,
+    "medicationReconciliationExcluded": true,
+    "fulfilmentExcluded": true,
+    "stockBillingPaymentExcluded": true,
+    "textOrTimeIdentityFallbackAllowed": false
+  }
+}

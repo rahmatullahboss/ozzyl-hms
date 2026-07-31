@@ -1,0 +1,4902 @@
+version: 1
+generated_at: "2026-07-13T14:48:15.320Z"
+source_database: "source-local.sqlite"
+clone_database: "cdb012-clone-export-local.sqlite"
+exception_count: 439
+open_exception_count: 421
+accepted_import_compatibility_count: 18
+migration_drift:
+  migration_table_present: true
+  applied_migration_count: 442
+  repository_migration_count: 441
+  applied_not_in_repository: ["0417_mfa_login_challenges.sql","0418_staff_auth_sessions.sql","0419_setup_master_data_uniqueness.sql","0420_inventory_medicine_identity_guard.sql"]
+  repository_not_applied: ["0421_billing_refund_cash_holds.sql","0421_lab_reagent_stock_in_idempotency.sql","0422_diagnostic_performer_reserve_payout.sql"]
+exceptions:
+  - id: "P01-BILL_DUE_MISMATCH-03FAE4F7BFAD"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5003"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 130000
+      billPaid: 330000
+      billTotal: 330000
+      expectedDue: 0
+  - id: "P01-BILL_DUE_MISMATCH-170DFA04AC90"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5173"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 58000
+      billTotal: 60000
+      expectedDue: 2000
+  - id: "P01-BILL_DUE_MISMATCH-1A9F11AB4DC5"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5030"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 500
+      billPaid: 500
+      billTotal: 500
+      expectedDue: 0
+  - id: "P01-BILL_DUE_MISMATCH-1C48358FDEC4"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5762"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 9500
+      billTotal: 24800
+      expectedDue: 15300
+  - id: "P01-BILL_DUE_MISMATCH-249E3E15B874"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5770"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 0
+      billTotal: 500
+      expectedDue: 500
+  - id: "P01-BILL_DUE_MISMATCH-3180F330DFC4"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5176"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 0
+      billTotal: 231050
+      expectedDue: 231050
+  - id: "P01-BILL_DUE_MISMATCH-326966C1123D"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5263"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 39500
+      billTotal: 40000
+      expectedDue: 500
+  - id: "P01-BILL_DUE_MISMATCH-4ABDC94E60E2"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5031"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 500
+      billPaid: 500
+      billTotal: 500
+      expectedDue: 0
+  - id: "P01-BILL_DUE_MISMATCH-4D71AD752B83"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5264"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 0
+      billTotal: 700
+      expectedDue: 700
+  - id: "P01-BILL_DUE_MISMATCH-5EF7B8617E3D"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5008"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 60000
+      billPaid: 60000
+      billTotal: 60000
+      expectedDue: 0
+  - id: "P01-BILL_DUE_MISMATCH-6583A23A48ED"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6251"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 6500
+      billTotal: 6800
+      expectedDue: 300
+  - id: "P01-BILL_DUE_MISMATCH-704F09957C71"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5181"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 34529
+      billTotal: 69629
+      expectedDue: 35100
+  - id: "P01-BILL_DUE_MISMATCH-8FEEE19665B4"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5883"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 15000
+      billTotal: 20000
+      expectedDue: 5000
+  - id: "P01-BILL_DUE_MISMATCH-A6A742F83FD0"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6196"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 11700
+      billTotal: 17000
+      expectedDue: 5300
+  - id: "P01-BILL_DUE_MISMATCH-A8726CCF37F1"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6215"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 2900
+      billTotal: 3200
+      expectedDue: 300
+  - id: "P01-BILL_DUE_MISMATCH-BF26F21056AA"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5633"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 159200
+      billTotal: 160000
+      expectedDue: 800
+  - id: "P01-BILL_DUE_MISMATCH-C10B1E2009CE"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5114"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 198000
+      billTotal: 200000
+      expectedDue: 2000
+  - id: "P01-BILL_DUE_MISMATCH-C5C868C3DD5D"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5835"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 2500
+      billTotal: 3000
+      expectedDue: 500
+  - id: "P01-BILL_DUE_MISMATCH-CB61D3A6A426"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5759"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 17000
+      billTotal: 21300
+      expectedDue: 4300
+  - id: "P01-BILL_DUE_MISMATCH-D0CB729DC100"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6101"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 13700
+      billTotal: 19000
+      expectedDue: 5300
+  - id: "P01-BILL_DUE_MISMATCH-E0B0E997EC38"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5024"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 100
+      billPaid: 100
+      billTotal: 100
+      expectedDue: 0
+  - id: "P01-BILL_DUE_MISMATCH-EAA9330AE76D"
+    code: "BILL_DUE_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5177"
+    count: 1
+    summary: "Bill due cache does not equal total minus paid under the legacy baseline equation."
+    evidence:
+      actualDue: 0
+      billPaid: 0
+      billTotal: 270702
+      expectedDue: 270702
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-092F25440240"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5053"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-0F585BF82625"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5006"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 65000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-14B7A56FF281"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5059"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-1941A938EC84"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5007"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 60000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-1B272B27F6C1"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5017"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 180000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-1C5BDAE55D04"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5054"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-1D53BABD46AB"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5181"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 69629
+      invoiceLineTotal: 71050
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-1DADB1650FC7"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5574"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 0
+      invoiceLineTotal: 7900
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-22DA67606637"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5047"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-29C4DB487642"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5008"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 60000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-2F251E19E13B"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5033"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-31D9AA437D21"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5019"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 85000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-37C48B1D7EC5"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5011"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 190000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-3C3B28BAABA0"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6101"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 19000
+      invoiceLineTotal: 20000
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-454AF3D2133A"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5061"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-4E59E98F352C"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5050"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-5189D022E87E"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5092"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-529EC5E2FF64"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5055"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-5632E01D5239"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5052"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-56D364858FD2"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5760"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 0
+      invoiceLineTotal: 1100
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-58ABC83B44C0"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5433"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 900
+      invoiceLineTotal: 1000
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-5EB7693B4093"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5048"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-5F3800627D7F"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5044"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-61CD312D5AEA"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5005"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 80000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-623EA551CC2D"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5063"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-64F82D428566"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5001"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 140000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-650CD6C51FB1"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5091"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-6583436B33EB"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5028"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-6EBEC1EF7F84"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5018"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 70000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-707A65D48A0C"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5118"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 400
+      invoiceLineTotal: 500
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-72F8DAD31235"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5035"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-736FB28F2B1B"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5030"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-75B115F2CDFB"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5065"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-779F50D02B94"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5040"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-7BF61E47152B"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5024"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 100
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-80A4120B40F1"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5057"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-83C46B5790B3"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5177"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 270702
+      invoiceLineTotal: 300780
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-8508582247AB"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5031"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-858F6FA9BD41"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5038"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-8D42B4ED910C"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5037"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-8D952FFF6B02"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5025"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-8E732DD786AB"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5016"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 390000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-9449770C2E74"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5027"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-953CC29DB834"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5002"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 80000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-964F5CE58F87"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5034"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-9AD972DF89F3"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5049"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-9E7707AB22E6"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5029"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-9F0B7F9CBFE3"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5041"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-A1E2BE042EE6"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5013"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 140000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-A498710CDF07"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5062"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-A4C1BCD5DD1F"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5056"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-A8A33281BA9F"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6215"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 3200
+      invoiceLineTotal: 3800
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-AB90D76062AF"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5064"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-B6843206961B"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5658"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 0
+      invoiceLineTotal: 700
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-B6DCA2D26850"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5026"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-BB5D68F65E71"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5093"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-BC00B55E1DA7"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5605"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 300
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-C3C1A8133DBC"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5003"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 330000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-CB01FD4B700B"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5015"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 80000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-CD54A5169741"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5042"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-CDB06BFAC862"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5009"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 255000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-CE7ECCA9A54A"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5032"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 100
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-CF2FA831C9DA"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5039"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-CF6C91BEADA4"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5012"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 470000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-D9BDB47BC614"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5043"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-DBFD8A670924"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5010"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 70000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-E240C0A7ED3D"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5045"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-E2861495A7A2"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5046"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-E6A91DDF9F04"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5058"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-E764E217D7AD"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5762"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 24800
+      invoiceLineTotal: 27800
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-E8799A5C5EA1"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5051"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-EBE6F43F69D9"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5060"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-ED8601D0AFBF"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5014"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 140000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-F080548E4F6E"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5124"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 115000
+      invoiceLineTotal: 120000
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-F34040CDB07F"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "6178"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 500
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-F5B4211CAB58"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5084"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 34156
+      invoiceLineTotal: 34276
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-F7E86B50F7E9"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5020"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 580000
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-F914F968B45F"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5036"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 200
+      invoiceLineTotal: 0
+  - id: "P01-BILL_LINE_TOTAL_MISMATCH-FC4DF5814591"
+    code: "BILL_LINE_TOTAL_MISMATCH"
+    severity: error
+    status: open
+    table: "bills"
+    row_id: "5004"
+    count: 1
+    summary: "Bill header total does not equal the active invoice-item total."
+    evidence:
+      billTotal: 60000
+      invoiceLineTotal: 0
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-008504D8CC6B"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "401"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-00E88E655237"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 24
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "246"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-012341257F98"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 133
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "242"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-043E5793DC0C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "277"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-08697BE18B27"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "397"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-096E0BA3ECC0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "290"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0A378F4BBEE0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "398"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0A4AE22E7289"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 6
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "46"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0AD8042219C3"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "287"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0BA6680F36B9"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "143"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0D5EC7303797"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 133
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "242"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0E81BA95EE4E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "292"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0E8C7702ED10"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "34"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0EB06CD13420"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 599
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "130"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-0FF6B0261A50"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 24
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "233"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-10650981D577"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 46
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "354"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1080313C2527"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "278"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-118DA3066F09"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "pharmacy_stock_transactions"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "4"
+      referenceType: "grn"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-163CDB637633"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "InventoryStockTransaction"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "137"
+      referenceType: "lab-stock-in"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-16777104D153"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "19"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-16B08CA77196"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "261"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-17701AD2EB1F"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 6
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "259"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-191C4939B5CE"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "medicine_stock_movements"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "9001"
+      referenceType: "purchase"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1AA7568C9D1C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "12"
+      referenceType: "operation"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1B273A593C8B"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "343"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1C2AA52B7F1A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 30
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "251"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1DA439BCF70C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 31
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "141"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1E98B8661585"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "64"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1F258CB21D45"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 13
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "282"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-1F699A7BCCF8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "53"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-225A14F17E59"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 6
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "138"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-23F36D96E8A9"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "66"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2425F25B444C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "273"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2454570B13BC"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 33
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "132"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-265B15370E96"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 24
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "233"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-27049974D566"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 14
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "56"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-271EB212D6C6"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "260"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-27952ACB7583"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 13
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "63"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-28E4B0F66F97"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 72
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "353"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2A45E15112D2"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5619"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2AFA585B4726"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5936"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2B3C6C7CA96F"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "pharmacy_stock_transactions"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "1"
+      referenceType: "grn"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2C20B8813002"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "140"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2E9F3F615272"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5613"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-2EBCF9C09662"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5418"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-301D58534AF8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "226"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-30230622E824"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 113
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "236"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3189A4B6D541"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "33"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3346EAD553D9"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 108
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "342"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-34273FA16849"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "275"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-345F679D9C8A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 14
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "298"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-353F2283CB07"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5500"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3B08CAA30BA8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "278"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3B9697223AAD"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 156
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "396"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3E592617577E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "117"
+      referenceType: "doctor"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3FAF658AC762"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "398"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-3FCAD83C4FAB"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "6184"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-41BA8DD25C60"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "235"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-431C686693E6"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "352"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-4334506C1CE2"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 59
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "134"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-47BF2E291AA8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 18
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "32"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-47D62B6A26F8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 21
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "274"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-482B1191C910"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "257"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-48E6F5C533EF"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5900"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-4A01558E7993"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 22
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "344"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-4B2B58069698"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5678"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-4DE85DE58E0E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "290"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-4F4AA45ABFA8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5846"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-506DD4C395B0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "45"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-509F29C4DD40"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "61"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-51B7E76C1293"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "399"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-51D664F555FB"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "cash_ledger_entries"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "3"
+      referenceType: "cash_custody_transfer"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5214CCFE63AA"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 21
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "274"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-56249041A65D"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 55
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "141"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-59BB0F74FDDC"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "33"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5A11EF211A37"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "239"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5A3BA8B6745D"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "InventoryStockTransaction"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "81"
+      referenceType: "lab-stock-in"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5B3A2270CE59"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "34"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5BFB9222BA61"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "275"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5C0B706DA2A2"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "143"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5CDD0D657197"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5960"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5CE20FF8CA96"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 113
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "236"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5D048AC152C1"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "350"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5D04FE98A743"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 12
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "225"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5EBBAEC467FC"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 26
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "263"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5EC5ADBCC3A7"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 14
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "136"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5EEF5529EC82"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 56
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "400"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-5F44F62D2BD1"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "11"
+      referenceType: "operation"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-623AAE36FF65"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "260"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-62C3BDF9FEDC"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 156
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "396"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6339C8281BA0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 12
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "138"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-635CCF38CC8E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "399"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-67136C4EB91F"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 26
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "263"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-673C96570EF0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 20
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "32"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-69592871402B"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5929"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6A36D0EB3A97"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "102"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6A61EA5E9EFD"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 14
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "298"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6B3007C85CF1"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "350"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6D508C0225B8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "59"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6DDCF068E26C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "pharmacy_stock_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "1"
+      referenceType: "invoice"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-6FF25C916702"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5605"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-7270C515F7F4"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "238"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-7526514C9009"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "31"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-75F7C23BF5E9"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 84
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "134"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-766CD181D7CB"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "6128"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-797A4F2E7F20"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5586"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-7A6D26869209"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5366"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-7B6AC0CDF1E8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 62
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "101"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-7CFCA686B4F7"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "62"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-7F89D8485F36"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "109"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-80327DA00CF1"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "medicine_stock_movements"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "9002"
+      referenceType: "purchase"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-81151FEA9087"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "6271"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-811FD32BA95C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5947"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-8510539A0DCD"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 8
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "33"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-8600FC935304"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "pharmacy_stock_transactions"
+    count: 6
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "2"
+      referenceType: "grn"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-863C6D0CF4D0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 108
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "342"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-871439D7078F"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 24
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "246"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-887AC21A1874"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 17
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "280"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-89B1D4518F7A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5331"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-8FC23EF1185D"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "226"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-912AD24A3C89"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5909"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9161FC292B9F"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 14
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "59"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-95912FDC58FD"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 6
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "259"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-97C35F8C72B1"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 72
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "353"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-97C7998EA5D7"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 11
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "266"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-98A3C14542CE"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 17
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "253"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9B49C2C90F47"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 15
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "137"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9BA752801180"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "284"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9CB6A651B7B6"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5537"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9D5FF445815E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 30
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "251"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9E100A4E46E2"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 20
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "59"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-9EBF966A80A6"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 19
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "132"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A304A38AA093"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "53"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A3158032A40A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "292"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A367490A478A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 17
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "253"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A46002A52CC0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "140"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A4C7134EFA0C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 7
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "343"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A5E95F90D5B3"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "351"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A68560C5DCA3"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "139"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A699943562EC"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "45"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A6B26E57DDC4"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 13
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "137"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A83FA5AF69EB"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "133"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-A98BFA071FF9"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "56"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-AA6D33EA7A51"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "116"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-AD19CC539250"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "19"
+      referenceType: "operation"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-ADA483ECF99A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "61"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-AF65BB67C6E2"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "277"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B0FEF308F2C6"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 20
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "264"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B1891AA1687A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 12
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "109"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B1E50ADD3A8B"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 17
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "280"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B3BC62C5919E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "239"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B3BD9C7C7928"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "352"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B4A44E7F4217"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 363
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "130"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B5617CB50DB7"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 56
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "400"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B84CF30030E7"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5115"
+      referenceType: "bill"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-B977B5ABA2F7"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 11
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "266"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BA4ECD4E67C0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "397"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BB1EBD23247E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "56"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BC32F9933FBD"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "31"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BDFA78F28D14"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 151
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "131"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BE01F1EDF923"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5247"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BEA513E0A1EF"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5086"
+      referenceType: "bill"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BEB3F8516EC4"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 85
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "131"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-BFD0D24F0966"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "116"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C062FAE8D9EF"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "6219"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C22417EED238"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 116
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "244"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C3698E181FB2"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "53"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C4F2F87CA18A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "351"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C6F0134D7539"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5094"
+      referenceType: "bill"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C77288D2B7FF"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5573"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-C931573B1DD4"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "235"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-CB947894374C"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 37
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "101"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-CC3F9EF932C1"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 12
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "133"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-CEC65648059E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 6
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "45"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-D3FA30E4020E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5588"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-D61AF1EDA2E4"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "273"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-D625F93BA335"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "238"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-D6AA35AB4C52"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 116
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "244"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-D918F6E6A916"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "228"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-D9630B497962"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 12
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "225"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-DAD19CF9D77E"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 39
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "293"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-DAF06220402F"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 20
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "264"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-DB4445CDE595"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 13
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "282"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-DB782FC74714"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "261"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-DCED670B30B8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "284"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-DFC54C7A5721"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 39
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "293"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-E31AF5D3D554"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 9
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "401"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-E54E0C503EF8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 22
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "344"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-E5DBAB4EE7CE"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "287"
+      referenceType: "billing_service_item"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-E7B013DAE062"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "pharmacy_stock_transactions"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "3"
+      referenceType: "grn"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-EE96ABE8ACB9"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "117"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F3C6E10204F0"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 5
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "108"
+      referenceType: "doctor_visit"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F53FD73196FF"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 13
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "46"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F56F459E9793"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 46
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "354"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F57D708132ED"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 24
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "136"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F697BC48E2C3"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "visit_services"
+    count: 4
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "46"
+      referenceType: "billing_service_item"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F76F38AB9E63"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "6130"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F8D46C3C05B8"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5481"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-F8E0F078365B"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "257"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-FA0277CBCBEB"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 2
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "5609"
+      referenceType: "bill"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-FB882BE8F53A"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "billing_provisional_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "139"
+      referenceType: "doctor_visit"
+      tenantId: "102"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-FDAA01FC5CFD"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 13
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "63"
+      referenceType: "test"
+      tenantId: "100"
+  - id: "P01-DUPLICATE_SOURCE_REFERENCE-FF267276EC73"
+    code: "DUPLICATE_SOURCE_REFERENCE"
+    severity: warning
+    status: open
+    table: "invoice_items"
+    count: 3
+    summary: "Multiple rows share the same untyped or convention-typed source reference."
+    evidence:
+      referenceId: "228"
+      referenceType: "test"
+      tenantId: "102"
+  - id: "P01-FOREIGN_KEY_VIOLATION-00765681BB9D"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "66"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-02B018E843DD"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "2"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-02C9CCE36694"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "106"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-1563C4A55936"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "104"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-2228804C1CB5"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "93"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-2229C25B5348"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "115"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-27193BEC3B27"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "111"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-2834A4EB34AD"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "105"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-2EF6801FFAF0"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "45"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-3AF4B11AA6E4"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "115"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-473A2C0F95BA"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "77"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-5255C59293CB"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "107"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-55FF393B67BF"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "income"
+    row_id: "6156"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 1
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-5D3707349699"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "102"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-60550E167CF8"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "114"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-625AD59AD55A"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "110"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-69A070B25B85"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "67"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-6A338782C975"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "62"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-6BBB7D9B181E"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "111"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-72EA5B393AFF"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "113"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-7B7F4CA00CD4"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "income"
+    row_id: "6154"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 1
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-7CBA8F2638A1"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "104"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-84DFA3C95C77"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "109"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-865DF3297A79"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "billing_deposits"
+    row_id: "54"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 0
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-8D5FD150FF58"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "110"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-928819B8B5BE"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "103"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-9A785CA3C0ED"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "63"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-9BE335B3741E"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "109"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-9E3E70D951E2"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "46"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-9F573F0ED84E"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "7"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-A1B57F0DBF7D"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "107"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-A243C58DE572"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "billing_deposits"
+    row_id: "56"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 0
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-A829BE7A8FE6"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "billing_deposits"
+    row_id: "59"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 0
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-AA83F0CB6293"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "114"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-AA883B48101D"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "102"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-AEFC810AC694"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "76"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-BA700CB49754"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "income"
+    row_id: "6157"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 1
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-C7F71B27FB11"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "2"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-C8A3F31844AE"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "106"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-C8B73CD65ECB"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "billing_deposits"
+    row_id: "57"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 0
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-C9BA3F6EE63D"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "78"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-CAABCA6B54F1"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "105"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-CE7E33CCFCA1"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "103"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-D8C02DB504E6"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "108"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-DE60B2DA8AAE"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "108"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-EAAA0670A61F"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "112"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-FOREIGN_KEY_VIOLATION-F12DD1C16012"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "income"
+    row_id: "6155"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 1
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-F428F2721962"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "112"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 5
+      parentTable: "bills"
+  - id: "P01-FOREIGN_KEY_VIOLATION-F8648135100D"
+    code: "FOREIGN_KEY_VIOLATION"
+    severity: error
+    status: open
+    table: "doctor_commission_accruals_old_0391"
+    row_id: "113"
+    count: 1
+    summary: "Legacy row does not resolve to its declared foreign-key parent."
+    evidence:
+      foreignKeyId: 6
+      parentTable: "visits"
+  - id: "P01-MIGRATION_APPLIED_NOT_IN_REPOSITORY-2C3FFCFDDD95"
+    code: "MIGRATION_APPLIED_NOT_IN_REPOSITORY"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Migration is recorded as applied in production but no same-named SQL file exists in the repository."
+    evidence:
+      migrationName: "0417_mfa_login_challenges.sql"
+  - id: "P01-MIGRATION_APPLIED_NOT_IN_REPOSITORY-5A52EEDE6B9D"
+    code: "MIGRATION_APPLIED_NOT_IN_REPOSITORY"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Migration is recorded as applied in production but no same-named SQL file exists in the repository."
+    evidence:
+      migrationName: "0418_staff_auth_sessions.sql"
+  - id: "P01-MIGRATION_APPLIED_NOT_IN_REPOSITORY-A3ABBB8EB123"
+    code: "MIGRATION_APPLIED_NOT_IN_REPOSITORY"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Migration is recorded as applied in production but no same-named SQL file exists in the repository."
+    evidence:
+      migrationName: "0419_setup_master_data_uniqueness.sql"
+  - id: "P01-MIGRATION_APPLIED_NOT_IN_REPOSITORY-F6D1BCE16CF2"
+    code: "MIGRATION_APPLIED_NOT_IN_REPOSITORY"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Migration is recorded as applied in production but no same-named SQL file exists in the repository."
+    evidence:
+      migrationName: "0420_inventory_medicine_identity_guard.sql"
+  - id: "P01-MIGRATION_REPOSITORY_NOT_APPLIED-2096F2842B4C"
+    code: "MIGRATION_REPOSITORY_NOT_APPLIED"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Repository SQL migration is not recorded as applied in the production migration ledger."
+    evidence:
+      migrationName: "0421_lab_reagent_stock_in_idempotency.sql"
+  - id: "P01-MIGRATION_REPOSITORY_NOT_APPLIED-2BB029E94BB2"
+    code: "MIGRATION_REPOSITORY_NOT_APPLIED"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Repository SQL migration is not recorded as applied in the production migration ledger."
+    evidence:
+      migrationName: "0421_billing_refund_cash_holds.sql"
+  - id: "P01-MIGRATION_REPOSITORY_NOT_APPLIED-A7F4E6FFD309"
+    code: "MIGRATION_REPOSITORY_NOT_APPLIED"
+    severity: warning
+    status: open
+    table: "d1_migrations"
+    count: 1
+    summary: "Repository SQL migration is not recorded as applied in the production migration ledger."
+    evidence:
+      migrationName: "0422_diagnostic_performer_reserve_payout.sql"
+  - id: "P01-MONEY_REAL_DECLARATION-0FB612E41332"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "due"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-13BD830172BD"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "doctor_commission_accruals"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "payable_commission_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-2C70EFE6CD59"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "doctor_commission_accruals"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "paid_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-3632EF45CDF8"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "billing_credit_notes"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "total_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-43ECB2EF2450"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "billing_refund_cash_holds"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-4A1F0AE55BCC"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "income"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-4FF37CE4E8AE"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "ipd_ledger_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "debit_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-59171D602AB8"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "total"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-68FD2351C5B5"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "emp_cash_transactions"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-6CEAB3388F74"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "operation_bill"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-6F51B36CA95A"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "ipd_ledger_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "credit_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-70B8769AE505"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "accounting_journal_lines"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "credit_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-7C61B0E36CBB"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "cash_ledger_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "received_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-9DB437829515"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "admission_bill"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-9F9451A9EBF5"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "payments"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-AFE1DFDC0493"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "doctor_commission_accruals"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "earned_commission_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-B5FAD58D66B9"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "discount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-BD410BDBCEF7"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "test_bill"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-C3B760EE3DF2"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "journal_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-CAAD66D097A9"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "cash_drawer_movements"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-CE7F6FA54855"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "cash_ledger_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "expected_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-D05F4A0676C8"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "subtotal"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-D493EDC0E44B"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "expenses"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-D4C1FC4965DB"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "medicine_bill"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-D4F23DD4551F"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "doctor_commission_accruals"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "balance_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-DC94F735E966"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "cash_ledger_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "due_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-E55DBF56312F"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "cash_ledger_entries"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-E992EE561438"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "accounting_journal_lines"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "debit_amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-F35EE937BB21"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "doctor_visit_bill"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-FBCADDF93A2B"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "billing_deposits"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "amount"
+      declaredType: "REAL"
+  - id: "P01-MONEY_REAL_DECLARATION-FC93A397CF37"
+    code: "MONEY_REAL_DECLARATION"
+    severity: warning
+    status: open
+    table: "bills"
+    count: 1
+    summary: "Money-like column is declared with floating-point affinity."
+    evidence:
+      column: "paid"
+      declaredType: "REAL"
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-20C53566BEC4"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "InventoryStore"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "InventoryStore|ParentStoreId|InventoryStore|StoreId|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-2C7B3A64F9F8"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "pharmacy_racks"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "pharmacy_racks|parent_id|pharmacy_racks|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-5CD428157067"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "lab_specimens"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "lab_specimens|parent_specimen_id|lab_specimens|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-73748AB95C51"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "billing_deposits"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "billing_deposits|reference_bill_id|bills|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-7430E3913F5D"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "lab_observation_audit"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "lab_observation_audit|supersedes_observation_id|lab_observation_audit|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-8EDC545A47AA"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "InventoryLocation"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "InventoryLocation|ParentLocationId|InventoryLocation|LocationId|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-938BBE53A9F8"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "accounting_vouchers"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "accounting_vouchers|reversal_of_voucher_id|accounting_vouchers|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-98823362609C"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "doctor_commission_accruals_old_0391"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "doctor_commission_accruals_old_0391|bill_id|bills|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-9E4602D2FF12"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "lab_reports"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "lab_reports|supersedes_report_id|lab_reports|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-A415411EA09A"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "chart_of_accounts"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "chart_of_accounts|parent_id|chart_of_accounts|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-BFA0B4BB34DE"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "bank_transactions"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "bank_transactions|bank_deposit_request_id|bank_deposit_requests|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-C2B9365917CB"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "lis_result_retraction_requests"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "lis_result_retraction_requests|lab_result_id|lab_results|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-C3EC87D76E5A"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "TRK_Category"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "TRK_Category|ParentCategoryId|TRK_Category|CategoryId|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-CC227239C9EB"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "lis_analyzer_inbox"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "lis_analyzer_inbox|supersedes_inbox_id|lis_analyzer_inbox|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-CCA86856DE34"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "doctor_commission_accruals_old_0391"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "doctor_commission_accruals_old_0391|visit_id|visits|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-D1810AE1706F"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "income"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "income|bill_id|bills|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-E976EBD5DAF2"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "lab_results"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "lab_results|retraction_request_id|lis_result_retraction_requests|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-SOURCE_CLONE_FK_DIFFERENCE-F3A6F6C07E8A"
+    code: "SOURCE_CLONE_FK_DIFFERENCE"
+    severity: info
+    status: accepted_import_compatibility
+    table: "bank_deposit_requests"
+    count: 1
+    summary: "Source foreign key is omitted from the clone under a documented import-compatibility waiver."
+    evidence:
+      direction: "missing_from_clone"
+      foreignKey: "bank_deposit_requests|bank_transaction_id|bank_transactions|id|NO ACTION|NO ACTION|NONE"
+      importCompatibilityWaiver: true
+  - id: "P01-TENANT_REFERENCE_MISMATCH-023604943983"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_counter_sessions"
+    row_id: "4"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "counter_id"
+      parentTable: "billing_counters"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-069D99134BC9"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "60"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "visit_id"
+      parentTable: "visits"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-1B994B99403C"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "cash_drawer_movements"
+    row_id: "13"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "counter_id"
+      parentTable: "billing_counters"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-1D970D45A8BE"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "61"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "service_item_id"
+      parentTable: "billing_service_items"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-297031DD571C"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "60"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "doctor_id"
+      parentTable: "doctors"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-2B1F783CFFEE"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "61"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "visit_id"
+      parentTable: "visits"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-2B977BE5A75F"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "60"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "bill_id"
+      parentTable: "bills"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-32C83B8BEC80"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_service_item_tenant_overrides"
+    row_id: "1"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "102"
+      fromColumn: "global_service_item_id"
+      parentTable: "billing_service_items"
+      parentTenantId: "0"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-37D3C9A8E380"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "63"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "bill_id"
+      parentTable: "bills"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-414909CC8D8E"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_service_items"
+    row_id: "404"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "102"
+      fromColumn: "service_department_id"
+      parentTable: "billing_service_departments"
+      parentTenantId: "0"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-45CCF7621A6B"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "62"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "doctor_id"
+      parentTable: "doctors"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-5421818FEB3A"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "59"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "service_item_id"
+      parentTable: "billing_service_items"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-5E867D6CB513"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "63"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "service_item_id"
+      parentTable: "billing_service_items"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-5ED173A037B0"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "doctors"
+    row_id: "108"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100"
+      fromColumn: "user_id"
+      parentTable: "users"
+      parentTenantId: "101"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-65D03CC1538D"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "59"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "doctor_id"
+      parentTable: "doctors"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-6A0649AEE00E"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_service_items"
+    row_id: "402"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "102"
+      fromColumn: "service_department_id"
+      parentTable: "billing_service_departments"
+      parentTenantId: "0"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-70150BAAE080"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_service_items"
+    row_id: "405"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "102"
+      fromColumn: "service_department_id"
+      parentTable: "billing_service_departments"
+      parentTenantId: "0"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-73B7849B95BE"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "61"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "doctor_id"
+      parentTable: "doctors"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-753D581B638C"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "63"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "doctor_id"
+      parentTable: "doctors"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-77777403FB06"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "62"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "bill_id"
+      parentTable: "bills"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-7DE3EBEF85FA"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "59"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "bill_id"
+      parentTable: "bills"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-A2D0DD43643F"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "63"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "visit_id"
+      parentTable: "visits"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-ACF1EA6C7214"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "61"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "bill_id"
+      parentTable: "bills"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-ADDFEA3A83C2"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_service_items"
+    row_id: "403"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "102"
+      fromColumn: "service_department_id"
+      parentTable: "billing_service_departments"
+      parentTenantId: "0"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-BCDFDB4D003E"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "59"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "visit_id"
+      parentTable: "visits"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-C5D674EA0194"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "62"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "service_item_id"
+      parentTable: "billing_service_items"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-C712B5131B2C"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "billing_handovers"
+    row_id: "2"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100"
+      fromColumn: "counter_session_id"
+      parentTable: "billing_counter_sessions"
+      parentTenantId: "100.0"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-CFA87B4A32C4"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "60"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "service_item_id"
+      parentTable: "billing_service_items"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-DF629D30CA8E"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "visit_services"
+    row_id: "62"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "visit_id"
+      parentTable: "visits"
+      parentTenantId: "100"
+  - id: "P01-TENANT_REFERENCE_MISMATCH-F30262F43A2C"
+    code: "TENANT_REFERENCE_MISMATCH"
+    severity: error
+    status: open
+    table: "cash_drawer_movements"
+    row_id: "6"
+    count: 1
+    summary: "Child and parent rows have different tenant ownership."
+    evidence:
+      childTenantId: "100.0"
+      fromColumn: "counter_id"
+      parentTable: "billing_counters"
+      parentTenantId: "100"

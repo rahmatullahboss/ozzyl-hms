@@ -1,0 +1,43 @@
+{
+  "title": "Biomedical Waste",
+  "subtitle": "Waste categorization, collection & disposal tracking",
+  "tabs": {
+    "collections": "Collections",
+    "categories": "Categories"
+  },
+  "stats": {
+    "todayCollections": "Today Collections",
+    "todayWeight": "Today Weight",
+    "pendingDisposal": "Pending Disposal",
+    "monthTotal": "30-Day Total"
+  },
+  "table": {
+    "collectionNo": "Collection #",
+    "date": "Date",
+    "department": "Department",
+    "category": "Category",
+    "weight": "Weight",
+    "bags": "Bags",
+    "manifest": "Manifest",
+    "status": "Status",
+    "code": "Code",
+    "color": "Color",
+    "name": "Name",
+    "disposalMethod": "Disposal Method"
+  },
+  "noCollections": "No collections found",
+  "noCategories": "No categories. Click \"Seed Default\" to add standard categories.",
+  "recordCollection": "Record Collection",
+  "seedDefaults": "Seed Default Categories",
+  "seeding": "Seeding...",
+  "modals": {
+    "recordWaste": "Record Waste Collection",
+    "select": "Select..."
+  },
+  "status": {
+    "collected": "Collected",
+    "in_transit": "In Transit",
+    "disposed": "Disposed",
+    "reported": "Reported"
+  }
+}

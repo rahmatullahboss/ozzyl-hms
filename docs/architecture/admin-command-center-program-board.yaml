@@ -1,0 +1,271 @@
+program:
+  id: admin-command-center
+  title: Admin Command Center
+  status: complete
+  created_on: '2026-07-27'
+  completed_on: '2026-07-28'
+  timezone: Asia/Dhaka
+  currency_code: BDT
+  money_unit: major
+  reviewed_base:
+    branch: main
+    commit: a4a4c47ac99412a50a6b07bc00765e67f1fd41e2
+  release:
+    implementation_commit: 01f4626d24ad4a2631cc4fb0187e021844d2688e
+    main_merge_commit: e7e14bfdd9bbc9ee100942de1efcabf93bb4b4a4
+    production_worker_version: 7d48f758-7c80-4c85-a1f9-9d7b5be6361e
+    legacy_route: /h/:slug/dashboard
+    comparison_route: /h/:slug/dashboard/v2
+    production_migrations:
+      - 0552_mfa_registration_schema_repair.sql
+      - 0570_doctor_commission_rule_version_snapshot.sql
+    verification:
+      full_repository_tests: 17506/17506
+      root_typecheck: passed
+      web_typecheck: passed
+      production_build: passed
+  design_branch: design/admin-command-center-specs-20260727
+  source_of_truth:
+    - operational_and_financial_tables
+    - canonical_compensation_when_provider_enabled
+    - existing_action_center
+  non_goals:
+    - new_financial_ledger
+    - production_mutation_from_dashboard
+    - forecasting
+    - ai_financial_advice
+    - data_warehouse
+
+documents:
+  analysis: _bmad-output/evolution/analysis/2026-07-27-admin-command-center-current-state-review.md
+  program_design: docs/superpowers/specs/2026-07-27-admin-command-center-program-design.md
+  reporting_contract: docs/superpowers/specs/2026-07-27-admin-command-center-reporting-contract-design.md
+  page_design: design-system/hms-saas/pages/admin-command-center.md
+  semantic_foundation_plan: docs/superpowers/plans/2026-07-27-admin-dashboard-semantic-foundation.md
+  execution_pack: docs/architecture/admin-command-center-program-execution-pack.md
+
+invariants:
+  - selected_period_and_live_state_are_visibly_distinct
+  - summary_total_equals_full_matching_detail_total_or_warning_is_visible
+  - patient_deposit_is_not_revenue
+  - non_cash_collection_is_not_drawer_cash
+  - earned_payable_and_paid_commission_are_separate
+  - performer_reserve_is_separate_from_referrer_commission
+  - invoice_drill_uses_bill_id
+  - patient_identity_requires_server_side_authorization
+  - action_center_is_the_only_management_queue_authority
+
+phases:
+  - id: ACC-00
+    title: Semantic foundation
+    status: complete
+    priority: P0
+    depends_on: []
+    suggested_branch: program/admin-command-center-semantic-foundation-20260727
+    completed_commit: bb954760afd4ca89725e08d579b5c0021e145e3d
+    plan: docs/superpowers/plans/2026-07-27-admin-dashboard-semantic-foundation.md
+    verification:
+      backend_tests: 80
+      frontend_tests: 4
+      root_typecheck: passed
+      web_typecheck: passed
+      web_build: passed
+    outcomes:
+      - shared_dashboard_semantic_types
+      - metric_registry_and_role_presets
+      - comparison_period_resolution
+      - source_health_and_reconciliation_helpers
+      - flagged_bounded_overview_contract
+    completion_gate:
+      - hospital_admin_primary_preset_has_at_most_ten_metrics
+      - source_failure_does_not_render_as_verified_zero
+      - feature_flag_off_preserves_current_behavior
+
+  - id: ACC-01
+    title: Shell and period contract
+    status: complete
+    priority: P0
+    depends_on:
+      - ACC-00
+    suggested_branch: program/admin-command-center-shell-20260727
+    completed_commit: 98070b6db75755bf5a3f75243d608f226f0c0abe
+    plan: docs/superpowers/plans/2026-07-27-admin-dashboard-shell-period-contract.md
+    verification:
+      frontend_tests: 117
+      root_typecheck: passed
+      web_typecheck: passed
+      web_build: passed
+      worktree_policy: passed
+    outcomes:
+      - modular_workspace_shell
+      - url_backed_period_and_drill_state
+      - active_workspace_query_gating
+      - compact_overview
+      - explicit_live_state_labels
+    completion_gate:
+      - overview_has_at_most_ten_primary_cards
+      - browser_refresh_and_back_restore_state
+      - hidden_workspaces_do_not_fetch
+
+  - id: ACC-02
+    title: Financial control and Action Center
+    status: complete
+    priority: P0
+    depends_on:
+      - ACC-01
+    suggested_branch: program/admin-command-center-financial-control-20260727
+    completed_commit: eedd05e67
+    plan: docs/superpowers/plans/2026-07-27-admin-financial-control-action-center.md
+    verification:
+      backend_tests: 72
+      frontend_tests: 141
+      root_typecheck: passed
+      web_typecheck: passed
+      web_build: passed
+      worktree_policy: passed
+    outcomes:
+      - reconciliation_contract
+      - business_performance_block
+      - collection_flow_block
+      - cash_custody_block
+      - doctor_liability_block
+      - range_payment_methods
+      - range_financial_trend
+      - action_center_consolidation
+    completion_gate:
+      - four_financial_blocks_have_distinct_semantics
+      - reconciliation_status_is_visible
+      - no_duplicate_dashboard_action_queue
+
+  - id: ACC-03
+    title: Doctor and commission explainability
+    status: complete
+    priority: P0
+    depends_on:
+      - ACC-01
+    suggested_branch: program/admin-command-center-doctor-explainability-20260727
+    completed_commit: 472aa72f8
+    plan: docs/superpowers/plans/2026-07-27-admin-doctor-commission-explainability.md
+    verification:
+      backend_tests: 84
+      frontend_tests: 60
+      root_typecheck: passed
+      web_typecheck: passed
+      web_build: passed
+      worktree_policy: passed
+    outcomes:
+      - reconciled_doctor_reporting_service
+      - doctor_activity_timeline
+      - commission_rule_and_reason_explanation
+      - responsive_doctor_summary
+      - stable_invoice_links
+    completion_gate:
+      - full_commission_bridge_is_visible
+      - zero_or_no_payable_rows_have_reason
+      - historical_rule_gaps_are_not_guessed
+      - patient_identity_is_redacted_without_permission
+
+  - id: ACC-04
+    title: Shared invoice inspector
+    status: complete
+    priority: P0
+    depends_on:
+      - ACC-01
+      - ACC-03
+    suggested_branch: program/admin-command-center-invoice-inspector-20260727
+    completed_commit: 0c57091df
+    plan: docs/superpowers/plans/2026-07-27-admin-invoice-inspector.md
+    verification:
+      backend_tests: 91
+      frontend_tests: 89
+      root_typecheck: passed
+      web_typecheck: passed
+      web_build: passed
+      worktree_policy: passed
+      compatibility_adapter: intentional
+      aggregate_payment_method_rows: collection_detail_only
+    outcomes:
+      - composite_read_only_invoice_api
+      - deep_linked_invoice_inspector
+      - item_payment_discount_compensation_audit_tabs
+      - unified_admin_invoice_opening
+    completion_gate:
+      - direct_invoice_url_restores_inspector
+      - all_supported_invoice_links_use_bill_id
+      - unauthorized_patient_identity_is_not_sent
+
+  - id: ACC-05
+    title: Patient age analytics
+    status: complete
+    priority: P1
+    depends_on:
+      - ACC-01
+    suggested_branch: program/admin-command-center-patient-age-20260727
+    completed_commit: 8c627de95
+    plan: docs/superpowers/plans/2026-07-27-admin-patient-age-analytics.md
+    verification:
+      backend_tests: 53
+      frontend_tests: 91
+      root_typecheck: passed
+      web_typecheck: passed
+      web_build: passed
+      worktree_policy: passed
+      dead_endpoint_audit: passed
+      patient_identity_guard: server_side_before_query
+    outcomes:
+      - age_at_service_summary
+      - service_doctor_department_drilldowns
+      - permission_gated_patient_details
+      - active_patients_workspace_route
+    completion_gate:
+      - all_age_boundaries_are_tested
+      - aggregate_responses_contain_no_patient_identity
+      - patients_view_requires_patients_read
+      - dead_patient_analytics_api_reference_is_removed
+
+  - id: ACC-06
+    title: Program verification and release evidence
+    status: complete
+    priority: P0
+    depends_on:
+      - ACC-02
+      - ACC-03
+      - ACC-04
+      - ACC-05
+    suggested_branch: program/admin-command-center-final-verification-20260727
+    plan: docs/superpowers/plans/2026-07-28-admin-command-center-final-verification.md
+    plan_creation_rule: create_after_ACC_00_through_ACC_05_are_merged
+    outcomes:
+      - program_reconciliation_matrix
+      - responsive_evidence
+      - accessibility_evidence
+      - privacy_and_security_evidence
+      - performance_evidence
+      - release_and_rollback_notes
+    completion_gate:
+      - all_program_invariants_are_verified
+      - root_and_web_typechecks_pass_or_preexisting_failures_are_documented
+      - web_build_passes
+      - no_unexplained_financial_difference_is_hidden
+
+execution:
+  mode: serial_by_default
+  allowed_parallelism:
+    - phases:
+        - ACC-02
+        - ACC-03
+      condition: ACC-00_and_ACC-01_are_merged_and_worktrees_are_independent
+  implementation_rules:
+    - dedicated_worktree_per_phase
+    - run_worktree_policy_before_first_edit
+    - tests_before_production_code
+    - exact_file_staging_only
+    - checkpoint_commit_per_task
+    - no_production_mutation
+  stop_conditions:
+    - unexplained_reconciliation_difference
+    - source_of_truth_conflict
+    - migration_number_conflict
+    - patient_privacy_cannot_be_enforced_server_side
+    - canonical_legacy_provider_ambiguity
+    - unrelated_dirty_work_cannot_be_isolated

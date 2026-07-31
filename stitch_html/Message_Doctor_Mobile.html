@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eff1f1",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-background": "#191c1d",
+                    "secondary": "#446467",
+                    "on-tertiary-fixed-variant": "#6f3808",
+                    "tertiary": "#834718",
+                    "on-secondary-fixed": "#002022",
+                    "secondary-fixed-dim": "#abcdd0",
+                    "secondary-fixed": "#c6e9ec",
+                    "secondary-container": "#c6e9ec",
+                    "background": "#f8fafa",
+                    "tertiary-container": "#a05f2e",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e1e3e3",
+                    "surface": "#f8fafa",
+                    "primary-fixed-dim": "#7ad5dd",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "surface-container-high": "#e6e8e9",
+                    "on-surface": "#191c1d",
+                    "surface-container": "#eceeee",
+                    "surface-dim": "#d8dada",
+                    "surface-bright": "#f8fafa",
+                    "on-surface-variant": "#3e494a",
+                    "tertiary-fixed": "#ffdcc6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#fff1e9",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#002022",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#301400",
+                    "inverse-surface": "#2e3131",
+                    "inverse-primary": "#7ad5dd",
+                    "surface-tint": "#006970",
+                    "primary-container": "#007b83",
+                    "on-secondary-container": "#4a6a6d",
+                    "on-primary-container": "#d0fbff",
+                    "primary-fixed": "#96f1fa",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bdc9ca",
+                    "outline": "#6e797a",
+                    "primary": "#006067",
+                    "surface-variant": "#e1e3e3",
+                    "surface-container-low": "#f2f4f4",
+                    "on-secondary-fixed-variant": "#2c4c4f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "xxl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 w-full z-50 flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-teal-900 dark:text-teal-100 hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline font-bold text-lg text-teal-900 dark:text-teal-100">Dr. Sarah Miller</h1>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant font-medium">Online Now</span>
+</div>
+</div>
+</div>
+<div class="relative">
+<img alt="Doctor's profile picture" class="w-10 h-10 rounded-full object-cover border-2 border-surface-container-high" data-alt="Professional portrait of a female doctor with a kind expression in a bright clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqNv15SKPSZ6nBfwu_LEDEHjcfjYbBlKCfDhvhqm8lRGNlQjRqNd4eYnTJsN7ciRk2mQkGjLT8R4GErasn91mxvIcx-kixzV7CxqtoXelwfrPxUWjZqdmKa9h6p5-2WyN4hoFxllU21u7PvYL8xrp5nH0DxaSeP7NMIDTK8xI7AIYFSWGw1bQKKMHeS6OB8U8vq-evD4gSZWLVojTf_Ftlk_ls1_2t8iknMxU6rmY3oUMxcH83KH9k82cCK0FEsmOFqU0TlOvFwis"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-6 pt-4 pb-32 space-y-8 no-scrollbar">
+<!-- Patient Snapshot Section (Collapsible Logic Visualized) -->
+<section class="space-y-4">
+<div class="bg-surface-container-low rounded-xxl p-6 border border-white/40">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline font-bold text-on-surface text-base">Patient Snapshot</h2>
+<span class="font-label text-xs text-primary font-semibold py-1 px-3 bg-primary-container/20 rounded-full">Active Care</span>
+</div>
+<!-- Metrics Bento Grid -->
+<div class="grid grid-cols-2 gap-3 mb-6">
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col gap-1">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-tight">Blood Pressure</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline font-extrabold text-teal-800 text-lg">118/74</span>
+<span class="font-label text-[10px] text-on-surface-variant">mmHg</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col gap-1">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-tight">Heart Rate</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline font-extrabold text-teal-800 text-lg">68</span>
+<span class="font-label text-[10px] text-on-surface-variant">BPM</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Care Card -->
+<div class="flex items-center gap-4 bg-primary-container/10 p-4 rounded-xl">
+<div class="bg-primary text-on-primary w-12 h-12 rounded-xl flex flex-col items-center justify-center">
+<span class="font-headline font-bold text-sm">28</span>
+<span class="font-label text-[9px] uppercase">Oct</span>
+</div>
+<div>
+<p class="font-headline font-bold text-sm text-teal-900">Dental Cleaning</p>
+<p class="font-label text-xs text-on-surface-variant">10:30 AM • City Dental Clinic</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-teal-700" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Chat History -->
+<div class="space-y-6">
+<div class="flex justify-center">
+<span class="bg-surface-container-high px-3 py-1 rounded-full font-label text-[10px] text-on-surface-variant font-medium">Today</span>
+</div>
+<!-- Message Received -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<img alt="Doctor avatar" class="w-6 h-6 rounded-full object-cover" data-alt="Doctor profile thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPpiIpFr8sf_cEe_SIwOsFVzhrkhcNI6NKOgUt1Gi_NHEZuoLMOSDqkURU9YvWC995UeaRqR8j--L9i2KQr8gY4Xd8ro3Rv3ob3e2r5d7OBAfkNConwpnUa9NJ0dB0Y4HJhZdzppcFoNquBhaLkqVzwcf9UrUCLtWjTQDJr6lA7zOtxGA8DKzliOU_sLuhUaYEqk47ob1xUlnw1JL-hJoHd-TIFb0hebzYR4j_GphGdgZl0L6MS6h-BQrfede0RuQaZpDPtdWuPdE"/>
+<div class="bg-surface-container-low p-4 rounded-t-2xl rounded-br-2xl">
+<p class="font-body text-sm leading-relaxed text-on-surface">Hello! I've reviewed your latest vitals. Your blood pressure looks excellent today. How are you feeling after the new medication cycle?</p>
+<span class="font-label text-[9px] text-on-surface-variant mt-2 block">09:14 AM</span>
+</div>
+</div>
+<!-- Message Sent -->
+<div class="flex items-end gap-3 max-w-[85%] ml-auto flex-row-reverse">
+<div class="bg-primary text-white p-4 rounded-t-2xl rounded-bl-2xl bg-gradient-to-br from-primary to-primary-container">
+<p class="font-body text-sm leading-relaxed">Feeling much better, thank you. The dizziness has subsided. I've attached a photo of the slight rash on my wrist we discussed.</p>
+<span class="font-label text-[9px] text-on-primary-container mt-2 block">09:21 AM</span>
+</div>
+</div>
+<!-- Attachment Bubble (Sent) -->
+<div class="flex flex-col items-end gap-2 max-w-[85%] ml-auto">
+<div class="rounded-2xl overflow-hidden border-4 border-surface-container-high bg-surface-container-low shadow-sm">
+<img alt="Slight rash on skin" class="w-48 h-32 object-cover" data-alt="Close up high-resolution medical photo of a minor skin irritation on a human wrist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7a5tFr6lLCubvBdQGPMA83RWrRczJYZNANTKG5d5NWdd5hKfY8EJ3qhFvKTyNU85xxxyOl1YN5aU57HjXfs5pjn-jTNEll9tqpAvrMvgILtN5InoTD6FwU6Bjyj7OM46SVME1VUyXCyoHK5OQr6MwUQ3lUOH3Llk0C-AjBwKDrB9acOmzZHlOahZrbhCkkbRHrgFVq1KEN37WjGsiXMP9j32IcDM4H0AJKHaO6YxKQfodPps06Ou_lKj4aiN_7ZGpnWJ-_dTYOGE"/>
+</div>
+<div class="flex items-center gap-1.5 mr-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="done_all" style="font-variation-settings: 'FILL' 0;">done_all</span>
+<span class="font-label text-[9px] text-on-surface-variant">Read 09:25 AM</span>
+</div>
+</div>
+<!-- Message Received -->
+<div class="flex items-end gap-3 max-w-[85%]">
+<img alt="Doctor avatar" class="w-6 h-6 rounded-full object-cover" data-alt="Doctor profile thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-9Gim0_PZl4174B7Su6-42xRvNjF9J7D8kaKiiIVnDJB7ESiEGIQzROizoVvy0hxxWGQtoOxh_zzC2FEgmic2Ibc1TXaKRNLOssc4zAZUDYi9UY2mj8NjBUwg9nwdPdAhs4g32SX3-QzyIv6qxcH4Fm9__qRaRN3v9-5ryZOslOjFpDXmCL96s1yffADRoxS6cB9E5EqxkTlsfjkjm8XfGD2M7YgqkB3mNhHBmL704PYgAapzxRYWOhvaWeZRtCukUsYIXQ7LcUY"/>
+<div class="bg-surface-container-low p-4 rounded-t-2xl rounded-br-2xl">
+<p class="font-body text-sm leading-relaxed text-on-surface">Thank you for the photo. That looks like a localized reaction. Are you experiencing any itching there?</p>
+<span class="font-label text-[9px] text-on-surface-variant mt-2 block">10:02 AM</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Secure Input Area -->
+<div class="fixed bottom-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg px-6 pb-8 pt-4 space-y-4">
+<!-- Input Field Container -->
+<div class="bg-surface-container-low rounded-xxl p-2 flex items-center gap-2 focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/20 transition-all duration-300">
+<div class="flex items-center gap-1 pl-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="add_circle">add_circle</span>
+</button>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm font-body py-3" placeholder="Type secure message..." type="text"/>
+<button class="bg-primary text-on-primary h-12 w-12 rounded-full flex items-center justify-center bg-gradient-to-br from-primary to-primary-container shadow-lg active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<!-- Attachment Shortcuts (Quick Access) -->
+<div class="flex justify-around items-center px-4">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary group transition-all">
+<div class="p-3 rounded-2xl bg-surface-container-high group-hover:bg-primary-container/20">
+<span class="material-symbols-outlined text-lg" data-icon="photo_camera">photo_camera</span>
+</div>
+<span class="font-label text-[10px] font-medium">Camera</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary group transition-all">
+<div class="p-3 rounded-2xl bg-surface-container-high group-hover:bg-primary-container/20">
+<span class="material-symbols-outlined text-lg" data-icon="image">image</span>
+</div>
+<span class="font-label text-[10px] font-medium">Gallery</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary group transition-all">
+<div class="p-3 rounded-2xl bg-surface-container-high group-hover:bg-primary-container/20">
+<span class="material-symbols-outlined text-lg" data-icon="description">description</span>
+</div>
+<span class="font-label text-[10px] font-medium">Files</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary group transition-all">
+<div class="p-3 rounded-2xl bg-surface-container-high group-hover:bg-primary-container/20">
+<span class="material-symbols-outlined text-lg" data-icon="clinical_notes">clinical_notes</span>
+</div>
+<span class="font-label text-[10px] font-medium">History</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Hidden in Focus Journey - Suppressed per rules for task-focused page, but shown if context is main app destination) -->
+<!-- Not rendered here to prioritize the message focus as per Shell Suppression rules for focused transactional/task screens -->
+</body></html>

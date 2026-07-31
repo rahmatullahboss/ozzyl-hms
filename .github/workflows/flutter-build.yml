@@ -1,0 +1,223 @@
+# Ozzyl Health - Flutter CI/CD
+# Builds Android APK and App Bundle on every push to main
+
+name: Flutter Build & Release
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/ozzyl_health/**'
+      - 'packages/ozzyl_core/**'
+      - '.github/workflows/flutter-build.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'apps/ozzyl_health/**'
+      - 'packages/ozzyl_core/**'
+      - '.github/workflows/flutter-build.yml'
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build type'
+        required: true
+        default: 'apk'
+        type: choice
+        options:
+          - apk
+          - appbundle
+          - both
+
+env:
+  FLUTTER_VERSION: '3.38.5'
+  JAVA_VERSION: '17'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  analyze-and-test:
+    name: Analyze & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/ozzyl_health
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze --no-fatal-infos --fatal-warnings
+
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          files: apps/ozzyl_health/coverage/lcov.info
+          fail_ci_if_error: false
+
+  build-android:
+    name: Build Android
+    needs: analyze-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: apps/ozzyl_health
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      # Note: build_runner temporarily disabled due to dart compile hook issue
+      # Generated files are committed to the repo
+      # - name: Generate code (Freezed/Drift)
+      #   run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Decode keystore
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/app/keystore.jks
+
+      - name: Create key.properties
+        if: github.ref == 'refs/heads/main'
+        run: |
+          cat > android/key.properties <<EOF
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          storeFile=keystore.jks
+          EOF
+
+      - name: Build APK
+        if: github.event.inputs.build_type != 'appbundle'
+        env:
+          GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
+        run: flutter build apk --release --split-per-abi --dart-define=GOOGLE_WEB_CLIENT_ID="$GOOGLE_WEB_CLIENT_ID"
+
+      - name: Build App Bundle
+        if: github.event.inputs.build_type == 'appbundle' || github.event.inputs.build_type == 'both'
+        env:
+          GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
+        run: flutter build appbundle --release --dart-define=GOOGLE_WEB_CLIENT_ID="$GOOGLE_WEB_CLIENT_ID"
+
+      - name: Upload APK artifacts
+        if: github.event.inputs.build_type != 'appbundle'
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: |
+            apps/ozzyl_health/build/app/outputs/flutter-apk/*.apk
+          retention-days: 30
+
+      - name: Upload AAB artifacts
+        if: github.event.inputs.build_type == 'appbundle' || github.event.inputs.build_type == 'both'
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-aab
+          path: |
+            apps/ozzyl_health/build/app/outputs/bundle/release/*.aab
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: github.ref == 'refs/heads/main' && (github.event.inputs.build_type == 'both' || github.event.inputs.build_type == '')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ozzyl-health-v${{ github.run_number }}
+          name: Ozzyl Health v${{ github.run_number }}
+          body: |
+            Automated release for Ozzyl Health Flutter app.
+            - Build: ${{ github.sha }}
+            - Branch: ${{ github.ref_name }}
+          files: |
+            apps/ozzyl_health/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            apps/ozzyl_health/build/app/outputs/bundle/release/app-release.aab
+          draft: true
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-ios:
+    name: Build iOS
+    needs: analyze-and-test
+    runs-on: macos-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: apps/ozzyl_health
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          pod setup
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      # Note: build_runner temporarily disabled due to dart compile hook issue
+      # Generated files are committed to the repo
+      # - name: Generate code (Freezed/Drift)
+      #   run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build iOS (no codesign)
+        run: flutter build ios --release --no-codesign
+
+      - name: Create IPA
+        run: |
+          cd build/ios/iphoneos
+          mkdir -p Payload
+          cp -r Runner.app Payload/
+          zip -r OzzylHealth.ipa Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: apps/ozzyl_health/build/ios/iphoneos/OzzylHealth.ipa
+          retention-days: 30

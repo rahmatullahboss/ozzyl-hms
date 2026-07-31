@@ -1,0 +1,92 @@
+{
+  "title": "Medico-Legal Cases",
+  "subtitle": "MLC register, injury documentation & police liaison",
+  "newMlc": "New MLC",
+  "total": "Total Cases",
+  "active": "Active",
+  "closed": "Closed",
+  "allTypes": "All Types",
+  "allStatus": "All Status",
+  "noCases": "No MLC cases found",
+  "table": {
+    "mlcNumber": "MLC #",
+    "patient": "Patient",
+    "type": "Type",
+    "date": "Date",
+    "policeStation": "Police Station",
+    "firNumber": "FIR #",
+    "nature": "Nature",
+    "status": "Status"
+  },
+  "form": {
+    "registerTitle": "Register New MLC Case",
+    "broughtBy": "Brought By",
+    "policeRelativePlaceholder": "e.g., Police, Relative",
+    "policeStation": "Police Station",
+    "firNumber": "FIR #",
+    "officerName": "Officer Name",
+    "informantName": "Informant Name",
+    "informantPhone": "Informant Phone",
+    "incidentPlace": "Incident Place",
+    "incidentDescription": "Incident Description",
+    "generalCondition": "General Condition",
+    "natureOfInjury": "Nature of Injury",
+    "injuryDescription": "Injury Description",
+    "alcoholSmell": "Smell of alcohol",
+    "examiningDoctor": "Examining Doctor",
+    "registerBtn": "Register MLC",
+    "saving": "Saving..."
+  },
+  "detail": {
+    "incident": "Incident",
+    "injuries": "Injuries",
+    "notesTimeline": "Notes & Timeline",
+    "addNote": "Add Note",
+    "notePlaceholder": "Note text...",
+    "add": "Add",
+    "title": "MLC {{mlcNumber}}"
+  },
+  "types": {
+    "accident": "Accident",
+    "assault": "Assault",
+    "poisoning": "Poisoning",
+    "burns": "Burns",
+    "sexual_assault": "Sexual Assault",
+    "suicide_attempt": "Suicide Attempt",
+    "snake_bite": "Snake Bite",
+    "dog_bite": "Dog Bite",
+    "industrial": "Industrial",
+    "drowning": "Drowning",
+    "hanging": "Hanging",
+    "firearm": "Firearm",
+    "stabbing": "Stabbing",
+    "other": "Other"
+  },
+  "status": {
+    "active": "Active",
+    "discharged": "Discharged",
+    "referred": "Referred",
+    "absconded": "Absconded",
+    "expired": "Expired",
+    "closed": "Closed"
+  },
+  "nature": {
+    "simple": "Simple",
+    "grievous": "Grievous",
+    "dangerous": "Dangerous",
+    "fatal": "Fatal"
+  },
+  "conditions": {
+    "conscious": "Conscious",
+    "semiconscious": "Semi-conscious",
+    "unconscious": "Unconscious",
+    "dead": "Dead"
+  },
+  "notification": {
+    "mlcRegistered": "MLC Registered: {{mlcNumber}}",
+    "failed": "Operation failed",
+    "failedToLoadDetails": "Failed to load MLC details",
+    "patientIdRequired": "Patient ID is required",
+    "noteAdded": "Note added successfully"
+  }
+}

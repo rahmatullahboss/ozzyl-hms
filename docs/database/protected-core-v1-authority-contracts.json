@@ -1,0 +1,3114 @@
+{
+  "version": 1,
+  "task": "CDB-V1-020-CORE-V1-AUTHORITY-AND-CONTRACT-FREEZE",
+  "reviewedAt": "2026-07-28",
+  "branch": "program/cdb-main-continuous-20260725",
+  "sourceInventory": "docs/database/protected-core-v1-surface-inventory.json",
+  "sourceDocuments": [
+    "docs/architecture/hms-production-scope-policy.md",
+    "docs/database/canonical-core-v1-production-cutover-runbook.md",
+    "docs/database/protected-core-v1-surface-inventory.json",
+    "docs/database/canonical-authority-matrix.yaml",
+    "docs/database/canonical-source-of-truth.yaml",
+    "docs/database/metric-registry.yaml"
+  ],
+  "productionAuthorization": {
+    "repositoryContractFreeze": true,
+    "productionReadAccess": false,
+    "productionMutation": false,
+    "providerActivation": false,
+    "deploymentOrTrafficChange": false,
+    "liveLegacyRetirement": false
+  },
+  "summary": {
+    "conceptContractCount": 22,
+    "canonicalTableOwnerCount": 19,
+    "governedExternalOwnerCount": 2,
+    "governedRegistryOwnerCount": 1,
+    "existingCommandBoundaryCount": 19,
+    "contractOnlyCommandBoundaryCount": 1,
+    "existingProviderBoundaryCount": 10,
+    "contractOnlyProviderBoundaryCount": 8,
+    "unresolvedDuplicateAuthorityCount": 0,
+    "nonProductionScopeLeakageCount": 0
+  },
+  "concepts": [
+    {
+      "contractId": "pcacf_f2ca45defe65b927b65fbbff",
+      "conceptId": "appointment_intent",
+      "domain": "scheduling",
+      "fact": "Planned appointment intent, token, schedule, modality, and status history",
+      "authority": {
+        "ownerId": "canonical:canonical_appointment_encounter_links+canonical_appointment_status_events+canonical_appointments",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_appointment_encounter_links",
+          "canonical_appointment_status_events",
+          "canonical_appointments"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/appointments.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "appointments",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "consultations",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_schedules",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/manage-appointment.ts"
+        ],
+        "commandNames": [
+          "createAppointmentIntent",
+          "fulfilAppointment",
+          "rescheduleAppointment",
+          "retireAppointmentEncounterLink",
+          "transitionAppointmentStatus"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_appointment_provider_v1",
+        "module": "src/lib/canonical/appointment-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "appointment public ID with exact patient, practitioner, schedule and source mapping; encounter linkage is explicit and never inferred from time",
+      "statusContract": "requested|scheduled|confirmed|arrived|checked_in|fulfilled|cancelled|no_show|rescheduled|entered_in_error",
+      "correctionContract": "append status event, reschedule lineage or entered-in-error evidence; appointment history and encounter links are immutable",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_local",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "ambiguous identity mappings remain stable processing issues and are not counted as successful mappings"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/appointments",
+          "/api/doctor-schedules",
+          "/api/queue",
+          "/api/reception"
+        ],
+        "uiRoutes": [
+          "/h/:slug/appointments",
+          "/h/:slug/queue-management",
+          "/h/:slug/reception/appointments",
+          "/h/:slug/reception/dashboard",
+          "/h/:slug/reception/queue"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "appointments",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "consultations",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_schedules",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          }
+        ],
+        "retirementRule": "Do not archive appointments; first split planning authority from billing and encounter projections.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_7343a44066b290fd17ab9b55",
+      "conceptId": "canonical_outbox_atomic_assertions",
+      "domain": "platform",
+      "fact": "Durable canonical outbox and transaction-local financial row-count assertions",
+      "authority": {
+        "ownerId": "canonical:canonical_financial_batch_assertions+canonical_outbox_events",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_financial_batch_assertions",
+          "canonical_outbox_events"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/meta.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "accounting_posting_events",
+            "classification": "compatibility_surface",
+            "disposition": "Keep temporarily for compatibility."
+          },
+          {
+            "table": "canonical_financial_batch_assertions",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "canonical_outbox_events",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/command-batch.ts",
+          "src/lib/canonical/financial-batch-assertion.ts"
+        ],
+        "commandNames": [
+          "assertCanonicalFinancialBatch",
+          "executeCanonicalCommandBatch"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "governance_only",
+        "providerKey": "canonical_outbox_assertion_provider_v1",
+        "module": "src/lib/canonical/command-batch.ts",
+        "supportedModes": [
+          "canonical"
+        ],
+        "defaultMode": "canonical",
+        "rollbackMode": "canonical",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback restores the last reviewed canonical governance state and blocks further execution without deleting immutable evidence"
+      },
+      "identityContract": "outbox identity is tenant plus deterministic event public ID and idempotency key; financial assertions bind to the exact command batch",
+      "statusContract": "outbox: pending|processing|processed|failed|dead_letter; financial assertions are immutable pass/fail evidence",
+      "correctionContract": "append retry, compensation or superseding evidence; do not mutate a processed event or completed assertion",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_local",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/audit"
+        ],
+        "uiRoutes": [
+          "/h/:slug/audit",
+          "/h/:slug/system-audit"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "accounting_posting_events",
+            "classification": "compatibility_surface",
+            "disposition": "Keep temporarily for compatibility."
+          },
+          {
+            "table": "canonical_financial_batch_assertions",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "canonical_outbox_events",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Retire parallel post-commit event creation only after source coverage and replay reconciliation pass.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_1bbe9be6d1b59e8547ae368c",
+      "conceptId": "cash_custody",
+      "domain": "accounting",
+      "fact": "Physical cash custody movements and guarded balances independent of revenue recognition",
+      "authority": {
+        "ownerId": "canonical:canonical_cash_custody_balances+canonical_cash_custody_movements",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_cash_custody_balances",
+          "canonical_cash_custody_movements"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/accounting.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_counter_sessions",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "cash_drawer_movements",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "cash_ledger_entries",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "emp_cash_transactions",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/contracts/manage-cash-custody.ts",
+          "src/lib/canonical/live-cash-custody.ts"
+        ],
+        "commandNames": [
+          "closeCashCustodySession",
+          "recordCashCustodyMovement",
+          "reverseCashCustodyMovement"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_cash_custody_provider_v1",
+        "module": "src/lib/canonical/contracts/cash-custody-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "custody movement public ID tied to exact actor, drawer/account, business date, source fact and direction; cash ledger projections are not authority",
+      "statusContract": "movements posted or reversed; custody balances are guarded projections derived from immutable movements",
+      "correctionContract": "append equal-and-opposite reversal movement and corrected replacement; never mutate prior custody movement amounts",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "custody_balance_minor = opening_minor + inflow_minor - outflow_minor",
+          "closing_variance_minor = counted_minor - custody_balance_minor"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove custody_balance_minor = opening_minor + inflow_minor - outflow_minor",
+          "prove closing_variance_minor = counted_minor - custody_balance_minor"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/action-center",
+          "/api/approvals",
+          "/api/billing-counter",
+          "/api/billing-handover",
+          "/api/cash-book",
+          "/api/cash-ledger",
+          "/api/cash-operations",
+          "/api/refund-disputes",
+          "/api/reports/shift-handover",
+          "/api/settlements",
+          "/api/shift-closing"
+        ],
+        "uiRoutes": [
+          "/h/:slug/billing-handover",
+          "/h/:slug/settlements"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "billing_counter_sessions",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "cash_drawer_movements",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "cash_ledger_entries",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "emp_cash_transactions",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Retire employee cash and shadow ledger authority only after zero coverage variance and canary observation.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_a2e3b88f1766a1ce9f7b2df0",
+      "conceptId": "credit_refund_payment_reversal",
+      "domain": "finance",
+      "fact": "Invoice credits, cash refunds, tender attribution, and payment reversals",
+      "authority": {
+        "ownerId": "canonical:canonical_credit_note_cash_refund_reversals+canonical_credit_note_cash_refunds+canonical_credit_note_lines+canonical_credit_note_refund_allocations+canonical_credit_note_refund_receipts+canonical_credit_note_refund_tender_attributions+canonical_credit_notes+canonical_payment_reversals+canonical_refunds",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_credit_note_cash_refund_reversals",
+          "canonical_credit_note_cash_refunds",
+          "canonical_credit_note_lines",
+          "canonical_credit_note_refund_allocations",
+          "canonical_credit_note_refund_receipts",
+          "canonical_credit_note_refund_tender_attributions",
+          "canonical_credit_notes",
+          "canonical_payment_reversals",
+          "canonical_refunds"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/billing.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_credit_note_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "billing_credit_notes",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "billing_refund_cash_holds",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "income",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/issue-credit-note-cash-refund.ts",
+          "src/lib/canonical/commands/issue-credit-note.ts",
+          "src/lib/canonical/commands/reverse-credit-note-cash-refund.ts",
+          "src/lib/canonical/commands/reverse-payment.ts"
+        ],
+        "commandNames": [
+          "issueCreditNote",
+          "issueCreditNoteWithCashRefund",
+          "reverseCreditNoteCashRefund",
+          "reversePayment"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_credit_refund_provider_v1",
+        "module": "src/lib/canonical/contracts/credit-refund-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "credit/refund/reversal public IDs with exact original invoice, line, receipt, tender and allocation lineage; approval workflow IDs are not money authority",
+      "statusContract": "credit documents posted or reversed; cash refunds posted|reversed; payment reversals are append-only terminal facts",
+      "correctionContract": "append reversal or replacement credit/refund evidence; mutable deletion or in-place cancellation of financial history is prohibited",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "credit_total_minor = sum(credit_line_minor)",
+          "net_refund_minor = refund_minor - refund_reversal_minor",
+          "refunded_minor <= eligible_original_tender_minor + separately approved cash_refund_minor"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove credit_total_minor = sum(credit_line_minor)",
+          "prove net_refund_minor = refund_minor - refund_reversal_minor",
+          "prove refunded_minor <= eligible_original_tender_minor + separately approved cash_refund_minor"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/action-center",
+          "/api/approvals",
+          "/api/billing-cancellation",
+          "/api/billing-credit-status",
+          "/api/credit-notes",
+          "/api/refund-disputes"
+        ],
+        "uiRoutes": [
+          "/h/:slug/billing-cancellation",
+          "/h/:slug/credit-notes"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "billing_credit_note_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "billing_credit_notes",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "billing_refund_cash_holds",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "income",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Archive mutable legacy refund effects only after exact original-receipt and allocation lineage is proven.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_b3a8683b96e9e0fadb0e633d",
+      "conceptId": "encounter_care_episode",
+      "domain": "clinical",
+      "fact": "Actual care encounter, explicit participants, signatures, and addenda",
+      "authority": {
+        "ownerId": "canonical:canonical_encounter_addenda+canonical_encounter_participants+canonical_encounters",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_encounter_addenda",
+          "canonical_encounter_participants",
+          "canonical_encounters"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/clinical.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "consultations",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_visits",
+            "classification": "retirement_candidate",
+            "disposition": "Map, freeze writes, then archive."
+          },
+          {
+            "table": "encounters",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "visits",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/start-encounter.ts"
+        ],
+        "commandNames": [
+          "cancelEncounter",
+          "completeEncounter",
+          "replaceEncounterParticipant",
+          "startEncounter"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_encounter_provider_v1",
+        "module": "src/lib/canonical/encounter-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "tenant encounter public ID with exact patient link, explicit participant roles and explicit appointment/visit source mapping; timestamp proximity is forbidden",
+      "statusContract": "planned|in_progress|completed|cancelled|entered_in_error",
+      "correctionContract": "append cancellation, entered-in-error or addendum evidence; signed history is immutable and never hard-deleted",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "ambiguous identity mappings remain stable processing issues and are not counted as successful mappings"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/queue",
+          "/api/reception",
+          "/api/visits"
+        ],
+        "uiRoutes": [
+          "/h/:slug/queue-management",
+          "/h/:slug/reception/dashboard",
+          "/h/:slug/reception/queue"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "compatibility_then_archive",
+        "sourceDispositions": [
+          {
+            "table": "consultations",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_visits",
+            "classification": "retirement_candidate",
+            "disposition": "Map, freeze writes, then archive."
+          },
+          {
+            "table": "encounters",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "visits",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Retain legacy episode sources read-only after mappings; never delete signed clinical history.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_6344f9da1dfe8dfd7275436c",
+      "conceptId": "invoice_document",
+      "domain": "finance",
+      "fact": "Posted invoice header, typed lines, and encounter linkage",
+      "authority": {
+        "ownerId": "canonical:canonical_invoice_encounter_links+canonical_invoice_lines+canonical_invoices",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_invoice_encounter_links",
+          "canonical_invoice_lines",
+          "canonical_invoices"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/billing.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_provisional_items",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "bills",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "invoice_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "ipd_ledger_entries",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/cancel-invoice.ts",
+          "src/lib/canonical/commands/issue-invoice.ts"
+        ],
+        "commandNames": [
+          "cancelUnpaidInvoice",
+          "issueInvoice"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_invoice_provider_v1",
+        "module": "src/lib/canonical/contracts/invoice-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "tenant invoice public ID with immutable typed line public IDs and exact patient/encounter/service links; display bill numbers are not identity",
+      "statusContract": "draft|posted|cancelled|reversed",
+      "correctionContract": "posted invoices are immutable; corrections use credit note, cancellation when legally allowed, reversal or replacement document lineage",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "invoice_net_minor = gross_minor - discount_minor + tax_minor",
+          "invoice_paid_minor = sum(successful_allocation_minor) - sum(reversed_allocation_minor)",
+          "invoice_due_minor = invoice_net_minor - invoice_paid_minor - applied_credit_minor"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_production_snapshot",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove invoice_net_minor = gross_minor - discount_minor + tax_minor",
+          "prove invoice_paid_minor = sum(successful_allocation_minor) - sum(reversed_allocation_minor)",
+          "prove invoice_due_minor = invoice_net_minor - invoice_paid_minor - applied_credit_minor"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/action-center",
+          "/api/appointments",
+          "/api/bill-versions",
+          "/api/billing",
+          "/api/billing-aging",
+          "/api/billing-cancellation",
+          "/api/billing-counter",
+          "/api/billing-credit-status",
+          "/api/billing-master",
+          "/api/billing-provisional",
+          "/api/billing-reports",
+          "/api/credit-notes",
+          "/api/due-aging",
+          "/api/payments",
+          "/api/pdf",
+          "/api/reception",
+          "/api/reports/daily-collection"
+        ],
+        "uiRoutes": [
+          "/h/:slug/billing",
+          "/h/:slug/billing-cancellation",
+          "/h/:slug/billing-master",
+          "/h/:slug/billing-provisional",
+          "/h/:slug/billing/:billId/print",
+          "/h/:slug/credit-notes",
+          "/h/:slug/payments",
+          "/h/:slug/reception/billing",
+          "/h/:slug/reception/billing/:billId/print",
+          "/h/:slug/reception/dashboard"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "billing_provisional_items",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "bills",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "invoice_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "ipd_ledger_entries",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          }
+        ],
+        "retirementRule": "Retire bills and invoice_items writes only after canary observation; retain compatibility views and immutable source mappings.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_6879419b0c8e712aafe80bad",
+      "conceptId": "patient_deposit_liability",
+      "domain": "finance",
+      "fact": "Patient deposit liability and immutable applications",
+      "authority": {
+        "ownerId": "canonical:canonical_deposit_applications+canonical_deposits",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_deposit_applications",
+          "canonical_deposits"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/billing.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_deposits",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "billing_settlements",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "bills",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/allocate-deposit-balance.ts",
+          "src/lib/canonical/commands/apply-deposit.ts"
+        ],
+        "commandNames": [
+          "applyAvailableDeposits",
+          "applyDeposit",
+          "recordDeposit"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_deposit_provider_v1",
+        "module": "src/lib/canonical/contracts/deposit-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "deposit public ID tied to exact tenant patient identity and original tender/receipt lineage; invoice linkage occurs only through immutable application IDs",
+      "statusContract": "deposit: posted|reversed; applications are active or reversed through immutable lineage",
+      "correctionContract": "append application reversal, refund or deposit reversal; never reduce liability by mutating prior rows",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "deposit_available_minor = deposited_minor - applied_minor - refunded_minor + reversed_refund_minor",
+          "sum(active_deposit_application_minor) <= deposit_available_minor before the application"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_production_snapshot",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove deposit_available_minor = deposited_minor - applied_minor - refunded_minor + reversed_refund_minor",
+          "prove sum(active_deposit_application_minor) <= deposit_available_minor before the application"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/deposits"
+        ],
+        "uiRoutes": [
+          "/h/:slug/deposits"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "billing_deposits",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "billing_settlements",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "bills",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          }
+        ],
+        "retirementRule": "Stop billing_deposits writes after exact liability reconciliation and canary observation; retain a compatibility view.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_b8b65488e9ed78a859b2a667",
+      "conceptId": "patient_identity",
+      "domain": "identity",
+      "fact": "Global patient person identity and tenant patient linkage",
+      "authority": {
+        "ownerId": "external:global_patient_identity",
+        "ownerKind": "governed_external_table",
+        "ownerTables": [
+          "global_patient_identity"
+        ],
+        "schemaModules": [
+          "src/db/schema/mpi.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "global_patient_identity",
+            "classification": "external_platform_authority",
+            "disposition": "Retain as governed external authority."
+          },
+          {
+            "table": "mpi_duplicate_suspects",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "patient_aliases",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "patients",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "external_governed",
+        "modules": [
+          "src/db/schema/mpi.ts",
+          "src/routes/tenant/patients.ts"
+        ],
+        "commandNames": [
+          "mergeGlobalPatientIdentity",
+          "upsertGlobalPatientIdentity"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_patient_identity_provider_v1",
+        "module": "src/lib/canonical/patient-identity-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "global patient public identity remains governed external authority; tenant patient relationships use exact canonical links and duplicate merges require reviewed evidence",
+      "statusContract": "global identity active/merged/retired semantics remain external; duplicate suspects are workflow documents, not identity authority",
+      "correctionContract": "merge or supersede with immutable merge audit; never create a second canonical patient demographics authority",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "ambiguous identity mappings remain stable processing issues and are not counted as successful mappings"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/appointments",
+          "/api/patients",
+          "/api/queue",
+          "/api/reception",
+          "/api/v1/patients/link-hospital",
+          "/api/visits"
+        ],
+        "uiRoutes": [
+          "/h/:slug/appointments",
+          "/h/:slug/patients",
+          "/h/:slug/patients/new",
+          "/h/:slug/reception/appointments",
+          "/h/:slug/reception/dashboard",
+          "/h/:slug/reception/patients",
+          "/h/:slug/reception/patients/:id",
+          "/h/:slug/reception/patients/new"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "retain_external_authority",
+        "sourceDispositions": [
+          {
+            "table": "global_patient_identity",
+            "classification": "external_platform_authority",
+            "disposition": "Retain as governed external authority."
+          },
+          {
+            "table": "mpi_duplicate_suspects",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "patient_aliases",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "patients",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Retain global MPI and tenant patient records with explicit links; archive only superseded duplicate rows through merge audit.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_18b3b1909a7eb75b021bbe07",
+      "conceptId": "payment_receipt_tender_allocation",
+      "domain": "finance",
+      "fact": "Receipt identity, tender instruments, and immutable invoice allocations",
+      "authority": {
+        "ownerId": "canonical:canonical_payment_allocations+canonical_payment_receipts+canonical_payment_tenders",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_payment_allocations",
+          "canonical_payment_receipts",
+          "canonical_payment_tenders"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/billing.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_settlements",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "income",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "payment_gateway_logs",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "payments",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/collect-payment.ts",
+          "src/lib/canonical/commands/reverse-payment.ts"
+        ],
+        "commandNames": [
+          "collectPayment",
+          "reversePayment"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_payment_provider_v1",
+        "module": "src/lib/canonical/contracts/payment-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "receipt public ID, tender public ID and immutable allocation public ID with exact invoice linkage; settlement rows do not reconstruct allocation authority",
+      "statusContract": "receipt: pending|posted|failed|reversed; tender: verifying|captured|failed|reversed; allocation: active|reversed",
+      "correctionContract": "append payment reversal and allocation reversal records; never delete or rewrite a posted receipt, tender or allocation",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "receipt_amount_minor = sum(captured_tender_minor)",
+          "receipt_unallocated_minor = receipt_amount_minor - sum(successful_allocation_minor)",
+          "sum(successful_allocation_minor) <= receipt_amount_minor"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_production_snapshot",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove receipt_amount_minor = sum(captured_tender_minor)",
+          "prove receipt_unallocated_minor = receipt_amount_minor - sum(successful_allocation_minor)",
+          "prove sum(successful_allocation_minor) <= receipt_amount_minor"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/appointments",
+          "/api/billing",
+          "/api/billing-counter",
+          "/api/billing-handover",
+          "/api/billing-reports",
+          "/api/cash-book",
+          "/api/cash-ledger",
+          "/api/cash-operations",
+          "/api/credit-notes",
+          "/api/deposits",
+          "/api/payment-methods",
+          "/api/payments",
+          "/api/pdf",
+          "/api/reception",
+          "/api/reports/daily-collection",
+          "/api/reports/shift-handover",
+          "/api/settlements",
+          "/api/shift-closing"
+        ],
+        "uiRoutes": [
+          "/h/:slug/billing",
+          "/h/:slug/billing-handover",
+          "/h/:slug/billing/:billId/print",
+          "/h/:slug/deposits",
+          "/h/:slug/payments",
+          "/h/:slug/reception/billing",
+          "/h/:slug/reception/billing/:billId/print",
+          "/h/:slug/reception/dashboard",
+          "/h/:slug/settlements"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "billing_settlements",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "income",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "payment_gateway_logs",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "payments",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Archive payments compatibility only after every receipt, tender, allocation, refund, and reversal is reconciled.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_a08e6d72557a49536d9ddf11",
+      "conceptId": "practitioner_account_links",
+      "domain": "identity",
+      "fact": "Explicit practitioner-to-user and practitioner-to-employee links",
+      "authority": {
+        "ownerId": "canonical:canonical_practitioner_employee_links+canonical_practitioner_user_links",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_practitioner_employee_links",
+          "canonical_practitioner_user_links"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/identity.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "doctor_auth",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctors",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "users",
+            "classification": "external_platform_authority",
+            "disposition": "Retain as governed external authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/manage-practitioner.ts"
+        ],
+        "commandNames": [
+          "linkOrUnlinkPractitionerEmployee",
+          "linkOrUnlinkPractitionerUser"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_practitioner_provider_v1",
+        "module": "src/lib/canonical/practitioner-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "exact tenant-scoped practitioner public ID and exact governed user/employee ID; one active link per governed cardinality and no name-based linking",
+      "statusContract": "active|rejected|retired",
+      "correctionContract": "retire the incorrect link and append a new reviewed link; users remain external authentication authority",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "not_started",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "ambiguous identity mappings remain stable processing issues and are not counted as successful mappings"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/doctors",
+          "/api/users"
+        ],
+        "uiRoutes": [],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "compatibility_then_archive",
+        "sourceDispositions": [
+          {
+            "table": "doctor_auth",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctors",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "users",
+            "classification": "external_platform_authority",
+            "disposition": "Retain as governed external authority."
+          }
+        ],
+        "retirementRule": "Retain users; archive doctor_auth and doctors.user_id compatibility after authentication cutover.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_3ee8b86e9999e1377a1456de",
+      "conceptId": "practitioner_compensation_accrual_adjustment",
+      "domain": "finance",
+      "fact": "Line-linked role-explicit compensation accruals, adjustments, and refund reservations",
+      "authority": {
+        "ownerId": "canonical:canonical_compensation_accruals+canonical_compensation_adjustment_reversals+canonical_compensation_adjustments+canonical_compensation_refund_reservations+canonical_compensation_reporting_context",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_compensation_accruals",
+          "canonical_compensation_adjustment_reversals",
+          "canonical_compensation_adjustments",
+          "canonical_compensation_refund_reservations",
+          "canonical_compensation_reporting_context"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/compensation.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_provisional_items",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "diagnostic_performer_reserves",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_commission_accruals",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "fraction_calculations",
+            "classification": "retirement_candidate",
+            "disposition": "Map, freeze writes, then archive."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/accrue-compensation.ts",
+          "src/lib/canonical/live-refund-compensation.ts"
+        ],
+        "commandNames": [
+          "accrueCompensation",
+          "recordCompensationAdjustment",
+          "reverseCompensationAdjustment"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_compensation_accrual_provider_v1",
+        "module": "src/lib/canonical/contracts/compensation-accrual-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "accrual public ID tied to exact invoice line, practitioner role and immutable rule snapshot; refund reservation links to exact credit/refund lineage",
+      "statusContract": "unassigned|accrued|partially_settled|settled|reversed; refund reservation: held|consumed|disputed|released|written_off",
+      "correctionContract": "append signed adjustment or adjustment reversal; never mutate the original accrual amount or referenced rule snapshot",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "accrual_balance_minor = original_accrual_minor + adjustment_minor - reversed_adjustment_minor - settled_allocation_minor",
+          "refund_reservation_minor <= refundable_accrual_balance_minor"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_production_snapshot",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove accrual_balance_minor = original_accrual_minor + adjustment_minor - reversed_adjustment_minor - settled_allocation_minor",
+          "prove refund_reservation_minor <= refundable_accrual_balance_minor"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/commissions",
+          "/api/reports/daily-collection"
+        ],
+        "uiRoutes": [
+          "/h/:slug/commissions"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "billing_provisional_items",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "diagnostic_performer_reserves",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_commission_accruals",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "fraction_calculations",
+            "classification": "retirement_candidate",
+            "disposition": "Map, freeze writes, then archive."
+          }
+        ],
+        "retirementRule": "Retire doctor_commission_accruals only after settlement and reporting read promotion with zero unexplained balance.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_e223ac4f5f32f501601a6ad6",
+      "conceptId": "practitioner_compensation_rule",
+      "domain": "finance",
+      "fact": "Effective-dated practitioner compensation calculation rules",
+      "authority": {
+        "ownerId": "canonical:canonical_compensation_rules",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_compensation_rules"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/compensation.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "diagnostic_performer_payout_rules",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_commission_rules",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "fraction_percents",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/contracts/manage-compensation-rule.ts"
+        ],
+        "commandNames": [
+          "createCompensationRule",
+          "replaceCompensationRule",
+          "retireCompensationRule"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_compensation_rule_provider_v1",
+        "module": "src/lib/canonical/contracts/compensation-rule-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "rule public ID plus exact tenant, practitioner role, service scope, currency and effective date range; overlapping active scopes are prohibited",
+      "statusContract": "active|inactive|retired",
+      "correctionContract": "append a replacement effective-dated rule and retain the immutable rule snapshot referenced by every accrual",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "calculated_compensation_minor = rule_snapshot(base_minor, percentage_basis_points, fixed_minor, caps_minor)"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove calculated_compensation_minor = rule_snapshot(base_minor, percentage_basis_points, fixed_minor, caps_minor)"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/commissions",
+          "/api/doctors"
+        ],
+        "uiRoutes": [
+          "/h/:slug/commissions"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "diagnostic_performer_payout_rules",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_commission_rules",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "fraction_percents",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Archive legacy rule tables after all accruals reference immutable canonical rule snapshots.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_21af2c22300a478afc4d332f",
+      "conceptId": "practitioner_compensation_settlement",
+      "domain": "finance",
+      "fact": "Practitioner payout documents and immutable allocations to accruals",
+      "authority": {
+        "ownerId": "canonical:canonical_compensation_settlement_allocations+canonical_compensation_settlements",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_compensation_settlement_allocations",
+          "canonical_compensation_settlements"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/compensation.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "cash_drawer_movements",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "doctor_commission_settlement_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "doctor_commission_settlements",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/accrue-compensation.ts",
+          "src/lib/canonical/commands/cancel-settlement.ts",
+          "src/lib/canonical/commands/finalize-settlement.ts"
+        ],
+        "commandNames": [
+          "cancelSettlement",
+          "finalizeSettlement",
+          "reverseCompensationSettlement"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_compensation_settlement_provider_v1",
+        "module": "src/lib/canonical/contracts/compensation-settlement-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "settlement public ID plus exact practitioner, custody source and immutable accrual allocation IDs; payout display numbers are not identity",
+      "statusContract": "settlement: posted|partially_reversed|reversed; allocations: active|partially_reversed|reversed",
+      "correctionContract": "append allocation reversal and settlement reversal evidence; never delete settlement or payout history",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "settlement_unallocated_minor = settlement_total_minor - sum(settlement_allocation_minor)",
+          "sum(active_settlement_allocation_minor) <= eligible_accrual_balance_minor"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove settlement_unallocated_minor = settlement_total_minor - sum(settlement_allocation_minor)",
+          "prove sum(active_settlement_allocation_minor) <= eligible_accrual_balance_minor"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/commissions",
+          "/api/settlements"
+        ],
+        "uiRoutes": [
+          "/h/:slug/commissions"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "cash_drawer_movements",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "doctor_commission_settlement_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "doctor_commission_settlements",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Archive legacy settlement tables after allocations, custody, and accounting reconcile exactly.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_9cee0086f515e35142ed419c",
+      "conceptId": "practitioner_identity",
+      "domain": "identity",
+      "fact": "Tenant-scoped practitioner person, identifiers, specialties, and departments",
+      "authority": {
+        "ownerId": "canonical:canonical_practitioner_departments+canonical_practitioner_identifiers+canonical_practitioner_specialties+canonical_practitioners",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_practitioner_departments",
+          "canonical_practitioner_identifiers",
+          "canonical_practitioner_specialties",
+          "canonical_practitioners"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/identity.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "canonical_practitioners",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "doctors",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "external_referring_doctors",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/manage-practitioner.ts"
+        ],
+        "commandNames": [
+          "createPractitioner",
+          "updateOrRetirePractitioner"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_practitioner_provider_v1",
+        "module": "src/lib/canonical/practitioner-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "tenant-scoped practitioner public ID plus reviewed source mapping; name, specialty, phone, numeric-ID coincidence and time proximity are forbidden identity evidence",
+      "statusContract": "active|inactive|unknown; retirement is represented by inactive/retired linkage evidence without deleting practitioner history",
+      "correctionContract": "append identifier/specialty/department changes and status events; retire incorrect links rather than replacing historical practitioner identity",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_local",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "ambiguous identity mappings remain stable processing issues and are not counted as successful mappings"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/appointments",
+          "/api/departments",
+          "/api/doctor-schedules",
+          "/api/doctors",
+          "/api/queue",
+          "/api/visits"
+        ],
+        "uiRoutes": [
+          "/h/:slug/appointments",
+          "/h/:slug/reception/appointments"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "compatibility_then_archive",
+        "sourceDispositions": [
+          {
+            "table": "canonical_practitioners",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "doctors",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "external_referring_doctors",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Archive doctors and external_referring_doctors only after deterministic mappings and all readers use practitioner IDs.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_f405dd8f97d64fb62739f949",
+      "conceptId": "reporting_metric_read_promotion",
+      "domain": "reporting",
+      "fact": "Governed metric definitions and provider-selected canonical dashboard reads",
+      "authority": {
+        "ownerId": "registry:protected-core-metrics",
+        "ownerKind": "governed_registry",
+        "ownerTables": [],
+        "ownerRegistry": "docs/database/metric-registry.yaml",
+        "schemaModules": [
+          "docs/database/metric-registry.yaml",
+          "src/lib/canonical/reporting/common.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "bills",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_commission_accruals",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "invoice_items",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "payments",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "contract_only",
+        "modules": [
+          "docs/database/metric-registry.yaml"
+        ],
+        "commandNames": [
+          "promoteProtectedMetricProvider",
+          "registerProtectedMetricDefinition",
+          "rollbackProtectedMetricProvider"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_reporting_metric_provider_v1",
+        "module": "src/lib/canonical/reporting/common.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "metric ID, version, tenant scope, business date/time zone, dimensions, numerator, denominator and source authority are explicit registry keys",
+      "statusContract": "metric definitions: draft|active|retired; provider promotion: legacy|shadow|canonical with exact evidence binding",
+      "correctionContract": "append a new metric version or provider decision; never silently change a published metric equation or historical result definition",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "canonical_metric_total_minor - legacy_metric_total_minor = 0 before promotion"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove canonical_metric_total_minor - legacy_metric_total_minor = 0 before promotion"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/billing-aging",
+          "/api/billing-reports",
+          "/api/due-aging",
+          "/api/reports/daily-collection",
+          "/api/reports/shift-handover"
+        ],
+        "uiRoutes": [],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "bills",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "doctor_commission_accruals",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "invoice_items",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "payments",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Retire legacy dashboard SQL only metric-by-metric after canonical parity, observation, and rollback evidence.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_dcddc9707d03b47501f22d7d",
+      "conceptId": "schema_migration_governance",
+      "domain": "platform",
+      "fact": "Canonical schema lifecycle, migration runs, backfill checkpoints, and feature flags",
+      "authority": {
+        "ownerId": "canonical:canonical_backfill_checkpoints+canonical_feature_flags+canonical_migration_runs+canonical_schema_versions",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_backfill_checkpoints",
+          "canonical_feature_flags",
+          "canonical_migration_runs",
+          "canonical_schema_versions"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/meta.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "canonical_backfill_checkpoints",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "canonical_feature_flags",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "canonical_migration_runs",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "canonical_schema_versions",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "scripts/canonical/apply-production-canonical-migrations.ts",
+          "scripts/canonical/set-production-canonical-flag.ts"
+        ],
+        "commandNames": [
+          "applyProductionCanonicalMigrations",
+          "setProductionCanonicalFlag"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "governance_only",
+        "providerKey": "canonical_schema_governance_v1",
+        "module": "scripts/canonical/check-schema-governance.ts",
+        "supportedModes": [
+          "canonical"
+        ],
+        "defaultMode": "canonical",
+        "rollbackMode": "canonical",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback restores the last reviewed canonical governance state and blocks further execution without deleting immutable evidence"
+      },
+      "identityContract": "migration, backfill, flag and run identity is tenant plus immutable operation ID, migration name/checksum and exact code/build binding",
+      "statusContract": "migration runs: pending|running|completed|failed|rolled_back; reconciliation and checkpoint states remain immutable evidence",
+      "correctionContract": "never edit a completed run; append a superseding run, rollback receipt or corrected feature-flag version",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_local",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [],
+        "uiRoutes": [],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "not_applicable",
+        "sourceDispositions": [
+          {
+            "table": "canonical_backfill_checkpoints",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "canonical_feature_flags",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "canonical_migration_runs",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "canonical_schema_versions",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Retain permanently as governance and execution evidence.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_29fbcccecc5bfb91f00f6417",
+      "conceptId": "service_catalog_pricing",
+      "domain": "services",
+      "fact": "Unified service identity and effective-dated price authority",
+      "authority": {
+        "ownerId": "canonical:canonical_service_catalog_items+canonical_service_prices",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_service_catalog_items",
+          "canonical_service_prices"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/services.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_item_price_category_maps",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "billing_service_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "lab_test_catalog",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "radiology_imaging_items",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/contracts/manage-service-catalog.ts"
+        ],
+        "commandNames": [
+          "retireCanonicalServicePrice",
+          "setCanonicalServicePrice",
+          "upsertCanonicalServiceCatalogItem"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_service_catalog_provider_v1",
+        "module": "src/lib/canonical/contracts/service-catalog-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "one tenant-scoped service public ID and code with typed domain extension links; text labels never create service identity",
+      "statusContract": "catalog and price versions: active|inactive|retired; price ranges must not overlap for the same scope",
+      "correctionContract": "append a new effective-dated price or retire the incorrect version; never overwrite a price used by a posted invoice",
+      "moneyContract": {
+        "unit": "integer_minor_units",
+        "equations": [
+          "price_minor is an integer and belongs to exactly one currency and effective scope",
+          "posted_invoice_line_price_minor = immutable price snapshot used at posting time"
+        ],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "no floating-point storage or comparison; percentage calculations use integer basis points and a named deterministic rounding rule before persistence"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "prove price_minor is an integer and belongs to exactly one currency and effective scope",
+          "prove posted_invoice_line_price_minor = immutable price snapshot used at posting time"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/billing",
+          "/api/billing-master",
+          "/api/departments",
+          "/api/price-categories",
+          "/api/settings",
+          "/api/tests"
+        ],
+        "uiRoutes": [
+          "/h/:slug/billing-master",
+          "/h/:slug/settings",
+          "/h/:slug/test-catalog"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "compatibility_then_archive",
+        "sourceDispositions": [
+          {
+            "table": "billing_item_price_category_maps",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "billing_service_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "lab_test_catalog",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "radiology_imaging_items",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          }
+        ],
+        "retirementRule": "Retain lab and radiology extension metadata; archive duplicate billing and price-map authority after read cutover.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_211dbc5a5b0d4862069473c2",
+      "conceptId": "service_delivery_event",
+      "domain": "services",
+      "fact": "Delivered or accepted service occurrence with explicit participant roles",
+      "authority": {
+        "ownerId": "canonical:canonical_service_events+canonical_service_participants",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_service_events",
+          "canonical_service_participants"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/service-operations.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "billing_provisional_items",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "ipd_doctor_rounds",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "lab_order_items",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "visit_services",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/service-operations.ts"
+        ],
+        "commandNames": [
+          "cancelServiceEvent",
+          "recordServiceEvent"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_service_event_provider_v1",
+        "module": "src/lib/canonical/contracts/service-event-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "service event public ID plus exact request, encounter, service and typed participant roles; billed state never implies performed state",
+      "statusContract": "posted|cancelled|reversed",
+      "correctionContract": "append cancellation/reversal and replacement events; never mutate a posted delivered-service fact",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/billing-provisional"
+        ],
+        "uiRoutes": [
+          "/h/:slug/billing-provisional"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "compatibility_then_archive",
+        "sourceDispositions": [
+          {
+            "table": "billing_provisional_items",
+            "classification": "projection_cache",
+            "disposition": "Keep only as rebuildable projection."
+          },
+          {
+            "table": "ipd_doctor_rounds",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "lab_order_items",
+            "classification": "domain_extension",
+            "disposition": "Retain as canonical-linked domain extension."
+          },
+          {
+            "table": "visit_services",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          }
+        ],
+        "retirementRule": "Convert visit_services and billing_provisional_items to read projections and archive independent write authority.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_c020da2e5b405c62db994dd6",
+      "conceptId": "service_request_intent",
+      "domain": "services",
+      "fact": "Typed request or order for planned clinical work",
+      "authority": {
+        "ownerId": "canonical:canonical_service_requests",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_service_requests"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/service-operations.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "lab_order_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "lab_orders",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "procedure_orders",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "radiology_requisitions",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/service-operations.ts"
+        ],
+        "commandNames": [
+          "cancelServiceRequest",
+          "createServiceRequest"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "contract_only",
+        "providerKey": "canonical_service_request_provider_v1",
+        "module": "src/lib/canonical/contracts/service-request-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "request public ID plus exact patient, encounter, service and requester identities; free-text requests remain processing issues until typed",
+      "statusContract": "planned|active|partially_fulfilled|fulfilled|cancelled|unknown",
+      "correctionContract": "cancel or supersede request intent with immutable lineage; delivered facts are corrected separately",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [],
+        "uiRoutes": [],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "compatibility_then_archive",
+        "sourceDispositions": [
+          {
+            "table": "lab_order_items",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "lab_orders",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "procedure_orders",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          },
+          {
+            "table": "radiology_requisitions",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Retain domain request extensions and archive independent request headers only after compatibility reads are proven.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_f033dcc06a397c090a8e588d",
+      "conceptId": "source_mapping_issue_reconciliation",
+      "domain": "platform",
+      "fact": "Legacy-to-canonical mappings, processing exceptions, and reconciliation runs",
+      "authority": {
+        "ownerId": "canonical:canonical_processing_issues+canonical_reconciliation_runs+canonical_source_mappings",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_processing_issues",
+          "canonical_reconciliation_runs",
+          "canonical_source_mappings"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/meta.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "canonical_processing_issues",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "canonical_reconciliation_runs",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "canonical_source_mappings",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "scripts/canonical/baseline-reconciliation.ts",
+          "src/lib/canonical/source-mapping.ts"
+        ],
+        "commandNames": [
+          "recordCanonicalProcessingIssue",
+          "recordCanonicalReconciliationRun",
+          "upsertCanonicalSourceMapping"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "governance_only",
+        "providerKey": "canonical_source_mapping_provider_v1",
+        "module": "src/lib/canonical/source-mapping.ts",
+        "supportedModes": [
+          "canonical"
+        ],
+        "defaultMode": "canonical",
+        "rollbackMode": "canonical",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback restores the last reviewed canonical governance state and blocks further execution without deleting immutable evidence"
+      },
+      "identityContract": "mapping identity is tenant, source system, source entity type, source key and canonical public ID; ambiguity creates a stable issue and never fabricates a mapping",
+      "statusContract": "mappings: active|retired|rejected; processing issues: open|resolved|waived; reconciliation runs are append-only completed evidence",
+      "correctionContract": "retire or supersede a mapping and append a resolution event; never rewrite historical reconciliation evidence",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [],
+        "uiRoutes": [],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "partial",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "not_applicable",
+        "sourceDispositions": [
+          {
+            "table": "canonical_processing_issues",
+            "classification": "workflow_document",
+            "disposition": "Retain workflow state, not fact authority."
+          },
+          {
+            "table": "canonical_reconciliation_runs",
+            "classification": "audit_history",
+            "disposition": "Retain as immutable audit history."
+          },
+          {
+            "table": "canonical_source_mappings",
+            "classification": "operational_authority",
+            "disposition": "Cut over to the target authority."
+          }
+        ],
+        "retirementRule": "Retain permanently; mappings and issue history are required after legacy archival.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_5efe216ae79e832c9d59b398",
+      "conceptId": "tenant_patient_linkage",
+      "domain": "identity",
+      "fact": "Current tenant-patient relationship to governed global patient identity and immutable relationship history",
+      "authority": {
+        "ownerId": "canonical:canonical_tenant_patient_link_events+canonical_tenant_patient_links",
+        "ownerKind": "canonical_tables",
+        "ownerTables": [
+          "canonical_tenant_patient_link_events",
+          "canonical_tenant_patient_links"
+        ],
+        "schemaModules": [
+          "src/db/schema/canonical/patient-identity.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "global_patient_identity",
+            "classification": "external_platform_authority",
+            "disposition": "Retain global/MPI person identity and reference it only through reviewed relationship evidence."
+          },
+          {
+            "table": "mpi_duplicate_suspects",
+            "classification": "workflow_document",
+            "disposition": "Retain duplicate-review workflow without allowing it to become relationship authority."
+          },
+          {
+            "table": "patients",
+            "classification": "operational_authority",
+            "disposition": "Retain tenant demographics authority while migrating identity relationships to explicit canonical links."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "existing",
+        "modules": [
+          "src/lib/canonical/commands/register-or-link-patient.ts"
+        ],
+        "commandNames": [
+          "registerOrLinkPatient"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "existing",
+        "providerKey": "canonical_patient_identity_provider_v1",
+        "module": "src/lib/canonical/patient-identity-provider.ts",
+        "supportedModes": [
+          "legacy",
+          "shadow",
+          "canonical"
+        ],
+        "defaultMode": "legacy",
+        "rollbackMode": "legacy",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback selects the reviewed legacy provider without deleting canonical or legacy history and records the exact build, tenant scope and evidence receipt"
+      },
+      "identityContract": "tenant plus tenant patient source key plus exact global patient public ID; phone, name and timestamp proximity cannot auto-link",
+      "statusContract": "active|inactive|merged|rejected with immutable relationship events",
+      "correctionContract": "retire or supersede the relationship and append an event; retain tenant patient and global identity records",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "verified_local",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows",
+          "ambiguous identity mappings remain stable processing issues and are not counted as successful mappings"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/patients",
+          "/api/v1/patients/link-hospital"
+        ],
+        "uiRoutes": [
+          "/h/:slug/patients",
+          "/h/:slug/patients/new",
+          "/h/:slug/reception/patients",
+          "/h/:slug/reception/patients/:id",
+          "/h/:slug/reception/patients/new"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "complete",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "blocked",
+        "sourceDispositions": [
+          {
+            "table": "global_patient_identity",
+            "classification": "external_platform_authority",
+            "disposition": "Retain global/MPI person identity and reference it only through reviewed relationship evidence."
+          },
+          {
+            "table": "mpi_duplicate_suspects",
+            "classification": "workflow_document",
+            "disposition": "Retain duplicate-review workflow without allowing it to become relationship authority."
+          },
+          {
+            "table": "patients",
+            "classification": "operational_authority",
+            "disposition": "Retain tenant demographics authority while migrating identity relationships to explicit canonical links."
+          }
+        ],
+        "retirementRule": "Do not retire patients or global_patient_identity; retire only implicit relationship assumptions after canonical provider promotion and explicit authorization.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    },
+    {
+      "contractId": "pcacf_96fbfc935daee82d9abe3293",
+      "conceptId": "user_auth_actor",
+      "domain": "identity",
+      "fact": "Application authentication actor, role, and tenant access",
+      "authority": {
+        "ownerId": "external:users",
+        "ownerKind": "governed_external_table",
+        "ownerTables": [
+          "users"
+        ],
+        "schemaModules": [
+          "src/db/schema/schema.ts"
+        ],
+        "currentSources": [
+          {
+            "table": "doctor_auth",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "users",
+            "classification": "external_platform_authority",
+            "disposition": "Retain as governed external authority."
+          }
+        ],
+        "duplicateSourceDispositionFrozen": true
+      },
+      "commandBoundary": {
+        "implementationStatus": "external_governed",
+        "modules": [
+          "src/routes/tenant/access-control.ts",
+          "src/routes/tenant/auth.ts",
+          "src/routes/tenant/users.ts"
+        ],
+        "commandNames": [
+          "assignTenantRole",
+          "authenticateTenantUser",
+          "revokeTenantRole"
+        ],
+        "transactionBoundary": "the source fact, canonical fact, source mapping, idempotency receipt, audit evidence and canonical outbox event must commit in one D1 batch; any failed assertion rolls back the full batch",
+        "idempotencyRule": "one tenant-scoped operation key plus canonical request fingerprint; exact replay returns the original result and changed replay is rejected",
+        "auditOutboxRule": "record actor, tenant, operation, source/public IDs and non-PHI evidence hash; create the canonical outbox row in the same transaction as the business fact"
+      },
+      "providerBoundary": {
+        "implementationStatus": "external_governed",
+        "providerKey": "governed_users_authority_v1",
+        "module": "src/middleware/auth.ts",
+        "supportedModes": [
+          "external"
+        ],
+        "defaultMode": "external",
+        "rollbackMode": "external",
+        "productionEnabled": false,
+        "activationRequiresSeparateAuthorization": true,
+        "rollbackRule": "immediate rollback keeps the governed external authority active and disables only the canonical relationship/provider adapter"
+      },
+      "identityContract": "governed users.id plus exact tenant membership, role and session purpose; authentication user is not practitioner identity",
+      "statusContract": "user and access status remain governed by the existing auth/access-control contract; doctor_auth is compatibility only",
+      "correctionContract": "append role/access/audit changes and revoke credentials; retain users as external authority and archive duplicate doctor_auth only after linked cutover",
+      "moneyContract": {
+        "unit": "not_applicable",
+        "equations": [],
+        "unexplainedVarianceMinor": 0,
+        "roundingRule": "this concept must not create an independent money value or infer one from presentation data"
+      },
+      "reconciliationContract": {
+        "sourceStatus": "partial",
+        "requiredChecks": [
+          "source row count and canonical mapping count reconcile for the bounded tenant/snapshot",
+          "all tenant, public-ID and foreign-key scopes are valid",
+          "second pass creates zero new business rows"
+        ],
+        "abortConditions": [
+          "any unexplained money variance is non-zero",
+          "any identity mapping is inferred from name, phone, numeric-ID coincidence or timestamp proximity",
+          "any tenant-scope or foreign-key violation exists",
+          "the second pass creates any new business row",
+          "the exact build, snapshot, provider mode or rollback target is not bound to the evidence"
+        ]
+      },
+      "compatibilityContract": {
+        "httpRoutes": [
+          "/api/access-control",
+          "/api/approvals",
+          "/api/audit",
+          "/api/auth",
+          "/api/permissions",
+          "/api/settings",
+          "/api/users"
+        ],
+        "uiRoutes": [
+          "/h/:slug/access-control",
+          "/h/:slug/audit",
+          "/h/:slug/settings",
+          "/h/:slug/system-audit"
+        ],
+        "responseRule": "preserve the reviewed HTTP status, response envelope, public identifiers, money units and permission failures until a separately versioned contract is approved",
+        "writeRule": "legacy-compatible responses may remain, but every promoted mutation must cross the frozen command boundary and must not create a second authority"
+      },
+      "migrationContract": {
+        "sourceStatus": "not_required",
+        "executionRule": "production execution is prohibited here; future clone/production work must be tenant-bounded, resumable, idempotent, checkpointed and bound to an exact source snapshot and commit",
+        "secondPassRule": "a completed second pass must create zero new business rows and preserve the source snapshot unchanged",
+        "identityAmbiguityRule": "ambiguous rows become deterministic non-PHI processing issues; no heuristic identity or money repair is allowed"
+      },
+      "retirementContract": {
+        "sourceStatus": "retain_external_authority",
+        "sourceDispositions": [
+          {
+            "table": "doctor_auth",
+            "classification": "duplicate_authority",
+            "disposition": "Merge or remove competing authority."
+          },
+          {
+            "table": "users",
+            "classification": "external_platform_authority",
+            "disposition": "Retain as governed external authority."
+          }
+        ],
+        "retirementRule": "Retain users permanently; archive doctor_auth after migration and observation.",
+        "physicalDeletionRequiresSeparateAuthorization": true
+      }
+    }
+  ],
+  "unresolvedDuplicateAuthorities": [],
+  "nonProductionScopeLeakage": [],
+  "globalInvariants": [
+    "one protected business fact has exactly one frozen Canonical, governed external or governed registry owner boundary",
+    "users and global patient identity remain governed external authorities; no duplicate canonical person table may be introduced",
+    "all financial storage and comparison uses integer minor units and requires zero unexplained variance",
+    "all identity mappings require exact reviewed evidence; names, phone numbers, timestamps and numeric-ID coincidence are prohibited",
+    "posted financial facts, signed clinical history, mappings, audit and reconciliation evidence are corrected by append-only reversal, replacement or supersession",
+    "every provider remains production-disabled and defaults to the current reviewed authority until separately authorized promotion",
+    "every provider has an immediate rollback mode that preserves both legacy and canonical history",
+    "production access, mutation, deployment, traffic change, provider activation and live legacy retirement are not authorized by this contract freeze"
+  ]
+}

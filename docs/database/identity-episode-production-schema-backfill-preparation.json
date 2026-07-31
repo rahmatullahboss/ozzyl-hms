@@ -1,0 +1,332 @@
+{
+  "version": 2,
+  "checkpoint": "CDB-113H-IDENTITY-EPISODE-PRODUCTION-SCHEMA-BACKFILL-PREPARATION",
+  "executionMode": "read_only_preparation",
+  "preparedOn": "2026-07-27",
+  "branch": "program/cdb-main-continuous-20260725",
+  "sourceCommits": {
+    "cdb113gMetadata": "76ebdd4dd",
+    "cdb113gSeal": "6671cb687",
+    "latestMainSync": "41159fc3d"
+  },
+  "production": {
+    "migrationLedgerCount": 487,
+    "wranglerPendingMigrations": [
+      {
+        "name": "0541_canonical_local_sync_protocol.sql",
+        "sha256": "3681118880d0bc654a431f3cb8136b062de7b749a7cfe893a749b171d43af44c",
+        "semanticStatus": "true_pending",
+        "dependsOn": [],
+        "mutationProfile": "create_sync_protocol_tables_and_indexes",
+        "productionPreconditions": [
+          "canonical_outbox_events_exists",
+          "local_sync_remains_disabled"
+        ]
+      },
+      {
+        "name": "0542_canonical_sync_inbox_lifecycle.sql",
+        "sha256": "73da280fef46a30ca454c61ae085ff4a9362b9c6c53ba53bcb4778cf2998abb1",
+        "semanticStatus": "true_pending",
+        "dependsOn": [
+          "0541_canonical_local_sync_protocol.sql"
+        ],
+        "mutationProfile": "alter_sync_inbox_and_add_assertion_table_triggers_indexes",
+        "productionPreconditions": [
+          "canonical_sync_inbox_events_created_by_0541",
+          "local_sync_remains_disabled"
+        ]
+      },
+      {
+        "name": "0543_canonical_sync_outbox_lifecycle.sql",
+        "sha256": "bd67c47bb37b2fa6a248ad951af2588d931c87bfdd2469c8fd22c93caf56149f",
+        "semanticStatus": "true_pending",
+        "dependsOn": [],
+        "mutationProfile": "alter_existing_outbox_and_add_lifecycle_triggers_indexes",
+        "tenant100ExistingRows": 66,
+        "productionPreconditions": [
+          "canonical_outbox_events_exists",
+          "existing_outbox_rows_pass_new_lifecycle_constraints",
+          "local_sync_remains_disabled"
+        ]
+      },
+      {
+        "name": "0544_canonical_tenant_patient_links.sql",
+        "sha256": "ea393e5b963062b6401e21d028ee3e9ad0aa6dd59a4bef8ba3f2b5b1949660cb",
+        "semanticStatus": "true_pending",
+        "dependsOn": [],
+        "mutationProfile": "create_patient_link_and_event_authority",
+        "tenant100SourceRows": 325,
+        "productionPreconditions": [
+          "patients_exists",
+          "global_patient_identity_exists",
+          "no_patient_demographics_copied"
+        ]
+      },
+      {
+        "name": "0545_canonical_practitioner_operational_adoption.sql",
+        "sha256": "f99634ef02f425aa6d27984a2bf23ee0bb075d0f4aca115cbd0674d70f6d4de7",
+        "semanticStatus": "true_pending",
+        "dependsOn": [],
+        "mutationProfile": "alter_existing_practitioner_authority_with_version_and_evidence",
+        "tenant100ExistingRows": 30,
+        "productionPreconditions": [
+          "canonical_practitioners_exists",
+          "version_column_absent",
+          "source_evidence_sha256_column_absent"
+        ]
+      },
+      {
+        "name": "0546_canonical_appointment_authority.sql",
+        "sha256": "49a7ca0ed788cb5c8896fc1dab37871cfdfc34c7cca337fbfb0079e43f4d5646",
+        "semanticStatus": "true_pending",
+        "dependsOn": [
+          "0544_canonical_tenant_patient_links.sql",
+          "0545_canonical_practitioner_operational_adoption.sql"
+        ],
+        "mutationProfile": "create_appointment_intent_status_history_and_encounter_link_authority",
+        "tenant100SourceRows": 141,
+        "productionPreconditions": [
+          "canonical_tenant_patient_links_exists",
+          "canonical_practitioners_operational_columns_exist",
+          "canonical_service_catalog_items_exists",
+          "canonical_encounters_exists"
+        ]
+      },
+      {
+        "name": "0547_patient_merge_map_hardening.sql",
+        "sha256": "28e487aad4674a339a9909cc80c4eb3e7d8179cadc5fb3fa0555d576665d3aaf",
+        "semanticStatus": "schema_equivalent_ledger_name_drift",
+        "productionLedgerName": "0541_patient_merge_map_hardening.sql",
+        "productionSchemaEquivalent": true,
+        "dependsOn": [],
+        "mutationProfile": "expected_noop_schema_equivalent_ledger_reconciliation",
+        "tenant100ExistingRows": 0,
+        "productionPreconditions": [
+          "patient_merge_record_map_schema_and_four_indexes_match_exactly",
+          "future_clone_rehearsal_proves_no_schema_or_row_change"
+        ]
+      },
+      {
+        "name": "0548_canonical_encounter_admission_bed_convergence.sql",
+        "sha256": "99141f240c6c2681b8474f9c5e8dc972994ad12097d430f13cf8d942daf3642d",
+        "semanticStatus": "true_pending_high_risk_rebuild",
+        "dependsOn": [
+          "0544_canonical_tenant_patient_links.sql",
+          "0545_canonical_practitioner_operational_adoption.sql"
+        ],
+        "mutationProfile": "create_location_bed_admission_authority_and_rebuild_encounter_and_bed_stay_tables",
+        "rebuildsTables": [
+          "canonical_encounters",
+          "canonical_bed_stays"
+        ],
+        "tenant100ExistingRowsAtRisk": 262,
+        "tenant100ExistingEncounterRows": 234,
+        "tenant100ExistingBedStayRows": 28,
+        "productionPreconditions": [
+          "protected_export_and_time_travel_bookmark_captured",
+          "clone_serial_migration_rehearsal_zero_loss",
+          "existing_encounter_and_bed_stay_rows_reconcile_exactly",
+          "foreign_key_postcheck_zero_active_violations",
+          "maintenance_window_and_rollback_owner_authorized"
+        ]
+      },
+      {
+        "name": "0549_approval_revision_policy.sql",
+        "sha256": "37ef241634d4c5ee5ab4dd4c1cc4ce880773580fafd31a8a041ea91429b66066",
+        "semanticStatus": "true_pending_non_identity_episode",
+        "dependsOn": [],
+        "mutationProfile": "rebuild_approval_decision_and_event_tables_for_revision_scoped_history",
+        "productionPreconditions": [
+          "approval_requests_and_decision_event_tables_exist",
+          "protected_clone_exact_copy_and_revision_constraint_rehearsal_passes",
+          "no_existing_decision_or_event_rows_are_lost"
+        ]
+      },
+      {
+        "name": "0550_canonical_credit_note_cash_refund_reversals.sql",
+        "sha256": "9ae641666650f795fb9641539741b602e863d736637b16323fb42399ed653d4e",
+        "semanticStatus": "true_pending_non_identity_episode",
+        "dependsOn": [],
+        "mutationProfile": "create_immutable_credit_note_cash_refund_reversal_authority",
+        "productionPreconditions": [
+          "canonical_credit_note_cash_refunds_exists",
+          "protected_clone_schema_and_fk_rehearsal_passes",
+          "no_refund_or_reversal_runtime_activation_occurs"
+        ]
+      }
+    ],
+    "truePendingMigrationCount": 9,
+    "ledgerDriftMigrationCount": 1,
+    "missingIdentityEpisodeAuthorities": [
+      "canonical_tenant_patient_links",
+      "canonical_appointments",
+      "canonical_admissions",
+      "canonical_beds"
+    ],
+    "tenant100Baseline": {
+      "patients": 325,
+      "practitionerSources": 30,
+      "canonicalPractitioners": 30,
+      "appointmentIntents": 141,
+      "legacyEncounters": 0,
+      "visits": 164,
+      "canonicalEncounters": 234,
+      "admissions": 65,
+      "beds": 31,
+      "patientBedInfos": 32,
+      "canonicalBedStays": 28,
+      "canonicalOutboxEvents": 66,
+      "patientMergeRecordMap": 0
+    },
+    "readOnlyEvidence": {
+      "databaseIdentityVerified": true,
+      "changedDbEnvelopeCount": 0,
+      "rowsWritten": 0,
+      "productionMutationPerformed": false
+    },
+    "identityEpisodePendingMigrationCount": 8,
+    "identityEpisodeTruePendingMigrationCount": 7,
+    "unrelatedPendingMigrationCount": 2
+  },
+  "backfillOrder": [
+    {
+      "id": "PATIENT_LINKS",
+      "script": "scripts/canonical/backfill-tenant-patient-links.ts",
+      "dependsOn": [],
+      "tenant100SourceRows": 325,
+      "secondPassRequirement": "zero_new_patient_link_or_event_rows"
+    },
+    {
+      "id": "PRACTITIONERS",
+      "script": "scripts/canonical/backfill-practitioners.ts",
+      "dependsOn": [],
+      "tenant100SourceRows": 30,
+      "secondPassRequirement": "zero_new_practitioner_rows_and_stable_evidence_hashes"
+    },
+    {
+      "id": "APPOINTMENTS",
+      "script": "scripts/canonical/backfill-appointments.ts",
+      "dependsOn": [
+        "PATIENT_LINKS",
+        "PRACTITIONERS"
+      ],
+      "tenant100SourceRows": 141,
+      "secondPassRequirement": "zero_new_appointment_status_or_link_rows"
+    },
+    {
+      "id": "ENCOUNTER_ADMISSION_BED",
+      "script": "scripts/canonical/backfill-encounter-admission-bed-convergence.ts",
+      "dependsOn": [
+        "PATIENT_LINKS",
+        "PRACTITIONERS",
+        "APPOINTMENTS"
+      ],
+      "tenant100SourceRows": 526,
+      "sourceBreakdown": {
+        "canonicalEncounters": 234,
+        "admissions": 65,
+        "beds": 31,
+        "patientBedInfos": 32,
+        "visits": 164
+      },
+      "secondPassRequirement": "zero_new_encounter_admission_location_bed_or_stay_rows"
+    }
+  ],
+  "reconciliationRequirements": [
+    "all_migration_names_and_hashes_match_reviewed_manifest",
+    "all_required_tables_and_columns_exist_after_clone_rehearsal",
+    "patient_link_source_count_equals_link_plus_stable_issue_count",
+    "practitioner_source_count_equals_mapping_plus_stable_issue_count",
+    "appointment_source_count_equals_mapping_plus_stable_issue_count",
+    "canonical_encounter_pre_rebuild_count_equals_post_rebuild_count",
+    "canonical_bed_stay_pre_rebuild_count_equals_post_rebuild_count",
+    "one_active_admission_per_inpatient_encounter",
+    "one_open_bed_stay_per_bed_and_admission",
+    "zero_cross_tenant_relationships",
+    "zero_unexplained_duplicate_active_mappings",
+    "zero_new_business_rows_on_second_pass",
+    "zero_active_foreign_key_violations",
+    "all_provider_flags_remain_disabled"
+  ],
+  "futureStages": [
+    {
+      "id": "H0_PROTECTED_EXPORT_AND_CLONE",
+      "authorizedNow": false,
+      "requires": [
+        "fresh_exact_owner_authorization",
+        "protected_export_path",
+        "pre_action_time_travel_bookmark",
+        "clone_identity_and_empty_or_replace_policy"
+      ]
+    },
+    {
+      "id": "H1_CLONE_SERIAL_MIGRATION_REHEARSAL",
+      "authorizedNow": false,
+      "requires": [
+        "apply_0541_through_0550_only_to_protected_clone_in_exact_order",
+        "prove_0547_schema_equivalent_noop",
+        "prove_0548_rebuild_row_and_schema_parity",
+        "prove_0549_approval_rebuild_exact_copy_and_revision_contract",
+        "prove_0550_refund_reversal_schema_and_fk_contract",
+        "capture_post_rehearsal_bookmark_and_rollback_timing"
+      ]
+    },
+    {
+      "id": "H2_CLONE_BACKFILL_RECONCILIATION",
+      "authorizedNow": false,
+      "requires": [
+        "run_four_backfill_partitions_serially",
+        "zero_write_second_pass",
+        "persistent_aggregate_reconciliation",
+        "zero_active_foreign_key_violations"
+      ]
+    },
+    {
+      "id": "H3_PRODUCTION_SCHEMA_AUTHORIZATION",
+      "authorizedNow": false,
+      "requires": [
+        "separate_schema_mutation_authorization",
+        "maintenance_window",
+        "rollback_owner",
+        "protected_export_and_time_travel_evidence",
+        "clone_zero_loss_receipt"
+      ]
+    },
+    {
+      "id": "H4_PRODUCTION_BACKFILL_AUTHORIZATION",
+      "authorizedNow": false,
+      "requires": [
+        "separate_tenant100_backfill_authorization",
+        "exact_chunk_sizes_and_resume_keys",
+        "zero_write_second_pass",
+        "post_backfill_read_only_reconciliation"
+      ]
+    },
+    {
+      "id": "H5_REPEAT_READONLY_OBSERVATION",
+      "authorizedNow": false,
+      "requires": [
+        "all_four_authorities_present",
+        "all_required_mappings_reconciled",
+        "provider_flags_still_disabled",
+        "new_readonly_observation_window"
+      ]
+    }
+  ],
+  "safety": {
+    "productionMigrationApplied": false,
+    "productionBackfillApplied": false,
+    "productionDataMutationPerformed": false,
+    "providerFlagChanged": false,
+    "routeChanged": false,
+    "trafficChanged": false,
+    "deploymentPerformed": false,
+    "localSyncActivated": false,
+    "legacyReaderRetired": false,
+    "legacyWriterRetired": false,
+    "pushPerformed": false,
+    "cdbToMainIntegrationPerformed": false
+  },
+  "mutationReady": false,
+  "nextCheckpoint": "CDB-113H1-PROTECTED-CLONE-MIGRATION-REHEARSAL-AUTHORIZATION-REQUIRED"
+}

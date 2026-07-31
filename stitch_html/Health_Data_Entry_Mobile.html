@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Sanctuary - Log Vitals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eff1f1",
+                    "on-surface-variant": "#3e494a",
+                    "secondary-fixed-dim": "#abcdd0",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "surface-variant": "#e1e3e3",
+                    "tertiary": "#834718",
+                    "on-primary-fixed": "#002022",
+                    "on-background": "#191c1d",
+                    "on-secondary-fixed": "#002022",
+                    "surface-bright": "#f8fafa",
+                    "secondary-fixed": "#c6e9ec",
+                    "primary-container": "#007b83",
+                    "primary": "#006067",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#6e797a",
+                    "inverse-primary": "#7ad5dd",
+                    "tertiary-container": "#a05f2e",
+                    "surface-dim": "#d8dada",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#bdc9ca",
+                    "on-secondary-fixed-variant": "#2c4c4f",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e1e3e3",
+                    "background": "#f8fafa",
+                    "on-secondary-container": "#4a6a6d",
+                    "tertiary-fixed": "#ffdcc6",
+                    "on-tertiary-container": "#fff1e9",
+                    "inverse-surface": "#2e3131",
+                    "primary-fixed": "#96f1fa",
+                    "surface-container": "#eceeee",
+                    "on-primary-fixed-variant": "#004f54",
+                    "on-surface": "#191c1d",
+                    "surface-container-low": "#f2f4f4",
+                    "secondary-container": "#c6e9ec",
+                    "surface-tint": "#006970",
+                    "secondary": "#446467",
+                    "on-primary-container": "#d0fbff",
+                    "surface-container-high": "#e6e8e9",
+                    "primary-fixed-dim": "#7ad5dd",
+                    "on-tertiary-fixed-variant": "#6f3808",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8fafa",
+                    "on-tertiary-fixed": "#301400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-manrope { font-family: 'Manrope', sans-serif; }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8fafa]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
+<img alt="User" class="w-full h-full object-cover" data-alt="professional headshot of a smiling man in a soft-lit medical office setting, clean and high-end aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtLZYJCZkE2QiClHtaZ9xkKV-N92jPgFGQtz1pCNmw1mWmhtARd4JqOvtY8ICifhNk6g-izQffSq05mihZbjQdqec2Qlk-Un64SrDa8YGtTVI_33RG-0IGJ2P9pz1tmvRsAVTiFMGAbqoKUueocpqukG_TQoHVcTtje2PDhULVgIW2OsUP3PDFZMFPgjP-ct17JPwjwZR3kVwP_y3lgE55GpUieNTQAzA396GZWTU47XKJP-m087FR2nvxVE5yNSR3AtzlpsMqprk"/>
+</div>
+<h1 class="text-lg font-bold text-[#006067] font-manrope tracking-tight">Clinical Sanctuary</h1>
+</div>
+<button class="p-2 text-[#006067] hover:opacity-80 transition-opacity duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</header>
+<main class="pt-24 px-6 max-w-md mx-auto">
+<!-- Segmented Control Toggle -->
+<div class="bg-surface-container-low p-1.5 rounded-full flex items-center mb-8">
+<button class="flex-1 py-2.5 rounded-full bg-surface-container-lowest text-primary font-semibold text-sm shadow-sm transition-all">
+                Log New Data
+            </button>
+<button class="flex-1 py-2.5 rounded-full text-on-surface-variant font-medium text-sm transition-all">
+                View History
+            </button>
+</div>
+<section class="space-y-8">
+<!-- Vitals Section -->
+<div>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-xl font-bold font-manrope tracking-tight text-on-surface">Daily Vitals</h2>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold">Updated: Today, 08:30</span>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Blood Pressure Card -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl space-y-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="monitor_heart">monitor_heart</span>
+<span class="text-xs font-bold uppercase tracking-wider font-manrope">Blood Pressure</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 space-y-1">
+<label class="text-[10px] font-bold text-outline uppercase tracking-tighter ml-1">Systolic</label>
+<input class="w-full bg-surface-container-low border-none rounded-2xl p-4 text-2xl font-bold font-manrope text-on-surface focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant" placeholder="120" type="number"/>
+</div>
+<div class="text-3xl font-light text-outline-variant pt-5">/</div>
+<div class="flex-1 space-y-1">
+<label class="text-[10px] font-bold text-outline uppercase tracking-tighter ml-1">Diastolic</label>
+<input class="w-full bg-surface-container-low border-none rounded-2xl p-4 text-2xl font-bold font-manrope text-on-surface focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant" placeholder="80" type="number"/>
+</div>
+</div>
+</div>
+<!-- Heart Rate Card -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl space-y-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="favorite">favorite</span>
+<span class="text-xs font-bold uppercase tracking-wider font-manrope">Heart Rate</span>
+</div>
+<div class="flex items-end gap-3">
+<div class="flex-1">
+<input class="w-full bg-surface-container-low border-none rounded-2xl p-4 text-2xl font-bold font-manrope text-on-surface focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant" placeholder="72" type="number"/>
+</div>
+<div class="pb-4 text-on-surface-variant font-medium">BPM</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Allergy Tracking Section -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h2 class="text-xl font-bold font-manrope tracking-tight text-on-surface">Allergy Tracking</h2>
+<button class="flex items-center gap-1 text-primary text-sm font-bold font-manrope">
+<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+<span>Add New</span>
+</button>
+</div>
+<div class="bg-surface-container-low rounded-3xl p-4 space-y-3">
+<!-- Allergy Item -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container/30 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface font-manrope">Penicillin</h3>
+<p class="text-xs text-on-surface-variant">Severe Reaction • Medication</p>
+</div>
+</div>
+<button class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Allergy Item -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="nutrition">nutrition</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface font-manrope">Peanuts</h3>
+<p class="text-xs text-on-surface-variant">Mild Reaction • Food</p>
+</div>
+</div>
+<button class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar Shell -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#ffffff]/80 backdrop-blur-xl rounded-t-3xl z-50 shadow-[0_-8px_24px_rgba(0,32,34,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#5f6368] p-3 hover:bg-[#f2f4f4] rounded-2xl transition-all scale-90 active:scale-100 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-widest mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5f6368] p-3 hover:bg-[#f2f4f4] rounded-2xl transition-all scale-90 active:scale-100 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-widest mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5f6368] p-3 hover:bg-[#f2f4f4] rounded-2xl transition-all scale-90 active:scale-100 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-widest mt-1">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5f6368] p-3 hover:bg-[#f2f4f4] rounded-2xl transition-all scale-90 active:scale-100 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+<!-- Sticky Action Button -->
+<div class="fixed bottom-24 left-0 w-full px-6 z-40 pointer-events-none">
+<div class="max-w-md mx-auto">
+<button class="pointer-events-auto w-full py-5 rounded-full bg-gradient-to-br from-[#006067] to-[#007b83] text-white font-bold font-manrope shadow-xl shadow-primary/20 flex items-center justify-center gap-3 active:scale-95 duration-200">
+<span class="material-symbols-outlined text-xl" data-icon="save">save</span>
+<span>Save Vitals</span>
+</button>
+</div>
+</div>
+</body></html>

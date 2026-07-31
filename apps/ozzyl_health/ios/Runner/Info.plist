@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>CFBundleDisplayName</key>
+		<string>Ozzyl Health</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleName</key>
+		<string>ozzyl_health</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(FLUTTER_BUILD_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>LSRequiresIPhoneOS</key>
+		<true/>
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<true/>
+		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<true/>
+		<!-- Location -->
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Ozzyl Health needs your location to find nearby hospitals and healthcare providers.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Ozzyl Health needs your location to find nearby hospitals even when the app is in the background.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>Ozzyl Health needs your location to find nearby hospitals and track your activity.</string>
+		<!-- Camera -->
+		<key>NSCameraUsageDescription</key>
+		<string>Ozzyl Health needs camera access to scan health documents and update your profile photo.</string>
+		<!-- Photo Library -->
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Ozzyl Health needs photo library access to upload health records and profile images.</string>
+		<!-- Notifications -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+			<string>processing</string>
+		</array>
+		<!-- Health (HealthKit) -->
+		<key>NSHealthShareUsageDescription</key>
+		<string>Ozzyl Health reads your health data (steps, heart rate, sleep) to provide personalized wellness insights.</string>
+		<key>NSHealthUpdateUsageDescription</key>
+		<string>Ozzyl Health writes health data to track your wellness progress.</string>
+		<!-- Motion & Fitness -->
+		<key>NSMotionUsageDescription</key>
+		<string>Ozzyl Health uses motion sensors to count your daily steps and track physical activity.</string>
+		<!-- Face ID / Biometric -->
+		<key>NSFaceIDUsageDescription</key>
+		<string>Ozzyl Health uses Face ID to securely access your health data.</string>
+		<!-- Background Task Scheduler -->
+		<key>BGTaskSchedulerPermittedIdentifiers</key>
+		<array>
+			<string>com.ozzyl.health.sync</string>
+			<string>com.ozzyl.health.notifications</string>
+		</array>
+		<key>UIStatusBarHidden</key>
+		<true/>
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<false/>
+	</dict>
+</plist>

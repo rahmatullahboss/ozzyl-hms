@@ -1,0 +1,786 @@
+{
+  "actionCenter": {
+    "eyebrow": "অ্যাকশন সেন্টার",
+    "navigationLabel": "অ্যাকশন সেন্টার",
+    "navigation": {
+      "overview": "ওভারভিউ",
+      "approvals": "অনুমোদন",
+      "exceptions": "ব্যতিক্রম",
+      "collections": "কালেকশন",
+      "tasks": "কাজ"
+    },
+    "loading": "অ্যাকশন সেন্টারের সারসংক্ষেপ লোড হচ্ছে…",
+    "stale": "সংখ্যাগুলো সাময়িকভাবে পাওয়া যাচ্ছে না। কিউ-এর কাজগুলো ব্যবহার করা যাবে।",
+    "capabilityUnavailable": "এই ওয়ার্কফ্লো এখনো সক্রিয় নয়।",
+    "overview": {
+      "title": "অ্যাকশন সেন্টার",
+      "subtitle": "একটি অপারেশনাল ওয়ার্কস্পেস থেকে অনুমোদন, ঝুঁকি, বকেয়া ও ফলো-আপ অগ্রাধিকার দিন।",
+      "loadError": "ওভারভিউ রিফ্রেশ করা যায়নি। কিউ নেভিগেশন ব্যবহার করা যাবে।",
+      "metricsLabel": "অপারেশনাল পরিমাপক",
+      "open": "খোলা",
+      "reviewOnly": "শুধু রিভিউ",
+      "notActive": "সক্রিয় নয়",
+      "metrics": {
+        "pending": "পেন্ডিং অনুমোদন",
+        "pendingDetail": "বর্তমানে রিভিউয়ের অপেক্ষায় থাকা সিদ্ধান্ত",
+        "highPriority": "উচ্চ অগ্রাধিকার",
+        "highPriorityDetail": "মনোযোগ প্রয়োজন এমন আর্থিক বা অপারেশনাল ঝুঁকি",
+        "slaBreached": "এসএলএ অতিক্রান্ত",
+        "slaBreachedDetail": "নির্ধারিত রিভিউ সময় পার হওয়া অনুমোদন",
+        "receivables": "খোলা বকেয়া",
+        "receivablesDetail": "ধনাত্মক বকেয়া থাকা ইনভয়েস",
+        "exposure": "মোট বকেয়া এক্সপোজার",
+        "exposureDetail": "যোগ্য সব বিলের বর্তমান বকেয়া পরিমাণ",
+        "resolvedToday": "আজ সমাধান হয়েছে",
+        "resolvedTodayDetail": "আজ সম্পন্ন হওয়া অনুমোদন সিদ্ধান্ত"
+      },
+      "workstreamsTitle": "অপারেশনাল ওয়ার্কস্ট্রিম",
+      "workstreamsSubtitle": "সিদ্ধান্তের কিউ ডুপ্লিকেট না করে সঠিক ওয়ার্কস্পেস খুলুন।",
+      "workstreams": {
+        "approvals": {
+          "title": "অনুমোদন",
+          "description": "প্রমাণ দেখুন, তথ্য চান, অনুমোদন বা প্রত্যাখ্যান করুন।",
+          "action": "অনুমোদন রিভিউ"
+        },
+        "exceptions": {
+          "title": "ব্যতিক্রম",
+          "activeDescription": "অপারেশনাল ব্যতিক্রম গ্রহণ, অ্যাসাইন ও সমাধান করুন।",
+          "previewDescription": "সতর্কতাগুলো রিভিউ করা যাবে; গ্রহণ ও সমাধানের ওয়ার্কফ্লো এখনো সক্রিয় নয়।",
+          "action": "সতর্কতা রিভিউ"
+        },
+        "collections": {
+          "title": "কালেকশন",
+          "activeDescription": "যোগাযোগ, পেমেন্ট প্রতিশ্রুতি, আপত্তি ও এসকেলেশন পরিচালনা করুন।",
+          "previewDescription": "বর্তমান বকেয়া রিভিউ করা যাবে; কালেকশন কেসের অ্যাকশন এখনো সক্রিয় নয়।",
+          "action": "বকেয়া রিভিউ"
+        },
+        "tasks": {
+          "title": "কাজ",
+          "activeDescription": "অ্যাসাইন করা কাজ ও সময়সীমা পরিচালনা করুন।",
+          "previewDescription": "কাজ অ্যাসাইনমেন্টের ওয়ার্কফ্লো এখনো সক্রিয় নয়।",
+          "action": "কাজ খুলুন"
+        }
+      },
+      "nextBestAction": {
+        "title": "পরবর্তী সেরা কাজ",
+        "reviewPending": "সবচেয়ে পুরোনো পেন্ডিং অনুমোদন রিভিউ করুন",
+        "description": "সবচেয়ে পুরোনো বা উচ্চ অগ্রাধিকারের সিদ্ধান্ত দিয়ে শুরু করুন।",
+        "action": "পুরোনো অনুমোদন রিভিউ",
+        "clearTitle": "এখন কোনো অনুমোদন সিদ্ধান্ত অপেক্ষায় নেই।",
+        "clearDescription": "বকেয়া বা অপারেশনাল রিপোর্ট দেখতে ওয়ার্কস্ট্রিম কার্ড ব্যবহার করুন।"
+      }
+    }
+  },
+  "pendingApprovals": {
+    "title": "পেন্ডিং অনুমোদন",
+    "reviewUx": {
+      "governanceReview": "গভর্ন্যান্স রিভিউ",
+      "revision": "রিভিশন {{revision}}",
+      "approvalProgress": "{{count}}/{{required}} অনুমোদন",
+      "currentUserApproved": "আপনি এই রিভিশন অনুমোদন করেছেন",
+      "firstApprovalRecorded": "প্রথম অনুমোদন রেকর্ড হয়েছে",
+      "firstApprovalPending": "প্রথম অনুমোদন বাকি",
+      "finalApprovalRecorded": "চূড়ান্ত অনুমোদন রেকর্ড হয়েছে",
+      "finalApprovalPending": "চূড়ান্ত অনুমোদন বাকি",
+      "approvalRecorded": "অনুমোদন রেকর্ড হয়েছে",
+      "approvalPending": "অনুমোদন বাকি",
+      "executedRefundTitle": "রিফান্ড সম্পন্ন — রিভিউ অপেক্ষমাণ",
+      "executedRefundDescription": "আর্থিক রিফান্ড ইতিমধ্যে রেকর্ড হয়েছে। অনুমোদন সিদ্ধান্ত শুধু পরবর্তী গভর্ন্যান্স রিভিউ; এতে রিফান্ড আবার পরিশোধ হবে না।",
+      "actions": {
+        "approve": "অনুমোদন করুন",
+        "recordFirst": "প্রথম অনুমোদন রেকর্ড করুন",
+        "giveFinal": "চূড়ান্ত অনুমোদন দিন",
+        "retryExecution": "কার্যকরকরণ পুনরায় চেষ্টা করুন",
+        "returnForCorrection": "সংশোধনের জন্য ফেরত দিন",
+        "reject": "বাতিল করুন",
+        "rejectReverseRefund": "বাতিল করে রিফান্ড রিভার্স করুন",
+        "confirm": "{{action}} নিশ্চিত করুন",
+        "cancel": "বাতিল",
+        "saving": "সংরক্ষণ হচ্ছে…"
+      },
+      "approvalNote": "অনুমোদন নোট",
+      "approvalNoteRequired": "অনুমোদন নোট (আবশ্যক)",
+      "approvalNoteOptional": "অনুমোদন নোট (ঐচ্ছিক)",
+      "approvalNotePlaceholderRequired": "কোন প্রমাণ যাচাই করেছেন এবং কেন অনুমোদন দিচ্ছেন তা লিখুন।",
+      "approvalNotePlaceholderOptional": "ঐচ্ছিক রিভিউ নোট লিখুন।",
+      "reviewOnlyExplanation": "এটি শুধু গভর্ন্যান্স সিদ্ধান্ত রেকর্ড করে। অনুমোদনের কারণে সম্পন্ন আর্থিক কাজ পুনরায় চলবে না।",
+      "dialog": {
+        "header": "অনুমোদন #{{id}} · রিভিশন {{revision}}",
+        "description": "নিয়ন্ত্রিত সিদ্ধান্ত নিশ্চিত করার আগে ফলাফলগুলো পর্যালোচনা করুন।",
+        "close": "সিদ্ধান্ত ডায়ালগ বন্ধ করুন",
+        "closeBackdrop": "সিদ্ধান্ত ডায়ালগের ব্যাকড্রপ বন্ধ করুন",
+        "returnTitle": "সংশোধনের জন্য ফেরত দিন",
+        "rejectRefundTitle": "বাতিল করে রিফান্ড রিভার্স করুন",
+        "rejectTitle": "অনুরোধ বাতিল করুন",
+        "currentApprovalSuperseded": "বর্তমান {{count}}/{{required}} অনুমোদন অকার্যকর হিসেবে সংরক্ষিত হবে।",
+        "revisionReset": "রিভিশন {{revision}} আবার ০/{{required}} থেকে শুরু হবে। আগের সিদ্ধান্তগুলো অডিট ইতিহাসে থাকবে।",
+        "financialStateUnchangedTitle": "ফেরত দিলে আর্থিক অবস্থা রোলব্যাক হবে না।",
+        "financialStateUnchangedDescription": "পরবর্তী রিভিশনের সংশোধন জমা হওয়া পর্যন্ত সম্পন্ন রিফান্ড আর্থিকভাবে রেকর্ডই থাকবে।",
+        "correctionReason": "সংশোধনের কারণ",
+        "correctionReasonPlaceholder": "রিভিউ আবার শুরু করার আগে কী ঠিক করতে হবে তা স্পষ্টভাবে লিখুন।",
+        "requiredCorrections": "প্রয়োজনীয় সংশোধন বা প্রমাণ",
+        "requiredCorrectionsPlaceholder": "প্রতি লাইনে একটি আইটেম, যেমন: সংশোধিত রসিদ",
+        "requiredCorrectionsHelp": "আইটেমগুলো অনুরোধকারীর কাছে কাঠামোবদ্ধ সংশোধন তালিকা হিসেবে দেখানো হবে।",
+        "financialReversalTitle": "রিফান্ডটি আর্থিকভাবে রিভার্স হবে।",
+        "financialReversalDescription": "ইনভয়েস, ক্রেডিট নোট, কমিশন এবং ক্যানোনিক্যাল রেকর্ড সমন্বয় হবে। নিচে নগদ অর্থের অবস্থা আলাদাভাবে নির্ধারণ করতে হবে।",
+        "rejectionReason": "বাতিলের কারণ",
+        "rejectionReasonPlaceholder": "অনুরোধ বাতিলের প্রমাণ ও কারণ লিখুন।",
+        "cashResolution": "নগদ অর্থের নিষ্পত্তি",
+        "openDispute": "ক্যাশ রিকভারি ডিসপিউট খুলুন",
+        "openDisputeDescription": "ডিফল্ট ও নিরাপদ অপশন। দ্বিতীয়বার ক্যাশ আউট হবে না; অর্থটি ট্র্যাক করা আদায়যোগ্য পাওনা হিসেবে থাকবে।",
+        "cashReturned": "নগদ অর্থ ইতিমধ্যে ফেরত এসেছে",
+        "cashReturnedDescription": "মূল কাউন্টার সেশন ফেরত অর্থ গ্রহণ ও যাচাইয়ের জন্য যোগ্য হলেই এটি ব্যবহার করা যাবে।",
+        "cashAcknowledgement": "আমি নিশ্চিত করছি যে যোগ্য মূল কাউন্টারে নগদ অর্থ গ্রহণ ও যাচাই করা হয়েছে।",
+        "terminalRejection": "এই সিদ্ধান্ত বর্তমান অনুরোধের জন্য চূড়ান্ত। কারণটি অডিট ইতিহাসে থাকবে।",
+        "returnSubmit": "ফেরত দিয়ে রিভিশন {{revision}} শুরু করুন",
+        "rejectReverseSubmit": "বাতিল করে রিফান্ড রিভার্স করুন",
+        "rejectSubmit": "অনুরোধ বাতিল করুন"
+      }
+    },
+    "summary": {
+      "totalPending": "মোট পেন্ডিং",
+      "highPriority": "উচ্চ অগ্রাধিকার",
+      "olderThan24h": "২৪ ঘণ্টার বেশি পুরোনো",
+      "slaBreached": "এসএলএ অতিক্রান্ত",
+      "dueSoon": "শিগগির সময়সীমা শেষ",
+      "blocked": "সিদ্ধান্ত আটকে আছে",
+      "cashHandover": "ক্যাশ গরমিল / আপত্তি",
+      "missingEvidence": "প্রমাণ অনুপস্থিত",
+      "executionFailed": "কার্যকর করা ব্যর্থ",
+      "needsInfo": "তথ্য প্রয়োজন",
+      "todayApproved": "আজ অনুমোদিত"
+    },
+    "tabs": {
+      "all": "সব",
+      "discount": "ডিসকাউন্ট",
+      "refund": "রিফান্ড",
+      "expense": "খরচ",
+      "billCancel": "বিল বাতিল",
+      "paymentVoid": "পেমেন্ট ভয়েড",
+      "stockAdjustment": "স্টক সমন্বয়",
+      "doctorPayout": "ডাক্তার পেমেন্ট",
+      "manualAdjustment": "ম্যানুয়াল সমন্বয়"
+    },
+    "empty": "কোনো পেন্ডিং অনুমোদন পাওয়া যায়নি",
+    "table": {
+      "requestId": "রিকোয়েস্ট আইডি",
+      "type": "ধরন",
+      "requestedBy": "অনুরোধকারী",
+      "department": "বিভাগ",
+      "amount": "পরিমাণ",
+      "reason": "কারণ",
+      "submittedAt": "জমা দেওয়ার সময়",
+      "risk": "ঝুঁকি",
+      "status": "স্ট্যাটাস"
+    },
+    "bulk": {
+      "approveSelected": "নির্বাচিতগুলো অনুমোদন করুন",
+      "rejectSelected": "নির্বাচিতগুলো বাতিল করুন",
+      "approveConfirm": "নির্বাচিত সব আইটেম অনুমোদন করবেন?",
+      "rejectConfirm": "নির্বাচিত সব আইটেম বাতিল করবেন?"
+    },
+    "toast": {
+      "approvalUpdated": "অনুমোদন আপডেট হয়েছে",
+      "updateFailed": "অনুমোদন আপডেট করতে ব্যর্থ হয়েছে",
+      "approvedRequests": "{{count}}টি রিকোয়েস্ট অনুমোদিত হয়েছে",
+      "bulkResult": "{{succeeded}}টি সফল, {{failed}}টি ব্যর্থ",
+      "bulkFailed": "বাল্ক রিভিউ ব্যর্থ হয়েছে",
+      "convertedToCreditNote": "বিলে পেমেন্ট আছে — ক্রেডিট নোট {{creditNoteNo}} রিভিউ-এর জন্য তৈরি হয়েছে।"
+    },
+    "typeLabels": {
+      "discount": "ডিসকাউন্ট",
+      "refund": "রিফান্ড",
+      "expense": "খরচ",
+      "bill_cancellation": "বিল বাতিল",
+      "payment_void": "পেমেন্ট ভয়েড",
+      "stock_adjustment": "স্টক সমন্বয়",
+      "doctor_payout": "ডাক্তার পেমেন্ট",
+      "receivable_write_off": "পাওনা মওকুফ",
+      "manual_adjustment": "ম্যানুয়াল সমন্বয়"
+    },
+    "riskLabels": {
+      "low": "কম",
+      "medium": "মাঝারি",
+      "high": "উচ্চ"
+    },
+    "statusLabels": {
+      "pending": "পেন্ডিং",
+      "approved": "অনুমোদিত",
+      "rejected": "বাতিল"
+    },
+    "titleTodayApproved": "আজকের অনুমোদিত",
+    "backToPending": "পেন্ডিং-এ ফিরে যান",
+    "filter": {
+      "activeHigh": "শুধুমাত্র উচ্চ-অগ্রাধিকার অনুরোধ দেখানো হচ্ছে",
+      "activeStale": "শুধুমাত্র ২৪ ঘণ্টার বেশি পুরোনো অনুরোধ দেখানো হচ্ছে",
+      "clear": "ফিল্টার মুছুন"
+    }
+  },
+  "alerts": {
+    "loading": "ব্যতিক্রমগুলো লোড হচ্ছে…",
+    "title": "সতর্কতা ও ব্যতিক্রম",
+    "subtitle": "স্থায়ী অপারেশনাল ব্যতিক্রম স্বীকার, দায়িত্ব গ্রহণ, তদন্ত, সাময়িক স্থগিত, সমাধান বা false positive হিসেবে বাতিল করুন।",
+    "refresh": "কিউ রিফ্রেশ করুন",
+    "close": "ব্যতিক্রমের বিস্তারিত বন্ধ করুন",
+    "error": "ব্যতিক্রমের কিউ লোড করা যায়নি।",
+    "retry": "আবার চেষ্টা করুন",
+    "stale": "সর্বশেষ রিফ্রেশ ব্যর্থ হয়েছে। আগে লোড হওয়া কেসগুলো এখনো দেখা যাচ্ছে।",
+    "emptyTitle": "এই ফিল্টারে কোনো ব্যতিক্রম নেই",
+    "empty": "ফিল্টার পরিবর্তন করুন অথবা পরবর্তী detector run-এর পরে রিফ্রেশ করুন।",
+    "openSource": "মূল রেকর্ড খুলুন",
+    "unassigned": "দায়িত্ব দেওয়া হয়নি",
+    "systemActor": "সিস্টেম",
+    "actionError": "ব্যতিক্রমের অ্যাকশন সম্পন্ন করা যায়নি।",
+    "conflict": "আপনি খোলার পরে কেসটি পরিবর্তিত হয়েছে। আবার অ্যাকশন নেওয়ার আগে রিফ্রেশ করুন।",
+    "refreshCase": "কেস রিফ্রেশ করুন",
+    "summary": {
+      "label": "ব্যতিক্রমের সারসংক্ষেপ",
+      "total": "মোট কেস",
+      "totalAlerts": "মোট সতর্কতা",
+      "critical": "ক্রিটিক্যাল",
+      "warning": "সতর্কতা",
+      "info": "তথ্য"
+    },
+    "filters": {
+      "label": "ব্যতিক্রমের ফিল্টার",
+      "status": "স্ট্যাটাস",
+      "severity": "গুরুত্ব",
+      "type": "রুলের ধরন",
+      "assignee": "দায়িত্বপ্রাপ্ত",
+      "search": "খুঁজুন",
+      "searchPlaceholder": "শিরোনাম, উৎস বা রুল খুঁজুন…",
+      "allSeverities": "সব গুরুত্ব",
+      "allTypes": "সব রুল",
+      "allAssignees": "সব দায়িত্বপ্রাপ্ত",
+      "assignedToMe": "আমার দায়িত্বে"
+    },
+    "severity": {
+      "critical": "ক্রিটিক্যাল",
+      "warning": "সতর্কতা",
+      "info": "তথ্য"
+    },
+    "status": {
+      "all": "সব স্ট্যাটাস",
+      "active": "সক্রিয় কাজ",
+      "open": "খোলা",
+      "acknowledged": "স্বীকার করা হয়েছে",
+      "in_progress": "তদন্ত চলছে",
+      "snoozed": "সাময়িক স্থগিত",
+      "resolved": "সমাধান হয়েছে",
+      "dismissed": "বাতিল করা হয়েছে"
+    },
+    "rules": {
+      "cash": { "stale_handover": "পুরোনো ক্যাশ হ্যান্ডওভার" },
+      "billing": {
+        "high_discount": "অস্বাভাবিক বেশি ডিসকাউন্ট",
+        "missing_discount_reference": "ডিসকাউন্ট অনুমোদনকারী উল্লেখ নেই",
+        "same_day_cancellation": "একই দিনের বিল বাতিল"
+      },
+      "inventory": { "low_stock": "ওষুধের কম স্টক" }
+    },
+    "table": {
+      "exception": "ব্যতিক্রম",
+      "type": "ধরন",
+      "severity": "গুরুত্ব",
+      "module": "মডিউল",
+      "message": "বার্তা",
+      "user": "ব্যবহারকারী",
+      "time": "সময়",
+      "status": "স্ট্যাটাস",
+      "assignee": "দায়িত্বপ্রাপ্ত",
+      "age": "SLA সময়",
+      "updated": "সর্বশেষ আপডেট",
+      "source": "মূল রেকর্ড"
+    },
+    "pagination": {
+      "summary": "পৃষ্ঠা {{page}} / {{totalPages}} · মোট {{total}} কেস",
+      "previous": "আগের পৃষ্ঠা",
+      "next": "পরের পৃষ্ঠা"
+    },
+    "drawer": {
+      "eyebrow": "ব্যতিক্রম কেস",
+      "loadingTitle": "ব্যতিক্রম লোড হচ্ছে…",
+      "loading": "ব্যতিক্রমের বিস্তারিত লোড হচ্ছে…",
+      "error": "ব্যতিক্রমের বিস্তারিত লোড করা যায়নি।",
+      "actionsTitle": "কেস অ্যাকশন",
+      "reopenTitle": "কেসটি আবার খুলুন",
+      "timelineTitle": "কেস টাইমলাইন",
+      "timelineLoading": "টাইমলাইন লোড হচ্ছে…",
+      "timelineEmpty": "এখনো কোনো টাইমলাইন ইভেন্ট নেই।"
+    },
+    "actions": {
+      "acknowledge": "স্বীকার করুন",
+      "assignToMe": "আমাকে দায়িত্ব দিন",
+      "start": "তদন্ত শুরু করুন",
+      "snooze": "সাময়িক স্থগিত করুন",
+      "resolve": "কেস সমাধান করুন",
+      "dismiss": "False positive হিসেবে বাতিল করুন",
+      "reopen": "কেস আবার খুলুন"
+    },
+    "fields": {
+      "rule": "রুল",
+      "module": "মডিউল",
+      "assignee": "দায়িত্বপ্রাপ্ত",
+      "slaAge": "SLA সময়",
+      "firstDetected": "প্রথম শনাক্ত",
+      "lastDetected": "সর্বশেষ শনাক্ত",
+      "snoozedUntil": "যতক্ষণ স্থগিত থাকবে",
+      "resolutionCode": "সমাধান কোড",
+      "resolutionNote": "সমাধানের নোট",
+      "dismissalReason": "বাতিলের কারণ",
+      "reopenNote": "আবার খোলার নোট"
+    },
+    "events": {
+      "created": "কেস তৈরি হয়েছে",
+      "acknowledged": "স্বীকার করা হয়েছে",
+      "assigned": "দায়িত্ব দেওয়া হয়েছে",
+      "started": "তদন্ত শুরু হয়েছে",
+      "snoozed": "সাময়িক স্থগিত হয়েছে",
+      "resolved": "সমাধান হয়েছে",
+      "auto_resolved": "স্বয়ংক্রিয়ভাবে সমাধান হয়েছে",
+      "dismissed": "বাতিল করা হয়েছে",
+      "reopened": "আবার খোলা হয়েছে"
+    },
+    "tabs": {
+      "all": "সব",
+      "critical": "ক্রিটিক্যাল",
+      "warning": "সতর্কতা",
+      "info": "তথ্য"
+    },
+    "severityLabels": {
+      "critical": "ক্রিটিক্যাল",
+      "warning": "সতর্কতা",
+      "info": "তথ্য"
+    },
+    "statusLabels": {
+      "open": "ওপেন",
+      "closed": "বন্ধ",
+      "resolved": "সমাধান হয়েছে",
+      "acknowledged": "স্বীকার করা হয়েছে"
+    }
+  },
+  "tasks": {
+    "loading": "টাস্ক লোড হচ্ছে…",
+    "title": "টাস্ক ও ফলো-আপ",
+    "subtitle": "একটি কিউ থেকে অপারেশনাল ফলো-আপ বরাদ্দ, অগ্রাধিকার, সমাধান ও অডিট করুন।",
+    "refresh": "রিফ্রেশ",
+    "error": "টাস্ক লোড করা যায়নি। আবার চেষ্টা করুন।",
+    "retry": "আবার চেষ্টা করুন",
+    "emptyTitle": "মিল থাকা টাস্ক নেই",
+    "empty": "ভিউ বা ফিল্টার পরিবর্তন করুন, অথবা নতুন ফলো-আপ তৈরি হলে আবার দেখুন।",
+    "conflict": "আপনি খোলার পর টাস্কটি পরিবর্তিত হয়েছে। নতুন পদক্ষেপের আগে রিফ্রেশ করুন।",
+    "actionError": "টাস্কের পদক্ষেপটি সম্পন্ন হয়নি। তথ্য যাচাই করে আবার চেষ্টা করুন।",
+    "views": {
+      "mine": "আমার টাস্ক",
+      "team": "টিমের টাস্ক",
+      "dueToday": "আজকের মধ্যে",
+      "overdue": "সময় পেরিয়েছে",
+      "completed": "সম্পন্ন"
+    },
+    "filters": {
+      "view": "টাস্ক ভিউ",
+      "priority": "অগ্রাধিকার",
+      "allPriorities": "সব অগ্রাধিকার",
+      "sourceType": "উৎস",
+      "allSources": "সব উৎস",
+      "search": "খুঁজুন",
+      "searchPlaceholder": "টাস্কের শিরোনাম বা উৎস খুঁজুন"
+    },
+    "source": {
+      "exception": "এক্সসেপশন",
+      "collection": "কালেকশন",
+      "manual": "ম্যানুয়াল"
+    },
+    "table": {
+      "task": "টাস্ক",
+      "priority": "অগ্রাধিকার",
+      "status": "স্ট্যাটাস",
+      "assignee": "দায়িত্বপ্রাপ্ত",
+      "due": "সময়সীমা",
+      "source": "উৎস"
+    },
+    "priorityLabels": {
+      "critical": "জরুরি",
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম"
+    },
+    "statusLabels": {
+      "open": "ওপেন",
+      "in_progress": "চলমান",
+      "completed": "সম্পন্ন",
+      "cancelled": "বাতিল",
+      "overdue": "সময় পেরিয়েছে"
+    },
+    "actions": {
+      "openSource": "উৎস খুলুন",
+      "assign": "দায়িত্ব দিন",
+      "start": "শুরু করুন",
+      "reschedule": "সময় পরিবর্তন",
+      "complete": "সম্পন্ন করুন",
+      "cancel": "বাতিল করুন",
+      "close": "টাস্কের বিস্তারিত বন্ধ করুন",
+      "closeDialog": "বন্ধ করুন",
+      "saveAssignment": "দায়িত্ব সংরক্ষণ",
+      "startTask": "টাস্ক শুরু করুন",
+      "saveSchedule": "সময় সংরক্ষণ",
+      "completeTask": "টাস্ক সম্পন্ন করুন",
+      "cancelTask": "টাস্ক বাতিল করুন",
+      "refreshTask": "টাস্ক রিফ্রেশ করুন"
+    },
+    "pagination": {
+      "previous": "আগের পৃষ্ঠা",
+      "next": "পরের পৃষ্ঠা",
+      "summary": "পৃষ্ঠা {{page}} / {{totalPages}}"
+    },
+    "drawer": {
+      "priority": "অগ্রাধিকার",
+      "status": "স্ট্যাটাস",
+      "assignee": "দায়িত্বপ্রাপ্ত",
+      "unassigned": "দায়িত্ব দেওয়া হয়নি",
+      "due": "সময়সীমা",
+      "source": "টাস্কের বিস্তারিত",
+      "created": "তৈরি হয়েছে",
+      "updated": "আপডেট হয়েছে",
+      "completedBy": "সম্পন্ন করেছেন",
+      "completionNote": "সমাপ্তির নোট",
+      "actions": "টাস্ক অ্যাকশন",
+      "fields": {
+        "assignee": "দায়িত্বপ্রাপ্ত",
+        "noteOptional": "নোট (ঐচ্ছিক)",
+        "noteRequired": "নোট (আবশ্যক)",
+        "dueAt": "নতুন তারিখ ও সময়"
+      },
+      "dialog": {
+        "assignTitle": "টাস্কের দায়িত্ব দিন",
+        "startTitle": "টাস্ক শুরু করুন",
+        "rescheduleTitle": "টাস্কের সময় পরিবর্তন করুন",
+        "completeTitle": "টাস্ক সম্পন্ন করুন",
+        "cancelTitle": "টাস্ক বাতিল করুন"
+      }
+    },
+    "timeline": {
+      "title": "টাইমলাইন",
+      "empty": "টাস্কের কোনো কার্যক্রম রেকর্ড হয়নি।",
+      "system": "সিস্টেম",
+      "by": "কর্তৃক"
+    },
+    "event": {
+      "created": "তৈরি হয়েছে",
+      "assigned": "দায়িত্ব দেওয়া হয়েছে",
+      "started": "শুরু হয়েছে",
+      "rescheduled": "সময় পরিবর্তিত হয়েছে",
+      "completed": "সম্পন্ন হয়েছে",
+      "cancelled": "বাতিল হয়েছে",
+      "source_relinked": "উৎস পুনঃসংযুক্ত হয়েছে",
+      "reopened": "আবার খোলা হয়েছে",
+      "updated": "আপডেট হয়েছে"
+    }
+  },
+  "auditExplorer": {
+    "loading": "লোড হচ্ছে...",
+    "title": "অডিট এক্সপ্লোরার",
+    "subtitle": "সিস্টেমের সব কার্যক্রমের সম্পূর্ণ অডিট ট্রেইল",
+    "filters": "ফিল্টার",
+    "filterPanel": {
+      "dateRange": "তারিখের পরিসর",
+      "user": "ব্যবহারকারী",
+      "searchUser": "ব্যবহারকারী খুঁজুন...",
+      "role": "রোল",
+      "allRoles": "সব রোল",
+      "module": "মডিউল",
+      "allModules": "সব মডিউল",
+      "eventType": "ইভেন্ট টাইপ",
+      "allEvents": "সব ইভেন্ট",
+      "invoiceRecord": "ইনভয়েস / রেকর্ড",
+      "search": "খুঁজুন..."
+    },
+    "summary": {
+      "totalEvents": "মোট ইভেন্ট",
+      "highSeverity": "উচ্চ গুরুত্ব",
+      "mediumSeverity": "মাঝারি গুরুত্ব",
+      "lowSeverity": "কম গুরুত্ব"
+    },
+    "tabs": {
+      "all": "সব",
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম"
+    },
+    "empty": "কোনো অডিট ইভেন্ট পাওয়া যায়নি",
+    "table": {
+      "time": "সময়",
+      "user": "ব্যবহারকারী",
+      "event": "ইভেন্ট",
+      "module": "মডিউল",
+      "record": "রেকর্ড",
+      "ip": "আইপি",
+      "severity": "গুরুত্ব"
+    },
+    "severityLabels": {
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম"
+    },
+    "diff": {
+      "before": "আগে",
+      "after": "পরে"
+    }
+  },
+  "loginSessions": {
+    "title": "লগইন সেশন",
+    "activeSessions": "সক্রিয় সেশন",
+    "todayLogins": "আজকের লগইন",
+    "uniqueUsers": "ইউনিক ব্যবহারকারী",
+    "suspicious": "সন্দেহজনক",
+    "all": "সব",
+    "active": "সক্রিয়",
+    "expired": "মেয়াদোত্তীর্ণ",
+    "noData": "কোনো লগইন সেশন পাওয়া যায়নি",
+    "user": "ব্যবহারকারী",
+    "device": "ডিভাইস",
+    "ip": "আইপি",
+    "browser": "ব্রাউজার",
+    "loginTime": "লগইন সময়",
+    "lastActive": "শেষ সক্রিয়",
+    "branch": "শাখা",
+    "status": "স্ট্যাটাস",
+    "statusLabels": {
+      "active": "সক্রিয়",
+      "suspicious": "সন্দেহজনক",
+      "expired": "মেয়াদোত্তীর্ণ"
+    }
+  },
+  "financialAudit": {
+    "loading": "লোড হচ্ছে...",
+    "title": "আর্থিক কার্যক্রম অডিট",
+    "summary": {
+      "totalEvents": "মোট ইভেন্ট",
+      "highSeverity": "উচ্চ গুরুত্ব",
+      "activeUsers": "সক্রিয় ব্যবহারকারী",
+      "modulesAffected": "প্রভাবিত মডিউল"
+    },
+    "tabs": {
+      "all": "সব",
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম"
+    },
+    "empty": "কোনো অডিট এন্ট্রি পাওয়া যায়নি",
+    "table": {
+      "time": "সময়",
+      "user": "ব্যবহারকারী",
+      "event": "ইভেন্ট",
+      "module": "মডিউল",
+      "record": "রেকর্ড",
+      "ip": "আইপি",
+      "severity": "গুরুত্ব"
+    },
+    "severityLabels": {
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম"
+    }
+  },
+  "suspiciousActivities": {
+    "title": "সন্দেহজনক কার্যক্রম",
+    "autoDetectionRules": "অটো ডিটেকশন রুল",
+    "noData": "কোনো সন্দেহজনক কার্যক্রম পাওয়া যায়নি",
+    "summary": {
+      "totalAlerts": "মোট সতর্কতা",
+      "critical": "ক্রিটিক্যাল",
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম",
+      "resolved": "সমাধান হয়েছে"
+    },
+    "tabs": {
+      "all": "সব"
+    },
+    "rules": {
+      "highDiscount": "উচ্চ ডিসকাউন্ট অনুমোদন",
+      "unusualReference": "অস্বাভাবিক রেফারেন্স ব্যবহার",
+      "refundSpike": "রিফান্ড বৃদ্ধির শনাক্তকরণ",
+      "repeatedCancellations": "বারবার বিল বাতিল",
+      "cashShortage": "ক্যাশ শর্টেজ প্যাটার্ন",
+      "sharedPin": "শেয়ারড পিন বা অ্যাকাউন্ট আচরণ",
+      "nightExports": "রাতের এক্সপোর্ট কার্যক্রম",
+      "stockManipulation": "স্টক ম্যানিপুলেশন সিগন্যাল",
+      "bulkAccess": "বাল্ক রোগী রেকর্ড অ্যাক্সেস"
+    },
+    "table": {
+      "rule": "রুল",
+      "description": "বিবরণ",
+      "severity": "গুরুত্ব",
+      "user": "ব্যবহারকারী",
+      "detected": "শনাক্ত সময়",
+      "status": "স্ট্যাটাস"
+    },
+    "severityLabels": {
+      "critical": "ক্রিটিক্যাল",
+      "high": "উচ্চ",
+      "medium": "মাঝারি",
+      "low": "কম"
+    },
+    "statusLabels": {
+      "open": "ওপেন",
+      "investigating": "তদন্তাধীন",
+      "resolved": "সমাধান হয়েছে",
+      "dismissed": "বাতিল"
+    }
+  },
+  "exportHistory": {
+    "title": "এক্সপোর্ট হিস্টরি",
+    "totalExports": "মোট এক্সপোর্ট",
+    "today": "আজ",
+    "uniqueUsers": "ইউনিক ব্যবহারকারী",
+    "csv": "CSV",
+    "pdf": "PDF",
+    "all": "সব",
+    "noData": "কোনো এক্সপোর্ট হিস্টরি পাওয়া যায়নি",
+    "time": "সময়",
+    "user": "ব্যবহারকারী",
+    "report": "রিপোর্ট",
+    "format": "ফরম্যাট",
+    "filters": "ফিল্টার",
+    "rows": "রো",
+    "device": "ডিভাইস",
+    "ip": "আইপি"
+  },
+  "discountReferenceAnalytics": {
+    "loading": "লোড হচ্ছে...",
+    "title": "ডিসকাউন্ট রেফারেন্স বিশ্লেষণ",
+    "summary": {
+      "totalReferences": "মোট রেফারেন্স",
+      "totalStaff": "মোট স্টাফ",
+      "totalDiscountAmount": "মোট ডিসকাউন্ট পরিমাণ"
+    },
+    "empty": {
+      "reference": "কোনো রেফারেন্স ডাটা পাওয়া যায়নি",
+      "staff": "কোনো স্টাফ ডাটা পাওয়া যায়নি"
+    }
+  },
+  "dueReceivables": {
+    "loading": "লোড হচ্ছে...",
+    "title": "বকেয়া ও প্রাপ্য",
+    "summary": {
+      "totalDue": "মোট বকেয়া",
+      "current": "0-৭ দিন",
+      "days30": "৮-৩০ দিন",
+      "days60": "৩১-৬০ দিন",
+      "days90Plus": "৬০+ দিন"
+    },
+    "empty": "কোনো বকেয়া পাওয়া যায়নি"
+  },
+  "inventoryAlerts": {
+    "loading": "লোড হচ্ছে...",
+    "title": "ইনভেন্টরি সতর্কতা",
+    "summary": {
+      "lowStock": "কম স্টক",
+      "outOfStock": "স্টক শেষ",
+      "expired": "মেয়াদোত্তীর্ণ",
+      "expiring30": "৩০ দিনে মেয়াদোত্তীর্ণ",
+      "expiring90": "৯০ দিনে মেয়াদোত্তীর্ণ"
+    },
+    "empty": "কোনো সতর্কতা পাওয়া যায়নি",
+    "tabs": {
+      "all": "সব",
+      "low": "কম স্টক",
+      "out": "স্টক শেষ",
+      "expiring": "শীঘ্রই মেয়াদোত্তীর্ণ",
+      "expired": "মেয়াদোত্তীর্ণ"
+    }
+  },
+  "approvalPolicies": {
+    "loading": "লোড হচ্ছে...",
+    "title": "অনুমোদন নীতি",
+    "empty": "কোনো অনুমোদন নীতি কনফিগার করা হয়নি",
+    "statusLabels": {
+      "enabled": "সক্রিয়",
+      "disabled": "নিষ্ক্রিয়"
+    }
+  },
+  "escalationRules": {
+    "loading": "লোড হচ্ছে...",
+    "title": "এসকেলেশন নিয়ম",
+    "subtitle": "স্বয়ংক্রিয় নোটিফিকেশন এসকেলেশন কনফিগার করুন",
+    "actions": {
+      "addRule": "নিয়ম যোগ করুন"
+    },
+    "summary": {
+      "totalRules": "মোট নিয়ম",
+      "activeRules": "সক্রিয় নিয়ম",
+      "categories": "ক্যাটাগরি"
+    },
+    "empty": "কোনো এসকেলেশন নিয়ম কনফিগার করা হয়নি"
+  },
+  "notificationSettings": {
+    "loading": "লোড হচ্ছে...",
+    "title": "নোটিফিকেশন সেটিংস",
+    "empty": "কোনো নোটিফিকেশন নিয়ম কনফিগার করা হয়নি",
+    "statusLabels": {
+      "enabled": "সক্রিয়",
+      "disabled": "নিষ্ক্রিয়"
+    }
+  },
+  "discountRules": {
+    "loading": "লোড হচ্ছে...",
+    "title": "ডিসকাউন্ট নিয়ম",
+    "summary": {
+      "totalRules": "মোট নিয়ম",
+      "activeRules": "সক্রিয় নিয়ম",
+      "avgDiscountPct": "গড় ডিসকাউন্ট %"
+    },
+    "empty": "কোনো ডিসকাউন্ট নিয়ম কনফিগার করা হয়নি",
+    "statusLabels": {
+      "enabled": "সক্রিয়",
+      "disabled": "নিষ্ক্রিয়"
+    }
+  },
+  "patientRecordAccess": {
+    "loading": "লোড হচ্ছে...",
+    "title": "রোগী রেকর্ড অ্যাক্সেস",
+    "subtitle": "কোন রোগীর রেকর্ড কে অ্যাক্সেস করেছে তা ট্র্যাক করুন",
+    "summary": {
+      "totalViews": "মোট ভিউ",
+      "uniquePatients": "অনন্য রোগী",
+      "uniqueUsers": "অনন্য ইউজার"
+    },
+    "empty": "কোনো রেকর্ড অ্যাক্সেস ইভেন্ট পাওয়া যায়নি"
+  },
+  "collectionFollowup": {
+    "loading": "লোড হচ্ছে...",
+    "title": "কালেকশন ফলো-আপ",
+    "empty": "কোনো ফলো-আপ টাস্ক পাওয়া যায়নি"
+  },
+  "stockOverview": {
+    "loading": "লোড হচ্ছে...",
+    "title": "স্টক ওভারভিউ",
+    "empty": "কোনো স্টক ডাটা পাওয়া যায়নি"
+  },
+  "stockMovement": {
+    "loading": "লোড হচ্ছে...",
+    "title": "স্টক মুভমেন্ট",
+    "empty": "কোনো স্টক মুভমেন্ট পাওয়া যায়নি"
+  },
+  "branchComparison": {
+    "loading": "লোড হচ্ছে...",
+    "title": "শাখা তুলনা",
+    "empty": "কোনো শাখা ডাটা পাওয়া যায়নি"
+  },
+  "financialReports": {
+    "loading": "লোড হচ্ছে...",
+    "title": "আর্থিক রিপোর্ট",
+    "empty": "কোনো আর্থিক ডাটা পাওয়া যায়নি"
+  },
+  "staffActivity": {
+    "loading": "লোড হচ্ছে...",
+    "title": "স্টাফ অ্যাক্টিভিটি",
+    "empty": "কোনো অ্যাক্টিভিটি রেকর্ড পাওয়া যায়নি"
+  },
+  "telemed": {
+    "loading": "লোড হচ্ছে...",
+    "title": "টেলিমেডিসিন মনিটর",
+    "empty": "কোনো টেলিমেডিসিন সেশন পাওয়া যায়নি"
+  }
+}

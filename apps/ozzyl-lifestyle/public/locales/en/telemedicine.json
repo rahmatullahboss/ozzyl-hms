@@ -1,0 +1,15 @@
+{
+  "title": "Telemedicine",
+  "joinRoom": "Join Room",
+  "room": "Room",
+  "startCall": "Start Call",
+  "endCall": "End Call",
+  "mute": "Mute",
+  "unmute": "Unmute",
+  "videoOff": "Video Off",
+  "videoOn": "Video On",
+  "noRooms": "No active rooms",
+  "chat": "Chat",
+  "consultationRoom": "Consultation Room",
+  "scheduleSession": "Schedule Session"
+}

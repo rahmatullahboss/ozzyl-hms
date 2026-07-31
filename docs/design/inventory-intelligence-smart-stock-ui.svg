@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#020617"/>
+      <stop offset="0.48" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#052E2B"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="268" y1="105" x2="1476" y2="438" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="0.42" stop-color="#164E63"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <linearGradient id="emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity="0.18"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title{font:700 38px Inter,Arial,sans-serif;letter-spacing:-1.1px;fill:#FFFFFF}
+      .h1{font:700 28px Inter,Arial,sans-serif;letter-spacing:-.6px;fill:#0F172A}
+      .h2{font:700 18px Inter,Arial,sans-serif;fill:#0F172A}
+      .h3{font:700 15px Inter,Arial,sans-serif;fill:#0F172A}
+      .body{font:500 13px Inter,Arial,sans-serif;fill:#64748B}
+      .small{font:600 11px Inter,Arial,sans-serif;fill:#64748B}
+      .tiny{font:700 10px Inter,Arial,sans-serif;letter-spacing:.7px;text-transform:uppercase;fill:#94A3B8}
+      .whiteBody{font:500 14px Inter,Arial,sans-serif;fill:#CFFAFE}
+      .whiteSmall{font:600 11px Inter,Arial,sans-serif;fill:#BAE6FD}
+      .nav{font:600 13px Inter,Arial,sans-serif;fill:#CBD5E1}
+      .num{font:800 30px Inter,Arial,sans-serif;letter-spacing:-.8px;fill:#0F172A}
+      .mono{font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#475569}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1370" cy="90" r="280" fill="#22D3EE" opacity="0.11"/>
+  <circle cx="1180" cy="860" r="340" fill="#10B981" opacity="0.10"/>
+  <circle cx="180" cy="910" r="260" fill="#38BDF8" opacity="0.08"/>
+
+  <!-- App Shell -->
+  <rect x="64" y="50" width="1472" height="900" rx="36" fill="#F8FAFC" filter="url(#shadow)"/>
+
+  <!-- Sidebar -->
+  <rect x="64" y="50" width="196" height="900" rx="36" fill="#0F172A"/>
+  <rect x="64" y="50" width="196" height="900" rx="36" fill="url(#bg)" opacity="0.92"/>
+  <circle cx="118" cy="108" r="26" fill="url(#cyan)"/>
+  <path d="M108 108c0-9 7-16 16-16h8v10h-8c-4 0-6 2-6 6s2 6 6 6h8v10h-8c-9 0-16-7-16-16Z" fill="#ECFEFF"/>
+  <text x="154" y="104" class="nav" font-size="16">Ozzyl</text>
+  <text x="154" y="123" class="small" fill="#94A3B8">HMS Cloud</text>
+
+  <g transform="translate(88 170)">
+    <rect x="0" y="0" width="148" height="42" rx="14" fill="#FFFFFF" opacity="0.10"/>
+    <circle cx="21" cy="21" r="8" fill="#22D3EE"/>
+    <text x="42" y="26" class="nav">Dashboard</text>
+    <text x="42" y="82" class="nav" opacity="0.72">Patients</text>
+    <text x="42" y="134" class="nav" opacity="0.72">Lab</text>
+    <text x="42" y="186" class="nav" opacity="0.72">OT</text>
+    <rect x="0" y="210" width="148" height="42" rx="14" fill="#22D3EE" opacity="0.16"/>
+    <circle cx="21" cy="231" r="8" fill="#34D399"/>
+    <text x="42" y="236" class="nav" fill="#ECFEFF">Inventory</text>
+    <text x="42" y="296" class="nav" opacity="0.72">Billing</text>
+    <text x="42" y="348" class="nav" opacity="0.72">Reports</text>
+  </g>
+
+  <rect x="88" y="812" width="148" height="88" rx="22" fill="#FFFFFF" opacity="0.08"/>
+  <text x="108" y="842" class="whiteSmall">System mode</text>
+  <text x="108" y="868" font-family="Inter,Arial" font-size="16" font-weight="800" fill="#FFFFFF">Rules On</text>
+  <text x="108" y="891" class="small" fill="#67E8F9">AI Magic Off</text>
+
+  <!-- Main content topbar -->
+  <rect x="260" y="50" width="1276" height="900" rx="36" fill="#F8FAFC"/>
+  <text x="304" y="99" class="h1">Inventory Intelligence</text>
+  <text x="304" y="123" class="body">Small-hospital friendly smart stock assistant for lab, OT, ward and pharmacy</text>
+  <rect x="1140" y="78" width="180" height="42" rx="21" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <text x="1162" y="104" class="body" fill="#0F172A">Barguna Care Unit</text>
+  <rect x="1335" y="78" width="148" height="42" rx="21" fill="#0F172A"/>
+  <circle cx="1360" cy="99" r="8" fill="#34D399"/>
+  <text x="1378" y="104" class="whiteSmall" fill="#FFFFFF">Live stock</text>
+
+  <!-- Hero -->
+  <rect x="304" y="150" width="1188" height="232" rx="34" fill="url(#hero)" filter="url(#soft)"/>
+  <circle cx="1320" cy="146" r="180" fill="#67E8F9" opacity="0.16"/>
+  <circle cx="1005" cy="372" r="170" fill="#A7F3D0" opacity="0.12"/>
+  <rect x="336" y="182" width="214" height="30" rx="15" fill="#FFFFFF" opacity="0.13"/>
+  <circle cx="356" cy="197" r="6" fill="#67E8F9"/>
+  <text x="370" y="202" class="whiteSmall">Deterministic stock brain</text>
+  <text x="336" y="257" class="title">Smart Stock Assistant</text>
+  <text x="336" y="291" class="whiteBody">Rules + usage history calculate stockout date, reorder qty, and service readiness. No guessing.</text>
+
+  <g transform="translate(336 318)">
+    <rect x="0" y="0" width="178" height="42" rx="21" fill="#ECFEFF"/>
+    <text x="24" y="27" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#0E7490">Create draft PR</text>
+    <rect x="190" y="0" width="190" height="42" rx="21" fill="#FFFFFF" opacity="0.14" stroke="#FFFFFF" stroke-opacity="0.22"/>
+    <text x="214" y="27" class="whiteSmall" fill="#FFFFFF">Verify deduction rules</text>
+    <rect x="392" y="0" width="154" height="42" rx="21" fill="#FFFFFF" opacity="0.14" stroke="#FFFFFF" stroke-opacity="0.22"/>
+    <text x="418" y="27" class="whiteSmall" fill="#FFFFFF">Resolve exceptions</text>
+  </g>
+
+  <!-- floating brain panel -->
+  <rect x="1125" y="184" width="316" height="160" rx="26" fill="#FFFFFF" opacity="0.95"/>
+  <text x="1150" y="216" class="tiny">Today's system verdict</text>
+  <text x="1150" y="252" font-family="Inter,Arial" font-size="34" font-weight="900" fill="#0F172A">Ready with risk</text>
+  <rect x="1150" y="270" width="104" height="28" rx="14" fill="#FEF3C7"/>
+  <text x="1170" y="289" class="small" fill="#B45309">6 low items</text>
+  <rect x="1266" y="270" width="112" height="28" rx="14" fill="#FEE2E2"/>
+  <text x="1287" y="289" class="small" fill="#B91C1C">2 blocked</text>
+  <text x="1150" y="324" class="body">CBC can run 3.8 days. LFT reagent needs buying before Sunday.</text>
+
+  <!-- KPI row -->
+  <g transform="translate(304 414)">
+    <rect x="0" y="0" width="270" height="132" rx="26" fill="url(#card)" filter="url(#soft)"/>
+    <rect x="22" y="22" width="44" height="44" rx="16" fill="#ECFDF5"/>
+    <circle cx="44" cy="44" r="12" fill="#10B981"/>
+    <text x="84" y="42" class="tiny">Ready services</text>
+    <text x="84" y="80" class="num">128</text>
+    <text x="84" y="106" class="body">Tests & operations clear</text>
+  </g>
+  <g transform="translate(594 414)">
+    <rect x="0" y="0" width="270" height="132" rx="26" fill="url(#card)" filter="url(#soft)"/>
+    <rect x="22" y="22" width="44" height="44" rx="16" fill="#FEF3C7"/>
+    <path d="M44 29l15 26H29L44 29Z" fill="#F59E0B"/>
+    <text x="84" y="42" class="tiny">Low cover</text>
+    <text x="84" y="80" class="num">18</text>
+    <text x="84" y="106" class="body">Under lead-time demand</text>
+  </g>
+  <g transform="translate(884 414)">
+    <rect x="0" y="0" width="270" height="132" rx="26" fill="url(#card)" filter="url(#soft)"/>
+    <rect x="22" y="22" width="44" height="44" rx="16" fill="#FEE2E2"/>
+    <rect x="32" y="32" width="24" height="24" rx="7" fill="#EF4444"/>
+    <text x="84" y="42" class="tiny">Blocked today</text>
+    <text x="84" y="80" class="num">02</text>
+    <text x="84" y="106" class="body">No stock or no rule</text>
+  </g>
+  <g transform="translate(1174 414)">
+    <rect x="0" y="0" width="318" height="132" rx="26" fill="url(#card)" filter="url(#soft)"/>
+    <rect x="22" y="22" width="44" height="44" rx="16" fill="#E0F2FE"/>
+    <path d="M34 50c26-2 28-22 28-22v34H34V50Z" fill="#0284C7"/>
+    <text x="84" y="42" class="tiny">Expected purchase</text>
+    <text x="84" y="80" class="num">৳48.5k</text>
+    <text x="84" y="106" class="body">Draft PR suggested today</text>
+  </g>
+
+  <!-- Left main cards -->
+  <rect x="304" y="574" width="560" height="330" rx="30" fill="#FFFFFF" filter="url(#soft)"/>
+  <text x="334" y="613" class="h2">What to buy first</text>
+  <text x="334" y="637" class="body">Usage-based reorder, not static stock count</text>
+
+  <g transform="translate(334 666)">
+    <rect x="0" y="0" width="500" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="16" y="16" width="26" height="26" rx="9" fill="#FEE2E2"/>
+    <text x="58" y="25" class="h3">CBC Diluent Reagent</text>
+    <text x="58" y="45" class="body">Stockout in 3.8 days • avg 36 tests/day</text>
+    <text x="342" y="25" class="small" fill="#B91C1C">Critical</text>
+    <text x="342" y="45" class="mono">Buy 12 bottles</text>
+  </g>
+  <g transform="translate(334 736)">
+    <rect x="0" y="0" width="500" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="16" y="16" width="26" height="26" rx="9" fill="#FEF3C7"/>
+    <text x="58" y="25" class="h3">LFT Kit Reagent</text>
+    <text x="58" y="45" class="body">8.2 days cover • vendor lead time 7 days</text>
+    <text x="342" y="25" class="small" fill="#B45309">Warning</text>
+    <text x="342" y="45" class="mono">Buy 7 kits</text>
+  </g>
+  <g transform="translate(334 806)">
+    <rect x="0" y="0" width="500" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <rect x="16" y="16" width="26" height="26" rx="9" fill="#ECFDF5"/>
+    <text x="58" y="25" class="h3">X-Ray 12x15 Film</text>
+    <text x="58" y="45" class="body">Stable demand • reorder point reached</text>
+    <text x="342" y="25" class="small" fill="#047857">Buy soon</text>
+    <text x="342" y="45" class="mono">Buy 40 pcs</text>
+  </g>
+
+  <!-- Readiness Matrix -->
+  <rect x="892" y="574" width="600" height="330" rx="30" fill="#FFFFFF" filter="url(#soft)"/>
+  <text x="922" y="613" class="h2">Lab & OT readiness matrix</text>
+  <text x="922" y="637" class="body">Shows whether today's service can run before billing/result/OT close</text>
+
+  <g transform="translate(922 664)">
+    <rect x="0" y="0" width="540" height="42" rx="16" fill="#F1F5F9"/>
+    <text x="20" y="27" class="tiny">Service</text>
+    <text x="190" y="27" class="tiny">Rule</text>
+    <text x="305" y="27" class="tiny">Stock cover</text>
+    <text x="440" y="27" class="tiny">Status</text>
+
+    <text x="20" y="79" class="h3">CBC</text>
+    <text x="190" y="79" class="small">Verified</text>
+    <text x="305" y="79" class="mono">3.8 days</text>
+    <rect x="430" y="58" width="82" height="28" rx="14" fill="#FEF3C7"/>
+    <text x="452" y="77" class="small" fill="#B45309">Low</text>
+
+    <line x1="0" y1="104" x2="540" y2="104" stroke="#E2E8F0"/>
+    <text x="20" y="139" class="h3">LFT</text>
+    <text x="190" y="139" class="small">Needs review</text>
+    <text x="305" y="139" class="mono">8.2 days</text>
+    <rect x="430" y="118" width="82" height="28" rx="14" fill="#E0F2FE"/>
+    <text x="452" y="137" class="small" fill="#0369A1">Watch</text>
+
+    <line x1="0" y1="164" x2="540" y2="164" stroke="#E2E8F0"/>
+    <text x="20" y="199" class="h3">Appendectomy OT Pack</text>
+    <text x="190" y="199" class="small">Draft</text>
+    <text x="305" y="199" class="mono">No suture</text>
+    <rect x="430" y="178" width="82" height="28" rx="14" fill="#FEE2E2"/>
+    <text x="445" y="197" class="small" fill="#B91C1C">Blocked</text>
+
+    <line x1="0" y1="224" x2="540" y2="224" stroke="#E2E8F0"/>
+    <text x="20" y="259" class="h3">X-Ray Chest</text>
+    <text x="190" y="259" class="small">Verified</text>
+    <text x="305" y="259" class="mono">19.4 days</text>
+    <rect x="430" y="238" width="82" height="28" rx="14" fill="#DCFCE7"/>
+    <text x="455" y="257" class="small" fill="#047857">OK</text>
+  </g>
+
+  <!-- Bottom action ribbon -->
+  <rect x="304" y="924" width="1188" height="1" fill="#E2E8F0"/>
+  <text x="304" y="940" class="small">Generated UI concept: Inventory Intelligence / Smart Stock Assistant / Deterministic Rule-Based Stock System</text>
+  <text x="1210" y="940" class="small">Ozzyl HMS • 1600×1000 SVG</text>
+</svg>

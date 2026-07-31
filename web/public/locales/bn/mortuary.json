@@ -1,0 +1,67 @@
+{
+  "title": "মর্গ",
+  "subtitle": "দেহাঙ্গ গ্রহণ, সংরক্ষণ, ময়নাতদন্ত এবং হস্তান্তর",
+  "newRecord": "নতুন রেকর্ড",
+  "stats": {
+    "total": "মোট",
+    "currentlyHeld": "বর্তমানে রাখা আছে",
+    "handedOver": "হস্তান্তর করা হয়েছে",
+    "mlcCases": "এমএলসি কেস",
+    "pendingPM": "পিএম বাকি",
+    "awaitingNOC": "NOC-এর অপেক্ষায়"
+  },
+  "table": {
+    "recordNo": "রেকর্ড নং",
+    "deceased": "মৃত ব্যক্তি",
+    "ageGender": "বয়স/লিঙ্গ",
+    "deathDate": "মৃত্যুর তারিখ",
+    "cause": "কারণ",
+    "place": "স্থান",
+    "mlc": "এমএলসি",
+    "pm": "পিএম",
+    "status": "অবস্থা"
+  },
+  "noRecords": "কোন রেকর্ড নেই",
+  "pending": "বাকি",
+  "markPreserved": "সংরক্ষিত হিসেবে চিহ্নিত করুন",
+  "handover": "হস্তান্তর",
+  "modals": {
+    "newRecord": "নতুন মর্গ রেকর্ড",
+    "deceasedName": "মৃতের নাম",
+    "deceasedNamePlaceholder": "মৃতের নাম লিখুন",
+    "age": "বয়স",
+    "gender": "লিঙ্গ",
+    "deathDate": "মৃত্যুর তারিখ",
+    "cause": "মৃত্যুর কারণ",
+    "place": "মৃত্যুর স্থান",
+    "placePlaceholder": "যেমন: ওয়ার্ড এ, আইসিইউ",
+    "storageUnit": "স্টোরেজ ইউনিট",
+    "storageUnitPlaceholder": "যেমন: ফ্রিজার ১",
+    "mlc": "মেডিকো-লিগ্যাল কেস",
+    "pmRequired": "ময়নাতদন্ত প্রয়োজন",
+    "remarks": "মন্তব্য",
+    "bodyHandover": "দেহ হস্তান্তর",
+    "receivingPerson": "গ্রহণকারী ব্যক্তি",
+    "relation": "সম্পর্ক",
+    "relationPlaceholder": "যেমন: ছেলে, ভাই",
+    "idNumber": "আইডি নম্বর",
+    "phone": "ফোন",
+    "witnessedBy": "সাক্ষী",
+    "confirmHandover": "হস্তান্তর নিশ্চিত করুন"
+  },
+  "status": {
+    "received": "গৃহীত",
+    "preserved": "সংরক্ষিত",
+    "awaiting_noc": "NOC-এর অপেক্ষায়",
+    "awaiting_postmortem": "পিএম-এর অপেক্ষায়",
+    "ready_for_handover": "প্রস্তুত",
+    "handed_over": "হস্তান্তর করা হয়েছে",
+    "transferred": "স্থানান্তরিত"
+  },
+  "toasts": {
+    "recordCreated": "রেকর্ড সফলভাবে তৈরি হয়েছে",
+    "failed": "কাজটি ব্যর্থ হয়েছে",
+    "bodyHandedOver": "দেহ সফলভাবে হস্তান্তর করা হয়েছে",
+    "recipientNameRequired": "গ্রহণকারীর নাম প্রয়োজন"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "dashboard": {
+    "title": "Helpdesk",
+    "subtitle": "Internal support ticketing for IT, facility & equipment issues",
+    "newTicket": "New Ticket",
+    "unassigned": "Unassigned",
+    "stats": {
+      "openTickets": "Open Tickets",
+      "critical": "Critical",
+      "resolvedToday": "Resolved Today",
+      "slaBreached": "SLA Breached",
+      "avgResolution": "Avg Resolution"
+    },
+    "charts": {
+      "byCategory": "Tickets by Category (30 days)"
+    },
+    "filters": {
+      "allStatus": "All Status",
+      "allPriority": "All Priority",
+      "allCategories": "All Categories",
+      "searchPlaceholder": "Search tickets..."
+    },
+    "tickets": {
+      "noTickets": "No tickets found",
+      "noTicketsDesc": "Try adjusting your filters",
+      "create": "New Ticket",
+      "newTicketModal": "New Support Ticket",
+      "title": "Title *",
+      "description": "Description *",
+      "wardName": "Ward",
+      "patientName": "Patient",
+      "saving": "Saving...",
+      "createBtn": "Create",
+      "createdDate": "Created",
+      "due": "Due",
+      "table": {
+        "ticketNo": "Ticket #",
+        "title": "Title",
+        "category": "Category",
+        "priority": "Priority",
+        "status": "Status",
+        "requester": "Requester",
+        "assigned": "Assigned",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "modal": {
+        "details": "Ticket Details",
+        "startWorking": "Start Working",
+        "markResolved": "Mark Resolved",
+        "closeTicket": "Close Ticket",
+        "escalate": "Escalate",
+        "comments": "Comments",
+        "noComments": "No comments yet.",
+        "internal": "Internal",
+        "addComment": "Add a comment..."
+      }
+    },
+    "toasts": {
+      "ticketCreated": "Ticket created",
+      "ticketUpdated": "Ticket updated",
+      "commentAdded": "Comment added",
+      "validationError": "Title and description required"
+    }
+  },
+  "categories": {
+    "it": "IT",
+    "facility": "Facility",
+    "equipment": "Equipment",
+    "billing": "Billing",
+    "hr": "HR",
+    "security": "Security",
+    "other": "Other"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical",
+    "urgent": "Urgent"
+  },
+  "status": {
+    "open": "Open",
+    "in_progress": "In Progress",
+    "resolved": "Resolved",
+    "closed": "Closed",
+    "escalated": "Escalated",
+    "cancelled": "Cancelled"
+  }
+}

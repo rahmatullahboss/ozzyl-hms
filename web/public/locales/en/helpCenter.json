@@ -1,0 +1,1129 @@
+{
+  "pageTitle": "Help Center",
+  "pageSubtitle": "Step-by-step guides for every module in Ozzyl HMS",
+  "searchPlaceholder": "Search tutorials (e.g. billing, patient, lab)...",
+  "searchNoResults": "No tutorials found for",
+  "searchHint": "Try a different keyword",
+  "categories": {
+    "gettingStarted": "Getting Started",
+    "operations": "Operations",
+    "clinical": "Clinical",
+    "finance": "Finance",
+    "admin": "Administration",
+    "superAdmin": "Super Admin",
+    "special": "Special Features"
+  },
+  "labels": {
+    "whereToFind": "📍 Where to Find",
+    "howToUse": "✅ How to Use — Step by Step",
+    "tips": "💡 Pro Tips",
+    "warnings": "⚠️ Common Mistakes to Avoid",
+    "expand": "Show guide",
+    "collapse": "Hide guide",
+    "roles": "👤 Who can use this",
+    "backToTop": "Back to top"
+  },
+  "tabModules": "Modules",
+  "tabRoles": "Role Guides",
+  "roleGuidesTitle": "Day-to-Day Role Guides",
+  "roleLabels": {
+    "dailyTasks": "🗓️ Daily Tasks",
+    "weeklyTasks": "📅 Weekly Tasks",
+    "modulesUsed": "📦 Modules Used",
+    "tips": "💡 Pro Tips",
+    "commonMistakes": "⚠️ Common Mistakes"
+  },
+  "modules": {
+    "login": {
+      "title": "Login & Access",
+      "where": "Go to your hospital's URL → Login page",
+      "steps": [
+        "Open your hospital's URL (e.g. /h/your-hospital/login)",
+        "Enter your registered Email address",
+        "Enter your Password and click 'Sign In'",
+        "You will be automatically taken to the correct dashboard based on your role",
+        "If you forgot your password, ask the Hospital Admin to reset it for you"
+      ],
+      "tips": [
+        "Bookmark your hospital's login URL for quick access",
+        "Use a strong password with letters, numbers, and symbols",
+        "You can switch between English and Bangla using the language toggle in the sidebar"
+      ],
+      "warnings": [
+        "Do not share your login credentials with others",
+        "Log out after finishing your session on shared computers",
+        "If login fails, check that CAPS LOCK is not on"
+      ],
+      "roles": "All staff members"
+    },
+    "navigation": {
+      "title": "Dashboard & Navigation",
+      "where": "Sidebar on the left side of every page",
+      "steps": [
+        "After logging in, you will see your role-based dashboard",
+        "The left sidebar shows all available modules for your role",
+        "Modules are grouped into sections: Operations, Clinical, Finance, Administration",
+        "Click any menu item to navigate to that module",
+        "On mobile, tap the hamburger menu (≡) at top-left to open the sidebar",
+        "Click the language button (EN/বাং) to switch between English and Bangla",
+        "Click the moon/sun icon in the top-right header to toggle dark mode",
+        "Your name and role appear in the top-right header; click to sign out"
+      ],
+      "tips": [
+        "The active page is highlighted in blue in the sidebar",
+        "Use the browser back button to return to the previous page"
+      ],
+      "warnings": [
+        "If a menu item is missing, your role may not have permission — contact admin",
+        "Refreshing the page will keep you logged in (your session is preserved)"
+      ],
+      "roles": "All staff members"
+    },
+    "settings": {
+      "title": "Hospital Settings",
+      "where": "Sidebar → Administration → Settings",
+      "steps": [
+        "Click 'Settings' from the sidebar",
+        "Update Hospital Name, Address, Phone, Email, and Logo",
+        "Set the default currency, time zone, and working hours",
+        "Configure tax rates and billing preferences",
+        "Click 'Save Changes' to apply your settings"
+      ],
+      "tips": [
+        "Add a proper hospital logo for professional bill printing",
+        "Set your correct time zone to ensure timestamps are accurate"
+      ],
+      "warnings": [
+        "Changing the hospital name will update it everywhere including printed bills",
+        "Only Hospital Admin can change system settings"
+      ],
+      "roles": "Hospital Admin only"
+    },
+    "appointments": {
+      "title": "Appointments",
+      "where": "Sidebar → Operations → Appointments",
+      "steps": [
+        "Click 'Appointments' from the sidebar",
+        "Click '+ New Appointment' button",
+        "Search for the patient by name or phone number; or create a new patient",
+        "Select the doctor, date, and available time slot",
+        "Add any notes or reason for visit",
+        "Click 'Save' to book the appointment",
+        "To reschedule: click on an existing appointment → 'Edit' → change date/time → Save",
+        "To cancel: click on an appointment → 'Cancel' → confirm"
+      ],
+      "tips": [
+        "Use the calendar view to see all appointments for the day",
+        "Colour coding shows appointment status: Pending (yellow), Confirmed (green), Cancelled (red)"
+      ],
+      "warnings": [
+        "Do not double-book the same time slot for one doctor",
+        "Always confirm with the patient before cancelling an appointment"
+      ],
+      "roles": "Hospital Admin, Reception"
+    },
+    "patients": {
+      "title": "Patient Management",
+      "where": "Sidebar → Operations → Patients",
+      "steps": [
+        "Click 'Patients' from the sidebar to see all registered patients",
+        "Use the search bar to find a patient by name, phone, or patient ID",
+        "Click '+ New Patient' to register a new patient",
+        "Fill in: Name, Date of Birth, Gender, Phone, Address, Blood Group",
+        "Click 'Save' to create the patient record",
+        "Click on any patient name to see their full detail and history",
+        "From the patient detail page you can see: visits, prescriptions, lab results, billing history, vitals, allergies",
+        "Click 'Timeline' tab to see the patient's full medical journey"
+      ],
+      "tips": [
+        "Always search before adding a new patient to avoid duplicate records",
+        "Patient ID is auto-generated — note it for future reference",
+        "Use the patient Timeline to get a quick overview of their entire history"
+      ],
+      "warnings": [
+        "Never create duplicate patient records — search thoroughly first",
+        "Only update patient information with verified data"
+      ],
+      "roles": "Hospital Admin, Reception, Doctors"
+    },
+    "emergency": {
+      "title": "Emergency Department",
+      "where": "Sidebar → Operations → Emergency",
+      "steps": [
+        "Click 'Emergency' from the sidebar",
+        "Click '+ New Emergency Case' to register an emergency patient",
+        "Enter patient details and chief complaint (main problem)",
+        "Assign triage level: Critical, Urgent, or Non-Urgent",
+        "Assign the treating doctor and emergency bed",
+        "Monitor the patient's status from the emergency dashboard",
+        "Update patient condition as treatment progresses",
+        "When resolved, click 'Discharge' or 'Admit to IPD' as needed"
+      ],
+      "tips": [
+        "Critical cases (red) must be attended to immediately",
+        "Use the dashboard to track all active emergency cases at a glance"
+      ],
+      "warnings": [
+        "Always assign a triage level — do not leave it blank",
+        "Discharge only after the doctor confirms the patient is stable"
+      ],
+      "roles": "Hospital Admin, Nurses, Doctors"
+    },
+    "ot": {
+      "title": "Operation Theatre (OT)",
+      "where": "Sidebar → Operations → Operation Theatre",
+      "steps": [
+        "Click 'Operation Theatre' from the sidebar",
+        "Click '+ Schedule Operation' to book a new surgery",
+        "Select the patient (must be admitted as IPD first)",
+        "Choose the operation type, surgeon, anesthesiologist, and OT room",
+        "Set the scheduled date and time",
+        "Add pre-operative notes and special requirements",
+        "Click 'Save' to confirm the schedule",
+        "On the day of surgery, click 'Start Operation' to begin tracking",
+        "After surgery, click 'Complete' and enter post-operative notes"
+      ],
+      "tips": [
+        "Check bed and OT room availability before scheduling",
+        "Add all team members (scrub nurse, anesthetist) in the schedule"
+      ],
+      "warnings": [
+        "Patient must be admitted to IPD before scheduling an operation",
+        "Confirm all blood and equipment availability before surgery"
+      ],
+      "roles": "Hospital Admin, Surgeons, OT staff"
+    },
+    "admissions": {
+      "title": "IPD / Admissions",
+      "where": "Sidebar → Operations → IPD / Admissions",
+      "steps": [
+        "Click 'IPD / Admissions' from the sidebar",
+        "Click '+ New Admission' to admit a patient",
+        "Search and select the patient",
+        "Select the ward, room, and bed (from available beds)",
+        "Enter the admitting doctor and diagnosis",
+        "Set the expected length of stay",
+        "Click 'Admit' to confirm",
+        "The patient will now appear in the active admissions list",
+        "To discharge: find the patient → click 'Discharge' → fill discharge summary → confirm"
+      ],
+      "tips": [
+        "Check bed availability from the Bed Management page before admitting",
+        "The patient's billing will automatically start from admission date"
+      ],
+      "warnings": [
+        "Do not admit a patient without a bed assignment",
+        "Always verify the patient's identity before admission"
+      ],
+      "roles": "Hospital Admin, Reception, Nurses"
+    },
+    "beds": {
+      "title": "Bed Management",
+      "where": "Sidebar → Operations → Beds",
+      "steps": [
+        "Click 'Beds' from the sidebar to see the full bed map",
+        "Beds are color-coded: Green = Available, Red = Occupied, Yellow = Under Maintenance",
+        "Click on any bed to see details of who is occupying it",
+        "To mark a bed under maintenance: click the bed → 'Set Maintenance' → Save",
+        "Beds are automatically freed when a patient is discharged"
+      ],
+      "tips": [
+        "Check this page before admitting new patients to find available beds",
+        "Group beds by ward for easier navigation"
+      ],
+      "warnings": [
+        "Only mark a bed as maintenance-free after it has been fully cleaned",
+        "Do not manually free a bed — it is handled automatically at discharge"
+      ],
+      "roles": "Hospital Admin, Nurses, Reception"
+    },
+    "nurseStation": {
+      "title": "Nurse Station",
+      "where": "Sidebar → Operations → Nurse Station",
+      "steps": [
+        "Click 'Nurse Station' from the sidebar",
+        "View current admitted patients assigned to your ward",
+        "Click on a patient to see their orders, medications, and vitals",
+        "Enter vital signs (blood pressure, temperature, pulse) by clicking 'Record Vitals'",
+        "View and execute doctor's medication orders from the medication section",
+        "Mark tasks as completed once done",
+        "Use the notes section to add nursing observations"
+      ],
+      "tips": [
+        "Check this page at the beginning of every shift for pending tasks",
+        "Record vitals at regular intervals as per doctor's orders"
+      ],
+      "warnings": [
+        "Never skip recording vitals for critical patients",
+        "Always double-check medication doses before administering"
+      ],
+      "roles": "Hospital Admin, Nurses"
+    },
+    "nursing": {
+      "title": "Enhanced Nursing",
+      "where": "Sidebar → Operations → Enhanced Nursing",
+      "steps": [
+        "Click 'Enhanced Nursing' from the sidebar",
+        "Select the patient from the patient list",
+        "Use the 10 tabs: Care Plan, Notes, MAR, I/O Chart, Monitoring, IV Drugs, Wound Care, Handover, OPD Check-in, Patient Preferences",
+        "CARE PLAN: create nursing diagnoses and intervention plans",
+        "MAR (Medication Administration Record): record every medication given — time, dose, route",
+        "I/O CHART: record fluid intake (IV, oral) and output (urine, drainage) to calculate balance",
+        "WOUND CARE: document wound assessment, dressing type, and healing progress",
+        "HANDOVER: write shift handover notes for the incoming nurse",
+        "Click 'Save' after each entry"
+      ],
+      "tips": [
+        "MAR must be updated every time a medication is administered",
+        "I/O balance should be calculated at least every 8 hours",
+        "Handover notes ensure continuity of care between shifts"
+      ],
+      "warnings": [
+        "Never leave MAR entries blank — incomplete records are a safety risk",
+        "Wound care documentation must include measurement in centimeters (L x W x D)",
+        "Only clinical staff (doctors, nurses) can enter nursing records"
+      ],
+      "roles": "Hospital Admin, Nurses, Doctors"
+    },
+    "doctorSchedule": {
+      "title": "Doctor Schedule",
+      "where": "Sidebar → Operations → Doctor Schedule",
+      "steps": [
+        "Click 'Doctor Schedule' from the sidebar",
+        "Select a doctor from the dropdown to view their schedule",
+        "Click '+ Add Slot' to create a new availability slot",
+        "Choose the day of the week and time range",
+        "Set the maximum number of patients for that slot",
+        "Click 'Save' to publish the schedule",
+        "Patients will be able to book appointments within these slots"
+      ],
+      "tips": [
+        "Set up doctor schedules before allowing appointment bookings",
+        "Block out holidays by removing slots for those days"
+      ],
+      "warnings": [
+        "Deleting a schedule slot will not cancel existing appointments",
+        "Coordinate with doctors before modifying their schedules"
+      ],
+      "roles": "Hospital Admin"
+    },
+    "telemedicine": {
+      "title": "Telemedicine",
+      "where": "Sidebar → Operations → Telemedicine",
+      "steps": [
+        "Click 'Telemedicine' from the sidebar",
+        "View scheduled telemedicine appointments for today",
+        "Click on an appointment and then 'Start Session' to begin the video consultation",
+        "The patient will be automatically connected to the video room",
+        "During the session: use chat, share screen, or write prescriptions",
+        "After session: click 'End Session' and write consultation notes",
+        "The prescription and notes are saved to the patient's record automatically"
+      ],
+      "tips": [
+        "Test your camera and microphone before starting a session",
+        "Ensure a stable internet connection for clear video quality"
+      ],
+      "warnings": [
+        "Do not close the browser tab during a live session",
+        "Patient must have the session link or ID to join the call"
+      ],
+      "roles": "Hospital Admin, Doctors"
+    },
+    "lab": {
+      "title": "Laboratory / Tests",
+      "where": "Sidebar → Clinical → Lab / Tests",
+      "steps": [
+        "Click 'Lab / Tests' from the sidebar",
+        "View all pending test orders and incoming samples",
+        "To create a test order: click '+ New Order' → select patient → choose tests",
+        "Print the sample collection label if needed",
+        "Once sample is received: click the order → 'Enter Results'",
+        "Input result values for each test parameter",
+        "Click 'Publish Results' to make them available to the doctor",
+        "Click 'Print Report' to generate the lab report for the patient"
+      ],
+      "tips": [
+        "Abnormal values are automatically highlighted in red",
+        "Reference ranges are set in Lab Settings — keep them updated"
+      ],
+      "warnings": [
+        "Double-check patient name and sample ID before entering results",
+        "Never publish results without verifying all values are entered correctly"
+      ],
+      "roles": "Hospital Admin, Laboratory Staff"
+    },
+    "pharmacy": {
+      "title": "Pharmacy",
+      "where": "Sidebar → Clinical → Pharmacy",
+      "steps": [
+        "Click 'Pharmacy' from the sidebar",
+        "View pending prescription orders from doctors",
+        "Click on a prescription to see the medicines prescribed",
+        "Check stock availability for each medicine",
+        "If in stock: click 'Dispense' → confirm quantities → click 'Complete'",
+        "If out of stock: mark as 'Out of Stock' and notify the doctor",
+        "Print dispensing label for each medicine packet",
+        "The fulfilment record is updated; the patient's finalized clinical prescription remains unchanged"
+      ],
+      "tips": [
+        "Regularly update medicine stock levels to avoid shortages",
+        "Use the search bar to quickly find specific medicines"
+      ],
+      "warnings": [
+        "Always verify patient's allergies before dispensing any medicine",
+        "Never dispense expired medicines — check expiry dates"
+      ],
+      "roles": "Hospital Admin, Pharmacist"
+    },
+    "inventory": {
+      "title": "Inventory & Supply Chain",
+      "where": "Sidebar → Clinical → Inventory",
+      "steps": [
+        "Click 'Inventory' from the sidebar to see the inventory dashboard",
+        "STOCK: view current stock levels for all items — red = low stock",
+        "PURCHASE ORDER (PO): click '+ New PO' → select vendor → add items with quantity → submit",
+        "GOODS RECEIPT (GR): when goods arrive, go to GR → '+ New GR' → link to PO → confirm received items",
+        "REQUISITION: departments request items by submitting a Requisition form",
+        "DISPATCH: approve requisitions and dispatch items to departments",
+        "STOCK ADJUSTMENT: correct quantities if there is a discrepancy (theft, damage, counting error)",
+        "LEDGER: view full movement history of any item — all in/out transactions"
+      ],
+      "tips": [
+        "Set minimum stock alerts for critical items",
+        "Always link a GR to a PO to maintain accurate records"
+      ],
+      "warnings": [
+        "Stock adjustments require a valid reason — all changes are audited",
+        "Do not receive more quantities than what was ordered in the PO"
+      ],
+      "roles": "Hospital Admin, Store Manager"
+    },
+    "vitals": {
+      "title": "Vitals",
+      "where": "Sidebar → Clinical → Vitals",
+      "steps": [
+        "Click 'Vitals' from the sidebar",
+        "Search for the patient by name or ID",
+        "Click '+ Record Vitals' to enter new readings",
+        "Enter: Blood Pressure (systolic/diastolic), Temperature, Pulse/Heart Rate, Respiratory Rate, SpO2, Weight, Height, BMI",
+        "Click 'Save' to record the vitals",
+        "View the trends graph to see changes over time",
+        "Values outside normal range are automatically flagged in red"
+      ],
+      "tips": [
+        "Record vitals at regular intervals for monitoring patients",
+        "BMI is auto-calculated once you enter weight and height"
+      ],
+      "warnings": [
+        "Critically abnormal vitals must be reported to the doctor immediately",
+        "Enter values in the correct units (e.g., temperature in °C, not °F)"
+      ],
+      "roles": "Hospital Admin, Nurses, Doctors"
+    },
+    "allergies": {
+      "title": "Allergies",
+      "where": "Sidebar → Clinical → Allergies",
+      "steps": [
+        "Click 'Allergies' from the sidebar",
+        "Search for the patient",
+        "Click '+ Add Allergy' to record a new allergy",
+        "Enter: Allergen name, Reaction type (mild/moderate/severe/anaphylaxis), Onset date",
+        "Click 'Save'",
+        "The allergy will now appear as a warning whenever this patient's record is accessed",
+        "To update or remove an allergy: click on it → Edit or Delete"
+      ],
+      "tips": [
+        "Always check this section before prescribing or dispensing medicines",
+        "Record all known allergies even if they seem minor"
+      ],
+      "warnings": [
+        "Anaphylaxis allergies are life-threatening — always double-check",
+        "Drug allergies are especially important — the E-Prescribing module will automatically warn you"
+      ],
+      "roles": "Hospital Admin, Nurses, Doctors"
+    },
+    "ePrescribing": {
+      "title": "E-Prescribing & Drug Safety",
+      "where": "Sidebar → Clinical → E-Prescribing",
+      "steps": [
+        "Click 'E-Prescribing' from the sidebar",
+        "SAFETY CHECKER tab: select a patient → search for a drug → the system checks for interactions with the patient's current medications and allergies",
+        "If an interaction is found, a warning is shown with severity (High/Medium/Low)",
+        "A clinical staff member can override a warning with a justification note",
+        "DRUG CATALOG tab: browse the complete formulary (approved drug list)",
+        "Search drugs by name, category, or generic name",
+        "View: dose, route, frequency, contraindications, and interactions",
+        "INTERACTIONS tab: view all known drug-drug interaction pairs in the database"
+      ],
+      "tips": [
+        "Always run a safety check before prescribing a new drug to a patient on multiple medications",
+        "High severity interactions should almost never be overridden"
+      ],
+      "warnings": [
+        "The safety checker is a decision-support tool — not a replacement for clinical judgment",
+        "Keep the formulary updated by adding new drugs approved by the hospital"
+      ],
+      "roles": "Hospital Admin, Doctors, Pharmacists (clinical roles only)"
+    },
+    "labSettings": {
+      "title": "Lab Settings",
+      "where": "Sidebar → Clinical → Lab Settings",
+      "steps": [
+        "Click 'Lab Settings' from the sidebar",
+        "TEST CATALOG: create and manage lab test definitions",
+        "Click '+ New Test' → enter test name, code, department, specimen type",
+        "Set price for billing purposes",
+        "REFERENCE RANGES: for each test, set normal ranges by age group and gender",
+        "PANELS: group multiple tests into a panel (e.g. 'CBC Panel' includes 12 tests)",
+        "Click 'Save' after each change"
+      ],
+      "tips": [
+        "Keep reference ranges updated with clinically approved values",
+        "Use panels to speed up ordering common test groups"
+      ],
+      "warnings": [
+        "Changing test prices will affect new bills only, not already-created bills",
+        "Deleting a test will fail if there are pending orders for that test"
+      ],
+      "roles": "Hospital Admin"
+    },
+    "billing": {
+      "title": "Billing",
+      "where": "Sidebar → Finance → Billing",
+      "steps": [
+        "Click 'Billing' from the sidebar",
+        "Click '+ New Bill' to create a bill",
+        "Search and select the patient",
+        "Add billing items (consultation, medicines, tests, procedures) from the catalogue",
+        "Quantities and prices are auto-filled from Billing Master",
+        "Apply discounts if needed (requires admin approval for large discounts)",
+        "Select payment method: Cash, Card, Mobile Banking (bKash/Nagad), Insurance",
+        "Click 'Save & Pay' to finalize the bill",
+        "Click 'Print' to print the receipt for the patient"
+      ],
+      "tips": [
+        "Bills for admitted patients should be done through IP Billing, not the regular billing",
+        "Use Provisional Billing for long-stay patients to show interim totals"
+      ],
+      "warnings": [
+        "Double-check all items before finalizing — a bill cannot be easily edited after saving",
+        "Do not close the page before clicking Save"
+      ],
+      "roles": "Hospital Admin, Reception (billing staff)"
+    },
+    "billingMaster": {
+      "title": "Billing Master",
+      "where": "Sidebar → Finance → Billing Master",
+      "steps": [
+        "Click 'Billing Master' from the sidebar",
+        "This is where all billable services and their prices are configured",
+        "ITEM CATEGORIES: create categories (e.g. Consultation, Surgery, Lab, Medicine)",
+        "ITEMS: add individual services/products under each category with a fixed price",
+        "GL PACKAGE: link billing items to accounting GL codes",
+        "DOCTOR ITEMS: assign consultation fees per doctor",
+        "Click 'Save' after adding or editing items"
+      ],
+      "tips": [
+        "Keep prices updated — all new bills will use the current price from Billing Master",
+        "Use consistent naming so billing staff can find items easily"
+      ],
+      "warnings": [
+        "Only admin should modify the Billing Master — prices affect all future bills",
+        "Deleting an item will fail if it has been used in existing bills"
+      ],
+      "roles": "Hospital Admin only"
+    },
+    "provisionalBilling": {
+      "title": "Provisional Billing",
+      "where": "Sidebar → Finance → Provisional Billing",
+      "steps": [
+        "Click 'Provisional Billing' from the sidebar",
+        "View all IPD patients with running provisional bills",
+        "A provisional bill accumulates charges during the patient's stay",
+        "Click on a patient to view all accrued charges (bed, medicines, tests, procedures)",
+        "Print the provisional bill to show the patient or family the estimated total",
+        "When the patient is discharged, click 'Convert to Final Bill' to create the actual invoice"
+      ],
+      "tips": [
+        "Share provisional bills with patient families regularly for long-stay IPD cases",
+        "All IPD charges (pharmacy, lab, procedures) are automatically added to the provisional bill"
+      ],
+      "warnings": [
+        "A provisional bill is NOT a receipt — the patient has not paid yet",
+        "Do not skip converting to Final Bill at discharge"
+      ],
+      "roles": "Hospital Admin, Billing Staff"
+    },
+    "deposits": {
+      "title": "Deposits",
+      "where": "Sidebar → Finance → Deposits",
+      "steps": [
+        "Click 'Deposits' from the sidebar",
+        "Click '+ Collect Deposit' to record an advance payment from a patient",
+        "Search and select the patient",
+        "Enter amount and payment method",
+        "Click 'Save' — a deposit receipt is generated",
+        "The deposit will be automatically applied against the final bill at discharge",
+        "To refund: find the deposit → click 'Refund' → enter amount → confirm"
+      ],
+      "tips": [
+        "Always collect a deposit for IPD admissions",
+        "Keep deposit receipts for patient reference"
+      ],
+      "warnings": [
+        "Refunded deposits reduce the patient's credit balance immediately",
+        "Never refund more than the deposit amount"
+      ],
+      "roles": "Hospital Admin, Billing Staff"
+    },
+    "creditNotes": {
+      "title": "Credit Notes",
+      "where": "Sidebar → Finance → Credit Notes",
+      "steps": [
+        "Click 'Credit Notes' from the sidebar",
+        "Credit notes are issued when a patient is overcharged or a charge needs to be reversed",
+        "Click '+ New Credit Note'",
+        "Select the original bill → enter the amount and reason",
+        "Click 'Issue Credit Note'",
+        "The credit note will reduce the patient's outstanding balance or be refunded"
+      ],
+      "tips": [
+        "Always document the reason for issuing a credit note",
+        "Credit notes create an accounting record — they are reversals, not direct refunds"
+      ],
+      "warnings": [
+        "Only admin should approve large credit notes",
+        "Credit notes are audited — always provide a valid reason"
+      ],
+      "roles": "Hospital Admin"
+    },
+    "billing_handover": {
+      "title": "Bill Handover",
+      "where": "Sidebar → Finance → Bill Handover",
+      "steps": [
+        "Click 'Bill Handover' from the sidebar",
+        "This is used when a billing counter transfers its cash collections to another counter or to accounts",
+        "Click '+ New Handover'",
+        "Select the source counter and destination",
+        "Enter the amount being handed over and the payment breakdown (cash, cards, etc.)",
+        "Both parties must confirm — click 'Submit Handover'",
+        "A handover receipt is generated for both parties"
+      ],
+      "tips": [
+        "Do handovers at the end of every shift",
+        "Count the cash before and after to verify accuracy"
+      ],
+      "warnings": [
+        "Discrepancies must be reported immediately and not ignored",
+        "Both sender and receiver must be present to confirm the handover"
+      ],
+      "roles": "Hospital Admin, Billing staff"
+    },
+    "billing_cancellation": {
+      "title": "Bill Cancellation",
+      "where": "Sidebar → Finance → Bill Cancellation",
+      "steps": [
+        "Click 'Bill Cancellation' from the sidebar",
+        "Search for the bill you want to cancel by bill number or patient name",
+        "Review the bill details",
+        "Click 'Cancel Bill' and enter the reason for cancellation",
+        "Submit for admin approval if required",
+        "Once approved, the bill is marked as cancelled and removed from outstanding",
+        "A cancellation receipt is generated for the audit trail"
+      ],
+      "tips": [
+        "Always cancel and reissue rather than editing a bill",
+        "The original bill remains in the system for audit purposes"
+      ],
+      "warnings": [
+        "Bill cancellations are irreversible — be absolutely sure before cancelling",
+        "Payments already collected must be refunded separately after cancellation"
+      ],
+      "roles": "Hospital Admin only"
+    },
+    "settlements": {
+      "title": "Settlements",
+      "where": "Sidebar → Finance → Settlements",
+      "steps": [
+        "Click 'Settlements' from the sidebar",
+        "View all outstanding payments from patients or insurance companies",
+        "Click '+ New Settlement' to settle an outstanding amount",
+        "Select the patient, link to the bill",
+        "Enter the settlement amount and method (cash, bank transfer, insurance)",
+        "Click 'Settle'",
+        "The bill status is updated to 'Settled' and removed from outstanding"
+      ],
+      "tips": [
+        "Use settlements for insurance or delayed payments",
+        "Print the settlement receipt for the payer"
+      ],
+      "warnings": [
+        "Do not mark as settled without receiving the actual payment",
+        "Partial settlements are allowed — the remaining amount stays outstanding"
+      ],
+      "roles": "Hospital Admin, Accounts"
+    },
+    "accounting": {
+      "title": "Accounting",
+      "where": "Sidebar → Finance → Accounting",
+      "steps": [
+        "Click 'Accounting' from the sidebar to see the accounting dashboard",
+        "The dashboard shows: total income, expenses, net profit, cash flow summary",
+        "Use the date filter to see figures for a specific period",
+        "Navigate to sub-sections: Income, Expenses, Chart of Accounts, Journal Entries, P&L, Recurring"
+      ],
+      "tips": [
+        "Review the dashboard at the end of each month to track financial health",
+        "Export reports for sharing with the Board or external accountants"
+      ],
+      "warnings": [
+        "Accounting data is automatically generated from billing, income, and expense entries — avoid manual overrides",
+        "Only authorized finance staff should access accounting records"
+      ],
+      "roles": "Hospital Admin, MD, Administration"
+    },
+    "income": {
+      "title": "Income",
+      "where": "Sidebar → Finance → Income",
+      "steps": [
+        "Click 'Income' from the sidebar",
+        "View all income transactions with date, category, amount, and source",
+        "Click '+ New Income' to record a non-billing income (e.g. donations, grants, rent)",
+        "Enter: amount, category, description, date",
+        "Click 'Save'",
+        "Use filters to see income by category or date range"
+      ],
+      "tips": [
+        "Most billing income is auto-recorded — use this only for non-billing income sources",
+        "Keep income categories consistent for accurate reporting"
+      ],
+      "warnings": [
+        "Do not duplicate entries already recorded through billing",
+        "Always add a description for non-standard income entries"
+      ],
+      "roles": "Hospital Admin, MD, Administration"
+    },
+    "expenses": {
+      "title": "Expenses",
+      "where": "Sidebar → Finance → Expenses",
+      "steps": [
+        "Click 'Expenses' from the sidebar",
+        "View all recorded expenses (salaries, utilities, supplies, etc.)",
+        "Click '+ New Expense' to record a new expense",
+        "Enter: amount, category, vendor, description, date, optional receipt",
+        "Click 'Save'",
+        "Use the Recurring option for monthly expenses like rent, salaries"
+      ],
+      "tips": [
+        "Upload receipts or invoices for proper documentation",
+        "Categorize expenses consistently — this affects the P&L report"
+      ],
+      "warnings": [
+        "Avoid duplicate expense entries — search first before adding",
+        "Salary expenses must be approved by management before recording"
+      ],
+      "roles": "Hospital Admin, MD, Administration"
+    },
+    "chartOfAccounts": {
+      "title": "Chart of Accounts",
+      "where": "Sidebar → Finance → Accounts",
+      "steps": [
+        "Click 'Accounts' from the sidebar",
+        "View the full list of accounting GL codes organized by type (Assets, Liabilities, Revenue, Expenses, Equity)",
+        "Click '+ New Account' to add a new GL account",
+        "Enter: account code, name, type, parent account",
+        "Click 'Save'",
+        "Once accounts are set up, they can be linked to billing items and journal entries"
+      ],
+      "tips": [
+        "Follow standard accounting code conventions (1000s = Assets, 2000s = Liabilities, etc.)",
+        "Use parent accounts to create a hierarchy for cleaner reporting"
+      ],
+      "warnings": [
+        "Only accountants should modify the Chart of Accounts",
+        "Deleting an account that has transactions linked to it will cause errors"
+      ],
+      "roles": "Hospital Admin, MD, Administration"
+    },
+    "insurance": {
+      "title": "Insurance Claims",
+      "where": "Sidebar → Finance → Insurance",
+      "steps": [
+        "Click 'Insurance' from the sidebar",
+        "View all submitted insurance claims and their status",
+        "Click '+ New Claim' to create a new insurance claim",
+        "Select the patient and their insurance policy",
+        "Link the associated bills/services",
+        "Enter claim amount, diagnosis codes, and attach documents if needed",
+        "Click 'Submit Claim'",
+        "Track claim status: Pending → Approved → Paid or Rejected"
+      ],
+      "tips": [
+        "Keep patient insurance information up-to-date in their profile",
+        "Rejected claims can be resubmitted after fixing the issue"
+      ],
+      "warnings": [
+        "Never submit a claim for services not actually rendered",
+        "Insurance fraud is illegal — report any suspicious activity to management"
+      ],
+      "roles": "Hospital Admin, Insurance staff"
+    },
+    "insuranceBilling": {
+      "title": "Insurance Billing",
+      "where": "Sidebar → Finance → Insurance Billing",
+      "steps": [
+        "Click 'Insurance Billing' from the sidebar",
+        "View all IPD patients whose bills will be paid by insurance",
+        "Select a patient → view their accrued charges",
+        "Verify which services are covered by the insurance policy",
+        "Generate the insurance claim invoice",
+        "Submit the claim digitally or print for manual submission",
+        "Track payment from the insurance company"
+      ],
+      "tips": [
+        "Know the insurance coverage limits before admitting the patient",
+        "Pre-authorize expensive procedures with the insurance company in advance"
+      ],
+      "warnings": [
+        "Insurance billing discrepancies lead to claim rejections — be accurate",
+        "Each insurance company has different claim formats — check their requirements"
+      ],
+      "roles": "Hospital Admin, Insurance staff"
+    },
+    "ipBilling": {
+      "title": "IP Billing (Inpatient Billing)",
+      "where": "Sidebar → Finance → IP Billing",
+      "steps": [
+        "Click 'IP Billing' from the sidebar",
+        "View all currently admitted inpatients and their accumulating charges",
+        "Click on a patient to see their itemized billing breakdown",
+        "Charges include: bed charges (daily), doctor visits, medicines, procedures, tests",
+        "Charges from pharmacy, lab, and nursing are auto-added when services are provided",
+        "When patient is ready for discharge: click 'Generate Final Bill'",
+        "Verify all charges, apply deposits/credit, collect remaining payment",
+        "Print the final inpatient bill receipt"
+      ],
+      "tips": [
+        "Review running totals periodically and share with patient families",
+        "All services rendered to the patient update this bill in real-time"
+      ],
+      "warnings": [
+        "Never finalize IP billing until all discharge procedures are completed",
+        "Verify that all dispensed medicines from pharmacy are reflected in the bill"
+      ],
+      "roles": "Hospital Admin, Billing Staff"
+    },
+    "payments": {
+      "title": "Payments",
+      "where": "Sidebar → Finance → Payments",
+      "steps": [
+        "Click 'Payments' from the sidebar",
+        "View all payment transactions recorded in the system",
+        "Filter by date range, payment method, or status",
+        "Click on any payment to see its details",
+        "Payments are automatically recorded when a bill is paid",
+        "For manual payment recording: click '+ New Payment' → select bill → enter amount and method"
+      ],
+      "tips": [
+        "Use the date filter to reconcile daily collections",
+        "Payment history provides a complete audit trail for all transactions"
+      ],
+      "warnings": [
+        "Only correct receipts through the proper refund/credit note process",
+        "Never delete payment records — they are permanent for accounting"
+      ],
+      "roles": "Hospital Admin, Billing Staff"
+    },
+    "inbox": {
+      "title": "Inbox / Messages",
+      "where": "Sidebar → Administration → Inbox (or the Bell icon in the top-right header)",
+      "steps": [
+        "Click 'Inbox' from the sidebar for the full message list",
+        "OR click the 🔔 bell icon in the top header for a quick preview",
+        "View all system notifications and internal messages",
+        "Click on any notification to read it — unread messages are highlighted in blue",
+        "Click the checkmark to mark as read, or the trash icon to delete",
+        "Click 'Mark All as Read' at the top to clear all notifications",
+        "Notifications auto-arrive for events like: new lab results, new appointments, billing alerts"
+      ],
+      "tips": [
+        "Check your inbox at the start of every shift",
+        "Notifications with a link (blue text) will take you directly to the relevant page"
+      ],
+      "warnings": [
+        "Deleting a notification is permanent — make sure to note any important information first",
+        "System notifications are generated automatically — you cannot reply to them"
+      ],
+      "roles": "All staff members"
+    },
+    "staff": {
+      "title": "Staff Management",
+      "where": "Sidebar → Administration → Staff",
+      "steps": [
+        "Click 'Staff' from the sidebar",
+        "View all current staff members with their roles and status",
+        "Click '+ Invite Staff' to add a new staff member",
+        "Enter their name, email address, and select their role",
+        "Available roles: Hospital Admin, Reception, Laboratory, Pharmacist, Nurse, Doctor, MD, Administration",
+        "Click 'Send Invitation' — they will receive an email with login instructions",
+        "To update a staff member's role: click their name → Edit → change role → Save",
+        "To deactivate: click on the staff member → 'Deactivate'"
+      ],
+      "tips": [
+        "Assign the minimum necessary role — do not give everyone admin access",
+        "Deactivate instead of deleting when a staff member leaves — records are preserved"
+      ],
+      "warnings": [
+        "Admin role has full access to everything — assign carefully",
+        "Invitation emails expire after 48 hours — resend if not accepted in time"
+      ],
+      "roles": "Hospital Admin only"
+    },
+    "shareholders": {
+      "title": "Shareholders",
+      "where": "Sidebar → Administration → Shareholders",
+      "steps": [
+        "Click 'Shareholders' from the sidebar",
+        "View all shareholders with their ownership percentage and share value",
+        "Click '+ Add Shareholder' to register a new shareholder",
+        "Enter: name, contact, share percentage, investment amount",
+        "DISTRIBUTIONS: record dividend or profit distributions — click 'New Distribution' → select shareholder → enter amount",
+        "DIVIDENDS: process declared dividends — track paid vs. pending",
+        "View individual shareholder reports and their transaction history"
+      ],
+      "tips": [
+        "Keep shareholder contact information up to date for distribution communications",
+        "Generate shareholder reports at year-end for financial statements"
+      ],
+      "warnings": [
+        "Total shareholder percentage must always equal 100% — verify after adding new shareholders",
+        "Distributions must be approved by the Board before recording"
+      ],
+      "roles": "Hospital Admin, Administration"
+    },
+    "multiBranch": {
+      "title": "Multi-Branch Management",
+      "where": "Sidebar → Administration → Multi-Branch",
+      "steps": [
+        "Click 'Multi-Branch' from the sidebar",
+        "View all branches of your hospital network",
+        "See performance metrics for each branch: revenue, patients, occupancy",
+        "Click on a branch to see its detailed performance",
+        "To add a new branch: go to Super Admin panel → register a new hospital"
+      ],
+      "tips": [
+        "Use the comparison view to identify top and underperforming branches",
+        "Each branch operates independently but data rolls up to this central view"
+      ],
+      "warnings": [
+        "Branch data is read-only here — changes must be made by logging into each branch",
+        "This feature shows aggregated data and may have a slight delay (up to 5 minutes)"
+      ],
+      "roles": "Hospital Admin, MD, Administration"
+    },
+    "reports": {
+      "title": "Reports",
+      "where": "Sidebar → Administration → Reports",
+      "steps": [
+        "Click 'Reports' from the sidebar for the reports overview",
+        "Choose a report type: Lab Reports, Pharmacy Reports, Appointment Reports",
+        "Set the date range for the report",
+        "Apply any filters (e.g. specific doctor, department, test type)",
+        "Click 'Generate Report'",
+        "View results in table or chart format",
+        "Click 'Export' to download as CSV or PDF",
+        "Print directly using your browser's print function"
+      ],
+      "tips": [
+        "Generate monthly reports for management review",
+        "Use Lab Reports to track high-volume tests and revenue"
+      ],
+      "warnings": [
+        "Large date ranges (more than 3 months) may take longer to load",
+        "Reports show data as of the current moment — export to preserve the snapshot"
+      ],
+      "roles": "Hospital Admin, MD, Administration"
+    },
+    "systemAudit": {
+      "title": "System Audit Log",
+      "where": "Sidebar → Administration → System Audit",
+      "steps": [
+        "Click 'System Audit' from the sidebar",
+        "View a real-time log of all actions performed in the system",
+        "Each entry shows: who did it, what they did, when, and from which IP address",
+        "Use filters to search by user, action type, or date range",
+        "Click on any entry to see full details",
+        "Use this to investigate suspicious activity or track changes"
+      ],
+      "tips": [
+        "Regularly review the audit log to catch unauthorized access",
+        "Look for unusual login times or bulk data deletions"
+      ],
+      "warnings": [
+        "Audit logs cannot be edited or deleted — they are permanent records",
+        "Accessing this page is itself logged"
+      ],
+      "roles": "Hospital Admin only"
+    },
+    "website": {
+      "title": "Website / CMS",
+      "where": "Sidebar → Administration → Website",
+      "steps": [
+        "Click 'Website' from the sidebar",
+        "Edit your hospital's public-facing website content",
+        "Update: About Us text, Services listed, Contact information, Photos",
+        "Add or remove departments shown on the website",
+        "Update doctor profiles visible on the website",
+        "Toggle sections visible/hidden using the toggle switches",
+        "Click 'Publish Changes' to make updates live on your website",
+        "View website analytics: visitors, page views, popular content"
+      ],
+      "tips": [
+        "Keep the website content updated — especially opening hours and doctor availability",
+        "Add high-quality photos to make a professional impression"
+      ],
+      "warnings": [
+        "Published changes go live immediately — review before publishing",
+        "Do not put patient information on the public website"
+      ],
+      "roles": "Hospital Admin only"
+    },
+    "aiAssistant": {
+      "title": "AI Assistant",
+      "where": "Sidebar → Administration → AI Assistant (if enabled)",
+      "steps": [
+        "Click 'AI Assistant' from the sidebar",
+        "Type your question or request in the chat box",
+        "Examples: 'What is the top diagnosis in the last month?', 'Summarize today's admissions', 'Write a discharge summary for patient 123'",
+        "Press Enter or click Send",
+        "The AI will respond with analysis, suggestions, or generated text",
+        "Copy or use the AI's response as needed"
+      ],
+      "tips": [
+        "Be specific in your questions for better answers",
+        "Use the AI to help write consultation notes, discharge summaries, or reports"
+      ],
+      "warnings": [
+        "AI responses are suggestions — always review before using in clinical documents",
+        "Do not enter patient names or sensitive information unnecessarily"
+      ],
+      "roles": "Hospital Admin, Doctors"
+    },
+    "patientPortal": {
+      "title": "Patient Portal",
+      "where": "Sidebar → Administration → Patient Portal",
+      "steps": [
+        "Click 'Patient Portal' from the sidebar",
+        "View what patients can see when they log into the patient portal",
+        "Patients can: view their appointments, lab results, prescriptions, bills, and medical history",
+        "From here you can manage patient portal access for specific patients",
+        "To grant portal access: find the patient → 'Grant Portal Access' → send login to patient's email"
+      ],
+      "tips": [
+        "Encourage patients to use the portal as it reduces phone inquiries",
+        "Ensure patient email addresses are correctly entered in their profile"
+      ],
+      "warnings": [
+        "Patients can only see their own information — privacy is maintained",
+        "Revoke portal access if a patient requests it or if their account is compromised"
+      ],
+      "roles": "Hospital Admin"
+    },
+    "superAdmin": {
+      "title": "Super Admin Panel",
+      "where": "/super-admin/dashboard (only for Super Admin users)",
+      "steps": [
+        "Log in with a Super Admin account",
+        "DASHBOARD: view platform-wide statistics (total hospitals, users, revenue)",
+        "HOSPITALS: view all registered hospitals — click on one to see its details",
+        "ONBOARDING QUEUE: process new hospital sign-up requests",
+        "Click on a pending request → review details → 'Approve' or 'Reject'",
+        "AUDIT LOG: view all super admin actions across the entire platform",
+        "HEALTH: monitor the health of servers, databases, and API endpoints",
+        "SETTINGS: configure global platform settings"
+      ],
+      "tips": [
+        "Review the onboarding queue daily — hospitals are waiting for activation",
+        "Monitor the Health page for any service degradation"
+      ],
+      "warnings": [
+        "Super Admin has access to all hospitals — use this power responsibly",
+        "Never approve a hospital without verifying their registration documents"
+      ],
+      "roles": "Super Admin only"
+    },
+    "triageChatbot": {
+      "title": "Triage Chatbot",
+      "where": "Sidebar → Special Features → Triage (if available)",
+      "steps": [
+        "Navigate to the Triage Chatbot page",
+        "The chatbot guides patients through a series of symptom questions",
+        "Patients answer Yes/No or choose from options",
+        "Based on answers, the system suggests: 'Go to Emergency', 'Book an Appointment', 'Home Care'",
+        "Reception staff can run through the chatbot on behalf of walk-in patients",
+        "The chatbot result is logged in the patient's record"
+      ],
+      "tips": [
+        "Use the triage chatbot for walk-in patients to quickly assess urgency",
+        "The chatbot is based on validated clinical decision trees"
+      ],
+      "warnings": [
+        "The chatbot is a screening tool — it does not replace doctor assessment",
+        "Always escalate to a doctor if in doubt about patient condition"
+      ],
+      "roles": "Reception, Nurses, Patients (self-service)"
+    },
+    "roleDashboards": {
+      "title": "Role-Based Dashboards",
+      "where": "Automatically shown after login based on your role",
+      "steps": [
+        "HOSPITAL ADMIN DASHBOARD: full overview of all operations, metrics, quick actions",
+        "DOCTOR DASHBOARD: today's appointments, pending prescriptions, recent patients, lab results to review",
+        "RECEPTION DASHBOARD: appointments today, patient check-ins, pending billing, quick registration",
+        "MD DASHBOARD: financial KPIs, profit/loss summary, staff performance overview",
+        "ADMINISTRATION DASHBOARD: governance metrics, shareholder summary, strategic indicators",
+        "PHARMACIST DASHBOARD: pending dispenses, low stock alerts, recent prescriptions",
+        "LAB DASHBOARD: pending test orders, results to be entered, completed tests today"
+      ],
+      "tips": [
+        "Your dashboard is customized for your role — focus on the widgets most relevant to your work",
+        "Dashboard data refreshes automatically every few minutes"
+      ],
+      "warnings": [
+        "If your dashboard shows the wrong role, contact your Hospital Admin",
+        "Dashboard numbers are summaries — use specific module pages for detailed information"
+      ],
+      "roles": "Varies by role"
+    },
+    "commissionManagement": {
+      "title": "Commission Rules & Management",
+      "where": "Sidebar → Finance → Accounting → Commission Management",
+      "steps": [
+        "Set Consultation Fees: Primarily in Doctor Profile, or here for specific shares.",
+        "Create Commission Rules: Go to 'Active Rules', select Doctor, Service, and Rate (Percent or Flat).",
+        "Billing & Automation: Once active, the system calculates commissions automatically during billing.",
+        "View & Settle Accruals: Earned commissions appear in 'Accruals'; select items and click 'Settle' to pay."
+      ],
+      "tips": [
+        "Understanding Roles: Performer (who does it), Prescriber (who ordered it), Referrer (external).",
+        "Priority Logic: Specific Test Rule > Category Rule > General Service Rule.",
+        "Print payment slips for the accounts department from the Settlements tab."
+      ],
+      "warnings": [
+        "Deleting a rule will stop future calculations but will NOT delete old financial records.",
+        "Always ensure the correct 'Incentive Role' is selected when creating rules."
+      ],
+      "roles": "Hospital Admin, MD, Administration, Accounts"
+    }
+  },
+  "countLabels": {
+    "moduleOne": "module",
+    "moduleOther": "modules",
+    "roleOne": "role",
+    "roleOther": "roles"
+  },
+  "footer": {
+    "prefix": "Ozzyl Health Help Center",
+    "suffix": "— {year}"
+  }
+}

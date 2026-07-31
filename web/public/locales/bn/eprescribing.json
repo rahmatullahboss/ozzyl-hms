@@ -1,0 +1,131 @@
+{
+  "title": "ই-প্রেস্ক্রাইবিং",
+  "subtitle": "ওষুধ নিরাপত্তা পরীক্ষা, ফর্মুলারি এবং মিথস্ক্রিয়া ব্যবস্থাপনা",
+  "kpi": {
+    "drugCatalog": "ওষুধ ক্যাটালগ",
+    "interactionPairs": "মিথস্ক্রিয়া জোড়া",
+    "safetyChecksRun": "নিরাপত্তা পরীক্ষা চালানো হয়েছে",
+    "warningsDetected": "সতর্কতা সনাক্ত হয়েছে"
+  },
+  "tabs": {
+    "safetyChecker": "নিরাপত্তা পরীক্ষক",
+    "drugCatalog": "ওষুধ ক্যাটালগ",
+    "interactions": "মিথস্ক্রিয়া"
+  },
+  "actions": {
+    "cancel": "বাতিল",
+    "yes": "হ্যাঁ",
+    "no": "না"
+  },
+  "safety": {
+    "title": "প্রেসক্রিপশন নিরাপত্তা পরীক্ষা",
+    "description": "ওষুধ-ওষুধ মিথস্ক্রিয়া, অ্যালার্জি কনtraindication, ডুপ্লিকেট থেরাপি এবং সর্বোচ্চ ডোজ লঙ্ঘন পরীক্ষা করতে রোগী আইডি এবং ওষুধ লিখুন।",
+    "patientIdLabel": "রোগী আইডি *",
+    "patientIdPlaceholder": "যেমন: 1",
+    "medicationNameLabel": "ওষুধের নাম *",
+    "medicationNamePlaceholder": "যেমন: Ibuprofen",
+    "genericNameLabel": "জেনেরিক নাম (ঐচ্ছিক)",
+    "genericNamePlaceholder": "যেমন: ibuprofen",
+    "checking": "পরীক্ষা চলছে…",
+    "runCheckBtn": "🔍 নিরাপত্তা পরীক্ষা চালান",
+    "noConcerns": "✅ কোনো নিরাপত্তা উদ্বেগ নেই",
+    "contraindicated": "🚫 কনট্রাइनডিকেটেড",
+    "warningsFound": "সতর্কতা পাওয়া গেছে",
+    "warningFound": "সতর্কতা পাওয়া গেছে",
+    "recommendation": "সুপারিশ"
+  },
+  "formulary": {
+    "searchPlaceholder": "ওষুধের নাম, জেনেরিক বা প্রস্তুতকারক অনুসন্ধান…",
+    "addDrug": "ওষুধ যোগ করুন",
+    "noDrugs": "ফর্মুলারিতে এখনো কোনো ওষুধ নেই। শুরু করতে একটি যোগ করুন।",
+    "antibiotic": "অ্যান্টিবায়োটিক",
+    "controlled": "নিয়ন্ত্রিত"
+  },
+  "formularyModal": {
+    "title": "ফর্মুলারিতে ওষুধ যোগ করুন",
+    "drugNameLabel": "ওষুধের নাম *",
+    "drugNamePlaceholder": "যেমন: নাপা এক্সট্রা",
+    "genericNameLabel": "জেনেরিক নাম *",
+    "genericNamePlaceholder": "যেমন: প্যারাসিটামল",
+    "strengthLabel": "শক্তি",
+    "strengthPlaceholder": "500mg",
+    "dosageFormLabel": "ডোসেজ ফর্ম",
+    "selectPlaceholder": "নির্বাচন…",
+    "forms": {
+      "tablet": "ট্যাবলেট",
+      "capsule": "ক্যাপসুল",
+      "syrup": "সিরাপ",
+      "suspension": "সাসপেনশন",
+      "injection": "ইনজেকশন",
+      "ointment": "অয়েন্টমেন্ট",
+      "cream": "ক্রিম",
+      "drops": "ড্রপস",
+      "inhaler": "ইনহেলার",
+      "other": "অন্যান্য"
+    },
+    "routeLabel": "পথ",
+    "routes": {
+      "oral": "ওরাল",
+      "topical": "টপিক্যাল",
+      "inhalation": "ইনহেলেশন",
+      "ophthalmic": "অফথালমিক",
+      "other": "অন্যান্য"
+    },
+    "manufacturerLabel": "প্রস্তুতকারক",
+    "manufacturerPlaceholder": "স্কয়ার ফার্মা",
+    "maxDailyDoseLabel": "সর্বোচ্চ দৈনিক ডোজ (mg)",
+    "maxDailyDosePlaceholder": "4000",
+    "unitPriceLabel": "ইউনিট মূল্য (৳)",
+    "unitPricePlaceholder": "5.00",
+    "addBtn": "ফর্মুলারিতে যোগ করুন"
+  },
+  "interactions": {
+    "searchPlaceholder": "ওষুধের নাম বা বিবরণ অনুসন্ধান…",
+    "addPair": "জোড়া যোগ করুন",
+    "noPairs": "কোনো মিথস্ক্রিয়া জোড়া পাওয়া যায়নি।",
+    "severity": {
+      "all": "সব",
+      "minor": "সামান্য",
+      "moderate": "মাঝারি",
+      "major": "গুরুতর",
+      "contraindicated": "কনট্রाइनডিকেটেড"
+    }
+  },
+  "interactionModal": {
+    "title": "ওষুধ মিথস্ক্রিয়া জোড়া যোগ করুন",
+    "drugALabel": "ওষুধ ক (জেনেরিক) *",
+    "drugAPlaceholder": "যেমন: warfarin",
+    "drugBLabel": "ওষুধ খ (জেনেরিক) *",
+    "drugBPlaceholder": "যেমন: ibuprofen",
+    "severityLabel": "তীব্রতা *",
+    "severityOptions": {
+      "minor": "সামান্য",
+      "moderate": "মাঝারি",
+      "major": "গুরুতর",
+      "contraindicated": "কনট্রाइनडিকেটেড"
+    },
+    "descriptionLabel": "বিবরণ *",
+    "descriptionPlaceholder": "মিথস্ক্রিয়ার ক্লিনিকাল বিবরণ…",
+    "recommendationLabel": "সুপারিশ",
+    "recommendationPlaceholder": "প্রেস্ক্রাইবারের কী করা উচিত?",
+    "addBtn": "মিথস্ক্রিয়া যোগ করুন"
+  },
+  "toast": {
+    "success": {
+      "drugAdded": "ফর্মুলারিতে ওষুধ যোগ হয়েছে",
+      "interactionAdded": "মিথস্ক্রিয়া জোড়া যোগ হয়েছে",
+      "interactionRemoved": "মিথস্ক্রিয়া সরানো হয়েছে",
+      "noSafetyConcerns": "✅ কোনো নিরাপত্তা উদ্বেগ পাওয়া যায়নি"
+    },
+    "error": {
+      "addDrugFailed": "ওষুধ যোগ করতে ব্যর্থ",
+      "addInteractionFailed": "মিথস্ক্রিয়া যোগ করতে ব্যর্থ",
+      "removeFailed": "সরাতে ব্যর্থ",
+      "safetyCheckRequired": "রোগী আইডি এবং ওষুধের নাম প্রয়োজন",
+      "safetyCheckFailed": "নিরাপত্তা পরীক্ষা ব্যর্থ"
+    },
+    "warning": {
+      "safetyWarnings": "⚠️ নিরাপত্তা সতর্কতা সনাক্ত হয়েছে — অনুগ্রহ করে পর্যালোচনা করুন"
+    }
+  }
+}

@@ -1,0 +1,738 @@
+{
+  "version": 1,
+  "governanceStartMigration": 423,
+  "canonicalTables": [
+    {
+      "name": "canonical_schema_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "schema lifecycle"
+    },
+    {
+      "name": "canonical_migration_runs",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "migration runs"
+    },
+    {
+      "name": "canonical_backfill_checkpoints",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "backfill checkpoints"
+    },
+    {
+      "name": "canonical_source_mappings",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "source mappings"
+    },
+    {
+      "name": "canonical_outbox_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "outbox events"
+    },
+    {
+      "name": "canonical_sync_inbox_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "canonical sync inbox receipts"
+    },
+    {
+      "name": "canonical_sync_inbox_dependencies",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "canonical sync dependency evidence"
+    },
+    {
+      "name": "canonical_sync_entity_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "canonical sync applied entity versions"
+    },
+    {
+      "name": "canonical_sync_batch_assertions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "transaction-local canonical sync row-count assertions"
+    },
+    {
+      "name": "canonical_processing_issues",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "processing issues"
+    },
+    {
+      "name": "canonical_financial_batch_assertions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "transaction-local financial row-count assertions"
+    },
+    {
+      "name": "canonical_reconciliation_runs",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "reconciliation runs"
+    },
+    {
+      "name": "canonical_feature_flags",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/meta.ts",
+      "authority": "feature flags"
+    },
+    {
+      "name": "canonical_tenant_patient_links",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/patient-identity.ts",
+      "authority": "tenant patient to global identity current relationship"
+    },
+    {
+      "name": "canonical_tenant_patient_link_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/patient-identity.ts",
+      "authority": "immutable tenant patient identity relationship history"
+    },
+    {
+      "name": "canonical_practitioners",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/identity.ts",
+      "authority": "versioned practitioner identity and operational status authority"
+    },
+    {
+      "name": "canonical_practitioner_user_links",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/identity.ts",
+      "authority": "practitioner user links"
+    },
+    {
+      "name": "canonical_practitioner_employee_links",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/identity.ts",
+      "authority": "practitioner employee links"
+    },
+    {
+      "name": "canonical_practitioner_identifiers",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/identity.ts",
+      "authority": "practitioner identifiers"
+    },
+    {
+      "name": "canonical_practitioner_specialties",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/identity.ts",
+      "authority": "practitioner specialties"
+    },
+    {
+      "name": "canonical_practitioner_departments",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/identity.ts",
+      "authority": "practitioner departments"
+    },
+    {
+      "name": "canonical_appointments",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/appointments.ts",
+      "authority": "planned appointment intent current state"
+    },
+    {
+      "name": "canonical_appointment_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/appointments.ts",
+      "authority": "immutable appointment lifecycle history"
+    },
+    {
+      "name": "canonical_appointment_encounter_links",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/appointments.ts",
+      "authority": "explicit planned-intent to actual-care linkage"
+    },
+    {
+      "name": "canonical_care_locations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "care-location resource identity and hierarchy"
+    },
+    {
+      "name": "canonical_beds",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "bed resource identity and operational state"
+    },
+    {
+      "name": "canonical_encounters",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "actual care encounters"
+    },
+    {
+      "name": "canonical_admissions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "inpatient admission lifecycle current state"
+    },
+    {
+      "name": "canonical_admission_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "immutable inpatient admission lifecycle history"
+    },
+    {
+      "name": "canonical_encounter_participants",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "explicit encounter participant roles"
+    },
+    {
+      "name": "canonical_encounter_admission_links",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "legacy admission-to-encounter compatibility mappings"
+    },
+    {
+      "name": "canonical_bed_stays",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "interval-based bed occupancy truth"
+    },
+    {
+      "name": "canonical_encounter_addenda",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical.ts",
+      "authority": "signed encounter addenda hashes"
+    },
+    {
+      "name": "canonical_clinical_documents",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical-documents.ts",
+      "authority": "authored clinical document aggregate current state"
+    },
+    {
+      "name": "canonical_clinical_document_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical-documents.ts",
+      "authority": "immutable clinical document content versions and provenance"
+    },
+    {
+      "name": "canonical_clinical_document_signatures",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical-documents.ts",
+      "authority": "immutable signature and attestation evidence for exact document versions"
+    },
+    {
+      "name": "canonical_clinical_document_attachments",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical-documents.ts",
+      "authority": "clinical document attachment metadata provenance and lifecycle"
+    },
+    {
+      "name": "canonical_diagnosis_assertions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical-documents.ts",
+      "authority": "encounter-linked coded diagnosis assertion current state"
+    },
+    {
+      "name": "canonical_diagnosis_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/clinical-documents.ts",
+      "authority": "immutable diagnosis review and lifecycle event history"
+    },
+    {
+      "name": "canonical_vital_observation_sets",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/vital-observations.ts",
+      "authority": "patient vital observation aggregate scope provenance time and review state"
+    },
+    {
+      "name": "canonical_vital_observation_components",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/vital-observations.ts",
+      "authority": "immutable typed vital measurement values canonical units and derivation evidence",
+      "nonMoneyRealColumns": [
+        "numeric_value",
+        "source_numeric_value"
+      ]
+    },
+    {
+      "name": "canonical_vital_observation_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/vital-observations.ts",
+      "authority": "immutable vital review correction supersession and error lifecycle history"
+    },
+    {
+      "name": "canonical_prescriptions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication.ts",
+      "authority": "encounter-linked prescription document current state"
+    },
+    {
+      "name": "canonical_prescription_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication.ts",
+      "authority": "immutable prescription document versions and signature hashes"
+    },
+    {
+      "name": "canonical_medication_orders",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication.ts",
+      "authority": "encounter-linked clinical medication intent current state"
+    },
+    {
+      "name": "canonical_medication_order_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication.ts",
+      "authority": "immutable clinical medication-order lifecycle history"
+    },
+    {
+      "name": "canonical_prescription_safety_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication.ts",
+      "authority": "immutable prescription safety evaluation and override evidence"
+    },
+    {
+      "name": "canonical_medication_administration_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication-administration.ts",
+      "authority": "immutable medication administration non-administration correction and entered-in-error events"
+    },
+    {
+      "name": "canonical_medication_reconciliations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication-administration.ts",
+      "authority": "patient encounter medication reconciliation current workflow state"
+    },
+    {
+      "name": "canonical_medication_reconciliation_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication-administration.ts",
+      "authority": "immutable versioned and signed medication reconciliation snapshots"
+    },
+    {
+      "name": "canonical_medication_reconciliation_items",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication-administration.ts",
+      "authority": "immutable medication reconciliation decisions within one exact version"
+    },
+    {
+      "name": "canonical_medication_reconciliation_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/medication-administration.ts",
+      "authority": "immutable medication reconciliation draft final cancellation and error lifecycle history"
+    },
+    {
+      "name": "canonical_lab_specimens",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "lab specimen identity and current custody lifecycle projection"
+    },
+    {
+      "name": "canonical_lab_specimen_service_items",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "exact specimen to canonical service request and event relationships"
+    },
+    {
+      "name": "canonical_lab_specimen_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "immutable specimen custody collection receipt rejection aliquot disposal and error history"
+    },
+    {
+      "name": "canonical_lab_result_sets",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "patient encounter request specimen scoped laboratory result current state"
+    },
+    {
+      "name": "canonical_lab_result_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "immutable complete laboratory result versions correction retraction and signature content"
+    },
+    {
+      "name": "canonical_lab_result_observations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "immutable ordered laboratory observation components within one exact result version"
+    },
+    {
+      "name": "canonical_lab_result_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "immutable laboratory draft verification validation publication correction retraction and error lifecycle"
+    },
+    {
+      "name": "canonical_lab_analyzer_evidence",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/lab-result-specimen.ts",
+      "authority": "immutable exact analyzer source hash QC validation matching and accepted observation provenance"
+    },
+    {
+      "name": "canonical_imaging_acquisitions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "patient encounter service request scoped imaging acquisition and worklist current state"
+    },
+    {
+      "name": "canonical_imaging_acquisition_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "immutable scheduled ready started completed cancelled corrected and error acquisition history"
+    },
+    {
+      "name": "canonical_imaging_studies",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "exact DICOM Study Instance UID identity and current study storage projection"
+    },
+    {
+      "name": "canonical_imaging_series",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "exact DICOM Series Instance UID identity within one canonical study"
+    },
+    {
+      "name": "canonical_imaging_instances",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "exact SOP Instance UID SOP Class object content hash and accepted storage identity"
+    },
+    {
+      "name": "canonical_imaging_provenance_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "immutable modality AE PACS transfer ingest storage duplicate collision replacement and error provenance"
+    },
+    {
+      "name": "canonical_imaging_report_sets",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "acquisition study patient encounter request scoped imaging report current state"
+    },
+    {
+      "name": "canonical_imaging_report_versions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "immutable complete signed imaging report versions corrections retractions and error content"
+    },
+    {
+      "name": "canonical_imaging_report_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/radiology-acquisition-report.ts",
+      "authority": "immutable imaging report draft verification final publication correction retraction and error lifecycle"
+    },
+    {
+      "name": "canonical_emergency_cases",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/emergency-case-triage.ts",
+      "authority": "one emergency case extension per exact canonical encounter with guarded current lifecycle pointers"
+    },
+    {
+      "name": "canonical_emergency_arrival_assessments",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/emergency-case-triage.ts",
+      "authority": "immutable versioned emergency arrival mode referral condition brought-by and police-case evidence"
+    },
+    {
+      "name": "canonical_emergency_case_status_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/emergency-case-triage.ts",
+      "authority": "immutable contiguous emergency case lifecycle history"
+    },
+    {
+      "name": "canonical_emergency_triage_assessments",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/emergency-case-triage.ts",
+      "authority": "immutable versioned emergency acuity assessment with exact practitioner and optional vital evidence"
+    },
+    {
+      "name": "canonical_emergency_case_classifications",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/emergency-case-triage.ts",
+      "authority": "immutable versioned typed emergency trauma animal-bite police and other domain classifications"
+    },
+    {
+      "name": "canonical_emergency_disposition_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/emergency-case-triage.ts",
+      "authority": "immutable emergency admission discharge transfer LAMA DOR death observation and error disposition evidence"
+    },
+    {
+      "name": "canonical_service_catalog_items",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/services.ts",
+      "authority": "unified service catalog"
+    },
+    {
+      "name": "canonical_service_prices",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/services.ts",
+      "authority": "effective service prices"
+    },
+    {
+      "name": "canonical_service_requests",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/service-operations.ts",
+      "authority": "ordered or planned service work"
+    },
+    {
+      "name": "canonical_service_events",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/service-operations.ts",
+      "authority": "delivered or operationally accepted service work"
+    },
+    {
+      "name": "canonical_service_participants",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/service-operations.ts",
+      "authority": "typed practitioner roles for service requests and events"
+    },
+    {
+      "name": "canonical_invoices",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "canonical invoice headers and posted totals"
+    },
+    {
+      "name": "canonical_invoice_lines",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "typed service-event and adjustment invoice lines"
+    },
+    {
+      "name": "canonical_invoice_encounter_links",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "explicit canonical linkage between posted discharge invoices and inpatient encounters"
+    },
+    {
+      "name": "canonical_payment_receipts",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "collection receipt identity lifecycle and exact totals"
+    },
+    {
+      "name": "canonical_payment_tenders",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "typed payment instruments and gateway or cash state"
+    },
+    {
+      "name": "canonical_payment_allocations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "persisted exact applications of receipts to invoices or typed invoice lines"
+    },
+    {
+      "name": "canonical_deposits",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "patient deposit liability and exact available balance"
+    },
+    {
+      "name": "canonical_deposit_applications",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "immutable exact applications of deposit liability to invoices or typed invoice lines"
+    },
+    {
+      "name": "canonical_credit_notes",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "posted invoice credit documents and exact credited totals"
+    },
+    {
+      "name": "canonical_credit_note_lines",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "typed credit-note reductions linked to canonical invoice lines"
+    },
+    {
+      "name": "canonical_credit_note_cash_refunds",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "cash payout authority for posted credit notes and exact counter custody lineage"
+    },
+    {
+      "name": "canonical_credit_note_cash_refund_reversals",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "immutable reversal authority for posted credit-note cash refunds, restored invoice/payment projections, and custody recovery requirements"
+    },
+    {
+      "name": "canonical_credit_note_refund_receipts",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "receipt-level funding slices and exact refunded or net-received balance transitions for credit-note cash payouts"
+    },
+    {
+      "name": "canonical_credit_note_refund_allocations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "invoice payment allocation slices deallocated to fund credit-note cash payouts"
+    },
+    {
+      "name": "canonical_credit_note_refund_tender_attributions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "immutable original tender lineage attributed to credit-note cash payouts without reversing settlement tenders"
+    },
+    {
+      "name": "canonical_refunds",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "outbound deposit or payment refund settlement documents"
+    },
+    {
+      "name": "canonical_payment_reversals",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/billing.ts",
+      "authority": "explicit immutable reversal facts for receipt tender and invoice allocation authority"
+    },
+    {
+      "name": "canonical_compensation_rules",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "effective-dated practitioner and role scoped compensation calculation rules"
+    },
+    {
+      "name": "canonical_compensation_accruals",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "immutable rule snapshots and exact practitioner payable accrual projections"
+    },
+    {
+      "name": "canonical_compensation_reporting_context",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "immutable queryable source classification waiver and legacy trace context for canonical practitioner accrual reporting"
+    },
+    {
+      "name": "canonical_compensation_adjustments",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "explicit credit refund cancellation recovery and settlement-reversal facts"
+    },
+    {
+      "name": "canonical_compensation_refund_reservations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "refund-scoped practitioner compensation snapshots preserving original and reserved base earned waiver payable and paid balances"
+    },
+    {
+      "name": "canonical_compensation_adjustment_reversals",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "immutable reversal facts that restore a previously applied non-settlement compensation adjustment"
+    },
+    {
+      "name": "canonical_compensation_settlements",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "practitioner payout documents with exact net paid and reversal projections"
+    },
+    {
+      "name": "canonical_compensation_settlement_allocations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/compensation.ts",
+      "authority": "immutable allocations of practitioner settlements to canonical accruals"
+    },
+    {
+      "name": "canonical_inventory_items",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "canonical inventory item identity and base unit"
+    },
+    {
+      "name": "canonical_inventory_locations",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "typed stock location identity"
+    },
+    {
+      "name": "canonical_inventory_lots",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "item lot batch and expiry identity"
+    },
+    {
+      "name": "canonical_inventory_unit_conversions",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "exact item-specific conversion to base inventory units"
+    },
+    {
+      "name": "canonical_inventory_stock_policies",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "item and location negative-stock policy"
+    },
+    {
+      "name": "canonical_inventory_balances",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "guarded stock balance projection by item location and lot"
+    },
+    {
+      "name": "canonical_inventory_transfers",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "linked inter-location transfer identity"
+    },
+    {
+      "name": "canonical_inventory_movements",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/inventory.ts",
+      "authority": "immutable typed stock movement truth"
+    },
+    {
+      "name": "canonical_accounting_accounts",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "canonical chart of accounts identity and normal balance"
+    },
+    {
+      "name": "canonical_accounting_mappings",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "explicit semantic posting-key to account mapping"
+    },
+    {
+      "name": "canonical_accounting_periods",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "open closed and explicitly reopened financial periods"
+    },
+    {
+      "name": "canonical_accounting_posting_jobs",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "idempotent outbox consumption retry and source-drift evidence"
+    },
+    {
+      "name": "canonical_accounting_vouchers",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "immutable balanced accounting voucher headers"
+    },
+    {
+      "name": "canonical_accounting_entries",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "immutable debit and credit entry truth"
+    },
+    {
+      "name": "canonical_cash_custody_movements",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "immutable physical cash custody movements separate from account classification"
+    },
+    {
+      "name": "canonical_cash_custody_balances",
+      "tenantOwned": true,
+      "schemaModule": "src/db/schema/canonical/accounting.ts",
+      "authority": "guarded physical cash custody balance projection"
+    }
+  ],
+  "metrics": [],
+  "financialCommands": []
+}

@@ -1,0 +1,104 @@
+{
+  "title": "ব্লাড ব্যাংক",
+  "subtitle": "দাতা রেজিস্ট্রি, স্টক, ক্রস-ম্যাচ এবং ট্রান্সফিউশন ট্র্যাকিং",
+  "tabs": {
+    "stock": "রক্তের স্টক",
+    "donors": "দাতা",
+    "donations": "দান",
+    "cross-match": "ক্রস-ম্যাচ",
+    "transfusions": "ট্রান্সফিউশন"
+  },
+  "stats": {
+    "totalDonors": "মোট দাতা",
+    "availableUnits": "উপলব্ধ ইউনিট",
+    "pendingXMatch": "অপেক্ষমান ক্রস-ম্যাচ",
+    "todayTransfusions": "আজকের ট্রান্সফিউশন",
+    "expiringSoon": "মেয়াদোত্তীর্ণের পথে"
+  },
+  "table": {
+    "bloodGroup": "রক্তের গ্রুপ",
+    "bloodStockByGroup": "গ্রুপ এবং উপাদান অনুযায়ী রক্তের স্টক",
+    "component": "উপাদান",
+    "available": "উপলব্ধ",
+    "reserved": "সংরক্ষিত",
+    "expired": "মেয়াদোত্তীর্ণ",
+    "pendingScreen": "পেন্ডিং স্ক্রিন",
+    "name": "নাম",
+    "type": "ধরন",
+    "genderAge": "লিঙ্গ/বয়স",
+    "phone": "ফোন",
+    "lastDonation": "শেষ রক্তদান",
+    "total": "মোট",
+    "eligible": "উপযুক্ত",
+    "bagNo": "ব্যাগ নং",
+    "donor": "দাতা",
+    "vol": "পরিমাণ",
+    "collected": "সংগৃহীত",
+    "expiry": "মেয়াদ উর্ত্তীর্ণ",
+    "screening": "স্ক্রিনিং",
+    "status": "অবস্থা",
+    "patient": "রোগী",
+    "units": "ইউনিট",
+    "urgency": "জরুরি অবস্থা",
+    "compatibility": "সামঞ্জস্যতা",
+    "issuedAt": "ইস্যু করা হয়েছে",
+    "reaction": "প্রতিক্রিয়া"
+  },
+  "status": {
+    "in_stock": "স্টকে আছে",
+    "reserved": "সংরক্ষিত",
+    "cross_matched": "ক্রস ম্যাচড",
+    "issued": "ইস্যু করা",
+    "expired": "মেয়াদোত্তীর্ণ",
+    "discarded": "পরিত্যাক্ত",
+    "quarantine": "কোয়ারেন্টাইন",
+    "pending": "পেন্ডিং",
+    "passed": "গৃহীত",
+    "failed": "ব্যর্থ"
+  },
+  "urgency": {
+    "routine": "সাধারণ",
+    "urgent": "জরুরি",
+    "emergency": "জরুরি অবস্থা"
+  },
+  "reaction": {
+    "none": "নেই",
+    "mild": "সামান্য",
+    "moderate": "মাঝারি",
+    "severe": "গুরুতর",
+    "fatal": "মারাত্মক"
+  },
+  "compatibility": {
+    "compatible": "সামঞ্জস্যপূর্ণ",
+    "incompatible": "অসামঞ্জস্যপূর্ণ",
+    "pending": "পেন্ডিং"
+  },
+  "addDonor": "দাতা যোগ করুন",
+  "registerDonor": "রক্তদাতা নিবন্ধন করুন",
+  "register": "নিবন্ধন করুন",
+  "never": "কখনও না",
+  "noStock": "রক্তের স্টক নেই",
+  "noDonors": "কোন দাতা নেই",
+  "noDonations": "কোন রক্তদান নেই",
+  "noCrossMatch": "কোন ক্রস-ম্যাচ অনুরোধ নেই",
+  "noTransfusions": "কোন ট্রান্সফিউশন রেকর্ড নেই",
+  "allGroups": "সব গ্রুপ",
+  "allStatus": "সব অবস্থা",
+  "components": {
+    "whole_blood": "হোল ব্লাড",
+    "packed_rbc": "প্যাকড আরবেসি",
+    "ffp": "এফএফপি",
+    "platelets": "প্লাটিলেটস",
+    "cryoprecipitate": "ক্রায়োপ্রিসিপিটেট",
+    "plasma": "প্লাজমা"
+  },
+  "donorTypes": {
+    "voluntary": "স্বেচ্ছায়",
+    "replacement": "বিনিময়"
+  },
+  "genders": {
+    "Male": "পুরুষ",
+    "Female": "মহিলা",
+    "Other": "অন্যান্য"
+  }
+}

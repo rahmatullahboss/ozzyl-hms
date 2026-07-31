@@ -1,0 +1,33 @@
+{
+  "expenseDetail": {
+    "loading": "লোড হচ্ছে...",
+    "notFound": "খরচ পাওয়া যায়নি",
+    "title": "খরচ",
+    "amount": "পরিমাণ",
+    "category": "ক্যাটাগরি",
+    "requestedBy": "অনুরোধকারী",
+    "paidFrom": "পেমেন্ট উৎস",
+    "description": "বিবরণ",
+    "voucher": "ভাউচার",
+    "viewVoucher": "ভাউচার দেখুন",
+    "tabs": {
+      "details": "বিস্তারিত",
+      "approvalHistory": "অনুমোদন ইতিহাস"
+    },
+    "fields": {
+      "expenseNo": "খরচ নম্বর",
+      "department": "বিভাগ",
+      "requested": "অনুরোধ সময়",
+      "approvedBy": "অনুমোদনকারী",
+      "approvedAt": "অনুমোদনের সময়"
+    },
+    "approvalHistoryPlaceholder": "অনুমোদন ইতিহাস এখানে দেখানো হবে",
+    "reject": "রিজেক্ট",
+    "approve": "অনুমোদন",
+    "statusLabels": {
+      "pending": "পেন্ডিং",
+      "approved": "অনুমোদিত",
+      "rejected": "রিজেক্টেড"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "domain": "radiology_acquisition_report",
+  "provider": {
+    "flagKey": "canonical_radiology_acquisition_report_provider_v1",
+    "enabledByDefault": false,
+    "defaultMode": "legacy",
+    "rollbackMode": "legacy",
+    "supportedModes": ["legacy", "shadow", "canonical"],
+    "providerPath": "src/lib/canonical/radiology-acquisition-report-provider.ts",
+    "adapterPath": "src/lib/canonical/radiology-acquisition-report-read-adapters.ts",
+    "exactSourceMappingRequired": true,
+    "similarityIdentityForbidden": true,
+    "acquisitionHistoryVisible": true,
+    "dicomHierarchyVisible": true,
+    "provenanceHashHistoryVisible": true,
+    "reportVersionHistoryVisible": true,
+    "signedHistoryVisible": true,
+    "correctionRetractionErrorHistoryVisible": true,
+    "projectionsSeparated": true,
+    "rawDicomPayloadStored": false,
+    "shadowEvidencePhiMinimised": true
+  },
+  "selectedAdapters": [
+    {
+      "id": "cdb126e_acquisition_worklist_detail",
+      "kind": "library_adapter",
+      "function": "readRadiologyAcquisitionWorklistAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb126e_pacs_hierarchy_provenance",
+      "kind": "library_adapter",
+      "function": "readRadiologyPacsHierarchyAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb126e_patient_timeline_imaging_result",
+      "kind": "library_adapter",
+      "function": "readRadiologyPatientTimelineAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb126e_report_rendering_summary",
+      "kind": "library_adapter",
+      "function": "readRadiologyReportRenderingAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    }
+  ],
+  "knownWriters": [
+    { "path": "src/routes/tenant/radiology/orders.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/radiology/reports.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/radiology/pacs.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/lib/radiology-cancellation.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/lib/canonical/radiology-order-billing.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/lib/canonical/patient-chart-radiology-billing.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/labMonitoring.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/radiology/catalog.ts", "assignment": "legacy_unchanged" }
+  ],
+  "knownReaders": [
+    { "path": "src/routes/tenant/radiology/orders.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/radiology/reports.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/radiology/pacs.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/radiology/catalog.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/patients-chart.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/patients-timeline.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/nursing/investigation-results.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/doctors.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/lib/executive-inventory-kpis.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/labMonitoring.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/lib/diagnostic-performer-reserve.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null }
+  ],
+  "summary": {
+    "selectedAdapterCount": 4,
+    "knownWriterCount": 8,
+    "knownReaderCount": 11,
+    "unknownWriterAssignments": 0,
+    "unknownReaderAssignments": 0,
+    "routeActivationCount": 0
+  }
+}

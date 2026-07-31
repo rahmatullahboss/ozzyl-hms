@@ -1,0 +1,341 @@
+{
+  "intraOpCanvas": {
+    "noBooking": "কোনো বুকিং নির্বাচিত নেই। ওটি ড্যাশবোর্ড থেকে একটি কেস খুলুন।",
+    "backToOT": "ওটিতে ফিরে যান",
+    "patient": "রোগী",
+    "id": "আইডি",
+    "age": "বয়স",
+    "gender": "লিঙ্গ",
+    "riskSignals": "ঝুঁকি সংকেত",
+    "score": "স্কোর",
+    "allergies": "অ্যালার্জি",
+    "medications": "ওষুধসমূহ",
+    "lastVitals": "সর্বশেষ ভাইটালস",
+    "bp": "রক্তচাপ",
+    "pulse": "নাড়ি",
+    "bpm": "বিপিএম",
+    "spo2": "এসপিও২",
+    "temp": "তাপমাত্রা",
+    "clearance": "ছাড়পত্র",
+    "verifyNotice": "যেকোনো সার্জিক্যাল সিদ্ধান্তের আগে রোগীর ফাইলের সাথে সমস্ত ক্ষেত্র যাচাই করুন।",
+    "tab": {
+      "clearance": "ছাড়পত্র",
+      "consents": "সম্মতি",
+      "vitals": "ভাইটালস",
+      "safety": "নিরাপত্তা",
+      "anesthesia": "অ্যানেস্থেসিয়া",
+      "billing": "বিলিং",
+      "recovery": "রিকভারি",
+      "audit": "অডিট"
+    },
+    "vitalsRecorded": "ভাইটালস রেকর্ড করা হয়েছে",
+    "failed": "ব্যর্থ হয়েছে",
+    "atLeastOneVital": "অন্তত একটি ভাইটাল প্রয়োজন",
+    "vitalsTimeline": "ভাইটালস টাইমলাইন",
+    "record": "রেকর্ড",
+    "bpSys": "বিপি সিস",
+    "bpDia": "বিপি ডায়া",
+    "rr": "শ্বাসের হার",
+    "pain": "ব্যথা",
+    "cancel": "বাতিল",
+    "saving": "সংরক্ষণ হচ্ছে…",
+    "save": "সংরক্ষণ",
+    "noVitals": "কোনো ভাইটাল রেকর্ড করা হয়নি।",
+    "time": "সময়",
+    "noClearanceChecks": "কোনো ছাড়পত্র চেক নেই।",
+    "done": "সম্পন্ন",
+    "waive": "ছাড়",
+    "noConsents": "কোনো সম্মতি নেই।",
+    "sign": "স্বাক্ষর",
+    "verify": "যাচাই",
+    "noSafetyChecklist": "কোনো নিরাপত্তা চেকলিস্ট নেই।",
+    "noAnesthesiaLogs": "কোনো অ্যানেস্থেসিয়া লগ নেই।",
+    "type": "ধরন",
+    "airway": "এয়ারওয়ে",
+    "drugs": "ওষুধ",
+    "complications": "জটিলতা",
+    "notes": "নোট",
+    "noBill": "কোনো বিল তৈরি হয়নি।",
+    "status": "অবস্থা",
+    "gross": "মোট",
+    "discount": "ছাড়",
+    "net": "নিট",
+    "head": "শিরোনাম",
+    "description": "বিবরণ",
+    "qty": "পরিমাণ",
+    "price": "মূল্য",
+    "total": "মোট",
+    "noRecoveryHandover": "কোনো রিকভারি হস্তান্তর নেই।",
+    "shiftedTo": "স্থানান্তরিত",
+    "consciousness": "চেতনা",
+    "instructions": "নির্দেশনা",
+    "noAuditEntries": "কোনো অডিট এন্ট্রি নেই।",
+    "by": "দ্বারা",
+    "unknown": "অজানা"
+  },
+  "doctorLabResults": {
+    "kicker": "ডাক্তারের ল্যাব ফলাফল",
+    "title": "ফলাফল ইনবক্স",
+    "subtitle": "অস্বাভাবিক ও সংকটাপন্ন রিপোর্ট পর্যালোচনা করুন, ফলাফল স্বীকার করুন এবং মুলতুবি কাজ হারানো ছাড়াই ফলো-আপ নির্ধারণ করুন।",
+    "searchPlaceholder": "রোগী বা পরীক্ষার নাম দিয়ে অনুসন্ধান",
+    "tab": {
+      "recent": "সাম্প্রতিক",
+      "pending": "মুলতুবি",
+      "abnormal": "অস্বাভাবিক",
+      "critical": "সংকটাপন্ন",
+      "needsReview": "পর্যালোচনা প্রয়োজন",
+      "trend": "প্রবণতা"
+    },
+    "stat": {
+      "totalReports": "মোট রিপোর্ট",
+      "pending": "মুলতুবি",
+      "abnormal": "অস্বাভাবিক",
+      "critical": "সংকটাপন্ন",
+      "needsReview": "পর্যালোচনা প্রয়োজন"
+    },
+    "trendHeading": "ল্যাব প্রবণতা",
+    "loadingTrends": "প্রবণতা লোড হচ্ছে...",
+    "heading": {
+      "recent": "সাম্প্রতিক ল্যাব ফলাফল",
+      "pending": "মুলতুবি ল্যাব ফলাফল",
+      "abnormal": "অস্বাভাবিক ল্যাব ফলাফল",
+      "critical": "সংকটাপন্ন ল্যাব ফলাফল",
+      "needsReview": "পর্যালোচনার প্রয়োজন এমন ফলাফল"
+    },
+    "showingRecords": "{{count}}টি রেকর্ড দেখাচ্ছে",
+    "loading": "লোড হচ্ছে...",
+    "noRecords": "কোনো রেকর্ড পাওয়া যায়নি।",
+    "status": {
+      "pending": "মুলতুবি",
+      "acknowledged": "স্বীকৃত"
+    },
+    "column": {
+      "patient": "রোগী",
+      "test": "পরীক্ষা",
+      "date": "তারিখ",
+      "keyResult": "মূল ফলাফল",
+      "status": "অবস্থা",
+      "actions": "কর্ম"
+    },
+    "action": {
+      "view": "দেখুন",
+      "acknowledge": "স্বীকার করুন",
+      "chart": "চার্ট",
+      "followUp": "ফলো-আপ"
+    },
+    "toast": {
+      "acknowledged": "ফলাফল স্বীকৃত হয়েছে",
+      "acknowledgeFailed": "ফলাফল স্বীকার করতে ব্যর্থ"
+    }
+  },
+  "otCalendar": {
+    "title": "ওটি সময়সূচী",
+    "subtitle": "রুম অনুযায়ী টাইমলাইন ভিউ",
+    "day": "দিন",
+    "week": "সপ্তাহ",
+    "today": "আজ",
+    "time": "সময়",
+    "room": "রুম",
+    "unassigned": "অনির্ধারিত",
+    "dayShort": {
+      "mon": "সোম",
+      "tue": "মঙ্গল",
+      "wed": "বুধ",
+      "thu": "বৃহঃ",
+      "fri": "শুক্র",
+      "sat": "শনি",
+      "sun": "রবি"
+    }
+  },
+  "otSettings": {
+    "title": "ওটি সেটিংস",
+    "subtitle": "অপারেশন থিয়েটার মডিউল আচরণ কনফিগার করুন",
+    "saving": "সংরক্ষণ হচ্ছে…",
+    "saveChanges": "পরিবর্তন সংরক্ষণ",
+    "minutes": "মিনিট",
+    "toast": {
+      "saved": "ওটি সেটিংস সংরক্ষিত",
+      "failed": "সংরক্ষণ ব্যর্থ"
+    },
+    "section": {
+      "roomDefaults": {
+        "title": "রুম ডিফল্ট",
+        "desc": "রুম পরিবর্তনের জন্য ডিফল্ট সময়কাল",
+        "cleaning": "পরিষ্কারের সময়কাল",
+        "sterilization": "জীবাণুমুক্তকরণের সময়কাল"
+      },
+      "monitoring": {
+        "title": "মনিটরিং ও সতর্কতা",
+        "desc": "অপারেশনের মধ্যে অনুস্মারক",
+        "vitalsReminder": "ভাইটালস অনুস্মারক ব্যবধান",
+        "vitalsReminderHint": "ভাইটালস অনুস্মারকের মধ্যে মিনিট",
+        "emergencyOverride": "জরুরি ওভাররাইড অনুমোদিত",
+        "emergencyOverrideHint": "জরুরি ওটির জন্য ছাড়পত্র ব্লক বাইপাস করার অনুমতি"
+      },
+      "hardBlocks": {
+        "title": "প্রি-ওটি হার্ড ব্লক",
+        "desc": "ছাড়পত্র আইটেম অপেক্ষমাণ থাকলে ওটি শুরু ব্লক করুন",
+        "blockConsent": "সম্মতি ব্লক",
+        "blockConsentHint": "সার্জারি সম্মতি অনুপস্থিত থাকলে ব্লক",
+        "blockAnesthesia": "অ্যানেস্থেসিয়া ফিটনেস ব্লক",
+        "blockAnesthesiaHint": "অ্যানেস্থেসিয়া ফিটনেস সার্টিফিকেট অনুপস্থিত থাকলে ব্লক",
+        "blockPayment": "পেমেন্ট ব্লক",
+        "blockPaymentHint": "পেমেন্ট/অগ্রিম অপেক্ষমাণ থাকলে ব্লক",
+        "blockBlood": "রক্ত ব্যবস্থাপনা ব্লক",
+        "blockBloodHint": "রক্ত ব্যবস্থাপনা অপেক্ষমাণ থাকলে ব্লক"
+      },
+      "billing": {
+        "title": "বিলিং",
+        "desc": "ওটি বিলিং ওয়ার্কফ্লো সেটিংস",
+        "billPostReview": "বিল পোস্ট পর্যালোচনা প্রয়োজন",
+        "billPostReviewHint": "আইপিডিতে পোস্ট করার আগে বিল পর্যালোচনা করতে হবে",
+        "commissionCalc": "কমিশন গণনা সক্রিয়",
+        "commissionCalcHint": "বিল পোস্টে সার্জন/অ্যানেস্থেটিস্ট কমিশন স্বয়ংক্রিয়ভাবে গণনা",
+        "autoDeductStock": "পোস্টে স্টক স্বয়ংক্রিয়ভাবে কাটুন",
+        "autoDeductStockHint": "বিল পোস্ট হলে স্বয়ংক্রিয়ভাবে ইনভেন্টরি কাটুন"
+      },
+      "offline": {
+        "title": "অফলাইন সাপোর্ট",
+        "desc": "লোকাল সার্ভার অফলাইন ক্ষমতা",
+        "offlineDraft": "অফলাইন খসড়া সক্রিয়",
+        "offlineDraftHint": "অফলাইনে থাকলে ওটি খসড়া তৈরি করার অনুমতি"
+      }
+    }
+  },
+  "doctorReportReview": {
+    "title": "প্রতিবেদন পর্যালোচনা",
+    "subtitle": "আগের প্রেসক্রিপশনের প্রেক্ষাপটে রিপোর্ট করা তদন্ত পর্যালোচনা করুন।",
+    "loading": "রিপোর্ট-শো সারি লোড হচ্ছে...",
+    "emptyState": "এই তারিখের জন্য কোনো রিপোর্ট-শো রোগী মুলতুবি নেই।",
+    "lastPrescription": "সর্বশেষ প্রেসক্রিপশন",
+    "completedReports": "সম্পন্ন প্রতিবেদন",
+    "pendingTests": "মুলতুবি পরীক্ষা",
+    "noDiagnosis": "কোনো রোগ নির্ণয় রেকর্ড করা হয়নি",
+    "medicine": "ওষুধ",
+    "noCompletedReport": "কোনো সম্পন্ন প্রতিবেদন নেই।",
+    "noPendingTest": "কোনো মুলতুবি পরীক্ষা নেই।",
+    "testFallback": "পরীক্ষা",
+    "reviewNoteFor": "{{name}} এর জন্য পর্যালোচনা নোট",
+    "reviewNotePlaceholder": "ক্লিনিক্যাল পর্যালোচনা নোট (ঐচ্ছিক)",
+    "markReviewed": "পর্যালোচিত হিসেবে চিহ্নিত করুন",
+    "validity": {
+      "validReportShow": "বৈধ রিপোর্ট শো",
+      "reportShowExpired": "রিপোর্ট শোর মেয়াদ শেষ",
+      "validFollowUp": "বৈধ ফলো-আপ",
+      "followUpExpired": "ফলো-আপের মেয়াদ শেষ",
+      "paymentPending": "পেমেন্ট বকেয়া",
+      "fallback": "রিপোর্ট শো"
+    },
+    "toast": {
+      "saved": "প্রতিবেদন পর্যালোচনা সংরক্ষিত",
+      "saveFailed": "প্রতিবেদন পর্যালোচনা সংরক্ষণ করা যায়নি"
+    }
+  },
+  "doctorCertificates": {
+    "title": "চিকিৎসা সনদপত্র",
+    "subtitle": "ইস্যু করা সনদপত্র চূড়ান্ত রেকর্ড। সংশোধনের জন্য কারণসহ বাতিল করে নতুন রেকর্ড ইস্যু করুন।",
+    "issueSection": "সনদপত্র ইস্যু করুন",
+    "searchPatient": "রোগী অনুসন্ধান",
+    "searchPlaceholder": "রোগীর নাম, কোড বা ফোন দিয়ে অনুসন্ধান",
+    "selected": "নির্বাচিত",
+    "type": "ধরন",
+    "typeOption": {
+      "medical": "চিকিৎসা সনদপত্র",
+      "fitness": "ফিটনেস সনদপত্র",
+      "sick_leave": "অসুস্থতার ছুটির সনদ",
+      "work_rest": "কাজে বিশ্রামের পরামর্শ"
+    },
+    "issueDate": "ইস্যুর তারিখ",
+    "restDays": "বিশ্রামের দিন",
+    "purpose": "উদ্দেশ্য (ঐচ্ছিক)",
+    "recommendation": "সুপারিশ",
+    "issue": "সনদপত্র ইস্যু করুন",
+    "issuedList": "ইস্যুকৃত সনদপত্র",
+    "loading": "লোড হচ্ছে...",
+    "noCertificate": "এখনও কোনো সনদপত্র ইস্যু করা হয়নি।",
+    "table": {
+      "certificateNo": "সনদ নং",
+      "patient": "রোগী",
+      "type": "ধরন",
+      "date": "তারিখ",
+      "status": "অবস্থা"
+    },
+    "status": {
+      "final": "চূড়ান্ত",
+      "cancelled": "বাতিল"
+    },
+    "preview": "প্রিভিউ ও প্রিন্ট",
+    "cancel": "বাতিল করুন",
+    "cancellationPrompt": "বাতিলের কারণ",
+    "previewAria": "সনদপত্র প্রিন্ট প্রিভিউ",
+    "print": "নথি প্রিন্ট করুন",
+    "close": "বন্ধ",
+    "previewPatient": "রোগী:",
+    "restAdvised": "পরামর্শকৃত বিশ্রাম: {{count}} দিন",
+    "issuingDoctor": "ইস্যুকারী ডাক্তার",
+    "digitalFinal": "ডিজিটালি ইস্যুকৃত চূড়ান্ত রেকর্ড",
+    "validationError": "রোগীর পরিচয় নির্বাচন করুন এবং একটি সুপারিশ লিখুন",
+    "toast": {
+      "issued": "সনদপত্র ইস্যু ও অডিট লগ হয়েছে",
+      "issueFailed": "সনদপত্র ইস্যু করা যায়নি",
+      "cancelled": "সনদপত্র বাতিল হয়েছে",
+      "cancelFailed": "সনদপত্র বাতিল করা যায়নি"
+    }
+  },
+  "otReports": {
+    "title": "ওটি প্রতিবেদন",
+    "subtitle": "বিশ্লেষণ ও ব্যবহার প্রতিবেদন",
+    "from": "থেকে",
+    "to": "পর্যন্ত",
+    "reset": "রিসেট",
+    "noData": "কোনো ডেটা নেই",
+    "items": "আইটেম",
+    "minutes": "মিনিট",
+    "tab": {
+      "daily": "দৈনিক প্রতিবেদন",
+      "financial": "আর্থিক",
+      "inventory": "ইনভেন্টরি",
+      "utilization": "ব্যবহার"
+    },
+    "daily": {
+      "scheduled": "নির্ধারিত",
+      "completed": "সম্পন্ন",
+      "cancelled": "বাতিল",
+      "emergency": "জরুরি",
+      "inProgress": "চলমান",
+      "roomUtilization": "রুম ব্যবহার",
+      "surgeonCases": "সার্জন কেস",
+      "procedures": "পদ্ধতি"
+    },
+    "financial": {
+      "totalRevenue": "মোট আয়",
+      "netRevenue": "নিট আয়",
+      "totalDiscount": "মোট ছাড়",
+      "surgeonCommission": "সার্জন কমিশন",
+      "revenueBreakdown": "আয় ভাঙ্গন",
+      "surgeryCharges": "সার্জারি চার্জ",
+      "medicineCharges": "ওষুধ চার্জ",
+      "implantCharges": "ইমপ্লান্ট চার্জ",
+      "surgeonCommissionRow": "সার্জন কমিশন",
+      "anesthetistCommission": "অ্যানেস্থেটিস্ট কমিশন"
+    },
+    "inventory": {
+      "itemsUsed": "ব্যবহৃত আইটেম",
+      "totalValue": "মোট মূল্য",
+      "wastage": "অপচয়",
+      "returned": "ফেরত",
+      "bySource": "উৎস অনুযায়ী",
+      "byChargeHead": "চার্জ হেড অনুযায়ী"
+    },
+    "utilization": {
+      "avgSurgeryDuration": "গড় সার্জারি সময়কাল",
+      "avgCleaningDuration": "গড় পরিষ্কার সময়কাল",
+      "roomUtilization": "রুম ব্যবহার",
+      "room": "রুম",
+      "bookings": "বুকিং",
+      "avgDuration": "গড় সময়কাল",
+      "utilization": "ব্যবহার",
+      "delayReasons": "বিলম্বের কারণ"
+    }
+  }
+}

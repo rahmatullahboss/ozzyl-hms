@@ -1,0 +1,102 @@
+name: Build Ozzyl Lifestyle APK
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  build-android:
+    name: Build Lifestyle Android APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Setup Java (required for Gradle)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Install root dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Copy web node_modules to ozzyl-lifestyle (since they share same dependencies)
+        run: cp -r web/node_modules apps/ozzyl-lifestyle/node_modules || true
+
+      - name: Build web app
+        run: pnpm run build
+        working-directory: apps/ozzyl-lifestyle
+
+      - name: Setup Capacitor Android Workspace
+        run: npx cap add android || npx cap sync android
+        working-directory: apps/ozzyl-lifestyle
+
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > /tmp/hms-release.keystore
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build Release APK
+        run: ./gradlew assembleRelease
+        working-directory: apps/ozzyl-lifestyle/android
+        env:
+          ANDROID_KEYSTORE_FILE: /tmp/hms-release.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+
+      - name: Upload Release APK (Artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ozzyl-lifestyle-android-release-${{ github.run_number }}
+          path: apps/ozzyl-lifestyle/android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 30
+
+      - name: Create GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: lifestyle-v1.0.${{ github.run_number }}
+          name: Ozzyl Lifestyle v1.0.${{ github.run_number }}
+          body: |
+            ## 🌟 Ozzyl Lifestyle — Android Release
+
+            **Build:** #${{ github.run_number }}
+            **Commit:** ${{ github.sha }}
+            **Date:** ${{ github.event.head_commit.timestamp }}
+
+            ### Download
+            Install the APK on any Android phone (Android 7+).
+          files: apps/ozzyl-lifestyle/android/app/build/outputs/apk/release/app-release.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload APK to Cloudflare R2
+        run: |
+          npx wrangler r2 object put hms-uploads-production/releases/ozzyl-lifestyle.apk --file=apps/ozzyl-lifestyle/android/app/build/outputs/apk/release/app-release.apk
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

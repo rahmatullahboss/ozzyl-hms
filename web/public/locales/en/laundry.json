@@ -1,0 +1,46 @@
+{
+  "title": "Laundry",
+  "subtitle": "Linen collection, wash tracking & ward delivery",
+  "tabs": {
+    "collections": "Collections",
+    "linenTypes": "Linen Types"
+  },
+  "stats": {
+    "todayCollections": "Today's Collections",
+    "inProcess": "In Process",
+    "readyForDelivery": "Ready for Delivery",
+    "todayItems": "Today's Items"
+  },
+  "table": {
+    "collectionNo": "Collection #",
+    "from": "From",
+    "date": "Date",
+    "items": "Items",
+    "status": "Status",
+    "linenName": "Linen Name",
+    "category": "Category",
+    "parLevel": "Par Level"
+  },
+  "noCollections": "No collections found",
+  "noLinenTypes": "No linen types found",
+  "newCollection": "New Collection",
+  "addType": "Add Type",
+  "modals": {
+    "newCollection": "New Laundry Collection",
+    "addLinenType": "Add Linen Type",
+    "selectLinen": "Select linen...",
+    "addItem": "+ Add item"
+  },
+  "status": {
+    "collected": "Collected",
+    "washing": "Washing",
+    "drying": "Drying",
+    "ironing": "Ironing",
+    "ready": "Ready",
+    "delivered": "Delivered"
+  },
+  "toasts": {
+    "collectionRecorded": "Collection recorded successfully",
+    "wardAndItemRequired": "Ward and at least one item are required"
+  }
+}

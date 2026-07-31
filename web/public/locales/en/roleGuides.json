@@ -1,0 +1,405 @@
+{
+  "pageTitle": "Daily Work Guide",
+  "pageSubtitle": "Daily tasks, tips and warnings according to your role in HMS",
+  "roles": {
+    "hospital_admin": {
+      "title": "Hospital Administrator",
+      "dailyTasks": [
+        "Review today's patient admission, outpatient and emergency statistics from the dashboard",
+        "Check today's duty roster and absences in the Staff module",
+        "Verify new patient registrations and appointment booking lists",
+        "Review today's financial transactions in Billing and Income-Expense module",
+        "Check today's schedule and bed occupancy in IPD and OT",
+        "Verify incomplete tasks and patient care notes from Nursing Station",
+        "Check system notifications and alerts and take necessary action",
+        "Check stock levels and low-stock alerts in Pharmacy and Inventory module",
+        "Complete new staff onboarding or permission updates in HR module",
+        "Review backup, logs and system health reports from Settings"
+      ],
+      "weeklyTasks": [
+        "Generate and review weekly income-expense and revenue reports",
+        "Share staff performance and attendance reports with department heads",
+        "Check lab and radiology module turnaround time and backlog",
+        "Verify biomedical waste and mortuary reports",
+        "Review departmental audit logs and user activity reports",
+        "Review and update system updates, roles and permission matrix"
+      ],
+      "modulesUsed": [
+        "Dashboard",
+        "Staff Management",
+        "IPD Management",
+        "OT Management",
+        "Billing and Income-Expense",
+        "Pharmacy and Inventory",
+        "HR and Attendance",
+        "Reports and Analytics",
+        "Settings and Permissions"
+      ],
+      "tips": [
+        "View dashboard KPI cards every morning to set daily priorities",
+        "Assign role-based access correctly, do not give excessive permissions",
+        "Regularly review backups and audit logs for data security",
+        "Resolve billing discrepancies quickly for transparent financial transactions",
+        "Ensure real-time IPD bed management updates to reduce patient waiting time",
+        "Regularly monitor nursing station alerts and overdue task lists"
+      ],
+      "commonMistakes": [
+        "Giving super_admin permissions to staff who should not have them, risking data integrity",
+        "Not taking final approval after cancelling bills or giving discounts",
+        "Duplicate or incorrect IPD bed assignments",
+        "Applying changes directly to production without testing after Settings changes",
+        "Not reviewing audit logs regularly, making it difficult to detect unauthorized access",
+        "Ignoring pharmacy low-stock alerts, which can cause medicine shortages during emergencies"
+      ]
+    },
+    "doctor": {
+      "title": "Doctor",
+      "dailyTasks": [
+        "View today's OPD list and patient queue in Appointment module",
+        "Review patient previous history, tests and prescriptions from EMR",
+        "Write digital prescriptions in e-Prescribing module after OPD consultation",
+        "Order lab and radiology tests as needed",
+        "Review progress notes, vitals charts and medication charts for IPD admitted patients",
+        "Complete online consultations and follow-ups in Telemedicine module",
+        "Check OT schedule and pre-op checklist and approve",
+        "Update diagnosis, symptoms and treatment plan in patient medical records",
+        "Respond to care plans and nurse notes from Nursing Station",
+        "Refer patient to another specialist as needed in Referral module"
+      ],
+      "weeklyTasks": [
+        "Review progress report and discharge plan for each IPD patient during rounds",
+        "View own OPD and telemedicine consultation statistics report",
+        "Follow up and review pending lab and radiology result list",
+        "Check complete and incomplete documentation in medical records",
+        "Confirm OT and procedure schedule for next week",
+        "Verify patient follow-up and reminder settings"
+      ],
+      "modulesUsed": [
+        "Appointments and Queue Management",
+        "EMR / Medical Records",
+        "e-Prescribing",
+        "Lab Orders",
+        "Radiology Orders",
+        "IPD Management",
+        "OT Management",
+        "Telemedicine",
+        "Referrals"
+      ],
+      "tips": [
+        "Review history from EMR before each OPD patient for faster and accurate treatment",
+        "Write generic name and dosage clearly in e-Prescribing to reduce pharmacy errors",
+        "Correctly mark urgency level (Routine / Urgent / STAT) when ordering lab tests",
+        "Write daily IPD notes in chronological order for easy handover",
+        "Do not forget to auto-set patient follow-up date and reminder in Telemedicine",
+        "Enter diagnosis and ICD code correctly, important for insurance and reporting"
+      ],
+      "commonMistakes": [
+        "Writing incorrect dosage or frequency of medicine in e-Prescribing, causing dispensing errors at pharmacy",
+        "Writing prescription without checking patient allergy history in EMR",
+        "Not following up after ordering lab or radiology tests, leaving results pending",
+        "Not writing IPD progress notes regularly, causing confusion for other shifts",
+        "Approving OT without completing pre-op checklist",
+        "Not updating diagnosis or treatment plan in EMR, causing problems in subsequent consultations"
+      ]
+    },
+    "nurse": {
+      "title": "Nurse",
+      "dailyTasks": [
+        "View shift handover report at Nursing Station and read previous shift notes",
+        "Enter temperature, blood pressure, pulse, SPO2 and respiration for each patient in Vitals module",
+        "Verify patient bed status, admission and discharge list in IPD Management",
+        "Update medication administration records at scheduled times in Medication Administration module",
+        "Perform bed sore prevention, catheter care and infusion monitoring per Nursing Care Plan",
+        "Enter triage and initial vitals for newly arrived patients in Emergency module",
+        "Update monitoring charts and dressing records for OT and post-op patients",
+        "Regularly enter patient intake-output chart (IV fluid, oral, urine, drainage)",
+        "Check doctor's new orders and stat medicine alerts from Notifications and Alerts",
+        "Digitally collect informed consent forms from patients and guardians"
+      ],
+      "weeklyTasks": [
+        "Identify improvement or deterioration in patient condition from weekly vitals trend report",
+        "Review bed sore, fall risk and VTE prevention assessment report",
+        "Discuss medication errors and missed dose reports with department head",
+        "Check nursing station consumable stock (syringe, catheter, dressing) in Inventory module",
+        "Check own compliance and updates in Training and Certification module",
+        "Verify mortuary and MLC case documentation"
+      ],
+      "modulesUsed": [
+        "Nursing Station",
+        "Vitals Chart",
+        "IPD Management",
+        "Medication Administration",
+        "Emergency / Triage",
+        "OT and Post-Op Care",
+        "Intake-Output Chart",
+        "Care Plan and Assessment",
+        "Forms and Consents"
+      ],
+      "tips": [
+        "Double-check patient ID and bed number when entering vitals, avoid entering data for wrong patient",
+        "Follow 'five rights' (right patient, drug, dose, route, time) in Medication Administration",
+        "Correctly determine triage category (Red / Yellow / Green) in Emergency",
+        "Quickly update any change in patient condition via notification and doctor's orders",
+        "Write handover notes clearly and concisely for quick understanding by next shift",
+        "Do not forget to record patient/guardian consent when filling digital consent forms"
+      ],
+      "commonMistakes": [
+        "Entering vitals for wrong patient by not checking patient ID",
+        "Not marking as 'Given' in system after medication administration, causing dose duplication",
+        "Ignoring or responding late to doctor's new order notifications",
+        "Not entering intake-output chart on time, causing incorrect fluid balance",
+        "Assigning wrong triage category, causing emergency patient to receive delayed treatment",
+        "Not updating post-op monitoring chart regularly, delaying detection of complications"
+      ]
+    },
+    "laboratory": {
+      "title": "Laboratory Staff",
+      "dailyTasks": [
+        "Check today's pending test list and STAT orders in Lab module",
+        "Verify patient ID by scanning barcode during sample collection",
+        "Enter collection time, type and condition for each sample in Sample Tracking module",
+        "Schedule pathology, biochemistry, microbiology and hematology tests from Lab Catalog",
+        "Accurately input test results and verify reference ranges in Result Entry module",
+        "Update culture and sensitivity reports in Microbiology module",
+        "Update schedule and report status for X-ray, CT, MRI, USG in Radiology and Imaging module",
+        "Immediately send alert to concerned doctor and nursing station when critical value found",
+        "Update lab equipment calibration log and QC report in system",
+        "Review blood bag inventory, cross-match and issue records in Blood Bank module"
+      ],
+      "weeklyTasks": [
+        "Review weekly lab turnaround time (TAT) report and clear backlog",
+        "Analyze QC failure and repeat test causes, update calibration as needed",
+        "Check lab consumable and reagent inventory, create purchase requisition",
+        "Generate status report for pending and held samples",
+        "Verify blood stock and expiry report for Blood Bank",
+        "Update lab safety audit and biomedical waste disposal records"
+      ],
+      "modulesUsed": [
+        "Lab Management",
+        "Sample Tracking",
+        "Test Catalog and Scheduling",
+        "Result Entry and Validation",
+        "Radiology and Imaging",
+        "Blood Bank",
+        "QC and Calibration Log",
+        "Critical Value Alert",
+        "Inventory and Reagent Management"
+      ],
+      "tips": [
+        "Always scan barcode during sample collection; manual ID entry causes errors",
+        "In addition to system auto-alert, call the doctor by phone when critical value found",
+        "Review auto-validation report after result entry to avoid typographical errors",
+        "Use PACS integration for radiology reports, save images and text together",
+        "Digitally verify cross-match report in Blood Bank and ensure two staff signatures on issue record",
+        "Keep reagent expiry dates updated in system; expired reagents give incorrect results"
+      ],
+      "commonMistakes": [
+        "Not scanning barcode during sample collection and manually writing ID, causing misidentification",
+        "Delaying or not sending critical value alert, which can put patient life at risk",
+        "Writing incorrect decimal point or unit in result entry",
+        "Not maintaining proper storage conditions for pending samples, causing sample degradation",
+        "Not providing image reference in radiology report, causing issues in doctor's review",
+        "Running tests even after QC failure, causing incorrect results"
+      ]
+    },
+    "reception": {
+      "title": "Receptionist",
+      "dailyTasks": [
+        "Accurately enter new patient information (name, age, phone, address, NID) in Patient Registration module",
+        "Book and confirm walk-in and phone appointments in Appointment module",
+        "Issue tokens to correct department and doctor in OPD Queue Management",
+        "Collect OPD consultation fee, registration fee and other charges in Billing module and print receipt",
+        "Check bed availability for IPD admission and fill admission form",
+        "Enter preliminary information and triage category for Emergency patient and quickly send to Nursing Station",
+        "Search patient previous records by UHID and print history from EMR",
+        "Correctly process cash, card, mobile banking and insurance payments in Billing",
+        "Create advance payment and estimate receipt for OT and procedure bookings",
+        "Reconcile cash register and billing report at end of day and submit to supervisor"
+      ],
+      "weeklyTasks": [
+        "Generate weekly patient admission, OPD and revenue reports",
+        "Review appointment no-show and cancellation list and inform doctor",
+        "Check IPD bed occupancy and discharge planning report",
+        "Verify billing discrepancies and refund requests with supervisor",
+        "Review patient feedback forms and complaint log",
+        "Check front desk printer, barcode scanner and POS devices"
+      ],
+      "modulesUsed": [
+        "Patient Registration and UHID",
+        "Appointments and Queue",
+        "OPD Billing",
+        "IPD Admission",
+        "Emergency Registration",
+        "Payment Gateway and POS",
+        "OT Booking and Estimate",
+        "Reports and Receipts"
+      ],
+      "tips": [
+        "Accurately enter patient phone number and NID, important for SMS and follow-up",
+        "Search old patient by UHID to avoid duplicate registration",
+        "Double-check service name, quantity and price during billing",
+        "Never keep emergency patient waiting for billing, quickly send to Nursing Station",
+        "Correctly enter transaction ID in system after mobile banking payment",
+        "Do not forget end-of-day cash reconciliation to avoid financial discrepancies"
+      ],
+      "commonMistakes": [
+        "Entering incorrect patient name, age or phone number, causing issues in subsequent communication",
+        "Creating duplicate UHID by registering new patient without searching for existing record",
+        "Applying incorrect service charge or discount in billing",
+        "Holding emergency patient in billing process, delaying treatment",
+        "Selecting wrong payment mode (cash/card/mobile)",
+        "Not doing end-of-day cash reconciliation, causing accounting discrepancies"
+      ]
+    },
+    "md": {
+      "title": "Managing Director",
+      "dailyTasks": [
+        "Review hospital daily revenue, OPD, IPD and emergency statistics from Aggregate Dashboard",
+        "Check today's income, expense, cash flow and bank balance in Financial Dashboard",
+        "View staff attendance, absences and late arrival report in HR module",
+        "Verify patient satisfaction, infection rate and medication error metrics in Quality KPI module",
+        "Review important operational matters from Notifications and Escalation and provide direction",
+        "Assign tasks and follow up with department heads in system",
+        "Check critical stock and purchase orders in Supply Chain and Inventory module",
+        "Verify daily journal entries and ledger balance in Accounting module",
+        "View campaign performance and new patient acquisition in Promotion and Marketing module",
+        "Monitor regular activities and regulatory requirements in Log and Compliance module"
+      ],
+      "weeklyTasks": [
+        "Generate weekly Management Information System (MIS) report and present at board meeting",
+        "Analyze staff payroll, overtime and bonuses in HR and Payroll module",
+        "Review financial statements (P&L, balance sheet) and cost center analysis",
+        "Compare departmental budget vs actual expense and view variance report",
+        "Prepare stakeholder and investor reports",
+        "Approve capital expenditure (CAPEX) and new project proposals"
+      ],
+      "modulesUsed": [
+        "Aggregate Dashboard and KPI",
+        "Financial Dashboard",
+        "HR and Payroll",
+        "Quality KPI and Audit",
+        "Accounting and Ledger",
+        "Inventory and Supply Chain",
+        "Marketing and Promotion",
+        "Stakeholder Reports",
+        "Compliance and Log"
+      ],
+      "tips": [
+        "View KPI dashboard every morning for strategic decision making",
+        "Set custom alerts on dashboard to immediately know about budget overrun or infection spike",
+        "Assign specific KPIs and targets to department heads in system",
+        "Understand seasonal variability by viewing trend analysis of financial reports",
+        "Regularly monitor HR module turnover rate and recruitment pipeline",
+        "Keep regulatory compliance calendar and deadlines updated in system"
+      ],
+      "commonMistakes": [
+        "Only looking at revenue and ignoring costs and margins, making it difficult to understand profitability",
+        "Not reviewing HR attendance and payroll reports regularly, leading to overtime or fraud",
+        "Ignoring quality KPI alerts, putting patient safety and reputation at risk",
+        "Not viewing or taking action on budget variance reports",
+        "Delaying or providing incomplete data in stakeholder reports",
+        "Not reviewing compliance deadlines and audit logs, creating legal risk"
+      ]
+    },
+    "director": {
+      "title": "Administration",
+      "dailyTasks": [
+        "View high-level overview of hospital overall operations, revenue and expenses from Aggregate Dashboard",
+        "Review daily profit-loss (P&L) snapshot in Shareholder Reports module",
+        "Check today's cash inflow, outflow and bank position in Financial Dashboard",
+        "View daily operational reports and escalations from department heads",
+        "Verify waiting list for large financial transactions, purchase orders and contract approvals",
+        "View hospital asset management and capacity utilization reports",
+        "Create strategic updates and notes for stakeholders and board members",
+        "Review feasibility reports for adding new services, departments or technology",
+        "Analyze operational efficiency by comparing budget vs actual expense across departments",
+        "Monitor progress of compliance, license and regulatory requirements"
+      ],
+      "weeklyTasks": [
+        "Prepare Management Information System (MIS) report for weekly board meeting",
+        "Create weekly profit-loss, ROI and dividend analysis report for shareholders",
+        "Approve senior hiring or promotions after reviewing HR and Talent Management report",
+        "Review budget for large capital expenditure (CAPEX) and infrastructure projects",
+        "Review market competitive analysis and pricing strategy",
+        "Verify legal, audit and regulatory compliance status report"
+      ],
+      "modulesUsed": [
+        "Aggregate Dashboard",
+        "Shareholder and Board Reports",
+        "Financial Dashboard and P&L",
+        "Asset Management",
+        "Budget and Cost Center",
+        "HR and Talent Management",
+        "Capital Projects",
+        "Market Analysis",
+        "Compliance and Audit"
+      ],
+      "tips": [
+        "Set custom executive summary on dashboard for at-a-glance view of important metrics",
+        "Understand seasonal patterns from P&L and balance sheet trend analysis and plan capacity",
+        "Verify system audit trail and documentation before major financial approvals",
+        "Set clear KPIs and dashboard access for department heads",
+        "Highlight cash flow and EBITDA alongside revenue in shareholder reports",
+        "Always include break-even analysis in feasibility reports for new projects"
+      ],
+      "commonMistakes": [
+        "Only looking at top-line revenue and ignoring bottom-line margin and cash flow",
+        "Approving large capital expenditure without detailed feasibility study",
+        "Making manual HR and senior hiring decisions without following system workflow",
+        "Not regularly reviewing budget variance and cost overrun reports",
+        "Not monitoring compliance and regulatory deadlines",
+        "Providing incomplete or erroneous data in shareholder reports, reducing credibility"
+      ]
+    },
+    "pharmacist": {
+      "title": "Pharmacist",
+      "dailyTasks": [
+        "Check today's prescription queue and STAT medicine requests in Pharmacy module",
+        "Receive digital prescriptions from e-Prescribing and verify dosage, frequency and drug interaction",
+        "Record batch number, expiry date and quantity for each medicine in Medicine Dispensing module",
+        "Check daily stock levels, low-stock and short expiry alerts in Pharmacy Inventory",
+        "Update narcotic and controlled medicine (SCHEDULE H) register and dispensing log",
+        "Prepare and deliver medicines per medication chart for IPD admitted patients and keep delivery record",
+        "Quickly complete urgent and special medication requests for OT and post-op patients",
+        "Follow up purchase orders and delivery with suppliers and drug manufacturers",
+        "Update medicine return and damaged stock records in system",
+        "Reconcile cash counter and dispensing report at end of day and submit"
+      ],
+      "weeklyTasks": [
+        "Review weekly stock movement, consumption and slow-moving item report",
+        "Check pharmacy medicine expiry list and clear short expiry items using FIFO method",
+        "Analyze supplier performance, delivery time and credit period",
+        "Perform physical stock verification and system reconciliation for narcotic and controlled medicines",
+        "Verify generic substitution and formulary compliance report",
+        "Audit pharmacy safety, storage conditions and biomedical waste disposal"
+      ],
+      "modulesUsed": [
+        "Pharmacy and Dispensing",
+        "e-Prescribing and Prescription Queue",
+        "Drug Interaction Check",
+        "Pharmacy Inventory",
+        "Narcotic Register",
+        "Purchase Order Management",
+        "Supplier Management",
+        "Stock Management and GRN",
+        "Dosage Templates"
+      ],
+      "tips": [
+        "Always verify patient ID and prescription before dispensing medicine",
+        "Check drug interactions before dispensing, especially for patients on multiple medications",
+        "Use FIFO method for stock management to reduce expiry losses",
+        "Keep narcotic register updated with accurate dispensing records",
+        "Regularly communicate with suppliers about pending orders and delivery schedules",
+        "Perform daily cash and dispensing reconciliation to avoid discrepancies"
+      ],
+      "commonMistakes": [
+        "Dispensing medicine without checking prescription properly",
+        "Not checking drug interactions, potentially causing adverse reactions",
+        "Not following FIFO method, causing medicine expiry and financial loss",
+        "Not maintaining accurate narcotic register, risking regulatory non-compliance",
+        "Not following up purchase orders, causing stock shortages",
+        "Not performing end-of-day cash reconciliation, causing accounting errors"
+      ]
+    }
+  }
+}

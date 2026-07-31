@@ -1,0 +1,18 @@
+{
+  "hospitalProfile": {
+    "loading": "লোড হচ্ছে...",
+    "title": "হাসপাতাল প্রোফাইল",
+    "basicInformation": "বেসিক তথ্য",
+    "hospitalName": "হাসপাতালের নাম",
+    "address": "ঠিকানা",
+    "hotline": "হটলাইন",
+    "email": "ইমেইল",
+    "website": "ওয়েবসাইট",
+    "registrationNumber": "রেজিস্ট্রেশন নম্বর",
+    "quickStats": "কুইক স্ট্যাটস",
+    "branches": "শাখা",
+    "departments": "বিভাগ",
+    "beds": "বেড",
+    "established": "প্রতিষ্ঠিত"
+  }
+}

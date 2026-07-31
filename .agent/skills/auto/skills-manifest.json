@@ -1,0 +1,116 @@
+{
+  "project": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.991Z",
+    "observationCount": 5855,
+    "skillCount": 0,
+    "domain": "project",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Project for ozzyl-hms. 326 gotchas, 322 conventions."
+  },
+  "config": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.992Z",
+    "observationCount": 1289,
+    "skillCount": 0,
+    "domain": "config",
+    "triggerGlobs": [
+      "**/*.yaml",
+      "**/*.yml",
+      "**/*.json",
+      "**/*.toml"
+    ],
+    "description": "Config for ozzyl-hms. 31 conventions."
+  },
+  "typescript-react": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.992Z",
+    "observationCount": 33,
+    "skillCount": 0,
+    "domain": "typescript-react",
+    "triggerGlobs": [
+      "**/*.tsx"
+    ],
+    "description": "Typescript React for ozzyl-hms. 7 conventions, 4 error→fix pairs."
+  },
+  "typescript": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.992Z",
+    "observationCount": 24,
+    "skillCount": 0,
+    "domain": "typescript",
+    "triggerGlobs": [
+      "**/*.ts",
+      "**/*.tsx"
+    ],
+    "description": "Typescript for ozzyl-hms. 8 conventions."
+  },
+  "sys-08": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.992Z",
+    "observationCount": 0,
+    "skillCount": 102,
+    "domain": "sys_08",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Sys 08 for ozzyl-hms. ."
+  },
+  "sys-04": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.992Z",
+    "observationCount": 0,
+    "skillCount": 6,
+    "domain": "sys_04",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Sys 04 for ozzyl-hms. ."
+  },
+  "sys-03": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.993Z",
+    "observationCount": 0,
+    "skillCount": 12,
+    "domain": "sys_03",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Sys 03 for ozzyl-hms. ."
+  },
+  "gotcha": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.993Z",
+    "observationCount": 0,
+    "skillCount": 15,
+    "domain": "gotcha",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Gotcha for ozzyl-hms. ."
+  },
+  "convention": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.993Z",
+    "observationCount": 0,
+    "skillCount": 16,
+    "domain": "convention",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Convention for ozzyl-hms. ."
+  },
+  "decision": {
+    "enabled": true,
+    "lastGenerated": "2026-05-03T09:01:40.993Z",
+    "observationCount": 0,
+    "skillCount": 1,
+    "domain": "decision",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Decision for ozzyl-hms. ."
+  }
+}

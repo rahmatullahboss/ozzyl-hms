@@ -1,0 +1,855 @@
+{
+  "version": 1,
+  "tables": [
+    {
+      "name": "bills",
+      "owner": "billing-platform",
+      "disposition": "active_legacy",
+      "writePolicy": "allowed_until_cutover",
+      "removalPhase": "P05",
+      "reason": "Legacy invoice authority remains active before canonical invoice cutover."
+    },
+    {
+      "name": "invoice_items",
+      "owner": "billing-platform",
+      "disposition": "active_legacy",
+      "writePolicy": "allowed_until_cutover",
+      "removalPhase": "P05",
+      "reason": "Legacy invoice lines remain active before canonical invoice cutover."
+    },
+    {
+      "name": "payments",
+      "owner": "finance-platform",
+      "disposition": "active_legacy",
+      "writePolicy": "allowed_until_cutover",
+      "removalPhase": "P06",
+      "reason": "Legacy collection authority remains active before receipt allocation cutover."
+    },
+    {
+      "name": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "disposition": "active_legacy",
+      "writePolicy": "allowed_until_cutover",
+      "removalPhase": "P07",
+      "reason": "Legacy commission accruals remain active before canonical compensation cutover."
+    },
+    {
+      "name": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "disposition": "active_legacy",
+      "writePolicy": "allowed_until_cutover",
+      "removalPhase": "P08",
+      "reason": "Legacy stock movements remain active before canonical inventory cutover."
+    }
+  ],
+  "directWriteAllowlist": [
+    {
+      "path": "src/lib/billing-create-batch.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/billing-create-batch.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/services/billing/receivableAdjustment/legacyCreditNote.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Approved zero-cash receivable write-offs update the guarded legacy bill projection only while legacy authority remains active; remove when canonical invoice authority completes P05 cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/executed-refund.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Rejected executed refunds restore the exact immutable pre-refund legacy bill projection inside the same strict canonical reversal mutation; remove when canonical invoice authority completes P05 cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This exact reversal path remains required while legacy bill projection is active; retirement requires canonical invoice cutover, refund-reversal reconciliation, production observation, rollback evidence, and owner approval.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-27T03:31:00Z"
+    },
+    {
+      "path": "src/lib/billing-refund-commission.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Refund approval reconciles unpaid legacy commission accruals before canonical compensation cutover; remove by P07.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy practitioner compensation authority in disabled or legacy mode until canonical practitioner compensation cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/compensation-accrual-route-integration.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Doctor commission cancellation uses this exact guarded compatibility write inside the Canonical compensation-adjustment batch while legacy commission projection remains active.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Retirement requires Canonical compensation write/read cutover, zero unexplained accrual variance, production observation, rollback evidence, and explicit owner approval.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-29T05:35:00Z"
+    },
+    {
+      "path": "src/lib/canonical/tenant-100-financial-smoke-fixture.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P10",
+      "reason": "Protected Tenant-100 synthetic smoke writes, reverses, and removes exact run-tagged bill evidence inside one atomic D1 batch; remove after CDB-101.",
+      "lifecycleStatus": "protected_fixture",
+      "retirementBlocker": "Protected synthetic production-smoke evidence remains required until CDB-101 cutover observation is complete and the fixture is formally retired.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/tenant-100-financial-smoke-fixture.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P10",
+      "reason": "Protected Tenant-100 synthetic smoke writes, cancels, and removes exact run-tagged invoice-item evidence inside one atomic D1 batch; remove after CDB-101.",
+      "lifecycleStatus": "protected_fixture",
+      "retirementBlocker": "Protected synthetic production-smoke evidence remains required until CDB-101 cutover observation is complete and the fixture is formally retired.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/tenant-100-financial-smoke-fixture.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P10",
+      "reason": "Protected Tenant-100 synthetic smoke writes, reverses, and removes exact run-tagged payment evidence inside one atomic D1 batch; remove after CDB-101.",
+      "lifecycleStatus": "protected_fixture",
+      "retirementBlocker": "Protected synthetic production-smoke evidence remains required until CDB-101 cutover observation is complete and the fixture is formally retired.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/inventory-goods-receipt-atomic.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/inventory-issue-atomic.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/inventory-movement-service.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-cancellation-operation.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-cancellation-operation.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Temporary legacy write path; remove by P07 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy practitioner compensation authority in disabled or legacy mode until canonical practitioner compensation cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-cancellation-operation.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-consumable-reversal.js",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-consumable-reversal.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-finance.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Temporary legacy write path; remove by P07 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy practitioner compensation authority in disabled or legacy mode until canonical practitioner compensation cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/lab-reagent-stock-sync.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/provisional-doctor-payables.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Temporary legacy write path; remove by P07 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy practitioner compensation authority in disabled or legacy mode until canonical practitioner compensation cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/payment-void-execution.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Executed-pending payment void keeps the legacy bill due state synchronized through the payment.reverse strict boundary; remove after canonical invoice cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/payment-void-execution.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Executed-pending payment void preserves the legacy reversal receipt while shadow/strict modes also execute the canonical payment.reverse command; remove after canonical payment cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy payment collection projection remains required for disabled/shadow parity and strict atomic compatibility until canonical payment collection reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/appointment-billing-finalization.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/appointment-billing-finalization.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/appointment-billing-finalization.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Temporary legacy write path; remove by P06 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy payment collection projection remains required for disabled/shadow parity and strict atomic compatibility until canonical payment collection reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/approvals.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/approvals.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/approvals.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Approved unpaid bill cancellation updates the legacy compensation authority inside the same strict legacy-plus-canonical batch; remove after canonical compensation cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy practitioner compensation projection remains required for disabled/shadow parity and strict atomic compatibility until canonical practitioner compensation reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billing.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billing.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Temporary legacy write path; remove by P06 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy payment collection authority in disabled or legacy mode until canonical payment collection cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billingCancellation.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billingCancellation.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billingCounter.legacy.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billingCounter.legacy.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/billingCounter.legacy.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Temporary legacy write path; remove by P06 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy payment collection authority in disabled or legacy mode until canonical payment collection cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/provisional-billing-finalization.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/provisional-billing-finalization.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/provisional-billing-finalization.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Temporary legacy write path; remove by P06 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy payment collection projection remains required for disabled/shadow parity and strict atomic compatibility until canonical payment collection reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/commissions.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Temporary legacy write path; remove by P07 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy practitioner compensation authority in disabled or legacy mode until canonical practitioner compensation cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/creditNotes.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/creditNotes.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Approved credit notes cancel fully refunded legacy invoice-line projections inside the same strict Canonical credit-note or cash-refund transaction; remove when Canonical invoice-line authority completes P05 cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "The guarded invoice-line cancellation projection remains required for current billing and refund HTTP compatibility until Canonical invoice reads, credit-note reconciliation, production observation, rollback evidence and owner approval are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-29T14:45:00Z"
+    },
+    {
+      "path": "src/routes/tenant/deposits.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/inventory/helpers.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/inventory/importExport.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/inventory/stock.ts",
+      "table": "InventoryStockTransaction",
+      "owner": "inventory-platform",
+      "removalPhase": "P08",
+      "reason": "Temporary legacy write path; remove by P08 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy inventory movement authority in disabled or legacy mode until canonical inventory movement cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/ipBilling.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/ipBilling.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/ipBilling.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Temporary legacy write path; remove by P06 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy payment collection authority in disabled or legacy mode until canonical payment collection cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/lab-billing-finalization.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical lab-order billing authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/lab-billing-finalization.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical lab-order billing authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/patient-chart-lab-billing.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical patient-chart lab-order billing authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/patient-chart-lab-billing.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical patient-chart lab-order billing authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/patient-chart-radiology-billing.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical patient-chart radiology billing authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/patient-chart-radiology-billing.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical patient-chart radiology billing authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/radiology-order-billing.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Original and guarded compatibility writes for primary RIS requisition billing; strict mode commits them atomically with canonical radiology service and invoice authority. Remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/radiology-order-billing.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Original and guarded compatibility line writes for primary RIS requisition billing; strict mode commits them atomically with canonical radiology service and invoice authority. Remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/gateway-payment-verification.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Guarded compatibility write committed atomically with canonical gateway payment settlement authority; remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/gateway-payment-verification.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Guarded compatibility write committed atomically with canonical gateway payment settlement authority; remove by P06 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy payment collection projection remains required for disabled/shadow parity and strict atomic compatibility until canonical payment collection reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/radiology/orders.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice authority in disabled or legacy mode until canonical billing invoice cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/radiology/orders.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Temporary legacy write path; remove by P05 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy billing invoice-line authority in disabled or legacy mode until canonical billing invoice-line cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/reception-visit-billing.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Original and guarded compatibility bill writes for reception visit-service billing; strict mode commits them atomically with canonical service and invoice authority. Remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/reception-visit-billing.ts",
+      "table": "invoice_items",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Original and guarded compatibility line writes for reception visit-service billing; strict mode commits them atomically with canonical service and invoice authority. Remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice-line projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice-line reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/reception-visit-billing.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Original and guarded lab-order commission linkage for reception visit-service billing; strict mode commits it in the same canonical billing transaction. Remove by P07 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy practitioner compensation projection remains required for disabled/shadow parity and strict atomic compatibility until canonical practitioner compensation reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/routes/tenant/receptionDoctorPayouts.ts",
+      "table": "doctor_commission_accruals",
+      "owner": "finance-platform",
+      "removalPhase": "P07",
+      "reason": "Temporary legacy write path; remove by P07 canonical cutover.",
+      "lifecycleStatus": "legacy_authority",
+      "retirementBlocker": "This path remains active legacy practitioner compensation authority in disabled or legacy mode until canonical practitioner compensation cutover, reconciliation, and observation are complete.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/settlement-finalization.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Original and guarded compatibility bill writes for multi-bill settlement finalization; strict mode commits them atomically with canonical payment, deposit-application, credit-note and invoice-balance authority. Remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/settlement-finalization.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Original and guarded compatibility payment writes for settlement finalization; strict mode commits them atomically with canonical receipt, tender and allocation authority. Remove by P06 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy payment collection projection remains required for disabled/shadow parity and strict atomic compatibility until canonical payment collection reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/settlement-cancellation.ts",
+      "table": "bills",
+      "owner": "billing-platform",
+      "removalPhase": "P05",
+      "reason": "Original and guarded compatibility bill rollback for settlement cancellation; strict mode commits it atomically with canonical payment, deposit, credit-note and invoice reversal authority. Remove by P05 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy billing invoice projection remains required for disabled/shadow parity and strict atomic compatibility until canonical billing invoice reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    },
+    {
+      "path": "src/lib/canonical/settlement-cancellation.ts",
+      "table": "payments",
+      "owner": "finance-platform",
+      "removalPhase": "P06",
+      "reason": "Original and guarded compatibility payment rollback for settlement cancellation; strict mode commits it atomically with canonical receipt, tender, allocation and refund reversal authority. Remove by P06 canonical cutover.",
+      "lifecycleStatus": "canonical_compatibility",
+      "retirementBlocker": "Guarded legacy payment collection projection remains required for disabled/shadow parity and strict atomic compatibility until canonical payment collection reads are promoted, reconciled, and observed.",
+      "retirementTask": "CDB-105B",
+      "reviewedAtUtc": "2026-07-24T22:28:40Z"
+    }
+  ],
+  "duplicateMigrationNumbers": [
+    {
+      "number": 505,
+      "filenames": [
+        "0505_canonical_program_foundation.sql",
+        "0505_performer_reserve_full_discount_backfill.sql"
+      ],
+      "owner": "database-platform",
+      "reason": "Both full filenames were already applied to production D1 before the duplicate-number invariant was enforced; Wrangler tracks the immutable full filenames independently.",
+      "recordedAtUtc": "2026-07-18T18:20:17Z"
+    },
+    {
+      "number": 506,
+      "filenames": [
+        "0506_canonical_practitioners.sql",
+        "0506_doctor_waiver_gross_commission_backfill.sql"
+      ],
+      "owner": "database-platform",
+      "reason": "Both full filenames were already applied to production D1 before the duplicate-number invariant was enforced; Wrangler tracks the immutable full filenames independently.",
+      "recordedAtUtc": "2026-07-18T19:03:28Z"
+    }
+  ],
+  "destructiveMigrations": [
+    {
+      "filename": "0519_live_doctor_compensation_dual_write.sql",
+      "owner": "database-platform",
+      "removalPhase": "P07",
+      "reason": "Approved canonical compensation index replacement: the prior line-and-rule uniqueness blocked distinct evidence-backed performer units and live dual-write accruals; the recreated indexes preserve tenant-scoped replay safety by including source_evidence_sha256."
+    },
+    {
+      "filename": "0521_refund_dispute_reconciliation.sql",
+      "owner": "billing-finance",
+      "removalPhase": "P07",
+      "reason": "Approved legacy refund-hold table rebuild required to expand the existing SQLite CHECK constraint without losing held, consumed, or released history; the migration copies all rows, restores indexes and validation triggers, and adds requester-owned disputed cash records while canonical finance remains shadow."
+    },
+    {
+      "filename": "0526_receivable_write_off_approval.sql",
+      "owner": "billing-finance",
+      "removalPhase": "P07",
+      "reason": "Approved approval_requests table rebuild required to expand the immutable SQLite type CHECK with receivable_write_off; the migration exact-copies all rows and preserves execution-lock, two-person approval, and queue index contracts."
+    },
+    {
+      "filename": "0548_canonical_encounter_admission_bed_convergence.sql",
+      "owner": "clinical-platform",
+      "removalPhase": "P11",
+      "reason": "Approved data-preserving SQLite rebuild of canonical_encounters to expand the existing status CHECK and add canonical patient-link, care-location, version and source metadata with tenant-scoped foreign keys. The migration exact-copies every encounter row before replacing the table; canonical_bed_stays is extended additively, and no signed clinical or occupancy history is retired."
+    },
+    {
+      "filename": "0549_approval_revision_policy.sql",
+      "owner": "billing-finance",
+      "removalPhase": "P07",
+      "reason": "Approved approval decision and event table rebuilds required to add revision-scoped uniqueness, immutable supersession history, and correction events while exact-copying existing approval decisions and events."
+    },
+    {
+      "filename": "0571_canonical_admission_encounter_type_alignment.sql",
+      "owner": "clinical-platform",
+      "removalPhase": "P11",
+      "reason": "Approved validation-trigger replacement required to align emergency admissions with emergency encounters while preserving the existing inpatient requirement for all other admission types. The migration drops and recreates only two canonical validation triggers and does not rebuild, delete, or rewrite any business row."
+    }
+  ]
+}

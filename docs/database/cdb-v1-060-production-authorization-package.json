@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "checkpoint": "CDB-V1-060-PRODUCTION-AUTHORIZATION-PACKAGE-READY",
+  "status": "prepared_not_authorized",
+  "candidate": {
+    "branch": "program/cdb-main-continuous-20260725",
+    "candidateCommit": "35e299d9ff2dc1781084dacd6d0f431816b0007c",
+    "buildSha": "35e299d9ff2dc1781084dacd6d0f431816b0007c"
+  },
+  "bindings": {
+    "cdbV1050ResultPath": "docs/database/cdb-v1-050-protected-clone-rehearsal-result.json",
+    "cdbV1050ResultSha256": "541237da59c28ec7e13f22f724d83c02eeddaf71e91b5961c180d79e4e875950",
+    "cdbV1050CheckerPath": "scripts/canonical/check-protected-clone-rehearsal-result.ts",
+    "cdbV1050CheckerSha256": "6ba9a6ad16bbbd2d453688d4ffeb0e66b08591436b143fc197856efde7bc8abb",
+    "runbookPath": "docs/database/canonical-core-v1-production-cutover-runbook.md",
+    "runbookSha256": "63fb01acd3696ebf05aa2b68e4533eaa3d0ae4a2e715cc239f9e805875ba4b25",
+    "migrationManifestPath": "src/data/schema-migrations.generated.ts",
+    "migrationManifestSha256": "4c0810914d3ffb0684deec6439568cd167e1c443180cfa10b1daa8e7e2f80852",
+    "migrationManifestCount": 504
+  },
+  "scope": {
+    "tenantIds": [
+      "100"
+    ],
+    "domains": [
+      "finance",
+      "identity_episode",
+      "practitioner_compensation"
+    ],
+    "providerKeys": [
+      "canonical_invoice_provider_v1",
+      "canonical_payment_provider_v1",
+      "canonical_deposit_provider_v1",
+      "canonical_patient_identity_provider_v1",
+      "canonical_practitioner_provider_v1",
+      "canonical_appointment_provider_v1",
+      "canonical_encounter_provider_v1",
+      "canonical_admission_bed_provider_v1",
+      "canonical_compensation_accrual_provider_v1"
+    ],
+    "consumerIds": [
+      "cdb040b.billing-detail",
+      "cdb040b.report",
+      "cdb040b.dashboard",
+      "cdb040b.export",
+      "cdb040b.scheduled-job",
+      "cdb040b.admin",
+      "cdb040c.reception-patient-context.patient",
+      "cdb040c.reception-patient-context.practitioner",
+      "cdb040c.reception-patient-context.appointment",
+      "cdb040c.reception-patient-context.encounter",
+      "cdb040c.reception-patient-context.admission",
+      "cdb040c.commission-accrual-admin"
+    ],
+    "sourceTables": [
+      "bills",
+      "payments",
+      "billing_deposits",
+      "patients",
+      "doctors",
+      "appointments",
+      "visits",
+      "admissions",
+      "doctor_commission_accruals"
+    ],
+    "canaryMode": "shadow_read_only",
+    "maxTenantCount": 1
+  },
+  "migrations": [
+    {
+      "name": "0551_workforce_roster_integrity.sql",
+      "path": "migrations/0551_workforce_roster_integrity.sql",
+      "sha256": "466c470a5c2c24b73dda9e23f77b2fb095dc35311fc524c2fb478f441072ad41",
+      "additiveOnly": true
+    },
+    {
+      "name": "0552_attendance_projection_integrity.sql",
+      "path": "migrations/0552_attendance_projection_integrity.sql",
+      "sha256": "6b2619b2983219fe9adb2a48d03ccf960bad58a4c8012d033226ac5ea2dba6e6",
+      "additiveOnly": true
+    },
+    {
+      "name": "0553_mfa_registration_schema_repair.sql",
+      "path": "migrations/0553_mfa_registration_schema_repair.sql",
+      "sha256": "990649f25664b20df461a69ecc2ab2fdf6b627c674034186f499bd0b8feca832",
+      "additiveOnly": true
+    },
+    {
+      "name": "0554_canonical_prescription_medication_intent.sql",
+      "path": "migrations/0554_canonical_prescription_medication_intent.sql",
+      "sha256": "e90a7dfe66eb9077d02e4ee0c77e3948f4ce8474d918d928032bdff97924cb03",
+      "additiveOnly": true
+    },
+    {
+      "name": "0555_canonical_clinical_document_diagnosis.sql",
+      "path": "migrations/0555_canonical_clinical_document_diagnosis.sql",
+      "sha256": "f0121e573092ee4ddc772f056900c44f2cd727506386a7d8a53333d1101e9526",
+      "additiveOnly": true
+    },
+    {
+      "name": "0556_canonical_patient_vital_measurement.sql",
+      "path": "migrations/0556_canonical_patient_vital_measurement.sql",
+      "sha256": "59ddf466f438c70fc8af909c2be16598eb6254832c1e4874a61eb1a5a232db80",
+      "additiveOnly": true
+    },
+    {
+      "name": "0557_canonical_medication_administration.sql",
+      "path": "migrations/0557_canonical_medication_administration.sql",
+      "sha256": "879885111bc5b6736a59af30c6ff9c7bd975ec8fb65655176547a40b13385dae",
+      "additiveOnly": true
+    },
+    {
+      "name": "0558_canonical_lab_result_specimen.sql",
+      "path": "migrations/0558_canonical_lab_result_specimen.sql",
+      "sha256": "99103ddee2911d4172055082a6a64da64e02cccaf6e255bf34e66dd32d138eeb",
+      "additiveOnly": true
+    },
+    {
+      "name": "0559_canonical_radiology_acquisition_report.sql",
+      "path": "migrations/0559_canonical_radiology_acquisition_report.sql",
+      "sha256": "6e21486d056af955ce812ae348fe6d3487ce9934eab1192bb371f782e107b8e3",
+      "additiveOnly": true
+    },
+    {
+      "name": "0560_canonical_emergency_case_triage.sql",
+      "path": "migrations/0560_canonical_emergency_case_triage.sql",
+      "sha256": "41f2b177d5b3223c0485ab551b80c7d6df18d87f4bf11e4c32303b255dd1f296",
+      "additiveOnly": true
+    },
+    {
+      "name": "0561_compensation_rule_route_identity.sql",
+      "path": "migrations/0561_compensation_rule_route_identity.sql",
+      "sha256": "067435ff728f85bc11dd311f07f60296bb7ed1061db99848f9664747d80f627d",
+      "additiveOnly": true
+    },
+    {
+      "name": "0563_practitioner_route_identity.sql",
+      "path": "migrations/0563_practitioner_route_identity.sql",
+      "sha256": "da9a19580a9de996e7c72be6af149dde6c943dc6a01421c37d02578b5a095560",
+      "additiveOnly": true
+    },
+    {
+      "name": "0564_patient_import_route_identity.sql",
+      "path": "migrations/0564_patient_import_route_identity.sql",
+      "sha256": "f098f1675ffc8c257c8dbfaa5f904c7a835fd405cfc9f1a6aa567d71984fc135",
+      "additiveOnly": true
+    },
+    {
+      "name": "0565_appointment_route_identity.sql",
+      "path": "migrations/0565_appointment_route_identity.sql",
+      "sha256": "2cf35e70340a040e028bc6db06c79aeb14e19f7a0e671ca2da9f1973a5ca9f24",
+      "additiveOnly": true
+    },
+    {
+      "name": "0566_appointment_schedule_route_identity.sql",
+      "path": "migrations/0566_appointment_schedule_route_identity.sql",
+      "sha256": "f4b613ad382b444d3632f69565dc18e0f5728f82ab6a4155d23e536ea226aafb",
+      "additiveOnly": true
+    },
+    {
+      "name": "0567_encounter_visit_route_identity.sql",
+      "path": "migrations/0567_encounter_visit_route_identity.sql",
+      "sha256": "f5ca76c0cf9d18b0ace1c5ce0d83d9388328d1ca67734140f8418e8a4ea4af07",
+      "additiveOnly": true
+    },
+    {
+      "name": "0568_service_delivery_route_identity.sql",
+      "path": "migrations/0568_service_delivery_route_identity.sql",
+      "sha256": "dcc7cc1ff71a612bc7132b7cd422e2000e503c7102b2b20e2ada710ef5d47d1c",
+      "additiveOnly": true
+    },
+    {
+      "name": "0569_service_catalog_route_identity.sql",
+      "path": "migrations/0569_service_catalog_route_identity.sql",
+      "sha256": "c204d7e4eefbef16056a755e602d5c20f3f723d9cdbe0d29f5a2442a56d6b214",
+      "additiveOnly": true
+    },
+    {
+      "name": "0570_doctor_commission_rule_version_snapshot.sql",
+      "path": "migrations/0570_doctor_commission_rule_version_snapshot.sql",
+      "sha256": "98fe185957d480ae583a213f1133f360b46fa3117237733bca8375e22dbf60c0",
+      "additiveOnly": true
+    }
+  ],
+  "backfills": [
+    {
+      "id": "backfill_tenant_patient_links",
+      "path": "scripts/canonical/backfill-tenant-patient-links.ts",
+      "sha256": "298396060fd904fb98ff3a5439de84bfd445b9a2794671e3c3bd3164bb005089",
+      "maxSourceRecordsPerPass": 100,
+      "secondPassRequired": true,
+      "secondPassNewBusinessRowsExpected": 0
+    },
+    {
+      "id": "backfill_practitioners",
+      "path": "scripts/canonical/backfill-practitioners.ts",
+      "sha256": "fda72ad3f9944fbaab2eeda2bd70374b65898af299f0ef084219a106e866d5e9",
+      "maxSourceRecordsPerPass": 100,
+      "secondPassRequired": true,
+      "secondPassNewBusinessRowsExpected": 0
+    },
+    {
+      "id": "backfill_appointments",
+      "path": "scripts/canonical/backfill-appointments.ts",
+      "sha256": "d9b8a4e50f6e2de631b4972e0cc55573493da07a09df16ba4180ab02d2fe2854",
+      "maxSourceRecordsPerPass": 100,
+      "secondPassRequired": true,
+      "secondPassNewBusinessRowsExpected": 0
+    },
+    {
+      "id": "backfill_encounter_admission_bed_convergence",
+      "path": "scripts/canonical/backfill-encounter-admission-bed-convergence.ts",
+      "sha256": "4c1a040823b73d83e86dcb5a16df212f0b057f8d69b9eaf692fcd160c2c581be",
+      "maxSourceRecordsPerPass": 100,
+      "secondPassRequired": true,
+      "secondPassNewBusinessRowsExpected": 0
+    }
+  ],
+  "commands": [
+    {
+      "id": "cdbv1070.preflight",
+      "phase": "preflight",
+      "executable": false,
+      "argvTemplate": [
+        "pnpm",
+        "canonical:production-authorization-package-readiness"
+      ]
+    },
+    {
+      "id": "cdbv1070.backup-verification",
+      "phase": "backup_verification",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "backup-verification",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--evidence-dir",
+        "{{EXTERNAL_EVIDENCE_DIRECTORY}}"
+      ]
+    },
+    {
+      "id": "cdbv1070.migration",
+      "phase": "migration",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "migration",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--migration-count",
+        "19"
+      ]
+    },
+    {
+      "id": "cdbv1070.backfill",
+      "phase": "backfill",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "backfill",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--backfill-count",
+        "4",
+        "--second-pass"
+      ]
+    },
+    {
+      "id": "cdbv1070.reconciliation",
+      "phase": "reconciliation",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "reconciliation",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--require-zero-variance"
+      ]
+    },
+    {
+      "id": "cdbv1070.shadow-canary",
+      "phase": "shadow_canary",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "shadow-canary",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--tenant",
+        "100",
+        "--mode",
+        "shadow"
+      ]
+    },
+    {
+      "id": "cdbv1070.observation",
+      "phase": "observation",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "observation",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--evidence-dir",
+        "{{EXTERNAL_EVIDENCE_DIRECTORY}}"
+      ]
+    },
+    {
+      "id": "cdbv1070.rollback",
+      "phase": "rollback",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070_EXECUTOR",
+        "--phase",
+        "rollback",
+        "--authorization",
+        "{{PROTECTED_AUTHORIZATION_PATH}}",
+        "--final-provider",
+        "legacy"
+      ]
+    }
+  ],
+  "acceptance": {
+    "maximumUnexplainedVarianceCount": 0,
+    "maximumProviderErrorCount": 0,
+    "maximumMappingAmbiguityCount": 0,
+    "maximumCrossTenantReferenceCount": 0,
+    "maximumForeignKeyViolationCount": 0,
+    "maximumSecondPassNewBusinessRows": 0,
+    "requiredSmokeWorkflowCount": 4,
+    "requiredFinalProvider": "legacy"
+  },
+  "abortConditions": [
+    "candidate commit or build differs from the authorized package",
+    "production database identity, snapshot, backup or owner evidence differs from authorization",
+    "maintenance window or write-freeze binding is invalid",
+    "pending migration set differs from the exact nineteen approved migrations",
+    "backfill partition exceeds the exact authorized tenant and row bounds",
+    "second pass creates any new business row",
+    "mapping ambiguity, cross-tenant reference or foreign-key violation is observed",
+    "unexplained variance, provider error or approved latency/error threshold breach is observed",
+    "legacy rollback cannot be completed immediately"
+  ],
+  "rollback": {
+    "immediate": true,
+    "finalProvider": "legacy",
+    "keepLegacyRoutesActive": true,
+    "maximumRollbackDurationMs": null
+  },
+  "firstCutoverExclusions": {
+    "canonicalWrites": true,
+    "compatibilityWriteRetirement": true,
+    "legacyReaderRetirement": true,
+    "legacyWriterRetirement": true,
+    "destructiveMigrations": true,
+    "localSyncActivation": true
+  },
+  "permissions": {
+    "productionReadAuthorized": false,
+    "productionMigrationAuthorized": false,
+    "productionBackfillAuthorized": false,
+    "providerPromotionAuthorized": false,
+    "canonicalWriteAuthorized": false,
+    "deploymentAuthorized": false,
+    "trafficChangeAuthorized": false,
+    "localSyncActivationAuthorized": false,
+    "legacyRetirementAuthorized": false,
+    "destructiveActionAuthorized": false
+  },
+  "externalBindings": {
+    "productionDatabase": {
+      "name": null,
+      "id": null
+    },
+    "productionSnapshot": {
+      "bookmarkId": null,
+      "sha256": null
+    },
+    "backupExport": {
+      "evidenceId": null,
+      "sha256": null
+    },
+    "maintenanceWindow": {
+      "startUtc": null,
+      "endUtc": null,
+      "writeFreezeProcedureId": null
+    },
+    "owners": {
+      "executionOwnerId": null,
+      "rollbackOwnerId": null,
+      "observationOwnerId": null
+    },
+    "ownerApproval": {
+      "evidenceId": null,
+      "evidenceSha256": null,
+      "approvedAtUtc": null
+    },
+    "observation": {
+      "durationMinutes": null,
+      "maxP95LatencyMs": null,
+      "maxErrorRate": null
+    },
+    "deployedBuild": {
+      "workerVersionId": null,
+      "buildManifestSha256": null
+    }
+  },
+  "safety": {
+    "aggregateOnly": true,
+    "networkRequestPerformed": false,
+    "productionReadPerformed": false,
+    "productionMutationPerformed": false,
+    "deploymentPerformed": false,
+    "trafficChanged": false,
+    "pushPerformed": false,
+    "cdbToMainIntegrationPerformed": false
+  },
+  "nextCheckpoint": "CDB-V1-070-STAGED-PRODUCTION-CUTOVER-EXACT-AUTHORIZATION-REQUIRED"
+}

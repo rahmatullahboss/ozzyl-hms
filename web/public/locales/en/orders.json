@@ -1,0 +1,140 @@
+{
+  "title": "Order Set Manager",
+  "subtitle": "Pre-built bundles of medications, labs, and nursing orders",
+  "tabs": {
+    "orderSets": "Order Sets",
+    "favorites": "My Favorites"
+  },
+  "search": {
+    "placeholder": "Search order sets...",
+    "specialty": "All Specialties",
+    "category": "All Categories"
+  },
+  "actions": {
+    "createNew": "Create New",
+    "apply": "Apply",
+    "addItem": "Add Item",
+    "addFirstItem": "Add First Item",
+    "createOrderSet": "Create Order Set",
+    "saveFavorite": "Save to favorites",
+    "edit": "Edit",
+    "deactivate": "Deactivate"
+  },
+  "table": {
+    "name": "Name",
+    "specialty": "Specialty",
+    "category": "Category",
+    "items": "Items"
+  },
+  "detail": {
+    "title": "Order Set Details",
+    "emptyState": {
+      "title": "No items yet",
+      "description": "Add medications, lab tests, nursing orders, and more to this order set."
+    }
+  },
+  "modals": {
+    "create": {
+      "title": "Create Order Set",
+      "name": "Name",
+      "namePlaceholder": "e.g. Chest Pain Admission Orders",
+      "description": "Description",
+      "descPlaceholder": "Brief description of when to use this order set",
+      "specialty": "Specialty",
+      "category": "Category",
+      "submit": "Create"
+    },
+    "edit": {
+      "title": "Edit Order Set",
+      "submit": "Update"
+    },
+    "addItem": {
+      "title": "Add Item to Order Set",
+      "itemType": "Item Type",
+      "priority": "Priority",
+      "name": "Name",
+      "namePlaceholderMed": "e.g. Aspirin 81mg",
+      "namePlaceholderLab": "e.g. CBC with Differential",
+      "dose": "Dose",
+      "route": "Route",
+      "frequency": "Frequency",
+      "duration": "Duration",
+      "testCode": "Test Code",
+      "description": "Description",
+      "optional": "Optional item (unchecked by default when applying)",
+      "submit": "Add Item"
+    },
+    "apply": {
+      "title": "Apply: {{name}}",
+      "patient": "Patient",
+      "searchPlaceholder": "Search patient by name or MRN...",
+      "visitId": "Visit ID (optional)",
+      "visitIdPlaceholder": "Auto-detect current visit if empty",
+      "itemsToApply": "Items to Apply",
+      "checkSafety": "Check Safety",
+      "checking": "Checking...",
+      "safetyResults": "Safety Check Results",
+      "noSafetyConcerns": "No safety concerns found",
+      "noSafetyConcernsDesc": "All items passed safety checks. You may proceed.",
+      "applying": "Applying...",
+      "applyOrderSet": "Apply Order Set",
+      "success": "Order Set Applied Successfully",
+      "appliedTo": "Applied to {{name}}",
+      "prescriptions": "Prescriptions",
+      "labOrders": "Lab Orders",
+      "nursingNotes": "Nursing Notes",
+      "dietOrders": "Diet Orders",
+      "instructions": "Instructions"
+    }
+  },
+  "sections": {
+    "medication": "Medications",
+    "lab_test": "Lab Tests",
+    "nursing_order": "Nursing Orders",
+    "diet_order": "Diet Orders",
+    "instruction": "Instructions"
+  },
+  "priorities": {
+    "stat": "Stat",
+    "urgent": "Urgent",
+    "routine": "Routine"
+  },
+  "specialties": {
+    "general": "General",
+    "internal_medicine": "Internal Medicine",
+    "surgery": "Surgery",
+    "pediatrics": "Pediatrics",
+    "ob_gyn": "OB/GYN",
+    "cardiology": "Cardiology",
+    "neurology": "Neurology",
+    "orthopedics": "Orthopedics",
+    "ent": "ENT",
+    "dermatology": "Dermatology",
+    "psychiatry": "Psychiatry",
+    "emergency": "Emergency",
+    "icu": "ICU",
+    "oncology": "Oncology",
+    "nephrology": "Nephrology",
+    "pulmonology": "Pulmonology"
+  },
+  "categories": {
+    "admission": "Admission",
+    "discharge": "Discharge",
+    "pre_op": "Pre-Op",
+    "post_op": "Post-Op",
+    "emergency": "Emergency",
+    "routine": "Routine",
+    "chronic_disease": "Chronic Disease",
+    "diagnostic": "Diagnostic",
+    "preventive": "Preventive"
+  },
+  "status": {
+    "orderSetUpdated": "Order set updated",
+    "orderSetCreated": "Order set created",
+    "itemAdded": "Item added",
+    "itemRemoved": "Item removed",
+    "deactivated": "Order set deactivated",
+    "savedFavorite": "Saved to favorites",
+    "favoriteRemoved": "Favorite removed"
+  }
+}

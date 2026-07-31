@@ -1,0 +1,8 @@
+import 'package:drift/drift.dart';
+
+class CachedArticles extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get remoteId => text()();
+  TextColumn get dataJson => text()();
+  DateTimeColumn get cachedAt => dateTime().withDefault(currentDateAndTime)();
+}

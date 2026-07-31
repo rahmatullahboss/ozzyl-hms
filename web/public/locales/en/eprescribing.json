@@ -1,0 +1,131 @@
+{
+  "title": "E-Prescribing",
+  "subtitle": "Drug safety checking, formulary & interaction management",
+  "kpi": {
+    "drugCatalog": "Drug Catalog",
+    "interactionPairs": "Interaction Pairs",
+    "safetyChecksRun": "Safety Checks Run",
+    "warningsDetected": "Warnings Detected"
+  },
+  "tabs": {
+    "safetyChecker": "Safety Checker",
+    "drugCatalog": "Drug Catalog",
+    "interactions": "Interactions"
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "safety": {
+    "title": "Prescription Safety Check",
+    "description": "Enter a patient ID and medication to check for drug-drug interactions, allergy contraindications, duplicate therapy, and max dose violations.",
+    "patientIdLabel": "Patient ID *",
+    "patientIdPlaceholder": "e.g. 1",
+    "medicationNameLabel": "Medication Name *",
+    "medicationNamePlaceholder": "e.g. Ibuprofen",
+    "genericNameLabel": "Generic Name (optional)",
+    "genericNamePlaceholder": "e.g. ibuprofen",
+    "checking": "Checking…",
+    "runCheckBtn": "🔍 Run Safety Check",
+    "noConcerns": "✅ No Safety Concerns",
+    "contraindicated": "🚫 CONTRAINDICATED",
+    "warningsFound": "Warnings Found",
+    "warningFound": "Warning Found",
+    "recommendation": "Recommendation"
+  },
+  "formulary": {
+    "searchPlaceholder": "Search drug name, generic or manufacturer…",
+    "addDrug": "Add Drug",
+    "noDrugs": "No drugs in formulary yet. Add one to get started.",
+    "antibiotic": "Antibiotic",
+    "controlled": "Controlled"
+  },
+  "formularyModal": {
+    "title": "Add Drug to Formulary",
+    "drugNameLabel": "Drug Name *",
+    "drugNamePlaceholder": "e.g. Napa Extra",
+    "genericNameLabel": "Generic Name *",
+    "genericNamePlaceholder": "e.g. Paracetamol",
+    "strengthLabel": "Strength",
+    "strengthPlaceholder": "500mg",
+    "dosageFormLabel": "Dosage Form",
+    "selectPlaceholder": "Select…",
+    "forms": {
+      "tablet": "Tablet",
+      "capsule": "Capsule",
+      "syrup": "Syrup",
+      "suspension": "Suspension",
+      "injection": "Injection",
+      "ointment": "Ointment",
+      "cream": "Cream",
+      "drops": "Drops",
+      "inhaler": "Inhaler",
+      "other": "Other"
+    },
+    "routeLabel": "Route",
+    "routes": {
+      "oral": "Oral",
+      "topical": "Topical",
+      "inhalation": "Inhalation",
+      "ophthalmic": "Ophthalmic",
+      "other": "Other"
+    },
+    "manufacturerLabel": "Manufacturer",
+    "manufacturerPlaceholder": "Square Pharma",
+    "maxDailyDoseLabel": "Max Daily Dose (mg)",
+    "maxDailyDosePlaceholder": "4000",
+    "unitPriceLabel": "Unit Price (৳)",
+    "unitPricePlaceholder": "5.00",
+    "addBtn": "Add to Formulary"
+  },
+  "interactions": {
+    "searchPlaceholder": "Search drug names or descriptions…",
+    "addPair": "Add Pair",
+    "noPairs": "No interaction pairs found.",
+    "severity": {
+      "all": "All",
+      "minor": "Minor",
+      "moderate": "Moderate",
+      "major": "Major",
+      "contraindicated": "Contraindicated"
+    }
+  },
+  "interactionModal": {
+    "title": "Add Drug Interaction Pair",
+    "drugALabel": "Drug A (Generic) *",
+    "drugAPlaceholder": "e.g. warfarin",
+    "drugBLabel": "Drug B (Generic) *",
+    "drugBPlaceholder": "e.g. ibuprofen",
+    "severityLabel": "Severity *",
+    "severityOptions": {
+      "minor": "Minor",
+      "moderate": "Moderate",
+      "major": "Major",
+      "contraindicated": "Contraindicated"
+    },
+    "descriptionLabel": "Description *",
+    "descriptionPlaceholder": "Clinical description of the interaction…",
+    "recommendationLabel": "Recommendation",
+    "recommendationPlaceholder": "What should the prescriber do?",
+    "addBtn": "Add Interaction"
+  },
+  "toast": {
+    "success": {
+      "drugAdded": "Drug added to formulary",
+      "interactionAdded": "Interaction pair added",
+      "interactionRemoved": "Interaction removed",
+      "noSafetyConcerns": "✅ No safety concerns found"
+    },
+    "error": {
+      "addDrugFailed": "Failed to add drug",
+      "addInteractionFailed": "Failed to add interaction",
+      "removeFailed": "Failed to remove",
+      "safetyCheckRequired": "Patient ID and medication name required",
+      "safetyCheckFailed": "Safety check failed"
+    },
+    "warning": {
+      "safetyWarnings": "⚠️ Safety warnings detected — please review"
+    }
+  }
+}

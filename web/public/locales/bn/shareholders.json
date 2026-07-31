@@ -1,0 +1,22 @@
+{
+  "ocrTextNotFound": "কোনো টেক্সট পাওয়া যায়নি",
+  "ocrDataExtractFailed": "ডাটা এক্সট্রাক্ট করতে ব্যর্থ হয়েছে",
+  "ocrSuccess": "সফলভাবে প্রসেস করা হয়েছে",
+  "ocrFailed": "প্রসেস করা সম্ভব হয়নি",
+  "pdfOnly": "শুধুমাত্র পিডিএফ ফাইল গ্রহণ করা হয়",
+  "fileSizeExceeded": "ফাইল অনেক বড়",
+  "fileEmpty": "ফাইলটি ফাঁকা",
+  "noShareholderDataFound": "No shareholder data found in PDF",
+  "pdfReadError": "Error reading PDF",
+  "importSuccess": "সফলভাবে ইমপোর্ট করা হয়েছে",
+  "importFailed": "ইমপোর্ট করতে ব্যর্থ হয়েছে",
+  "importError": "Error importing",
+  "loadFailed": "Failed to load shareholders",
+  "updated": "Shareholder updated",
+  "added": "Shareholder added",
+  "operationFailed": "Operation failed",
+  "calculationFailed": "Failed to calculate",
+  "profitDistributed": "লভ্যাংশ বিতরণ সফল হয়েছে",
+  "distributionFailed": "লভ্যাংশ বিতরণ ব্যর্থ হয়েছে",
+  "searchPlaceholder": "খুঁজুন..."
+}

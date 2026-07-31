@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "domain": "lab_result_specimen",
+  "provider": {
+    "flagKey": "canonical_lab_result_specimen_provider_v1",
+    "enabledByDefault": false,
+    "defaultMode": "legacy",
+    "rollbackMode": "legacy",
+    "supportedModes": ["legacy", "shadow", "canonical"],
+    "providerPath": "src/lib/canonical/lab-result-specimen-provider.ts",
+    "adapterPath": "src/lib/canonical/lab-result-specimen-read-adapters.ts",
+    "exactSourceMappingRequired": true,
+    "textTimeValueSimilarityForbidden": true,
+    "specimenCustodyHistoryVisible": true,
+    "resultVersionHistoryVisible": true,
+    "observationHistoryVisible": true,
+    "signatureHistoryVisible": true,
+    "analyzerProvenanceVisible": true,
+    "reportProjectionOnly": true,
+    "shadowEvidencePhiMinimised": true
+  },
+  "selectedAdapters": [
+    {
+      "id": "cdb125e_specimen_detail",
+      "kind": "library_adapter",
+      "function": "readLabSpecimenDetailAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb125e_patient_result_timeline",
+      "kind": "library_adapter",
+      "function": "readLabPatientResultTimelineAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb125e_report_summary",
+      "kind": "library_adapter",
+      "function": "readLabReportSummaryAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    }
+  ],
+  "knownWriters": [
+    { "path": "src/routes/tenant/lab.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/lab-results.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/labWorkflow.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/routes/tenant/labValidation.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/services/lis-result-acceptance.ts", "assignment": "legacy_unchanged" },
+    { "path": "src/services/lis-result-retraction.ts", "assignment": "legacy_unchanged" }
+  ],
+  "knownReaders": [
+    { "path": "src/routes/tenant/reportLab.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/patients-timeline.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/lib/health-summary.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/lab.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/lab-results.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/labWorkflow.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/labValidation.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/patientPortal.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/hospital-links.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/ccda.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/labNotifications.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null },
+    { "path": "src/routes/tenant/labMachines.ts", "assignment": "legacy_unchanged", "selectedAdapterId": null }
+  ],
+  "summary": {
+    "selectedAdapterCount": 3,
+    "knownWriterCount": 6,
+    "knownReaderCount": 12,
+    "unknownWriterAssignments": 0,
+    "unknownReaderAssignments": 0,
+    "routeActivationCount": 0
+  }
+}

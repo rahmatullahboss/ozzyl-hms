@@ -1,0 +1,90 @@
+{
+  "dashboard": {
+    "title": "হেল্পডেস্ক",
+    "subtitle": "আইটি, সুবিধা এবং সরঞ্জাম সংক্রান্ত সমস্যার জন্য অভ্যন্তরীণ সাপোর্ট টিকিট",
+    "newTicket": "নতুন টিকিট",
+    "unassigned": "অনির্ধারিত",
+    "stats": {
+      "openTickets": "খোলা টিকিট",
+      "critical": "গুরুত্বপূর্ণ",
+      "resolvedToday": "আজ সমাধান হয়েছে",
+      "slaBreached": "SLA লঙ্ঘিত",
+      "avgResolution": "গড় সমাধান সময়"
+    },
+    "charts": {
+      "byCategory": "বিভাগ অনুসারে টিকিট (৩০ দিন)"
+    },
+    "filters": {
+      "allStatus": "সব স্ট্যাটাস",
+      "allPriority": "সব অগ্রাধিকার",
+      "allCategories": "সব বিভাগ",
+      "searchPlaceholder": "টিকিট খুঁজুন..."
+    },
+    "tickets": {
+      "noTickets": "কোন টিকিট পাওয়া যায়নি",
+      "noTicketsDesc": "আপনার ফিল্টার সামঞ্জস্য করার চেষ্টা করুন",
+      "create": "নতুন টিকিট",
+      "newTicketModal": "নতুন সাপোর্ট টিকিট",
+      "title": "শিরোনাম *",
+      "description": "বিস্তারিত *",
+      "wardName": "ওয়ার্ড",
+      "patientName": "রোগী",
+      "saving": "সংরক্ষণ করা হচ্ছে...",
+      "createBtn": "তৈরি করুন",
+      "createdDate": "তৈরি হয়েছে",
+      "due": "বাকি",
+      "table": {
+        "ticketNo": "টিকিট #",
+        "title": "শিরোনাম",
+        "category": "বিভাগ",
+        "priority": "অগ্রাধিকার",
+        "status": "অবস্থা",
+        "requester": "অনুরোধকারী",
+        "assigned": "নিযুক্ত",
+        "date": "তারিখ",
+        "actions": "অ্যাকশন"
+      },
+      "modal": {
+        "details": "টিকিটের বিবরণ",
+        "startWorking": "কাজ শুরু করুন",
+        "markResolved": "সমাধান করা হয়েছে",
+        "closeTicket": "টিকিট বন্ধ করুন",
+        "escalate": "উচ্চতর পর্যায়ে পাঠান",
+        "comments": "মন্তব্য",
+        "noComments": "এখনো কোনো মন্তব্য নেই।",
+        "internal": "অভ্যন্তরীণ",
+        "addComment": "একটি মন্তব্য যোগ করুন..."
+      }
+    },
+    "toasts": {
+      "ticketCreated": "টিকিট তৈরি হয়েছে",
+      "ticketUpdated": "টিকিট আপডেট হয়েছে",
+      "commentAdded": "মন্তব্য যোগ করা হয়েছে",
+      "validationError": "শিরোনাম এবং বর্ণনা প্রয়োজন"
+    }
+  },
+  "categories": {
+    "it": "আইটি",
+    "facility": "সুবিধা",
+    "equipment": "সরঞ্জাম",
+    "billing": "বিলিং",
+    "hr": "এইচআর",
+    "security": "নিরাপত্তা",
+    "other": "অন্যান্য"
+  },
+  "priority": {
+    "low": "নিম্ন",
+    "medium": "মাধ্যম",
+    "high": "উচ্চ",
+    "critical": "খুবই জরুরি",
+    "urgent": "জরুরি"
+  },
+  "status": {
+    "open": "খোলা",
+    "in_progress": "চলমান",
+    "resolved": "সমাধান হয়েছে",
+    "closed": "বন্ধ",
+    "escalated": "উচ্চতর করা হয়েছে",
+    "cancelled": "বাতিল"
+  }
+}

@@ -1,0 +1,17 @@
+.git
+.github
+.codex
+.agents
+.local-hms
+node_modules
+**/node_modules
+**/dist
+**/build
+**/.wrangler
+.dev.vars*
+.env*
+coverage
+test-results
+playwright-report
+*.log
+DanpheEMR reference

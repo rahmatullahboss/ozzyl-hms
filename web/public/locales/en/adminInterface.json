@@ -1,0 +1,291 @@
+{
+  "groupActionCenter": "Action Center",
+  "groupOperationsMonitor": "Operations Monitor",
+  "groupCashFinance": "Cash & Finance",
+  "groupInventoryAdmin": "Inventory",
+  "groupPeopleAccess": "People & Access",
+  "groupAuditSecurity": "Audit & Security",
+  "groupReportsAnalytics": "Reports & Analytics",
+  "groupSettings": "Settings",
+  "pendingApprovals": "Pending Approvals",
+  "opdAppointments": "OPD Appointments",
+  "diagnosticLab": "Diagnostic Lab",
+  "ipdBeds": "IPD Beds",
+  "otProcedures": "OT Procedures",
+  "pharmacyMonitor": "Pharmacy Monitor",
+  "emergencyMonitor": "Emergency Monitor",
+  "liveCashDrawers": "Cash Control Ledger",
+  "collectionReports": "Collection Reports",
+  "discounts": "Discounts",
+  "refunds": "Refunds",
+  "doctorCommission": "Doctor Commission",
+  "recurringExpenses": "Recurring Expenses",
+  "cashBankBook": "Cash & Bank Book",
+  "stockOverview": "Stock Overview",
+  "purchaseRequests": "Purchase Requests",
+  "stockAdjustments": "Stock Adjustments",
+  "rolesPermissions": "Roles & Permissions",
+  "auditExplorer": "Audit Explorer",
+  "branchComparison": "Branch Comparison",
+  "branchesDepartments": "Branches & Departments",
+  "paymentMethods": "Payment Methods",
+  "printLayouts": "Print Layouts",
+  "smsEmail": "SMS & Email",
+  "expandSidebar": "Expand sidebar",
+  "collapseSidebar": "Collapse sidebar",
+  "adminDashboard": {
+    "title": "Admin Dashboard",
+    "subtitle": "Live hospital control room for cash, operations, approvals, and monitoring.",
+    "errors": {
+      "loadFailed": "Failed to load data",
+      "retry": "Retry"
+    },
+    "kpi": {
+      "todayCollection": "Selected-day cash received",
+      "cashMovement": "Physical drawer cash movement",
+      "todayCollectionTooltip": "Cash actually received today from bills and due collection. This is separate from bill value and drawer cash.",
+      "todayExpense": "Approved operating expense",
+      "outstandingDue": "Outstanding patient due",
+      "todayDiscount": "Discount given",
+      "opdPatients": "OPD Patients",
+      "ipdAdmitted": "IPD Admitted",
+      "viewSource": "View source",
+      "breakdownSources": "Sources",
+      "breakdownDetails": "Details",
+      "breakdownEmpty": "No rows found",
+      "closeBreakdown": "Close"
+    },
+    "actionRequired": {
+      "title": "Action Required",
+      "alertsCount": "{{count}} alerts",
+      "pendingApprovals": "Pending approvals",
+      "staleHandovers": "Stale cash handovers",
+      "highDiscountBills": "High discount bills",
+      "missingDiscountReference": "Discount approver not recorded",
+      "canceledBillsToday": "Canceled bills today",
+      "handoverDiscrepancies": "Handover discrepancies",
+      "lowStockAlerts": "Low stock alerts",
+      "empty": "No urgent actions right now"
+    },
+    "liveCashDrawers": {
+      "title": "Cash Control Summary",
+      "viewAll": "View all",
+      "noActiveDrawers": "No active cash drawers right now",
+      "active": "Active",
+      "moreCount": "+{{count}} more"
+    },
+    "operationsSnapshot": {
+      "title": "Operations Snapshot",
+      "opdQueue": "OPD Queue",
+      "opdAppointments": "Appointments",
+      "opdCompleted": "Completed",
+      "diagnostic": "Diagnostic",
+      "diagnosticPending": "Pending",
+      "diagnosticCompleted": "Completed",
+      "ipd": "IPD",
+      "ipdOccupied": "Occupied",
+      "ipdAvailable": "Available",
+      "ipdOccupancy": "Occupancy",
+      "pharmacy": "Pharmacy",
+      "pharmacyTodaySales": "Today's Sales"
+    },
+    "revenueTrend": {
+      "title": "Revenue Trend",
+      "periodToday": "Today",
+      "period7d": "7D",
+      "noData": "No revenue data available"
+    },
+    "paymentMethods": {
+      "title": "Payment Methods",
+      "noData": "No payment data available",
+      "cash": "Cash",
+      "bkash": "bKash",
+      "nagad": "Nagad",
+      "card": "Card",
+      "bankTransfer": "Bank Transfer",
+      "cheque": "Cheque",
+      "unknown": "Unknown"
+    },
+    "auditFeed": {
+      "title": "Recent Audit Feed",
+      "viewAll": "View all",
+      "noEntries": "No entries yet",
+      "showingEntries": "Showing {{count}} entries",
+      "autoRefresh": "Auto-refreshes every 30s",
+      "timeAgo": {
+        "justNow": "Just now",
+        "minutesAgo": "{{count}} min ago",
+        "hoursAgo": "{{count}} hr ago",
+        "daysAgo": "{{count}} days ago"
+      },
+      "severity": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "critical": "Critical"
+      }
+    },
+    "cashBreakdown": {
+      "title": "Cash breakdown",
+      "subtitle": "See where today's cash came from and which expense heads used cash.",
+      "totalCashMovement": "Total cash movement",
+      "moneyInSources": "Money received from",
+      "expenseCategories": "Expenses by category",
+      "noSources": "No source data yet"
+    },
+    "dateFilter": {
+      "title": "Dashboard date",
+      "subtitle": "KPI and cash breakdown will show the selected day.",
+      "inputLabel": "Dashboard date"
+    }
+  },
+  "adminMonitor": {
+    "opd": {
+      "title": "OPD Monitor",
+      "summary": {
+        "totalTokens": "Total tokens",
+        "waiting": "Waiting",
+        "serving": "Serving",
+        "completed": "Completed",
+        "noShow": "No-show",
+        "cancelled": "Cancelled"
+      },
+      "delayedDoctors": "Delayed doctors",
+      "delayMinutes": "{{count}} min delay",
+      "patientsWaiting": "{{count}} patient(s) waiting",
+      "statusTabs": {
+        "all": "All",
+        "waiting": "Waiting",
+        "serving": "Serving",
+        "completed": "Completed",
+        "noShow": "No-show",
+        "cancelled": "Cancelled"
+      },
+      "table": {
+        "token": "Token",
+        "patient": "Patient",
+        "doctor": "Doctor",
+        "department": "Department",
+        "apptTime": "Appointment time",
+        "wait": "Wait",
+        "status": "Status"
+      },
+      "noTokens": "No tokens found"
+    },
+    "diagnostic": {
+      "title": "Diagnostic Monitor",
+      "summary": {
+        "totalToday": "Total today",
+        "samplePending": "Sample pending",
+        "processing": "Processing",
+        "reportReady": "Report ready",
+        "delayed": "Delayed",
+        "critical": "Critical"
+      },
+      "criticalResults": "Critical results",
+      "statusTabs": {
+        "all": "All",
+        "samplePending": "Sample pending",
+        "processing": "Processing",
+        "reportReady": "Report ready",
+        "delayed": "Delayed"
+      },
+      "table": {
+        "orderId": "Order ID",
+        "patient": "Patient",
+        "test": "Test",
+        "department": "Department",
+        "sample": "Sample",
+        "report": "Report",
+        "expected": "Expected",
+        "delay": "Delay",
+        "onTime": "On time"
+      },
+      "noLabOrders": "No lab orders found"
+    },
+    "pharmacy": {
+      "title": "Pharmacy Monitor",
+      "summary": {
+        "todaySales": "Today's sales",
+        "todayInvoices": "{{count}} invoice(s)",
+        "grossMargin": "Gross margin",
+        "lowStock": "Low stock",
+        "nearExpiry": "Near expiry",
+        "pendingPRs": "Pending PRs",
+        "todayReturns": "Today's returns"
+      },
+      "inventoryOverview": "Inventory overview",
+      "investment": {
+        "total": "Total investment",
+        "income": "Total income",
+        "profit": "Gross profit",
+        "medicines": "Total medicines"
+      },
+      "lowStockAlert": "Low stock alert",
+      "nearExpiryAlert": "Near expiry alert",
+      "noLowStock": "No low-stock items",
+      "noExpiring": "No expiring items",
+      "currentReorder": "Current / Reorder",
+      "batchQty": "Batch {{batch}} · Qty {{qty}}",
+      "days": "{{count}} day(s)"
+    },
+    "ipd": {
+      "title": "IPD Monitor",
+      "summary": {
+        "totalBeds": "Total beds",
+        "occupied": "Occupied",
+        "available": "Available",
+        "occupancy": "Occupancy",
+        "dischargesToday": "Discharges today",
+        "avgStay": "Avg. stay",
+        "cleaning": "Cleaning",
+        "maintenance": "Maintenance"
+      },
+      "viewTabs": {
+        "overview": "Overview",
+        "bedMap": "Bed map",
+        "patientList": "Patient list",
+        "dischargePending": "Discharge pending"
+      },
+      "bedStatus": {
+        "available": "Available",
+        "occupied": "Occupied",
+        "cleaning": "Cleaning",
+        "maintenance": "Maintenance",
+        "reserved": "Reserved",
+        "blocked": "Blocked"
+      },
+      "legend": "Legend",
+      "noWards": "No wards found",
+      "noAdmissions": "No admissions found",
+      "noDischargePending": "No pending discharges",
+      "patientList": {
+        "patient": "Patient",
+        "bed": "Bed",
+        "ward": "Ward",
+        "doctor": "Doctor",
+        "diagnosis": "Diagnosis",
+        "days": "Days"
+      },
+      "dischargeTable": {
+        "patient": "Patient",
+        "bed": "Bed",
+        "ward": "Ward",
+        "doctor": "Doctor",
+        "approval": "Approval",
+        "bill": "Bill",
+        "approved": "Approved",
+        "pending": "Pending",
+        "cleared": "Cleared"
+      },
+      "overview": {
+        "quickSummary": "Quick summary",
+        "bedUtilization": "Bed utilization",
+        "occupied": "{{percent}}% occupied",
+        "todaysActivity": "Today's activity",
+        "dischargesCount": "{{count}} discharge(s)",
+        "avgStayValue": "Average stay {{days}} day(s)"
+      }
+    }
+  }
+}

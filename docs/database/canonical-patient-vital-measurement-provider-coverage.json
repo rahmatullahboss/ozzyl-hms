@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "domain": "patient_vital_measurement",
+  "provider": {
+    "flagKey": "canonical_patient_vital_measurement_provider_v1",
+    "enabledByDefault": false,
+    "defaultMode": "legacy",
+    "rollbackMode": "legacy",
+    "supportedModes": [
+      "legacy",
+      "shadow",
+      "canonical"
+    ],
+    "providerPath": "src/lib/canonical/patient-vital-measurement-provider.ts",
+    "adapterPath": "src/lib/canonical/patient-vital-measurement-read-adapters.ts",
+    "exactSourceMappingRequired": true,
+    "valueTimeSimilarityForbidden": true,
+    "shadowEvidencePhiMinimised": true
+  },
+  "selectedAdapters": [
+    {
+      "id": "cdb123e_vital_observation_detail",
+      "kind": "library_detail_projection",
+      "function": "readVitalObservationDetailAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb123e_vital_observation_timeline",
+      "kind": "library_timeline_projection",
+      "function": "readVitalObservationTimelineAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    }
+  ],
+  "knownReaders": [
+    {
+      "path": "src/routes/tenant/clinical/vitals.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": "cdb123e_vital_observation_detail"
+    },
+    {
+      "path": "src/routes/tenant/nursing/monitoring.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": "cdb123e_vital_observation_detail"
+    },
+    {
+      "path": "src/routes/patient-phr.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": "cdb123e_vital_observation_timeline"
+    },
+    {
+      "path": "src/routes/tenant/patientPortal.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": "cdb123e_vital_observation_timeline"
+    }
+  ],
+  "summary": {
+    "selectedAdapterCount": 2,
+    "knownReaderCount": 4,
+    "unknownReaderAssignments": 0,
+    "routeActivationCount": 0
+  }
+}

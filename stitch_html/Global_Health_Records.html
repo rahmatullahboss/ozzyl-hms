@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Clinical Sanctuary - Global Health Records</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#834718",
+                    "primary-fixed": "#96f1fa",
+                    "background": "#f8fafa",
+                    "surface-dim": "#d8dada",
+                    "on-surface": "#191c1d",
+                    "primary": "#006067",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#7ad5dd",
+                    "surface-tint": "#006970",
+                    "secondary-container": "#c6e9ec",
+                    "inverse-primary": "#7ad5dd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#6f3808",
+                    "secondary-fixed-dim": "#abcdd0",
+                    "on-secondary-fixed": "#002022",
+                    "on-primary": "#ffffff",
+                    "outline": "#6e797a",
+                    "inverse-on-surface": "#eff1f1",
+                    "on-secondary-container": "#4a6a6d",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f4",
+                    "surface": "#f8fafa",
+                    "on-primary-fixed-variant": "#004f54",
+                    "on-secondary-fixed-variant": "#2c4c4f",
+                    "on-primary-container": "#d0fbff",
+                    "on-background": "#191c1d",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#fff1e9",
+                    "on-primary-fixed": "#002022",
+                    "inverse-surface": "#2e3131",
+                    "primary-container": "#007b83",
+                    "secondary-fixed": "#c6e9ec",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "on-surface-variant": "#3e494a",
+                    "surface-container-high": "#e6e8e9",
+                    "surface-container": "#eceeee",
+                    "surface-variant": "#e1e3e3",
+                    "secondary": "#446467",
+                    "outline-variant": "#bdc9ca",
+                    "tertiary-fixed": "#ffdcc6",
+                    "tertiary-container": "#a05f2e",
+                    "surface-container-highest": "#e1e3e3",
+                    "surface-bright": "#f8fafa",
+                    "on-tertiary-fixed": "#301400",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Custom QR Code pattern via CSS */
+        .qr-pattern {
+            background-image: radial-gradient(#006067 1px, transparent 1px);
+            background-size: 4px 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8fafa]/80 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Patient Profile Photo" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional healthcare provider with a kind expression in a bright clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgFYqoMgcYlobiMP8nDUClb0deUi0q7g9rg9q2y6buk9nwfP0Cyu0PQbtv7CRFvrq905UAjCccGpzvd0cf3_6hfJVXM8FHRm6XWE-18NQQZygUQAOz0MH-lZzfh5MdQh6A2U0aCQwjTqyL4EvlO_45WpyJASIvRFPRqUOvp4o0lUu10m93p2rhnlUDfJgDUPJ19oHIJVLNvr7xk9J7YhJHc0DX0qQLTvk2RbQ3YhD_4-Wqy7c3IAQ-fym6NyUZJV46FGJFfwxRpYM"/>
+</div>
+<span class="text-lg font-bold text-[#006067] font-['Manrope'] tracking-tight">The Clinical Sanctuary</span>
+</div>
+<button class="text-[#006067] hover:opacity-80 transition-opacity active:scale-95 duration-100">
+<span class="material-symbols-outlined">emergency_home</span>
+</button>
+</header>
+<main class="pt-24 px-6 space-y-8 max-w-2xl mx-auto">
+<!-- Emergency Visit Pass -->
+<section>
+<div class="bg-gradient-to-br from-[#006067] to-[#007b83] rounded-xl p-8 text-white relative overflow-hidden shadow-[0_8px_24px_rgba(0,32,34,0.12)]">
+<!-- Abstract background texture -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="flex flex-col items-center space-y-6 relative z-10">
+<div class="text-center space-y-1">
+<h2 class="text-2xl font-bold font-headline tracking-tight">Emergency Visit Pass</h2>
+<p class="text-primary-fixed text-sm font-medium opacity-90 font-label uppercase tracking-widest">Valid for 24h</p>
+</div>
+<!-- QR Code Mockup -->
+<div class="bg-white p-4 rounded-xl shadow-inner">
+<div class="w-48 h-48 bg-slate-50 rounded-lg flex items-center justify-center relative overflow-hidden">
+<div class="w-40 h-40 qr-pattern opacity-40"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1;">qr_code_2</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-full backdrop-blur-sm border border-white/20">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="text-sm font-medium">Scan for Instant Medical Access</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Connected Hospitals -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-2">
+<h3 class="text-xl font-bold font-headline text-on-surface">Connected Hospitals</h3>
+<button class="text-primary text-sm font-semibold hover:underline">Manage All</button>
+</div>
+<div class="space-y-3">
+<!-- Hospital Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-center justify-between group cursor-pointer active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center">
+<img alt="St. Jude Logo" class="w-10 h-10 object-contain rounded-lg" data-alt="Abstract minimalist logo of a modern hospital building with clean geometric lines in soft blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTTw9G0FqcphvWaVxRKehcYEPsNlP_AWSkWeVDRmNWqr9RITZLSgl2opZ5lFfIYaP1DE56AQ3SlOwzdCEBix34P1ADDkWXkoWotVDbtVHS8ipiRkAaM6rvSBxNorkxboXbILWJ0_WSJ9-eR_VHINBXNsTMix2c_ge7SiYh0TNYZlUBXL43BiTuKcs-wKpWArZIS5H6FrEqZmNLsPsDPE75WxM1t-8Tf_zqhDKEGNutTBzO7UXxw3ebF03G6VJl2ud9wFitB5e6zZQ"/>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-bold text-on-surface font-headline">St. Jude Medical</h4>
+<p class="text-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                Synced 2m ago
+                            </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Hospital Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-center justify-between group cursor-pointer active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center">
+<img alt="Mayo Clinic Logo" class="w-10 h-10 object-contain rounded-lg" data-alt="Professional clinical medical emblem with an architectural motif in shades of deep teal and grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8SA8V2efI2NxqnN5gMggP9xxkaRXKMr8dvopXE8pXtZ-G8vD_Yp3111D86a-83yKIF9ODS6mLNVFTfiYQjyiqPc8Eiw9pREz5X5s-OQ4ekyeQy3b4Kq5TGIuPRVIEpmJj1DkPaP0nkqEA1cfxnoDHpbij8IzVFWRxeu7fY8QxCOpFwBnmpSTzPzAfjOlWhjK2Kc-HThdYfpxH7gj6WHFHQxS_3bbJN3aIHnV9y5fCYS3ej3Sd_Hb1kSCMoooaKFhpvjb_-VelzhA"/>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-bold text-on-surface font-headline">Mayo Clinic</h4>
+<p class="text-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                Synced 1h ago
+                            </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Hospital Card 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex items-center justify-between group cursor-pointer active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 bg-surface-container-low rounded-xl flex items-center justify-center">
+<img alt="Mount Sinai Logo" class="w-10 h-10 object-contain rounded-lg" data-alt="Modern minimalist healthcare logo icon showing stylized medical cross with clean aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeqa2lYb9CVqswQO55HKmSeurQyFEXxxgfJpIjukatLoBmVIOu1ZconiFQ9FDOU_f3NwxBiQ3f15iATqqkyzHywNDGWn9bX_RLs2A04RV_x3ZwPGoEvESTJu8C4xX07Gx6JTdilAG_EeV_lK023KGGzbLyoBfCIfla4GrFFaaHDYNubjQ6OtJejMD_5OmG2MqZ_B6c-6NIu0a4ifsV_xLQi0MnY9A-oXYIUEjGxyluBFK1pio_uSKDNhbGbKmrS716m9WTIhdwQxU"/>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-bold text-on-surface font-headline">Mount Sinai</h4>
+<p class="text-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+                                Pending sync
+                            </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">sync</span>
+</div>
+</div>
+</section>
+<!-- Linked Family -->
+<section class="space-y-4">
+<div class="flex justify-between items-end px-2">
+<h3 class="text-xl font-bold font-headline text-on-surface">Linked Family</h3>
+<button class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center hover:opacity-90">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 -mx-2 px-2 no-scrollbar">
+<!-- Family Member 1 -->
+<div class="flex-shrink-0 w-32 bg-surface-container-lowest p-4 rounded-xl text-center space-y-3 shadow-sm">
+<div class="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-surface-container">
+<img alt="Spouse Profile" class="w-full h-full object-cover" data-alt="Smiling middle-aged woman with clear skin and professional attire in a bright daylight environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfKIvo3xVdHUNhS5Sav4IKD--JSjDzGaxv51ouU_ktWZgRW-b2ABIlE8vVVhKlKUGzXesC8562FmU8SsaI4mUmvzHRsWj8ac7pwkjrkO-1XlBQitAyL2hKOEukl6P_6T9TXXKgfL9hvx__vrG-7Q1YL1jUGshOmdXJbjWJekUqDYk7LiEI5zzxi58ePR1usky9EoBUf2o0M5TSjitrUnzzfVRtTdjh659gVtMbIDckGP9RcWzCxz8Xt1BISbTdNbhtV6eIfRyvVwc"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface truncate">Sarah J.</p>
+<p class="text-xs text-on-surface-variant font-medium">Spouse</p>
+</div>
+</div>
+<!-- Family Member 2 -->
+<div class="flex-shrink-0 w-32 bg-surface-container-lowest p-4 rounded-xl text-center space-y-3 shadow-sm">
+<div class="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-surface-container">
+<img alt="Son Profile" class="w-full h-full object-cover" data-alt="Young boy laughing outdoors in a sunlit garden with soft focus greenery in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuYAh6fR1pkAE2OTzRu_ZczCUjep8MKsd_HJNZk6O5TdqVXPlCmMOlWeHNUubKx72WJAPv7jYGMRcVCZaUrIhFgneg4ch8L4K1G-dO5Ovr62gUr1jAJHel0oz_MPA0XGdqsudHpc6GY9cW_v4R8S-czSRbRy0jfUfXgL33sBwyap_r_p2bt9-Bz8ObLK9J49dNao7neTFmbp_rxaTVCqCCWHpDvmq_f5bFbBwyGursBkxqKm6kDGZi1YNBAIEgKGOYSGmPdBzuwcI"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface truncate">Ethan J.</p>
+<p class="text-xs text-on-surface-variant font-medium">Son</p>
+</div>
+</div>
+<!-- Family Member 3 -->
+<div class="flex-shrink-0 w-32 bg-surface-container-lowest p-4 rounded-xl text-center space-y-3 shadow-sm">
+<div class="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-surface-container">
+<img alt="Daughter Profile" class="w-full h-full object-cover" data-alt="Young girl with a peaceful expression in a brightly lit interior space with minimalist decor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO5qlc56KvH9UrMMjuGvnlgbT8bJ56gBiEbImIN6QJ9VhJB3jILGtOJYlMUGc2x2v1z4k0v8DNJxDbF5_takWCGuAad0ZPCAu09Tv96HDrqgCXQVaMaOTpnNMMT6dWZe0e7A47nY0uYyLyRwKm5Rj3CCEnECghamzYjCohSXOHt91yN2ZH9yQ1FivTU6XryWh9UUt-uzWw6-qm4p6IEffjjgOnT-7n-C03czi5U9Gz24zuoQCcRQ1lzlwlTXja3gN20sufDn3WlFQ"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface truncate">Lily J.</p>
+<p class="text-xs text-on-surface-variant font-medium">Daughter</p>
+</div>
+</div>
+<!-- Add New Placeholder -->
+<div class="flex-shrink-0 w-32 border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center space-y-2 opacity-60">
+<span class="material-symbols-outlined text-outline">group_add</span>
+<span class="text-xs font-bold text-outline">Add Member</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-2 bg-[#ffffff]/80 backdrop-blur-md z-50 rounded-t-[24px] shadow-[0_8px_24px_rgba(0,32,34,0.04)]">
+<!-- Health (Inactive) -->
+<button class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-[#006067] transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Health</span>
+</button>
+<!-- Hospitals (Active Selection) -->
+<button class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006067] to-[#007b83] text-white rounded-full px-4 py-1 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Hospitals</span>
+</button>
+<!-- Family (Inactive) -->
+<button class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-[#006067] transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">family_restroom</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Family</span>
+</button>
+<!-- Emergency (Inactive) -->
+<button class="flex flex-col items-center justify-center text-slate-400 px-4 py-1 hover:text-[#006067] transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">contact_emergency</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Emergency</span>
+</button>
+</nav>
+</body></html>

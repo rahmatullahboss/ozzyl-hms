@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "checkpoint": "CDB-V1-070C-SCHEMA-LEDGER-ARCHIVAL-FK-RECONCILIATION-AUTHORIZATION-CONTRACT-READY",
+  "status": "prepared_not_authorized",
+  "preparation": {
+    "branch": "program/cdb-v1-070c-reconciliation-20260731",
+    "repositoryCommit": "095736e1298026ee10e51cd058a59dace9c026e2",
+    "buildSha": "095736e1298026ee10e51cd058a59dace9c026e2",
+    "minimumImplementationCommit": "b1ef9992153306d666c6742b7ebb2b92c5195fb9"
+  },
+  "bindings": {
+    "designPath": "docs/superpowers/specs/2026-07-31-cdb-v1-070c-reconciliation-design.md",
+    "designSha256": "5628a035782af999bba57cb94f2ff6dbd42e894cdfa26ca347c8c6c72069c8c7",
+    "planPath": "docs/superpowers/plans/2026-07-31-cdb-v1-070c-reconciliation.md",
+    "planSha256": "8a13eafdee382347511c2e34873936ec7d069cdc69d931be0c99728789be4a12",
+    "historicalExecutionPackagePath": "docs/database/cdb-v1-070-all-tenant-shadow-execution-package.json",
+    "historicalExecutionPackageSha256": "40d5a069e9080f3465d6f367950522e6515c5ff712525073ccde5732536a57c3",
+    "packageContractPath": "scripts/canonical/all-tenant-reconciliation-package.ts",
+    "packageContractSha256": "2424d815f65a8ade495114348d5d65a7ca4e7efb61a556817327bb32f8a8193a",
+    "authorizationContractPath": "scripts/canonical/all-tenant-reconciliation-authorization.ts",
+    "authorizationContractSha256": "173ad0b5b6f19f59a6ed91312c6daa29fca78528d6f623ff9f85bd1e6f600381",
+    "authorizationValidatorPath": "scripts/canonical/validate-all-tenant-reconciliation-authorization.ts",
+    "authorizationValidatorSha256": "df4e668aa9bd12b33c8f8393180917415454c39564d07183d100e07e20074024",
+    "readinessCheckerPath": "scripts/canonical/check-all-tenant-reconciliation-readiness.ts",
+    "readinessCheckerSha256": "84376c58ba35e921e57e42a1259551f593d092cae51cc494aad59c1809d215c7",
+    "packagePreparerPath": "scripts/canonical/prepare-all-tenant-reconciliation-package.ts",
+    "packagePreparerSha256": "c66c543e9ee844afee8f03367f4a68f50b095c4cf459b6348444d51cb59cc0fe",
+    "auditContractPath": "docs/database/audits/2026-07-31-cdb-v1-070c-reconciliation-contract.md",
+    "auditContractSha256": "a6729b51c168da4ae39e41dadc5c30695b4b2794bbb3303b2dbc19fd8905b5c0"
+  },
+  "target": {
+    "platform": "cloudflare_d1",
+    "databaseName": "hms-super-admin-production-apac",
+    "databaseUuid": "c68a5360-a2c1-44cc-9e71-f21057bea102",
+    "environment": "production",
+    "remote": true
+  },
+  "scope": {
+    "tenantIds": [
+      "1",
+      "100",
+      "101",
+      "102"
+    ],
+    "phiReadAllowed": false,
+    "rowLevelPatientReadAllowed": false,
+    "rawArchivalForeignKeyViolations": 41,
+    "formallyWaivedArchivalForeignKeyViolations": 41,
+    "effectiveUnwaivedForeignKeyViolations": 0,
+    "activeForeignKeyViolations": 0,
+    "unknownForeignKeyViolations": 0
+  },
+  "reconciliationMigrations": [
+    {
+      "name": "0549_approval_revision_policy.sql",
+      "sha256": "37ef241634d4c5ee5ab4dd4c1cc4ce880773580fafd31a8a041ea91429b66066",
+      "action": "record_preapplied_migration_without_ddl",
+      "maximumLedgerRowsWritten": 1
+    },
+    {
+      "name": "0551_workforce_roster_integrity.sql",
+      "sha256": "466c470a5c2c24b73dda9e23f77b2fb095dc35311fc524c2fb478f441072ad41",
+      "action": "record_preapplied_migration_without_ddl",
+      "maximumLedgerRowsWritten": 1
+    },
+    {
+      "name": "0552_attendance_projection_integrity.sql",
+      "sha256": "6b2619b2983219fe9adb2a48d03ccf960bad58a4c8012d033226ac5ea2dba6e6",
+      "action": "record_preapplied_migration_without_ddl",
+      "maximumLedgerRowsWritten": 1
+    },
+    {
+      "name": "0570_doctor_commission_rule_version_snapshot.sql",
+      "sha256": "98fe185957d480ae583a213f1133f360b46fa3117237733bca8375e22dbf60c0",
+      "action": "record_preapplied_migration_without_ddl",
+      "maximumLedgerRowsWritten": 1
+    }
+  ],
+  "archivalForeignKeyGroups": [
+    {
+      "childTable": "doctor_commission_accruals_old_0391",
+      "parentTable": "bills",
+      "rawViolationCount": 26,
+      "formallyWaivedViolationCount": 26,
+      "effectiveUnwaivedViolationCount": 0,
+      "disposition": "formal_waiver",
+      "removalPhase": "legacy_retirement_p11"
+    },
+    {
+      "childTable": "doctor_commission_accruals_old_0391",
+      "parentTable": "visits",
+      "rawViolationCount": 15,
+      "formallyWaivedViolationCount": 15,
+      "effectiveUnwaivedViolationCount": 0,
+      "disposition": "formal_waiver",
+      "removalPhase": "legacy_retirement_p11"
+    }
+  ],
+  "commands": [
+    {
+      "id": "cdbv1070c.fresh-aggregate-verification",
+      "phase": "fresh_aggregate_verification",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070C_EXECUTOR",
+        "--phase",
+        "fresh-aggregate-verification",
+        "--authorization",
+        "{{PROTECTED_RECONCILIATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070c.atomic-migration-ledger-reconciliation",
+      "phase": "atomic_migration_ledger_reconciliation",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070C_EXECUTOR",
+        "--phase",
+        "atomic-migration-ledger-reconciliation",
+        "--authorization",
+        "{{PROTECTED_RECONCILIATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070c.archival-fk-disposition-evidence-refresh",
+      "phase": "archival_fk_disposition_evidence_refresh",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070C_EXECUTOR",
+        "--phase",
+        "archival-fk-disposition-evidence-refresh",
+        "--authorization",
+        "{{PROTECTED_RECONCILIATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070c.reconciliation-evidence-verification",
+      "phase": "reconciliation_evidence_verification",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070C_EXECUTOR",
+        "--phase",
+        "reconciliation-evidence-verification",
+        "--authorization",
+        "{{PROTECTED_RECONCILIATION_AUTHORIZATION_PATH}}",
+        "--evidence-directory",
+        "{{PROTECTED_EVIDENCE_DIRECTORY}}"
+      ]
+    }
+  ],
+  "acceptance": {
+    "pendingMigrationCountBefore": 29,
+    "pendingMigrationCountAfter": 25,
+    "migrationLedgerRowsWritten": 4,
+    "migrationSqlStatementsExecuted": 0,
+    "ddlStatementsExecuted": 0,
+    "businessRowsWritten": 0,
+    "rawArchivalForeignKeyViolations": 41,
+    "formallyWaivedArchivalForeignKeyViolations": 41,
+    "effectiveUnwaivedForeignKeyViolations": 0,
+    "activeForeignKeyViolations": 0,
+    "unknownForeignKeyViolations": 0,
+    "trafficChanged": false,
+    "finalResponseAuthority": "legacy"
+  },
+  "permissions": {
+    "productionReadAuthorized": false,
+    "migrationLedgerReconciliationAuthorized": false,
+    "archivalFkDispositionEvidenceRefreshAuthorized": false,
+    "migrationSqlExecutionAuthorized": false,
+    "productionDdlAuthorized": false,
+    "businessTableWriteAuthorized": false,
+    "productionBackfillAuthorized": false,
+    "providerFlagChangeAuthorized": false,
+    "workerVersionUploadAuthorized": false,
+    "deploymentAuthorized": false,
+    "trafficChangeAuthorized": false,
+    "routeChangeAuthorized": false,
+    "canonicalPromotionAuthorized": false,
+    "localSyncActivationAuthorized": false,
+    "legacyRetirementAuthorized": false,
+    "archivalTableMutationAuthorized": false,
+    "archivalTableDeletionAuthorized": false,
+    "destructiveActionAuthorized": false,
+    "remoteDatabaseDeletionAuthorized": false
+  },
+  "externalBindings": {
+    "candidate": {
+      "branch": null,
+      "commit": null,
+      "buildSha": null
+    },
+    "gateA": {
+      "receiptId": null,
+      "receiptSha256": null
+    },
+    "gateB": {
+      "receiptId": null,
+      "receiptSha256": null
+    },
+    "reconciliation": {
+      "entries": [
+        {
+          "schemaEvidenceId": null,
+          "schemaEvidenceSha256": null,
+          "ledgerEvidenceId": null,
+          "ledgerEvidenceSha256": null
+        },
+        {
+          "schemaEvidenceId": null,
+          "schemaEvidenceSha256": null,
+          "ledgerEvidenceId": null,
+          "ledgerEvidenceSha256": null
+        },
+        {
+          "schemaEvidenceId": null,
+          "schemaEvidenceSha256": null,
+          "ledgerEvidenceId": null,
+          "ledgerEvidenceSha256": null
+        },
+        {
+          "schemaEvidenceId": null,
+          "schemaEvidenceSha256": null,
+          "ledgerEvidenceId": null,
+          "ledgerEvidenceSha256": null
+        }
+      ]
+    },
+    "foreignKeyDisposition": {
+      "evidenceId": null,
+      "evidenceSha256": null
+    },
+    "timing": {
+      "issuedAtUtc": null,
+      "windowStartUtc": null,
+      "windowEndUtc": null,
+      "expiresAtUtc": null
+    },
+    "owners": {
+      "ownerId": null,
+      "executionOwnerId": null,
+      "rollbackOwnerId": null,
+      "evidenceCustodianId": null,
+      "riskAcceptanceEvidenceId": null,
+      "riskAcceptanceEvidenceSha256": null
+    },
+    "evidenceOutput": {
+      "receiptId": null,
+      "protectedDirectoryEvidenceId": null
+    },
+    "confirmation": {
+      "readToken": null,
+      "ledgerReconciliationToken": null,
+      "archivalDispositionToken": null,
+      "abortToken": null
+    }
+  },
+  "safety": {
+    "networkRequestPerformed": false,
+    "productionReadPerformed": false,
+    "productionMutationPerformed": false,
+    "migrationLedgerRowsWritten": 0,
+    "migrationSqlStatementsExecuted": 0,
+    "ddlStatementsExecuted": 0,
+    "businessRowsWritten": 0,
+    "archivalTableMutationPerformed": false,
+    "trafficChanged": false,
+    "pushPerformed": false,
+    "cdbToMainIntegrationPerformed": false
+  },
+  "nextCheckpoint": "CDB-V1-070C-EXACT-RECONCILIATION-AUTHORIZATION-REQUIRED"
+}

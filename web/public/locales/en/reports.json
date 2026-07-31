@@ -1,0 +1,333 @@
+{
+  "title": "Reports Dashboard",
+  "subtitle": "Financial overview and performance metrics",
+  "exportCsv": "Export CSV",
+  "totalRevenue": "Total Revenue",
+  "totalExpenses": "Total Expenses",
+  "netProfit": "Net Profit",
+  "revenueSources": "Revenue Sources",
+  "thisMonthOverview": "This Month Overview ({{month}})",
+  "newPatients": "New Patients",
+  "totalVisits": "Total Visits",
+  "admissions": "Admissions",
+  "topDiagnoses": "Top Diagnoses",
+  "monthlyRevenueVsExpenses": "Monthly Revenue vs Expenses",
+  "revenueBySource": "Revenue by Source",
+  "monthlyBreakdown": "Monthly Breakdown",
+  "table": {
+    "month": "Month",
+    "revenue": "Revenue (৳)",
+    "expenses": "Expenses (৳)",
+    "netProfit": "Net Profit (৳)",
+    "margin": "Margin",
+    "total": "Total"
+  },
+  "advanced": {
+    "bedOccupancy": "Bed Occupancy",
+    "overallOccupancy": "Overall Occupancy",
+    "deptRevenue": "Department Revenue",
+    "drPerformance": "Doctor Performance",
+    "drPerformanceSubtitle": "Visits, visit revenue, tests, test revenue, test commission, and hospital revenue per doctor.",
+    "table": {
+      "total": "Total",
+      "occupied": "Occupied",
+      "available": "Available",
+      "doctor": "Doctor",
+      "specialty": "Specialty",
+      "visits": "Visits",
+      "visitRevenue": "Visit Revenue",
+      "patients": "Patients",
+      "revenue": "Revenue",
+      "testCount": "Tests",
+      "testRevenue": "Test Revenue",
+      "testCommission": "Test Commission",
+      "hospitalRevenue": "Hospital Revenue",
+      "feesCommission": "Fees/Comm",
+      "netHospital": "Net (Hosp)",
+      "avgVisit": "Avg/Visit",
+      "consultationFees": "Consult",
+      "labCommissions": "Lab Comm",
+      "referralCommissions": "Referral",
+      "referralLabRevenue": "Ref Lab Rev",
+      "feesCommissionTooltip": "Sum of all commissions paid to this doctor during the period. Includes consultation, lab test, and referral commissions.",
+      "referralLabRevenueTooltip": "Sum of bill revenue for bills linked to this doctor's referral commissions, excluding bills already counted in this doctor's visit-bill revenue. Offsets referral commissions so the net reflects actual hospital earnings.",
+      "hospitalRevenueTooltip": "Visit revenue + test revenue + referred-lab bill revenue − total commissions. The headline net per-doctor hospital revenue.",
+      "netHospitalTooltip": "Visit bill revenue + referred-lab bill revenue (for bills outside this doctor's own visits) − total commissions. Can still be negative when total commissions exceed the combined revenue streams this doctor accounts for.",
+      "netNegativeNote": "Net is negative — commissions exceed the combined visit + referred-lab revenue for this doctor in the selected period."
+    },
+    "kpi": {
+      "totalVisits": "Total Visits",
+      "totalVisitRevenue": "Total Visit Revenue",
+      "totalTestRevenue": "Total Test Revenue",
+      "totalHospitalRevenue": "Total Hospital Revenue"
+    }
+  },
+  "empty": {
+    "noData": "No data",
+    "noMonthlyData": "No monthly data available for this period.",
+    "noSourceData": "No revenue source data for this period.",
+    "noBedData": "No bed occupancy data available.",
+    "noDeptData": "No department revenue data available.",
+    "noDocData": "No doctor performance data available."
+  },
+  "ranges": {
+    "today": "Today",
+    "30d": "30 Days",
+    "90d": "90 Days",
+    "ytd": "This Year",
+    "custom": "Custom"
+  },
+  "filters": {
+    "startDate": "Start date",
+    "endDate": "End date",
+    "doctorGenerator": "Doctor-wise generator",
+    "allDoctors": "All doctors"
+  },
+  "legend": {
+    "revenue": "Revenue",
+    "expenses": "Expenses",
+    "income": "Income",
+    "profit": "Profit"
+  },
+  "links": {
+    "financial": {
+      "label": "Financial Statements",
+      "desc": "Custom date financial reports, ledger, cash flow, and balance sheet"
+    },
+    "reception": {
+      "label": "Reception Daily Reports",
+      "desc": "Daily collection, test delivery, due tracking, and doctor-wise reception reports"
+    },
+    "lab": {
+      "label": "Lab Reports",
+      "desc": "Test categories, TAT, top tests, trends"
+    },
+    "pharmacy": {
+      "label": "Pharmacy Reports",
+      "desc": "Dispensing, stock value, expiry alerts"
+    },
+    "appointments": {
+      "label": "Appointment Reports",
+      "desc": "No-show rate, utilization, peak hours"
+    }
+  },
+  "catalog": {
+    "title": "Report Library",
+    "subtitle": "Role-aware report groups for finance, operations, diagnostics, inventory, quality, and audit.",
+    "auditReady": "Export / Print ready",
+    "sections": {
+      "financeCash": "Finance & Cash",
+      "operations": "Operations",
+      "diagnosticsPharmacy": "Diagnostics, Pharmacy & Stock",
+      "qualityCompliance": "Quality & Compliance"
+    },
+    "items": {
+      "financialStatements": { "label": "Financial Statements", "desc": "P&L, balance sheet, cash flow, ledger, trial balance, day book." },
+      "billingReports": { "label": "Billing Reports", "desc": "Daily sales, daybook, department sales, doctor income, item summary, payment mode." },
+      "cashBankBook": { "label": "Cash & Bank Book", "desc": "Cash collection, expenses, refunds, manual movements, bank deposits." },
+      "cashCollections": { "label": "Reception Collection", "desc": "Daily collection, dues, report delivery, shift handover, expenses." },
+      "pdfCenter": { "label": "PDF Generation Center", "desc": "Print-ready daily collection, cash activity, due bills, expense and shift reports." },
+      "receptionReports": { "label": "Reception Reports", "desc": "Cashier daily workflow, due tracking, report handover, doctor-wise activity." },
+      "appointmentReports": { "label": "Appointment Reports", "desc": "No-show rate, slot utilization, peak hours, daily appointment volume." },
+      "ipdReports": { "label": "IPD Reports", "desc": "Current patients, ward occupancy, admissions, discharges, transfers, revenue." },
+      "otReports": { "label": "OT Reports", "desc": "Daily OT schedule, financials, inventory usage, room utilization and delays." },
+      "labReports": { "label": "Lab Reports", "desc": "Test category revenue, TAT, top tests, trends, profitability, doctor summary." },
+      "radiologyReports": { "label": "Radiology / RIS", "desc": "Orders, scan status, reports, PACS study reconciliation and imaging workflow." },
+      "pharmacyReports": { "label": "Pharmacy Reports", "desc": "Dispensing summary, stock value, expiry alerts, top dispensed medicines." },
+      "inventoryReports": { "label": "Inventory Reports", "desc": "Stock valuation, low/out stock, expiry, movement ledger, department consumption." },
+      "auditExplorer": { "label": "Audit Explorer", "desc": "User actions, sensitive changes, billing edits, investigation trail." },
+      "safetyOverrideAudit": { "label": "Safety Override Audit", "desc": "Clinical safety override tracking and review trail." },
+      "bedOccupancy": { "label": "Bed Occupancy", "desc": "Ward-wise occupancy and available bed reporting." },
+      "doctorPerformance": { "label": "Doctor Performance", "desc": "Visit revenue, test revenue, commissions, and net hospital revenue by doctor." }
+    }
+  },
+  "doctorReports": {
+    "subtitle": "Print all doctors together or generate a single-doctor report from this table.",
+    "printAll": "Print All Doctors",
+    "printOne": "Print Doctor",
+    "exportAll": "Export All Doctors",
+    "exportOne": "Export Doctor"
+  },
+  "receptionReports": "Daily Collection Report",
+  "netCollection": "Net Collection",
+  "cashSales": "Cash Sales",
+  "returns": "Returns & Refunds",
+  "pendingDues": "Pending Dues",
+  "byPaymentMethod": "By Payment Method",
+  "noTransactions": "No transactions today",
+  "collectionBreakdown": "Collection Breakdown",
+  "netTotal": "Net Total",
+  "dueBills": "Pending Due Bills",
+  "transactionDetails": "Transaction Details",
+  "appointmentReports": "Appointment Reports",
+  "appointmentReportsDesc": "No-show rates, slot utilization, peak hours, and daily volume",
+  "tabNoShowRate": "No-Show Rate",
+  "tabSlotUtilization": "Slot Utilization",
+  "tabPeakHours": "Peak Hours",
+  "tabDailyVolume": "Daily Volume",
+  "dateRange": "Date Range",
+  "to": "to",
+  "totalAppointments": "Total Appointments",
+  "noShows": "No-Shows",
+  "noShowRate": "No-Show Rate",
+  "totalSlots": "Total Slots",
+  "booked": "Booked",
+  "utilization": "Utilization",
+  "hour": "Hour",
+  "appointments": "Appointments",
+  "volume": "Volume",
+  "dailyAverage": "Daily Average",
+  "lastDays": "Last",
+  "days7": "7 days",
+  "days14": "14 days",
+  "days30": "30 days",
+  "days60": "60 days",
+  "days90": "90 days",
+  "doctor": "Doctor",
+  "total": "Total",
+  "completed": "Completed",
+  "cancelled": "Cancelled",
+  "date": "Date",
+  "noData": "No data",
+  "noUtilizationData": "No utilization data",
+  "noPeakData": "No peak hour data",
+  "noVolumeData": "No volume data",
+  "empty": {
+    "noAppointmentData": "No appointment data for this period.",
+    "noSchedulingData": "No scheduling data for this period.",
+    "noAppointmentPeriodData": "No appointment data for the selected period."
+  },
+  "reportDelivery": {
+    "title": "Test Report Delivery",
+    "description": "Invoice search, ready status, due clearance, and printable lab reports.",
+    "invoiceNumber": "Invoice number",
+    "scanOrEnterInvoice": "Scan or enter invoice number",
+    "lookup": "Lookup",
+    "ordersReady": "Orders Ready",
+    "readyTests": "Ready Tests",
+    "pendingOrders": "Pending Orders",
+    "outOf": "out of",
+    "delivered": "delivered",
+    "tests": "tests",
+    "readyForDelivery": "Ready for delivery",
+    "reportStillProcessing": "Report still processing",
+    "noLinkedLabOrder": "No linked lab order found for this invoice.",
+    "printable": "Printable",
+    "hold": "Hold",
+    "printReport": "Print Report",
+    "dueAmount": "Due amount",
+    "paid": "Paid",
+    "total": "Total",
+    "collectDue": "Collect Due",
+    "paymentCleared": "Payment cleared. Ready reports can be printed and delivered.",
+    "table": {
+      "order": "Order",
+      "patient": "Patient",
+      "doctor": "Doctor",
+      "invoice": "Invoice",
+      "ready": "Ready",
+      "due": "Due",
+      "action": "Action",
+      "print": "Print"
+    },
+    "noLabOrders": "No lab report orders found for this date."
+  },
+  "finance": {
+    "totalReceived": "Total Received",
+    "cashReceived": "Cash Received",
+    "testCollection": "Test Collection",
+    "doctorVisitCollection": "Doctor Visit Collection",
+    "testsToday": "Tests Today",
+    "patientsSeen": "Patients Seen",
+    "currentCollection": "Current Collection",
+    "dueCollection": "Due Collection",
+    "returnsRefunds": "Returns & Refunds",
+    "discountGiven": "Discount Given",
+    "netCollection": "Net Collection"
+  },
+  "paymentMethods": {
+    "cash": "Cash",
+    "bkash": "bKash",
+    "nagad": "Nagad",
+    "rocket": "Rocket",
+    "card": "Card",
+    "bank": "Bank",
+    "bank_transfer": "Bank transfer",
+    "cheque": "Cheque",
+    "other": "Other",
+    "unknown": "Unknown",
+    "byPaymentMethod": "By Payment Method",
+    "noPaymentsFound": "No payments found for this date"
+  },
+  "dailySnapshot": {
+    "title": "Daily Finance Snapshot"
+  },
+  "expense": {
+    "title": "Reception Expense Entry",
+    "description": "Record small cash expenses from the reception drawer with a clear purpose.",
+    "todayApproved": "Today approved:",
+    "category": "Category",
+    "amount": "Amount",
+    "purpose": "Purpose",
+    "purposePlaceholder": "What was bought or paid for",
+    "addExpense": "Add Expense",
+    "saving": "Saving...",
+    "table": {
+      "category": "Category",
+      "purpose": "Purpose",
+      "amount": "Amount",
+      "status": "Status"
+    }
+  },
+  "expenseCategories": {
+    "SUPPLIES": "Supplies",
+    "MAINTENANCE": "Maintenance",
+    "COMMUNICATION": "Internet / phone",
+    "ELECTRICITY": "Electricity",
+    "WATER": "Water",
+    "MISC": "Miscellaneous"
+  },
+  "doctorReport": {
+    "title": "Doctor-wise Daily Report",
+    "description": "Patients, visits, tests, test collection, and doctor commission in one report.",
+    "exportCsv": "Export CSV",
+    "printAllDoctors": "Print All Doctors",
+    "table": {
+      "doctor": "Doctor",
+      "patients": "Patients",
+      "visits": "Visits",
+      "visitCollection": "Visit Collection",
+      "testsGiven": "Tests Given",
+      "testOrders": "Test Orders",
+      "testCollection": "Test Collection",
+      "testCommission": "Test Commission",
+      "commission": "Commission",
+      "pdf": "PDF"
+    },
+    "noDoctorActivity": "No doctor activity found for this date."
+  },
+  "transactions": {
+    "title": "Transaction Details",
+    "table": {
+      "number": "#",
+      "type": "Type",
+      "amount": "Amount",
+      "method": "Method",
+      "reference": "Reference",
+      "time": "Time"
+    },
+    "noTransactions": "No transactions recorded for this date"
+  },
+  "txnTypes": {
+    "CashSales": "Current Payment",
+    "SalesReturn": "Return",
+    "DepositDeduct": "Deposit Used",
+    "ReturnDeposit": "Deposit Refund",
+    "CollectionFromReceivable": "Due Collection",
+    "CashDiscountGiven": "Discount Given"
+  },
+  "financeHidden": "Financial collection, doctor-wise earning, due, and transaction reports are hidden for this role. Use the Test Report Delivery section above for report handover work.",
+  "pendingDueBills": "Pending Due Bills",
+  "totalDue": "Total Due:",
+  "noPendingDues": "No pending dues"
+}

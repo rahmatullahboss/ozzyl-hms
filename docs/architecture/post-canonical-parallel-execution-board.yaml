@@ -1,0 +1,266 @@
+schema_version: 1
+program: hms_post_canonical_parallel_execution
+observed_at: '2026-07-31T18:52:00+06:00'
+authoritative_roadmap: docs/architecture/2026-07-31-post-canonical-production-roadmap.md
+
+repository:
+  origin_main_sha: 3da958da07e7a20d016dbe08176a629bd6f54b65
+  release_candidate_sha: 3da958da07e7a20d016dbe08176a629bd6f54b65
+  integration_mode: one_serial_integration_owner
+  worker_mode: manual_separate_sessions
+  max_parallel_workers: 4
+
+production:
+  worker_name: hms-saas-production
+  active_version_id: 4ff275b8-f17e-4956-a104-e9083a0a1d57
+  active_traffic_percent: 100
+  rollback_version_id: 4f5d8f93-92d4-4fda-8fba-c0a2863f1b71
+  rollback_traffic_percent: 0
+  release_checkpoint: CDB-V1-071B-PRODUCTION-DEPLOYMENT-COMPLETE
+  migration_0571_applied: true
+  pending_migrations_at_release_completion: 0
+  reconciliation:
+    canonical_admissions: 38
+    canonical_bed_stays: 16
+    dependency_issues_resolved: 54
+    cache_variance_waived: 4
+    remaining_open_target_issues: 0
+    second_pass_zero_new: true
+    source_legacy_rows_written: 0
+    unexpected_tenant_writes: 0
+  protected_receipt_sha256: e7de7b306b7e75685b86b1b1efebc653e2b2dab4ec8b5ceeb0acca4b52230144
+  lifecycle_status: released_observation_pending
+  next_task: OBS-001-POST-RELEASE-OBSERVATION-BASELINE
+  next_production_mutation_allowed_now: false
+  next_production_mutation_rule: finish_initial_observation_or_use_emergency_exact_authorization
+
+status_dimensions:
+  code_deployed: route_or_ui_is_present_in_active_worker_bundle
+  operationally_commissioned: hospital_configured_trained_and_using_module
+  canonical_authority_complete: reviewed_single_authority_integration_data_and_retirement_gates_passed
+
+programs:
+  canonical_protected_core:
+    status: production_released_observation_pending
+    repository_integration: complete
+    production_release: complete
+    observation_24h: pending
+    observation_72h: pending
+    broad_provider_authority_promotion: separate_future_gate
+    legacy_compatibility_retirement: separate_future_gate
+
+  inventory_modular_monolith:
+    branch: feature/inventory-modular-monolith
+    head_sha: c3dbee241e0ee480762339f50c261eb69b92bb41
+    development_tasks: 27_of_27
+    development_status: complete
+    program_verification: complete
+    authority_mode: canonical_only_greenfield
+    production_data_migration_expected: false
+    current_main_contains_branch: false
+    main_integration: pending
+    migration_reconciliation: pending
+    production_activation: pending_separate_authorization
+    destructive_legacy_retirement: forbidden_in_ordinary_release
+    next_task: INV-INT-001
+
+  full_modular_monolith:
+    branch: program/mm-canonical-inventory-sync-20260727
+    head_sha: da3c63bbafd92017252f5aff77d1503dd0081eeb
+    current_main_contains_branch: false
+    completed_tasks: 34
+    total_tasks: 45
+    task_progress_percent: 75.6
+    completed_phases: 8
+    total_phases: 10
+    phase_progress_percent: 80
+    remaining_tasks:
+      - MM-070
+      - MM-071
+      - MM-072
+      - MM-073
+      - MM-074
+      - MM-090
+      - MM-091
+      - MM-092
+      - MM-093
+      - MM-094
+      - MM-095
+    current_status: rebaseline_required
+    next_task: MM-RB-001
+
+monitoring:
+  current_foundation:
+    public_health_version_endpoint: true
+    workers_observability_enabled: true
+    structured_server_error_logging: true
+    manual_error_tail_script: true
+    admin_md_business_dashboards: true
+    rollback_version_retained: true
+  pending:
+    - post_release_24h_report
+    - post_release_72h_report
+    - critical_route_error_latency_baseline
+    - new_record_business_reconciliation
+    - durable_log_export_and_alerting
+    - incident_delivery_and_on_call_drill
+  next_task: OBS-001
+
+parallel_lanes:
+  OBS-001:
+    name: post_release_observation_baseline
+    priority: 0
+    status: ready_to_start
+    production_access: read_only
+    may_run_in_parallel: true
+    scope:
+      - health_and_version
+      - workers_error_and_runtime_observation
+      - d1_schema_error_observation
+      - reception_billing_commission_business_reconciliation
+      - rollback_readiness
+    forbidden:
+      - migration
+      - deployment
+      - traffic_change
+      - provider_flag_change
+      - authority_promotion
+
+  INV-INT-001:
+    name: inventory_latest_main_integration_rehearsal
+    priority: 0
+    status: ready_to_start
+    production_access: none
+    may_run_in_parallel: true
+    source_branch: feature/inventory-modular-monolith
+    source_sha: c3dbee241e0ee480762339f50c261eb69b92bb41
+    target_base_sha: 3da958da07e7a20d016dbe08176a629bd6f54b65
+    scope:
+      - integration_diff_review
+      - reserve_post_0571_migration_range
+      - deterministic_migration_renumbering
+      - exclude_destructive_retirement
+      - fresh_install_and_full_regression
+      - merge_recommendation
+    forbidden:
+      - production_migration
+      - production_deployment
+      - legacy_table_drop
+
+  MM-RB-001:
+    name: full_mm_current_main_and_inventory_rebaseline
+    priority: 1
+    status: ready_to_start
+    production_access: none
+    may_run_in_parallel: true
+    source_branch: program/mm-canonical-inventory-sync-20260727
+    source_sha: da3c63bbafd92017252f5aff77d1503dd0081eeb
+    scope:
+      - preserve_existing_dirty_worktree
+      - recalculate_task_and_phase_state
+      - map_reusable_commits
+      - consume_final_inventory_public_contracts
+      - identify_duplicate_authority
+      - freeze_MM_070_entry_gate
+    forbidden:
+      - blind_merge_of_program_branch
+      - duplicate_inventory_authority
+      - protected_finance_runtime_change
+      - production_action
+
+  DIAG-AUD-001:
+    name: diagnostics_canonical_greenfield_eligibility_audit
+    priority: 1
+    status: ready_to_start
+    production_access: aggregate_read_only_only_if_separately_authorized
+    may_run_in_parallel: true
+    scope:
+      - lab_and_radiology_route_inventory
+      - writer_reader_and_table_inventory
+      - inventory_consumer_dependencies
+      - service_price_and_billing_overlap
+      - operational_commissioning_and_data_presence
+      - greenfield_or_compatibility_recommendation
+    stop_condition: no_implementation_until_greenfield_eligibility_is_proven
+
+  optional_consumer_lane:
+    name: patient_mobile_default_off_backend_consumer
+    status: optional_instead_of_DIAG_AUD_001
+    production_access: none
+    may_run_in_parallel: true
+    rule: consumer_only_no_backend_authority_no_production_enablement
+
+integration_owner:
+  name: serial_integration_and_documentation_owner
+  status: required
+  owns:
+    - central_trackers
+    - canonical_authority_registries
+    - source_of_truth_registries
+    - migration_number_reservations
+    - migrations_meta_journal
+    - src_index_route_composition
+    - package_json_and_lockfile
+    - final_diff_review
+    - post_merge_verification
+  merge_policy: one_reviewed_worker_at_a_time
+
+module_priorities:
+  inventory_procurement_stores:
+    canonical_first_suitability: very_high
+    business_priority: highest_next_repository_lane
+  diagnostics_lab_radiology:
+    canonical_first_suitability: high_after_audit
+    business_priority: high
+  workforce_hr_attendance_roster:
+    canonical_first_suitability: high
+    business_priority: medium_high
+  payroll:
+    canonical_first_suitability: medium_until_finance_contracts_freeze
+    business_priority: medium
+  fixed_assets:
+    canonical_first_suitability: medium_high
+    business_priority: medium
+  ipd_nursing_ot:
+    canonical_first_suitability: medium_patient_safety_sensitive
+    business_priority: high_after_core_observation
+  pharmacy:
+    canonical_first_suitability: low_for_immediate_broad_rewrite
+    reason: possible_live_use_and_billing_inventory_overlap
+  accounting_insurance:
+    canonical_first_suitability: low_until_finance_rebaseline
+  support_operations:
+    canonical_first_suitability: high_if_uncommissioned
+    business_priority: lower_select_by_hospital_scope
+
+shared_file_locks:
+  - src/index.ts
+  - package.json
+  - pnpm-lock.yaml
+  - migrations/meta/_journal.json
+  - docs/database/canonical-authority-matrix.yaml
+  - docs/database/canonical-authority-access-registry.yaml
+  - docs/database/canonical-source-of-truth.yaml
+  - docs/database/legacy-table-disposition.yaml
+  - docs/architecture/canonical-inventory-mm-current-state.yaml
+  - docs/production-readiness/CURRENT_NEXT_TASK.md
+  - docs/production-readiness/TASK_STATUS.md
+
+immediate_order:
+  - start_OBS_001
+  - start_INV_INT_001
+  - start_MM_RB_001
+  - start_DIAG_AUD_001_or_optional_consumer_lane
+  - integrate_serially_after_review
+  - do_not_start_unrelated_production_release_during_initial_observation
+
+legacy_retirement:
+  direct_drop_allowed: false
+  required_evidence:
+    - live_row_and_reference_inventory
+    - route_report_job_and_consumer_scan
+    - foreign_key_check
+    - fresh_install_schema
+    - backup_restore_drill
+    - rollback_worker_compatibility
+    - exact_destructive_authorization

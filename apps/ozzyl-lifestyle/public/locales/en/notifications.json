@@ -1,0 +1,15 @@
+{
+  "title": "Notifications",
+  "markAllRead": "Mark All as Read",
+  "noNotifications": "No new notifications",
+  "newAppointment": "New Appointment",
+  "labReady": "Lab Report Ready",
+  "billDue": "Bill Due",
+  "all": "All",
+  "unread": "Unread",
+  "system": "System",
+  "read": "Read",
+  "loadMore": "Load More",
+  "none": "No notifications",
+  "messagesSent": "{{sent}} sent, {{failed}} failed"
+}

@@ -1,0 +1,216 @@
+{
+  "title": "Medical Records",
+  "subtitle": "Patient records, birth/death registration, ICD-10 coding & referrals",
+  "kpis": {
+    "medRecords": "Med Records",
+    "births": "Births",
+    "deaths": "Deaths",
+    "diagnoses": "Diagnoses",
+    "referrals": "Referrals"
+  },
+  "tabs": {
+    "records": "Medical Records",
+    "births": "Birth Register",
+    "deaths": "Death Register",
+    "icd10": "ICD-10 Browser",
+    "referrals": "Referrals"
+  },
+  "actions": {
+    "newRecord": "New Record",
+    "registerBirth": "Register Birth",
+    "registerDeath": "Register Death",
+    "apply": "Apply",
+    "refresh": "Refresh"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "select": "Select\u2026",
+    "creating": "Creating\u2026",
+    "registering": "Registering\u2026"
+  },
+  "records": {
+    "patient": "Patient",
+    "fileNo": "File No.",
+    "dischargeType": "Discharge Type",
+    "operation": "Operation",
+    "referredTo": "Referred To",
+    "created": "Created",
+    "actions": "Actions",
+    "viewDetails": "View details",
+    "noRecordsFound": "No medical records found. Create the first one."
+  },
+  "birth": {
+    "registerTitle": "Birth Register ({{count}})",
+    "from": "From",
+    "to": "To",
+    "certificateNo": "Certificate No.",
+    "babyName": "Baby Name",
+    "sex": "Sex",
+    "weightKg": "Weight (kg)",
+    "birthDate": "Birth Date",
+    "birthTime": "Birth Time",
+    "birthType": "Birth Type",
+    "birthCondition": "Birth Condition",
+    "deliveryType": "Delivery Type",
+    "mother": "Mother",
+    "father": "Father",
+    "fatherName": "Father Name",
+    "motherName": "Mother Name",
+    "noRecordsFound": "No birth records found.",
+    "sexValues": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "birthTypes": {
+      "single": "Single",
+      "twin": "Twin",
+      "triplet": "Triplet",
+      "quadruplet": "Quadruplet"
+    },
+    "deliveryTypes": {
+      "normal": "Normal",
+      "cesarean": "Cesarean",
+      "forceps": "Forceps",
+      "vacuum": "Vacuum"
+    },
+    "birthConditions": {
+      "alive": "Alive",
+      "stillborn": "Stillborn"
+    }
+  },
+  "death": {
+    "registerTitle": "Death Register ({{count}})",
+    "from": "From",
+    "to": "To",
+    "certificateNo": "Certificate No.",
+    "patient": "Patient",
+    "dateOfDeath": "Date of Death",
+    "timeOfDeath": "Time of Death",
+    "time": "Time",
+    "causeOfDeath": "Cause of Death",
+    "secondaryCause": "Secondary Cause",
+    "manner": "Manner",
+    "mannerOfDeath": "Manner of Death",
+    "place": "Place",
+    "placeOfDeath": "Place of Death",
+    "age": "Age",
+    "ageAtDeath": "Age at Death",
+    "fatherName": "Father Name",
+    "motherName": "Mother Name",
+    "spouseName": "Spouse Name",
+    "noRecordsFound": "No death records found.",
+    "mannerValues": {
+      "natural": "Natural",
+      "accident": "Accident",
+      "suicide": "Suicide",
+      "homicide": "Homicide",
+      "undetermined": "Undetermined"
+    },
+    "placeValues": {
+      "ward": "Ward",
+      "icu": "ICU",
+      "emergency": "Emergency",
+      "ot": "OT",
+      "other": "Other"
+    }
+  },
+  "icd10": {
+    "code": "ICD-10 Code",
+    "description": "Description",
+    "groupId": "Group ID",
+    "showingCodes": "Showing {{count}} code. Type to filter.",
+    "showingCodes_plural": "Showing {{count}} codes. Type to filter.",
+    "showingCodes_0": "Showing 0 codes. Type to filter.",
+    "noCodesFound": "No ICD-10 codes found. Migration may not have been applied.",
+    "noCodesFoundWithSearch": "No ICD-10 codes found. Try a different search term."
+  },
+  "referrals": {
+    "title": "Outgoing Referrals",
+    "patient": "Patient",
+    "referredTo": "Referred To",
+    "referredDate": "Referred Date",
+    "fileNo": "File No.",
+    "reason": "Reason",
+    "noRecordsFound": "No referrals found."
+  },
+  "dischargeTypes": {
+    "normal": "Normal",
+    "lama": "LAMA",
+    "absconded": "Absconded",
+    "referred": "Referred",
+    "expired": "Expired"
+  },
+  "dischargeConditions": {
+    "improved": "Improved",
+    "unchanged": "Unchanged",
+    "worsened": "Worsened",
+    "cured": "Cured"
+  },
+  "modals": {
+    "newRecord": {
+      "title": "New Medical Record",
+      "patientId": "Patient ID",
+      "fileNumber": "File Number",
+      "dischargeType": "Discharge Type",
+      "dischargeCondition": "Discharge Condition",
+      "operationConducted": "Operation was conducted",
+      "operationDate": "Operation Date",
+      "operationDiagnosis": "Operation Diagnosis",
+      "referredTo": "Referred To",
+      "referralDate": "Referral Date",
+      "referralReason": "Reason for Referral",
+      "remarks": "Remarks",
+      "createRecord": "Create Record"
+    },
+    "birth": {
+      "title": "Register Birth",
+      "mPatientId": "Mother Patient ID",
+      "babyName": "Baby Name",
+      "issuedBy": "Issued By",
+      "certifiedBy": "Certified By",
+      "registerBirth": "Register Birth"
+    },
+    "death": {
+      "title": "Register Death",
+      "patientId": "Patient ID",
+      "certifiedBy": "Certified By",
+      "registerDeath": "Register Death"
+    }
+  },
+  "placeholders": {
+    "searchRecords": "Search by file number or remarks\u2026",
+    "searchIcd10": "Search ICD-10 code or description (e.g. A00, Cholera)\u2026",
+    "patientId": "e.g. 1",
+    "fileNumber": "MR-2025-001",
+    "motherPatientId": "e.g. 5",
+    "optional": "Optional",
+    "weightKg": "e.g. 3.2",
+    "operationDiagnosis": "Operative finding\u2026",
+    "referredTo": "Hospital/clinic name",
+    "referralReason": "Clinical reason\u2026",
+    "remarks": "Additional notes\u2026",
+    "ageAtDeath": "e.g. 65 years",
+    "primaryCause": "Primary cause\u2026",
+    "contributingCause": "Contributing cause\u2026",
+    "doctorName": "Doctor name\u2026"
+  },
+  "pagination": {
+    "total": "Total: {{total}} {{type}}",
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "toast": {
+    "patientIdRequired": "Patient ID required",
+    "patientIdAndBirthDateRequired": "Patient ID and birth date required",
+    "patientIdAndDeathDateRequired": "Patient ID and death date required",
+    "recordCreated": "Medical record created",
+    "recordCreateFailed": "Failed to create record",
+    "birthRecordCreated": "Birth record created",
+    "birthRecordFailed": "Failed to create birth record",
+    "deathRecordCreated": "Death record created",
+    "deathRecordFailed": "Failed to create death record"
+  }
+}

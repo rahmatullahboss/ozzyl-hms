@@ -1,0 +1,28 @@
+{
+  "heroTitle": "Find & Book the Best Healthcare",
+  "heroSubtitle": "Search for hospitals, specialists and book appointments with ease",
+  "searchPlaceholder": "Search for doctors, specialties or hospitals...",
+  "browseHospitals": "Browse Hospitals",
+  "findDoctors": "Find Doctors",
+  "registerChamber": "Register Your Chamber",
+  "browseBySpecialty": "Browse by Specialty",
+  "topHospitals": "Top Hospitals",
+  "topDoctors": "Top Doctors",
+  "viewAll": "View all",
+  "doctorCta": {
+    "title": "Are you a doctor?",
+    "subtitle": "Register your chamber and start receiving patients online",
+    "register": "Register Your Chamber",
+    "login": "Doctor Login"
+  },
+  "specialties": {
+    "cardiology": "Cardiology",
+    "dermatology": "Dermatology",
+    "pediatrics": "Pediatrics",
+    "orthopedics": "Orthopedics",
+    "neurology": "Neurology",
+    "gynecology": "Gynecology",
+    "ent": "ENT",
+    "ophthalmology": "Ophthalmology"
+  }
+}

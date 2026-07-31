@@ -1,0 +1,43 @@
+{
+  "title": "বায়োমেডিকেল বর্জ্য",
+  "subtitle": "বর্জ্য শ্রেণীকরণ, সংগ্রহ এবং নিষ্কাশন ট্র্যাকিং",
+  "tabs": {
+    "collections": "সংগ্রহ",
+    "categories": "বিভাগ"
+  },
+  "stats": {
+    "todayCollections": "আজকের সংগ্রহ",
+    "todayWeight": "আজকের ওজন",
+    "pendingDisposal": "নিষ্কাশন বাকি",
+    "monthTotal": "৩০ দিনের মোট"
+  },
+  "table": {
+    "collectionNo": "সংগ্রহ নং",
+    "date": "তারিখ",
+    "department": "বিভাগ",
+    "category": "বিভাগ",
+    "weight": "ওজন",
+    "bags": "ব্যাগ",
+    "manifest": "ম্যানিফেস্ট",
+    "status": "অবস্থা",
+    "code": "কোড",
+    "color": "রঙ",
+    "name": "নাম",
+    "disposalMethod": "নিষ্কাশন পদ্ধতি"
+  },
+  "noCollections": "কোন সংগ্রহ পাওয়া যায়নি",
+  "noCategories": "কোন বিভাগ নেই। স্ট্যান্ডার্ড বিভাগ যোগ করতে \"Seed Default\" এ ক্লিক করুন।",
+  "recordCollection": "সংগ্রহ নথিভুক্ত করুন",
+  "seedDefaults": "ডিফল্ট বিভাগগুলো যোগ করুন",
+  "seeding": "প্রক্রিয়াকরণ হচ্ছে...",
+  "modals": {
+    "recordWaste": "বর্জ্য সংগ্রহ নথিভুক্ত করুন",
+    "select": "নির্বাচন করুন..."
+  },
+  "status": {
+    "collected": "সংগৃহীত",
+    "in_transit": "পরিবহনধীন",
+    "disposed": "নিষ্কাশিত",
+    "reported": "রিপোর্ট করা হয়েছে"
+  }
+}

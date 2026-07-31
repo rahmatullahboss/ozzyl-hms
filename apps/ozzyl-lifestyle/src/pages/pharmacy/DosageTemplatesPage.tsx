@@ -1,0 +1,282 @@
+import { useState, useEffect, useCallback } from 'react';
+import {
+  Plus, X, Pencil, Trash2, Loader2, Pill
+} from 'lucide-react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import DashboardLayout from '../../components/DashboardLayout';
+import { useTranslation } from 'react-i18next';
+
+interface DosageTemplate {
+  id: number;
+  generic_id: number | null;
+  generic_name: string | null;
+  dosage_label: string;
+  frequency: string;
+  route: string;
+  duration_days: number | null;
+  notes: string | null;
+  is_active: number;
+}
+
+type FormState = {
+  generic_id: string; dosage_label: string; frequency: string;
+  route: string; duration_days: string; notes: string;
+};
+
+const EMPTY: FormState = {
+  generic_id: '', dosage_label: '', frequency: '', route: 'Oral', duration_days: '', notes: ''
+};
+
+const ROUTES = ['Oral', 'IV', 'IM', 'SC', 'Topical', 'Intranasal', 'Sublingual', 'Rectal', 'Ophthalmic', 'Otic'];
+const COMMON_FREQUENCIES = [
+  'Once Daily (OD)', 'Twice Daily (BD)', 'Thrice Daily (TDS)', 'Four Times Daily (QDS)',
+  'Every 6 Hours (Q6H)', 'Every 8 Hours (Q8H)', 'Every 12 Hours (Q12H)',
+  'Once Daily at Night (HS)', 'Once Weekly', 'As Needed (SOS / PRN)',
+];
+const COMMON_LABELS = [
+  '1-0-0', '0-1-0', '0-0-1',
+  '1-0-1', '1-1-0', '0-1-1',
+  '1-1-1', '½-0-½', '1-1-1-1',
+];
+
+export default function DosageTemplatesPage({ role = 'hospital_admin' }: { role?: string }) {
+  const { t } = useTranslation(['pharmacy', 'common']);
+  const [templates, setTemplates] = useState<DosageTemplate[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [editId, setEditId] = useState<number | null>(null);
+  const [form, setForm] = useState<FormState>(EMPTY);
+
+  const token = () => localStorage.getItem('hms_token');
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get('/api/pharmacy/dosage-templates', {
+        headers: { Authorization: `Bearer ${token()}` },
+      });
+      setTemplates(data.data ?? []);
+    } catch { toast.error(t('dosage.failedLoad', { defaultValue: 'Failed to load dosage templates' })); }
+    finally { setLoading(false); }
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const openCreate = () => { setForm(EMPTY); setEditId(null); setShowModal(true); };
+  const openEdit = (t: DosageTemplate) => {
+    setForm({
+      generic_id: t.generic_id?.toString() ?? '',
+      dosage_label: t.dosage_label,
+      frequency: t.frequency,
+      route: t.route,
+      duration_days: t.duration_days?.toString() ?? '',
+      notes: t.notes ?? '',
+    });
+    setEditId(t.id);
+    setShowModal(true);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.dosage_label || !form.frequency) {
+      toast.error(t('dosage.labelFrequencyRequired', { defaultValue: 'Dosage label and frequency are required' }));
+      return;
+    }
+    setSaving(true);
+    try {
+      const payload = {
+        dosage_label: form.dosage_label,
+        frequency: form.frequency,
+        route: form.route,
+        generic_id: form.generic_id ? parseInt(form.generic_id) : undefined,
+        duration_days: form.duration_days ? parseInt(form.duration_days) : undefined,
+        notes: form.notes || undefined,
+      };
+      if (editId) {
+        await axios.put(`/api/pharmacy/dosage-templates/${editId}`, payload, {
+          headers: { Authorization: `Bearer ${token()}` },
+        });
+        toast.success(t('dosage.updated', { defaultValue: 'Template updated' }));
+      } else {
+        await axios.post('/api/pharmacy/dosage-templates', payload, {
+          headers: { Authorization: `Bearer ${token()}` },
+        });
+        toast.success(t('dosage.created', { defaultValue: 'Template created' }));
+      }
+      setShowModal(false);
+      load();
+    } catch { toast.error(t('dosage.failedSave', { defaultValue: 'Failed to save template' })); }
+    finally { setSaving(false); }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(`/api/pharmacy/dosage-templates/${id}`, {
+        headers: { Authorization: `Bearer ${token()}` },
+      });
+      toast.success(t('dosage.deactivated', { defaultValue: 'Template deactivated' }));
+      load();
+    } catch { toast.error(t('dosage.failedDelete', { defaultValue: 'Failed to delete template' })); }
+  };
+
+  // Group by generic
+  const grouped = templates.reduce<Record<string, DosageTemplate[]>>((acc, tpl) => {
+    const key = tpl.generic_name ?? 'General (All Generics)';
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(tpl);
+    return acc;
+  }, {});
+
+  return (
+    <DashboardLayout role={role}>
+      <div className="space-y-5 max-w-screen-lg mx-auto">
+        <div className="page-header">
+          <div>
+            <h1 className="page-title">{t('dosage.title', { defaultValue: 'Dosage Templates' })}</h1>
+            <p className="page-subtitle">{t('dosage.subtitle', { defaultValue: 'Predefined dosage labels, frequencies, and routes for dispensing' })}</p>
+          </div>
+          <button className="btn btn-primary btn-sm" onClick={openCreate}>
+            <Plus className="h-4 w-4 mr-1" /> {t('dosage.addTemplate', { defaultValue: 'Add Template' })}
+          </button>
+        </div>
+
+        {loading ? (
+          <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
+        ) : templates.length === 0 ? (
+          <div className="card p-12 text-center text-gray-400">
+            <Pill className="h-10 w-10 mx-auto mb-3 opacity-30" />
+            <p>{t('dosage.noTemplates', { defaultValue: 'No dosage templates yet. Create one to speed up dispensing.' })}</p>
+          </div>
+        ) : (
+          Object.entries(grouped).map(([group, items]) => (
+            <div key={group} className="card">
+              <div className="px-4 py-2 bg-gray-50 border-b border-gray-100">
+                <p className="text-sm font-semibold text-gray-700">{group}</p>
+              </div>
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>{t('dosage.label', { defaultValue: 'Dosage Label' })}</th>
+                      <th>{t('dosage.frequency', { defaultValue: 'Frequency' })}</th>
+                      <th>{t('dosage.route', { defaultValue: 'Route' })}</th>
+                      <th>{t('dosage.duration', { defaultValue: 'Duration' })}</th>
+                      <th>{t('dosage.notes', { defaultValue: 'Notes' })}</th>
+                      <th className="text-right">{t('actions', { ns: 'common', defaultValue: 'Actions' })}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {items.map(tpl => (
+                      <tr key={tpl.id}>
+                        <td>
+                          <span className="font-mono bg-gray-100 text-gray-800 px-2 py-0.5 rounded text-sm">{tpl.dosage_label}</span>
+                        </td>
+                        <td className="text-sm">{tpl.frequency}</td>
+                        <td>
+                          <span className="badge badge-secondary text-xs">{tpl.route}</span>
+                        </td>
+                        <td className="text-sm text-gray-500">{tpl.duration_days ? `${tpl.duration_days} ${t('dosage.days', { defaultValue: 'days' })}` : '—'}</td>
+                        <td className="text-sm text-gray-500 max-w-xs truncate">{tpl.notes || '—'}</td>
+                        <td>
+                          <div className="flex justify-end gap-1">
+                            <button className="btn btn-ghost btn-xs" onClick={() => openEdit(tpl)}>
+                              <Pencil className="h-3 w-3" />
+                            </button>
+                            <button className="btn btn-ghost btn-xs text-red-500" onClick={() => handleDelete(tpl.id)}>
+                              <Trash2 className="h-3 w-3" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))
+        )}
+
+        {/* Modal */}
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal max-w-lg">
+              <div className="modal-header">
+                <h2 className="modal-title">{editId ? t('dosage.editTemplate', { defaultValue: 'Edit Dosage Template' }) : t('dosage.newTemplate', { defaultValue: 'New Dosage Template' })}</h2>
+                <button className="btn btn-ghost btn-xs" onClick={() => setShowModal(false)}>
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <form onSubmit={handleSubmit} className="modal-body space-y-4">
+
+                <div>
+                  <label className="form-label">{t('dosage.genericId', { defaultValue: 'Generic ID' })} <span className="text-gray-400 text-xs">({t('dosage.genericIdHint', { defaultValue: 'optional — leave blank for all generics' })})</span></label>
+                  <input type="number" className="form-control" placeholder={t('dosage.genericIdPlaceholder', { defaultValue: 'e.g. 42' })}
+                    value={form.generic_id} onChange={e => setForm(f => ({ ...f, generic_id: e.target.value }))} />
+                </div>
+
+                <div>
+                  <label className="form-label">{t('dosage.label', { defaultValue: 'Dosage Label' })} <span className="text-red-500">*</span></label>
+                  <div className="flex gap-2">
+                    <input className="form-control flex-1" placeholder={t('dosage.labelPlaceholder', { defaultValue: 'e.g. 1-0-1 or "After meals"' })}
+                      value={form.dosage_label} onChange={e => setForm(f => ({ ...f, dosage_label: e.target.value }))} />
+                  </div>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {COMMON_LABELS.map(l => (
+                      <button key={l} type="button"
+                        className="text-xs px-2 py-0.5 rounded bg-gray-100 hover:bg-primary hover:text-white transition-colors"
+                        onClick={() => setForm(f => ({ ...f, dosage_label: l }))}>
+                        {l}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="form-label">{t('dosage.frequency', { defaultValue: 'Frequency' })} <span className="text-red-500">*</span></label>
+                  <input list="freq-suggestions" className="form-control"
+                    placeholder={t('dosage.frequencyPlaceholder', { defaultValue: 'e.g. Twice Daily (BD)' })} value={form.frequency}
+                    onChange={e => setForm(f => ({ ...f, frequency: e.target.value }))} />
+                  <datalist id="freq-suggestions">
+                    {COMMON_FREQUENCIES.map(f => <option key={f} value={f} />)}
+                  </datalist>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="form-label">{t('dosage.route', { defaultValue: 'Route' })}</label>
+                    <select className="form-control" value={form.route}
+                      onChange={e => setForm(f => ({ ...f, route: e.target.value }))}>
+                      {ROUTES.map(r => <option key={r} value={r}>{r}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="form-label">{t('dosage.durationDays', { defaultValue: 'Duration (days)' })}</label>
+                    <input type="number" min="1" className="form-control"
+                      placeholder={t('dosage.durationPlaceholder', { defaultValue: 'Leave blank for open' })} value={form.duration_days}
+                      onChange={e => setForm(f => ({ ...f, duration_days: e.target.value }))} />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="form-label">{t('dosage.notes', { defaultValue: 'Notes' })}</label>
+                  <textarea className="form-control" rows={2} placeholder={t('dosage.notesPlaceholder', { defaultValue: 'e.g. Take with food' })}
+                    value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} />
+                </div>
+
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-ghost" onClick={() => setShowModal(false)}>{t('cancel', { ns: 'common', defaultValue: 'Cancel' })}</button>
+                  <button type="submit" className="btn btn-primary" disabled={saving}>
+                    {saving && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
+                    {editId ? t('dosage.update', { defaultValue: 'Update' }) : t('dosage.create', { defaultValue: 'Create' })}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+    </DashboardLayout>
+  );
+}

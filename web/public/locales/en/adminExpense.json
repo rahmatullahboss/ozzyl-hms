@@ -1,0 +1,33 @@
+{
+  "expenseDetail": {
+    "loading": "Loading...",
+    "notFound": "Expense not found",
+    "title": "Expense",
+    "amount": "Amount",
+    "category": "Category",
+    "requestedBy": "Requested By",
+    "paidFrom": "Paid From",
+    "description": "Description",
+    "voucher": "Voucher",
+    "viewVoucher": "View Voucher",
+    "tabs": {
+      "details": "Details",
+      "approvalHistory": "Approval History"
+    },
+    "fields": {
+      "expenseNo": "Expense No",
+      "department": "Department",
+      "requested": "Requested",
+      "approvedBy": "Approved By",
+      "approvedAt": "Approved At"
+    },
+    "approvalHistoryPlaceholder": "Approval history will be shown here",
+    "reject": "Reject",
+    "approve": "Approve",
+    "statusLabels": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "title": "টেলিমেডিসিন",
+  "dashboard": {
+    "title": "টেলিমেডিসিন ড্যাশবোর্ড",
+    "subtitle": "ক্লাউডফ্লেয়ার রিয়েলটাইম SFU দ্বারা চালিত ভিডিও পরামর্শ",
+    "search": "অনুসন্ধান করুন...",
+    "new_room": "নতুন রুম",
+    "creating": "তৈরি হচ্ছে..."
+  },
+  "stats": {
+    "active_rooms": "সক্রিয় রুম",
+    "today_scheduled": "আজকের নির্ধারিত",
+    "waiting_patients": "অপেক্ষমাণ রোগী",
+    "total_this_month": "এই মাসে মোট",
+    "instant_consultation": "তাৎক্ষণিক পরামর্শ"
+  },
+  "room_statuses": {
+    "waiting": "অপেক্ষমাণ",
+    "active": "সক্রিয়",
+    "in_progress": "চলমান",
+    "ended": "শেষ হয়েছে"
+  },
+  "time": {
+    "just_now": "এইমাত্র",
+    "mins_ago": "{{mins}} মিনিট আগে",
+    "hours_ago": "{{hours}} ঘণ্টা আগে"
+  },
+  "active_rooms": {
+    "title": "সক্রিয় রুম",
+    "join": "রুমে যোগ দিন",
+    "with": "সাথে"
+  },
+  "consultations": {
+    "title": "আসন্ন পরামর্শ",
+    "patient": "রোগী",
+    "doctor": "ডাক্তার",
+    "type": "ধরন",
+    "time": "সময়",
+    "status": "অবস্থা",
+    "action": "পদক্ষেপ",
+    "start": "শুরু করুন"
+  },
+  "room": {
+    "consultation": "পরামর্শ",
+    "connecting": "সংযুক্ত হচ্ছে...",
+    "initializing": "ক্লাউডফ্লেয়ার রিয়েলটাইম SFU এর সাথে সংযুক্ত হচ্ছে...",
+    "connection_failed": "সংযোগ ব্যর্থ হয়েছে",
+    "waiting_participant": "অন্য অংশগ্রহণকারীর যোগদানের জন্য অপেক্ষা করা হচ্ছে...",
+    "no_messages": "এখনো কোনো বার্তা নেই",
+    "placeholder_chat": "একটি বার্তা লিখুন...",
+    "you": "আপনি",
+    "duration": "সময়কাল"
+  },
+  "consultation_types": {
+    "consultation": "পরামর্শ"
+  },
+  "errors": {
+    "create_failed": "টেলিমেডিসিন রুম তৈরি করতে ব্যর্থ হয়েছে। ক্লাউডফ্লেয়ার রিয়েলটাইম SFU কনফিগারেশন পরীক্ষা করুন।"
+  }
+}

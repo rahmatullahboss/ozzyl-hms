@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "reviewedAtUtc": "2026-07-28T10:20:49Z",
+  "retirementTask": "CDB-105B",
+  "programMode": "canonical_core_v1_protected_transition",
+  "productionScopePolicy": "docs/architecture/hms-production-scope-policy.md",
+  "parallelExecutionBoard": "docs/architecture/hms-canonical-parallel-execution-board.yaml",
+  "cutoverRunbook": "docs/database/canonical-core-v1-production-cutover-runbook.md",
+  "currentCheckpoint": "CDB-V1-000-COURSE-CORRECTION-AND-PROGRAM-REBASELINE",
+  "nextCheckpoint": "CDB-V1-010-PROTECTED-PRODUCTION-CORE-SURFACE-INVENTORY",
+  "destructiveRemovalSeparateAuthorization": true,
+  "domains": [
+    {
+      "id": "billing_invoice",
+      "tables": [
+        "bills",
+        "invoice_items"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Production invoice cutover, canonical invoice read promotion, observation, fresh rollback evidence, and explicit retirement authorization are incomplete.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "payment_collection",
+      "tables": [
+        "payments"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Production payment cutover, canonical receipt/allocation read promotion, observation, fresh rollback evidence, and explicit retirement authorization are incomplete.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "practitioner_compensation",
+      "tables": [
+        "doctor_commission_accruals"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Production practitioner-compensation cutover, canonical compensation read promotion, observation, fresh rollback evidence, and explicit retirement authorization are incomplete.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "inventory_movement",
+      "tables": [
+        "InventoryStockTransaction"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Production inventory-movement cutover, canonical stock read promotion, observation, fresh rollback evidence, and explicit retirement authorization are incomplete.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "patient_identity",
+      "retirementScope": "read",
+      "tables": [
+        "patients",
+        "global_patient_identity",
+        "canonical_tenant_patient_links"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Patient identity provider observation, explicit owner authorization, fresh rollback evidence, and route-by-route legacy read retirement approval are absent.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "practitioner_identity",
+      "retirementScope": "read",
+      "tables": [
+        "doctors",
+        "external_referring_doctors",
+        "canonical_practitioners"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Practitioner provider observation, explicit owner authorization, fresh rollback evidence, and route-by-route legacy read retirement approval are absent.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "appointment_intent",
+      "retirementScope": "read",
+      "tables": [
+        "appointments",
+        "consultations",
+        "canonical_appointments"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Appointment provider observation, explicit owner authorization, fresh rollback evidence, and route-by-route legacy read retirement approval are absent.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "encounter_care_episode",
+      "retirementScope": "read",
+      "tables": [
+        "encounters",
+        "visits",
+        "consultations",
+        "canonical_encounters"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Encounter provider observation, explicit owner authorization, fresh rollback evidence, and route-by-route legacy read retirement approval are absent.",
+      "evidenceReferences": []
+    },
+    {
+      "id": "inpatient_admission_bed_occupancy",
+      "retirementScope": "read",
+      "tables": [
+        "admissions",
+        "beds",
+        "patient_bed_infos",
+        "canonical_admissions",
+        "canonical_bed_stays"
+      ],
+      "productionCutoverComplete": false,
+      "canonicalReadPromotionComplete": false,
+      "observationComplete": false,
+      "rollbackEvidenceFresh": false,
+      "ownerAuthorizationPresent": false,
+      "legacyAuthorityRetirementApproved": false,
+      "compatibilityAdapterRetirementApproved": false,
+      "fixtureRetirementApproved": false,
+      "blocker": "Admission and bed provider observation, explicit owner authorization, fresh rollback evidence, and route-by-route legacy read retirement approval are absent.",
+      "evidenceReferences": []
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d8dada",
+                    "on-primary-fixed": "#002022",
+                    "surface-container-low": "#f2f4f4",
+                    "background": "#f8fafa",
+                    "on-background": "#191c1d",
+                    "inverse-surface": "#2e3131",
+                    "tertiary-fixed": "#ffdcc6",
+                    "surface-container-highest": "#e1e3e3",
+                    "surface-container": "#eceeee",
+                    "surface-bright": "#f8fafa",
+                    "on-tertiary-container": "#fff1e9",
+                    "on-surface": "#191c1d",
+                    "tertiary": "#834718",
+                    "on-surface-variant": "#3e494a",
+                    "secondary": "#446467",
+                    "on-secondary-container": "#4a6a6d",
+                    "surface-tint": "#006970",
+                    "tertiary-container": "#a05f2e",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#abcdd0",
+                    "outline": "#6e797a",
+                    "inverse-primary": "#7ad5dd",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#c6e9ec",
+                    "primary": "#006067",
+                    "inverse-on-surface": "#eff1f1",
+                    "outline-variant": "#bdc9ca",
+                    "primary-fixed-dim": "#7ad5dd",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#002022",
+                    "surface": "#f8fafa",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#004f54",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#96f1fa",
+                    "on-tertiary-fixed-variant": "#6f3808",
+                    "surface-variant": "#e1e3e3",
+                    "primary-container": "#007b83",
+                    "on-secondary-fixed-variant": "#2c4c4f",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#c6e9ec",
+                    "on-primary-container": "#d0fbff",
+                    "surface-container-high": "#e6e8e9",
+                    "on-tertiary-fixed": "#301400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .doc-list::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="Patient Profile Photo" class="w-full h-full object-cover" data-alt="Close up portrait of a middle-aged woman with a friendly expression in a bright clinical setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiqp8kJXuo_2QhHyvzy8eEhnc_txvR5e92ZuU2sfPOVbqQVB42GMqRbjBSoaCjj3RJyR9uD_LOadrlWe4dHUGvwhZs7iNdlQOGxjBBp5LCJ4HTileR-zVtC_-FqYBsB4iFL_bjpewMHK2BIN9PKpVONdEiHMkYqmwN4AIdbCTovzfJ3f2y56sjlgvX9KjIVrmZf6MXCBkyMscxT5ira_jrDF-m5EfK0WUTxvHM_yf8CToQeXhEEOnClQGav8FEuSoLuaIvdC70LZc"/>
+</div>
+<span class="text-[#006067] font-['Manrope'] font-extrabold tracking-tighter text-lg">The Clinical Sanctuary</span>
+</div>
+<div class="text-[#007B83] hover:opacity-80 transition-opacity active:duration-100 scale-95">
+<span class="material-symbols-outlined text-2xl" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-lg mx-auto">
+<!-- Header Section -->
+<section class="mb-8">
+<h1 class="text-3xl font-extrabold text-on-surface tracking-tight mb-2">Vault</h1>
+<p class="text-on-surface-variant text-sm font-medium">All your clinical documents in one secure place.</p>
+</section>
+<!-- Category Filters -->
+<div class="flex gap-3 overflow-x-auto pb-4 mb-8 doc-list">
+<button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-gradient-to-br from-[#006067] to-[#007B83] text-white text-xs font-bold tracking-wide transition-all shadow-sm">
+                All Reports
+            </button>
+<button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface-variant text-xs font-semibold tracking-wide hover:bg-surface-container transition-all">
+                Lab Reports
+            </button>
+<button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface-variant text-xs font-semibold tracking-wide hover:bg-surface-container transition-all">
+                Prescriptions
+            </button>
+<button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface-variant text-xs font-semibold tracking-wide hover:bg-surface-container transition-all">
+                Radiology
+            </button>
+<button class="flex-shrink-0 px-6 py-2.5 rounded-full bg-surface-container-low text-on-surface-variant text-xs font-semibold tracking-wide hover:bg-surface-container transition-all">
+                Insurance
+            </button>
+</div>
+<!-- Document List -->
+<div class="space-y-4">
+<!-- Document Item 1 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-surface-container-low">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img alt="Blood Test Report" class="w-full h-full object-cover opacity-80" data-alt="Macro photography of medical test results on textured white paper with soft teal color accents and professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-XpDGcy9mABFEls9NgPNATU6kAgrQhzS9zdM_9PTGA74RkVy7ezxVwxXXwmYxUSfslY1RhFcHON1KZ4YyMJs4pSWI70ZxlJeNsLMTU3e0R1TWopdkulK2f_1KOPE_U4_KzGa8U0n9UMpm1MIOZjcIzZNouGo79jzvX8gDKhc6wghZVyp6p4dmblXLGf4nDKm_b3PjdVl2yrcmL1dWoA30vBuw0ifEmghPUiER5JkW6MUtMU9ZWITHdzDK463dzVSIs5sTqqWdAjc"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-bold text-on-surface leading-tight">Complete Blood Count (CBC)</h3>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-2">Oct 24, 2023 • Lab Report</p>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#E8F5E9] text-[#2E7D32] text-[10px] font-bold tracking-tight">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Verified by Dr. Aris
+                    </div>
+</div>
+</div>
+<!-- Document Item 2 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-surface-container-low">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img alt="MRI Scan" class="w-full h-full object-cover opacity-80" data-alt="Abstract visualization of an MRI brain scan film held against a lightbox in a darkened medical office with cool blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqA72FD3UtpYikdFx0sTG9rpKUfLODAqTIy-eZj7eckA1X0o3iCYoVKnF0obLGW2urzmLkaygTgUUKAqZfT6eBKiG9tSEsdfnDb-NjW01A71Of4Ntz4cIx2NSaP8ivmZJs4W1SggTTreSFH82Oj1a6y0leVK7IsUukZi6ecEkZDrXG_K1XBz9yz9Q-OBtwnTijDxduDpPUzRHK4yRWCKIVWfN2MqECivdz0nqvFY4QSp20zLf5SpdjCZB4jRjAUuLtxeCAeHPcegs"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-bold text-on-surface leading-tight">Lumbar Spine MRI</h3>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-2">Sep 12, 2023 • Radiology</p>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#E8F5E9] text-[#2E7D32] text-[10px] font-bold tracking-tight">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Verified by Dr. Chen
+                    </div>
+</div>
+</div>
+<!-- Document Item 3 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-surface-container-low">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img alt="Prescription" class="w-full h-full object-cover opacity-80" data-alt="Close up of a stylized prescription notepad with elegant medical handwriting and a clinic stamp in soft ethereal light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvZ7U606HMSR94XyPci95Y5CQKAEJnyOpcOKshJpT768fzPTuwP5E_UVeSLmgZP6GO_xRkXvgg7iSGJ5JEi8-HMy4FgqGwtnMbMQSo7cDDABk3oMkkCcFmCDc1rSrKzX1KOTvY-3LcS5Djd-FVVQkrUh5hqMXqpM0Gd06nAzdsTcKP2NNOfzgfy-4DP-BVWSXijH7DiWSXSJkkGb3ojyXg0ZPSVhR7lIqqUBHWEBpNVWUmADMHzgEj2pdDbkm_y3DcXn08VFj5bR8"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-bold text-on-surface leading-tight">Post-Op Recovery Meds</h3>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-2">Aug 05, 2023 • Prescription</p>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#E8F5E9] text-[#2E7D32] text-[10px] font-bold tracking-tight">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Verified by Dr. Aris
+                    </div>
+</div>
+</div>
+<!-- Document Item 4 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-surface-container-low">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0">
+<img alt="Insurance Policy" class="w-full h-full object-cover opacity-80" data-alt="Close up of a premium insurance card on a clean white surface with sharp shadows and minimalistic medical icons" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE4t31SacFx7VLfBO3AKZWVeLxE21-CBnin37R-dPp12lOLTXCYiCvwtJlVtQn9EujRd7LDSIaT9OD4e0Clirysr9gd_FC9i2e-6_IxbF1zTXii5wQQDl1pfSAlZAEXmjOWBfJ3KiM8FiigW6Lk6Lr_toD2hqSz7GaYDv2JQgljuPEKpEJp8m0cJbxlSyioIFSlskc7cyndqPbdnhJ-5RUv__G1U2Fmpj1kg73cYDPzCmWEcQ1hVHVsxR1Xf6YJuUHAf9YSdtkDaI"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-bold text-on-surface leading-tight">Sanctuary Gold Plus Plan</h3>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-wider mb-2">Jan 01, 2023 • Insurance</p>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#E8F5E9] text-[#2E7D32] text-[10px] font-bold tracking-tight">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        System Verified
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-[#006067] to-[#007B83] text-white flex items-center justify-center shadow-[0_8px_24px_rgba(0,32,34,0.2)] active:scale-90 transition-transform z-[60]">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0_-8px_24px_rgba(0,32,34,0.04)]">
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-[#007B83] transition-colors scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006067] to-[#007B83] text-white rounded-2xl px-4 py-2 scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase mt-1">Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-[#007B83] transition-colors scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase mt-1">Appointments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-[#007B83] transition-colors scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] text-[10px] font-medium tracking-wide uppercase mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

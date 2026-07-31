@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "checkpoint": "CDB-V1-070B-ALL-TENANT-SHADOW-PREPARATION-AUTHORIZATION-CONTRACT-READY",
+  "status": "prepared_not_authorized",
+  "preparation": {
+    "branch": "program/cdb-main-continuous-20260725",
+    "repositoryCommit": "702dec6984d2f16aced99af5269f6a9f9734baa0",
+    "buildSha": "702dec6984d2f16aced99af5269f6a9f9734baa0",
+    "minimumImplementationCommit": "917a6a276c0a8864442d29f87d7ec7786eda9d31"
+  },
+  "bindings": {
+    "designPath": "docs/superpowers/specs/2026-07-30-cdb-v1-070b-staged-production-authorization-design.md",
+    "designSha256": "d376bd0c31320b13a35c04cdd0aaac03a2f67b1cb376ba00e90f8c88dcba67e3",
+    "planPath": "docs/superpowers/plans/2026-07-30-cdb-v1-070b-shadow-preparation-authorization.md",
+    "planSha256": "93ea30314eee50c4eb1938b7b8f36c48a1b245fe4a20d78a2ffc31b33624a58b",
+    "historicalExecutionPackagePath": "docs/database/cdb-v1-070-all-tenant-shadow-execution-package.json",
+    "historicalExecutionPackageSha256": "40d5a069e9080f3465d6f367950522e6515c5ff712525073ccde5732536a57c3",
+    "migrationManifestPath": "src/data/schema-migrations.generated.ts",
+    "migrationManifestSha256": "4c0810914d3ffb0684deec6439568cd167e1c443180cfa10b1daa8e7e2f80852",
+    "authorizationContractPath": "scripts/canonical/all-tenant-shadow-preparation-authorization.ts",
+    "authorizationContractSha256": "6b8c5b9c5e339ce2fada756d570f8714ec7d2b4d5bcd7cca08549ec209bd10dd",
+    "authorizationValidatorPath": "scripts/canonical/validate-all-tenant-shadow-preparation-authorization.ts",
+    "authorizationValidatorSha256": "f16021922dfabd1d26782b22fbc1a5bfa0d712946ea808e511123fc2ad4104e6",
+    "readinessCheckerPath": "scripts/canonical/check-all-tenant-shadow-preparation-readiness.ts",
+    "readinessCheckerSha256": "f4f22ded6d12662abe4e05f30a502711fedc68719fb2e1cc5cead078a0edb47f"
+  },
+  "target": {
+    "platform": "cloudflare_d1",
+    "databaseName": "hms-super-admin-production-apac",
+    "databaseUuid": "c68a5360-a2c1-44cc-9e71-f21057bea102",
+    "environment": "production",
+    "remote": true
+  },
+  "worker": {
+    "serviceName": "hms-saas-production",
+    "environment": "production",
+    "entrypoint": "src/index.ts",
+    "compatibilityDate": "2026-02-17",
+    "routes": [
+      "*.ozzyl.com/*",
+      "admin.ozzyl.com/*",
+      "app.ozzyl.com/*",
+      "hms.ozzyl.com/*"
+    ],
+    "candidateTrafficPercentage": 0,
+    "previousTrafficPercentage": 100
+  },
+  "expectedScope": {
+    "tenantIds": [
+      "1",
+      "100",
+      "101",
+      "102"
+    ],
+    "allActiveTenantAggregateRead": true,
+    "migrationLedgerAggregateRead": true,
+    "phiReadAllowed": false,
+    "rowLevelPatientReadAllowed": false,
+    "migrationManifestCount": 504,
+    "expectedPendingMigrationCount": 29,
+    "expectedPendingMigrationNames": [
+      "0541_canonical_local_sync_protocol.sql",
+      "0542_canonical_sync_inbox_lifecycle.sql",
+      "0543_canonical_sync_outbox_lifecycle.sql",
+      "0544_canonical_tenant_patient_links.sql",
+      "0545_canonical_practitioner_operational_adoption.sql",
+      "0546_canonical_appointment_authority.sql",
+      "0547_patient_merge_map_hardening.sql",
+      "0548_canonical_encounter_admission_bed_convergence.sql",
+      "0549_approval_revision_policy.sql",
+      "0550_canonical_credit_note_cash_refund_reversals.sql",
+      "0551_workforce_roster_integrity.sql",
+      "0552_attendance_projection_integrity.sql",
+      "0553_mfa_registration_schema_repair.sql",
+      "0554_canonical_prescription_medication_intent.sql",
+      "0555_canonical_clinical_document_diagnosis.sql",
+      "0556_canonical_patient_vital_measurement.sql",
+      "0557_canonical_medication_administration.sql",
+      "0558_canonical_lab_result_specimen.sql",
+      "0559_canonical_radiology_acquisition_report.sql",
+      "0560_canonical_emergency_case_triage.sql",
+      "0561_compensation_rule_route_identity.sql",
+      "0563_practitioner_route_identity.sql",
+      "0564_patient_import_route_identity.sql",
+      "0565_appointment_route_identity.sql",
+      "0566_appointment_schedule_route_identity.sql",
+      "0567_encounter_visit_route_identity.sql",
+      "0568_service_delivery_route_identity.sql",
+      "0569_service_catalog_route_identity.sql",
+      "0570_doctor_commission_rule_version_snapshot.sql"
+    ]
+  },
+  "commands": [
+    {
+      "id": "cdbv1070b.candidate-build-verification",
+      "phase": "candidate_build_verification",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070B_EXECUTOR",
+        "--phase",
+        "candidate-build-verification",
+        "--authorization",
+        "{{PROTECTED_PREPARATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070b.zero-traffic-version-upload",
+      "phase": "zero_traffic_version_upload",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070B_EXECUTOR",
+        "--phase",
+        "zero-traffic-version-upload",
+        "--authorization",
+        "{{PROTECTED_PREPARATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070b.aggregate-production-read",
+      "phase": "aggregate_production_read",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070B_EXECUTOR",
+        "--phase",
+        "aggregate-production-read",
+        "--authorization",
+        "{{PROTECTED_PREPARATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070b.time-travel-bookmark-capture",
+      "phase": "time_travel_bookmark_capture",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070B_EXECUTOR",
+        "--phase",
+        "time-travel-bookmark-capture",
+        "--authorization",
+        "{{PROTECTED_PREPARATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070b.protected-export-capture",
+      "phase": "protected_export_capture",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070B_EXECUTOR",
+        "--phase",
+        "protected-export-capture",
+        "--authorization",
+        "{{PROTECTED_PREPARATION_AUTHORIZATION_PATH}}"
+      ]
+    },
+    {
+      "id": "cdbv1070b.preparation-evidence-verification",
+      "phase": "preparation_evidence_verification",
+      "executable": false,
+      "argvTemplate": [
+        "CDB_V1_070B_EXECUTOR",
+        "--phase",
+        "preparation-evidence-verification",
+        "--authorization",
+        "{{PROTECTED_PREPARATION_AUTHORIZATION_PATH}}",
+        "--evidence-directory",
+        "{{PROTECTED_EVIDENCE_DIRECTORY}}"
+      ]
+    }
+  ],
+  "acceptance": {
+    "candidateTrafficPercentage": 0,
+    "previousTrafficPercentage": 100,
+    "productionRowsWritten": 0,
+    "migrationsApplied": 0,
+    "backfillsExecuted": 0,
+    "providerFlagsChanged": 0,
+    "trafficChanged": false,
+    "finalResponseAuthority": "legacy"
+  },
+  "permissions": {
+    "productionReadAuthorized": false,
+    "workerVersionUploadAuthorized": false,
+    "trafficChangeAuthorized": false,
+    "timeTravelBookmarkCaptureAuthorized": false,
+    "backupExportCaptureAuthorized": false,
+    "productionMigrationAuthorized": false,
+    "productionBackfillAuthorized": false,
+    "providerFlagChangeAuthorized": false,
+    "canonicalPromotionAuthorized": false,
+    "localSyncActivationAuthorized": false,
+    "legacyRetirementAuthorized": false,
+    "destructiveActionAuthorized": false
+  },
+  "externalBindings": {
+    "candidate": {
+      "branch": null,
+      "commit": null,
+      "buildSha": null,
+      "mainIntegrationEvidenceId": null,
+      "mainIntegrationEvidenceSha256": null
+    },
+    "productionState": {
+      "activeTenantEvidenceId": null,
+      "activeTenantEvidenceSha256": null,
+      "migrationLedgerEvidenceId": null,
+      "migrationLedgerEvidenceSha256": null,
+      "workerMetadataEvidenceId": null,
+      "workerMetadataEvidenceSha256": null,
+      "routeEvidenceId": null,
+      "routeEvidenceSha256": null
+    },
+    "worker": {
+      "candidateVersionId": null,
+      "previousVersionId": null,
+      "buildManifestSha256": null,
+      "routeFingerprintSha256": null
+    },
+    "backup": {
+      "bookmarkId": null,
+      "bookmarkSha256": null,
+      "exportEvidenceId": null,
+      "exportSha256": null
+    },
+    "timing": {
+      "windowStartUtc": null,
+      "windowEndUtc": null,
+      "expiresAtUtc": null
+    },
+    "owners": {
+      "ownerId": null,
+      "executionOwnerId": null,
+      "rollbackOwnerId": null,
+      "evidenceCustodianId": null,
+      "riskAcceptanceEvidenceId": null,
+      "riskAcceptanceEvidenceSha256": null
+    },
+    "evidenceOutput": {
+      "receiptId": null,
+      "protectedDirectoryEvidenceId": null
+    },
+    "confirmation": {
+      "readToken": null,
+      "versionUploadToken": null,
+      "backupCaptureToken": null,
+      "abortToken": null
+    }
+  },
+  "safety": {
+    "networkRequestPerformed": false,
+    "productionReadPerformed": false,
+    "productionMutationPerformed": false,
+    "workerVersionUploadPerformed": false,
+    "bookmarkCapturePerformed": false,
+    "backupExportPerformed": false,
+    "trafficChanged": false,
+    "pushPerformed": false,
+    "cdbToMainIntegrationPerformed": false
+  },
+  "nextCheckpoint": "CDB-V1-070B-ALL-TENANT-SHADOW-PREPARATION-EVIDENCE-EXACT-AUTHORIZATION-REQUIRED"
+}

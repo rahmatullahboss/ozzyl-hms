@@ -1,0 +1,291 @@
+{
+  "groupActionCenter": "অ্যাকশন সেন্টার",
+  "groupOperationsMonitor": "অপারেশন মনিটর",
+  "groupCashFinance": "ক্যাশ ও ফাইন্যান্স",
+  "groupInventoryAdmin": "ইনভেন্টরি",
+  "groupPeopleAccess": "মানুষ ও অ্যাক্সেস",
+  "groupAuditSecurity": "অডিট ও সিকিউরিটি",
+  "groupReportsAnalytics": "রিপোর্ট ও অ্যানালিটিক্স",
+  "groupSettings": "সেটিংস",
+  "pendingApprovals": "পেন্ডিং অনুমোদন",
+  "opdAppointments": "ওপিডি অ্যাপয়েন্টমেন্ট",
+  "diagnosticLab": "ডায়াগনস্টিক ল্যাব",
+  "ipdBeds": "আইপিডি বেড",
+  "otProcedures": "ওটি প্রসিডিউর",
+  "pharmacyMonitor": "ফার্মেসি মনিটর",
+  "emergencyMonitor": "ইমার্জেন্সি মনিটর",
+  "liveCashDrawers": "ক্যাশ কন্ট্রোল লেজার",
+  "collectionReports": "কালেকশন রিপোর্ট",
+  "discounts": "ডিসকাউন্ট",
+  "refunds": "রিফান্ড",
+  "doctorCommission": "ডাক্তার কমিশন",
+  "recurringExpenses": "নিয়মিত ব্যয়",
+  "cashBankBook": "ক্যাশ ও ব্যাংক বই",
+  "stockOverview": "স্টক ওভারভিউ",
+  "purchaseRequests": "ক্রয় অনুরোধ",
+  "stockAdjustments": "স্টক সমন্বয়",
+  "rolesPermissions": "রোল ও পারমিশন",
+  "auditExplorer": "অডিট এক্সপ্লোরার",
+  "branchComparison": "শাখা তুলনা",
+  "branchesDepartments": "শাখা ও বিভাগ",
+  "paymentMethods": "পেমেন্ট পদ্ধতি",
+  "printLayouts": "প্রিন্ট লেআউট",
+  "smsEmail": "এসএমএস ও ইমেইল",
+  "expandSidebar": "সাইডবার বড় করুন",
+  "collapseSidebar": "সাইডবার ছোট করুন",
+  "adminDashboard": {
+    "title": "অ্যাডমিন ড্যাশবোর্ড",
+    "subtitle": "ক্যাশ, অপারেশন, অনুমোদন ও মনিটরিংয়ের লাইভ হাসপাতাল কন্ট্রোল রুম।",
+    "errors": {
+      "loadFailed": "ডেটা লোড করতে ব্যর্থ হয়েছে",
+      "retry": "আবার চেষ্টা করুন"
+    },
+    "kpi": {
+      "todayCollection": "নির্বাচিত দিনের গ্রহণকৃত টাকা",
+      "cashMovement": "ফিজিক্যাল ড্রয়ার ক্যাশ চলাচল",
+      "todayCollectionTooltip": "বিল ও বকেয়া থেকে আজ হাতে পাওয়া টাকা। এটি বিল ভ্যালু ও ড্রয়ার ক্যাশ থেকে আলাদা।",
+      "todayExpense": "অনুমোদিত অপারেটিং ব্যয়",
+      "outstandingDue": "রোগীর বকেয়া পাওনা",
+      "todayDiscount": "দেওয়া ডিসকাউন্ট",
+      "opdPatients": "ওপিডি রোগী",
+      "ipdAdmitted": "আইপিডি ভর্তি",
+      "viewSource": "উৎস দেখুন",
+      "breakdownSources": "উৎসভিত্তিক সারাংশ",
+      "breakdownDetails": "বিস্তারিত",
+      "breakdownEmpty": "কোনো রো পাওয়া যায়নি",
+      "closeBreakdown": "বন্ধ করুন"
+    },
+    "actionRequired": {
+      "title": "যেসব কাজে নজর দরকার",
+      "alertsCount": "{{count}}টি সতর্কতা",
+      "pendingApprovals": "পেন্ডিং অনুমোদন",
+      "staleHandovers": "পুরোনো ক্যাশ হ্যান্ডওভার",
+      "highDiscountBills": "বেশি ডিসকাউন্ট বিল",
+      "missingDiscountReference": "ডিসকাউন্ট অনুমোদনকারী উল্লেখ নেই",
+      "canceledBillsToday": "আজ বাতিল হওয়া বিল",
+      "handoverDiscrepancies": "হ্যান্ডওভার গরমিল",
+      "lowStockAlerts": "লো স্টক সতর্কতা",
+      "empty": "এই মুহূর্তে জরুরি কোনো কাজ নেই"
+    },
+    "liveCashDrawers": {
+      "title": "ক্যাশ কন্ট্রোল সারাংশ",
+      "viewAll": "সব দেখুন",
+      "noActiveDrawers": "এখন কোনো সক্রিয় ক্যাশ ড্রয়ার নেই",
+      "active": "সক্রিয়",
+      "moreCount": "আরও {{count}}টি"
+    },
+    "operationsSnapshot": {
+      "title": "অপারেশন স্ন্যাপশট",
+      "opdQueue": "ওপিডি কিউ",
+      "opdAppointments": "অ্যাপয়েন্টমেন্ট",
+      "opdCompleted": "সম্পন্ন",
+      "diagnostic": "ডায়াগনস্টিক",
+      "diagnosticPending": "পেন্ডিং",
+      "diagnosticCompleted": "সম্পন্ন",
+      "ipd": "আইপিডি",
+      "ipdOccupied": "দখলকৃত",
+      "ipdAvailable": "খালি",
+      "ipdOccupancy": "অকুপেন্সি",
+      "pharmacy": "ফার্মেসি",
+      "pharmacyTodaySales": "আজকের বিক্রি"
+    },
+    "revenueTrend": {
+      "title": "রেভিনিউ ট্রেন্ড",
+      "periodToday": "আজ",
+      "period7d": "৭ দিন",
+      "noData": "রেভিনিউ ডেটা পাওয়া যায়নি"
+    },
+    "paymentMethods": {
+      "title": "পেমেন্ট পদ্ধতি",
+      "noData": "পেমেন্ট ডেটা পাওয়া যায়নি",
+      "cash": "ক্যাশ",
+      "bkash": "বিকাশ",
+      "nagad": "নগদ",
+      "card": "কার্ড",
+      "bankTransfer": "ব্যাংক ট্রান্সফার",
+      "cheque": "চেক",
+      "unknown": "অজানা"
+    },
+    "cashBreakdown": {
+      "title": "ক্যাশ ব্রেকডাউন",
+      "subtitle": "নির্বাচিত দিনের টাকা কোথা থেকে এসেছে এবং কোন খাতে খরচ হয়েছে দেখুন।",
+      "totalCashMovement": "মোট ক্যাশ চলাচল",
+      "moneyInSources": "টাকা এসেছে যেখান থেকে",
+      "expenseCategories": "খরচের খাত",
+      "noSources": "এখনো উৎস ডেটা নেই"
+    },
+    "auditFeed": {
+      "title": "সাম্প্রতিক অডিট ফিড",
+      "viewAll": "সব দেখুন",
+      "noEntries": "এখনো কোনো এন্ট্রি নেই",
+      "showingEntries": "{{count}}টি এন্ট্রি দেখানো হচ্ছে",
+      "autoRefresh": "প্রতি ৩০ সেকেন্ডে অটো-রিফ্রেশ",
+      "timeAgo": {
+        "justNow": "এইমাত্র",
+        "minutesAgo": "{{count}} মিনিট আগে",
+        "hoursAgo": "{{count}} ঘণ্টা আগে",
+        "daysAgo": "{{count}} দিন আগে"
+      },
+      "severity": {
+        "low": "লো",
+        "medium": "মিডিয়াম",
+        "high": "হাই",
+        "critical": "ক্রিটিক্যাল"
+      }
+    },
+    "dateFilter": {
+      "title": "ড্যাশবোর্ড তারিখ",
+      "subtitle": "নির্বাচিত দিনের KPI ও ক্যাশ ব্রেকডাউন দেখাবে।",
+      "inputLabel": "ড্যাশবোর্ড তারিখ"
+    }
+  },
+  "adminMonitor": {
+    "opd": {
+      "title": "ওপিডি মনিটর",
+      "summary": {
+        "totalTokens": "মোট টোকেন",
+        "waiting": "অপেক্ষমান",
+        "serving": "চলমান",
+        "completed": "সম্পন্ন",
+        "noShow": "অনুপস্থিত",
+        "cancelled": "বাতিল"
+      },
+      "delayedDoctors": "দেরি হওয়া ডাক্তার",
+      "delayMinutes": "{{count}} মিনিট দেরি",
+      "patientsWaiting": "{{count}} জন রোগী অপেক্ষমান",
+      "statusTabs": {
+        "all": "সব",
+        "waiting": "অপেক্ষমান",
+        "serving": "চলমান",
+        "completed": "সম্পন্ন",
+        "noShow": "অনুপস্থিত",
+        "cancelled": "বাতিল"
+      },
+      "table": {
+        "token": "টোকেন",
+        "patient": "রোগী",
+        "doctor": "ডাক্তার",
+        "department": "বিভাগ",
+        "apptTime": "অ্যাপয়েন্টমেন্ট সময়",
+        "wait": "অপেক্ষা",
+        "status": "স্ট্যাটাস"
+      },
+      "noTokens": "কোনো টোকেন পাওয়া যায়নি"
+    },
+    "diagnostic": {
+      "title": "ডায়াগনস্টিক মনিটর",
+      "summary": {
+        "totalToday": "আজ মোট",
+        "samplePending": "স্যাম্পল পেন্ডিং",
+        "processing": "প্রসেসিং",
+        "reportReady": "রিপোর্ট প্রস্তুত",
+        "delayed": "দেরি",
+        "critical": "ক্রিটিক্যাল"
+      },
+      "criticalResults": "ক্রিটিক্যাল রেজাল্ট",
+      "statusTabs": {
+        "all": "সব",
+        "samplePending": "স্যাম্পল পেন্ডিং",
+        "processing": "প্রসেসিং",
+        "reportReady": "রিপোর্ট প্রস্তুত",
+        "delayed": "দেরি"
+      },
+      "table": {
+        "orderId": "অর্ডার আইডি",
+        "patient": "রোগী",
+        "test": "টেস্ট",
+        "department": "বিভাগ",
+        "sample": "স্যাম্পল",
+        "report": "রিপোর্ট",
+        "expected": "প্রত্যাশিত সময়",
+        "delay": "দেরি",
+        "onTime": "সময়মতো"
+      },
+      "noLabOrders": "কোনো ল্যাব অর্ডার পাওয়া যায়নি"
+    },
+    "pharmacy": {
+      "title": "ফার্মেসি মনিটর",
+      "summary": {
+        "todaySales": "আজকের বিক্রি",
+        "todayInvoices": "{{count}}টি ইনভয়েস",
+        "grossMargin": "গ্রস মার্জিন",
+        "lowStock": "লো স্টক",
+        "nearExpiry": "মেয়াদোত্তীর্ণের কাছাকাছি",
+        "pendingPRs": "পেন্ডিং পিআর",
+        "todayReturns": "আজকের রিটার্ন"
+      },
+      "inventoryOverview": "ইনভেন্টরি ওভারভিউ",
+      "investment": {
+        "total": "মোট বিনিয়োগ",
+        "income": "মোট আয়",
+        "profit": "গ্রস প্রফিট",
+        "medicines": "মোট ওষুধ"
+      },
+      "lowStockAlert": "লো স্টক সতর্কতা",
+      "nearExpiryAlert": "মেয়াদোত্তীর্ণ সতর্কতা",
+      "noLowStock": "লো স্টক আইটেম নেই",
+      "noExpiring": "মেয়াদোত্তীর্ণ হতে যাচ্ছে এমন আইটেম নেই",
+      "currentReorder": "বর্তমান / রি-অর্ডার",
+      "batchQty": "ব্যাচ {{batch}} · পরিমাণ {{qty}}",
+      "days": "{{count}} দিন"
+    },
+    "ipd": {
+      "title": "আইপিডি মনিটর",
+      "summary": {
+        "totalBeds": "মোট বেড",
+        "occupied": "দখলকৃত",
+        "available": "খালি",
+        "occupancy": "অকুপেন্সি",
+        "dischargesToday": "আজ ডিসচার্জ",
+        "avgStay": "গড় অবস্থান",
+        "cleaning": "ক্লিনিং",
+        "maintenance": "মেইনটেন্যান্স"
+      },
+      "viewTabs": {
+        "overview": "ওভারভিউ",
+        "bedMap": "বেড ম্যাপ",
+        "patientList": "রোগীর তালিকা",
+        "dischargePending": "ডিসচার্জ পেন্ডিং"
+      },
+      "bedStatus": {
+        "available": "খালি",
+        "occupied": "দখলকৃত",
+        "cleaning": "ক্লিনিং",
+        "maintenance": "মেইনটেন্যান্স",
+        "reserved": "রিজার্ভড",
+        "blocked": "নিষ্ক্রিয়"
+      },
+      "legend": "লেজেন্ড",
+      "noWards": "কোনো ওয়ার্ড পাওয়া যায়নি",
+      "noAdmissions": "কোনো ভর্তি রোগী পাওয়া যায়নি",
+      "noDischargePending": "কোনো ডিসচার্জ পেন্ডিং নেই",
+      "patientList": {
+        "patient": "রোগী",
+        "bed": "বেড",
+        "ward": "ওয়ার্ড",
+        "doctor": "ডাক্তার",
+        "diagnosis": "ডায়াগনোসিস",
+        "days": "দিন"
+      },
+      "dischargeTable": {
+        "patient": "রোগী",
+        "bed": "বেড",
+        "ward": "ওয়ার্ড",
+        "doctor": "ডাক্তার",
+        "approval": "অনুমোদন",
+        "bill": "বিল",
+        "approved": "অনুমোদিত",
+        "pending": "পেন্ডিং",
+        "cleared": "ক্লিয়ার"
+      },
+      "overview": {
+        "quickSummary": "দ্রুত সারাংশ",
+        "bedUtilization": "বেড ব্যবহার",
+        "occupied": "{{percent}}% দখলকৃত",
+        "todaysActivity": "আজকের কার্যক্রম",
+        "dischargesCount": "{{count}}টি ডিসচার্জ",
+        "avgStayValue": "গড় অবস্থান {{days}} দিন"
+      }
+    }
+  }
+}

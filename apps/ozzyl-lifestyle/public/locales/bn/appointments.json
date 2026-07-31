@@ -1,0 +1,23 @@
+{
+  "title": "অ্যাপয়েন্টমেন্ট শিডিউলার",
+  "newAppointment": "নতুন অ্যাপয়েন্টমেন্ট",
+  "bookAppointment": "অ্যাপয়েন্টমেন্ট বুক করুন",
+  "doctor": "ডাক্তার",
+  "patient": "রোগী",
+  "appointmentDate": "অ্যাপয়েন্টমেন্টের তারিখ",
+  "time": "সময়",
+  "type": "ধরন",
+  "opd": "ওপিডি",
+  "followUp": "ফলো আপ",
+  "emergency": "জরুরি",
+  "confirmed": "নিশ্চিত",
+  "cancelled": "বাতিল",
+  "pending": "অপেক্ষমাণ",
+  "noAppointments": "এই তারিখে কোনো অ্যাপয়েন্টমেন্ট নেই।",
+  "scheduleAppointment": "অ্যাপয়েন্টমেন্ট নির্ধারণ করুন",
+  "doctorSchedule": "ডাক্তারের সময়সূচি",
+  "addSchedule": "সময়সূচি যোগ করুন",
+  "schedule": "সময়সূচি",
+  "noSchedules": "কোনো সময়সূচি পাওয়া যায়নি",
+  "appointmentBooked": "Appointment booked! Token #{{tokenNo}}"
+}

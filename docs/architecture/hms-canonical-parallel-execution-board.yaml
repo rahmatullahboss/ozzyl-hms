@@ -1,0 +1,784 @@
+schema_version: 1
+program: hms_canonical_parallel_execution
+approved_on: '2026-07-28'
+status: historical_pre_release_evidence_superseded_for_current_execution
+current_execution:
+  authoritative_board: docs/architecture/post-canonical-parallel-execution-board.yaml
+  authoritative_roadmap: docs/architecture/2026-07-31-post-canonical-production-roadmap.md
+  origin_main_sha: 3da958da07e7a20d016dbe08176a629bd6f54b65
+  current_checkpoint: CDB-V1-071B-PRODUCTION-DEPLOYMENT-COMPLETE
+  next_task: OBS-001-POST-RELEASE-OBSERVATION-BASELINE
+  production_worker_version: 4ff275b8-f17e-4956-a104-e9083a0a1d57
+  production_worker_traffic_percent: 100
+  historical_lane_details_below_are_not_current_execution_instructions: true
+production_scope_policy: docs/architecture/hms-production-scope-policy.md
+core_cutover_runbook: docs/database/canonical-core-v1-production-cutover-runbook.md
+non_production_rewrite_playbook: docs/architecture/non-production-canonical-rewrite-playbook.md
+
+objective:
+  primary: safely_cut_over_protected_production_core_to_canonical_v1
+  secondary: rewrite_verified_non_production_domains_directly_on_canonical_architecture
+  deferred: broad_cdb_authority_expansion_after_cdb_127e_until_owner_reprioritizes
+
+production_authorization:
+  repository_implementation: true
+  protected_clone_rehearsal: true
+  production_read_access: false
+  production_migration_or_backfill: false
+  production_provider_activation: false
+  production_deployment_or_traffic_change: false
+  live_legacy_retirement: false
+  destructive_database_change: false
+
+parallelism:
+  user_launches_primary_agents: true
+  agent_self_spawn_default: false
+  recommended_max_implementation_workers: 4
+  required_integration_review_agent: 1
+  one_agent_per_bounded_context: true
+  one_branch_and_worktree_per_agent: true
+  central_tracker_single_owner: true
+  shared_file_changes_serialized: true
+  worker_self_merge_allowed: false
+  production_lane_may_not_be_blocked_by_non_production_lanes: true
+
+shared_file_locks:
+  - task-progress.yaml
+  - docs/architecture/canonical-program-control-center.md
+  - docs/architecture/hms-canonical-parallel-execution-board.yaml
+  - docs/database/canonical-authority-matrix.yaml
+  - docs/database/canonical-authority-access-registry.yaml
+  - docs/database/canonical-source-of-truth.yaml
+  - docs/database/legacy-table-disposition.yaml
+  - docs/database/legacy-write-retirement-gates.yaml
+  - src/db/schema/canonical/index.ts
+  - src/db/schema/index.ts
+  - migrations/meta/_journal.json
+  - package.json
+  - pnpm-lock.yaml
+  - src/index.ts
+  - src/lib/route-permissions.ts
+  - packages/shared/src/authz.ts
+
+migration_reservation:
+  required_before_worker_creates_migration: true
+  reservation_owner: canonical_integration_review_agent
+  reservation_record: this_board
+  worker_may_choose_unreserved_number: false
+  conflict_resolution: integration_agent_rebases_and_renumbers_before_merge
+  current_reservations:
+    - number: "0562"
+      filename: 0562_canonical_operation_theatre.sql
+      owner_lane: ADDITIONAL_DOMAIN_REWRITE
+      owner_branch: feature/operation-theatre-canonical-rewrite-20260728
+      status: reserved_not_created
+      request_evidence: docs/operation-theatre-canonical-rewrite/migration-reservation-request.yaml
+
+integration_rules:
+  - inspect_all_live_branches_and_worktrees_before_claiming_a_domain
+  - never_reset_clean_stash_overwrite_or_opportunistically_commit_another_agents_work
+  - workers_update_only_lane_run_reports_and_task_owned_files
+  - integration_agent_updates_central_trackers_after_review
+  - every_integration_runs_protected_core_regression
+  - non_production_integration_must_not_change_protected_core_http_money_identity_permission_or_audit_behavior
+  - public_contract_changes_are_reviewed_before_consumer_work_begins
+  - merge_shared_foundation_changes_serially
+
+lanes:
+  CORE_V1:
+    priority: 0
+    class: protected_production_transition
+    status: active_primary
+    branch: main
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/main-governance-integration-20260723
+    owner: canonical_core_v1_primary_agent
+    protected_core:
+      - reception_patient_registration_lookup_appointment_checkin_queue_visit
+      - billing_invoice_receipt_payment_allocation_collection
+      - hospital_tenant_department_service_price_configuration
+      - doctor_practitioner_setup_and_commission
+      - required_users_roles_permissions_audit_dependencies
+    current_checkpoint: CDB-V1-070B-ALL-TENANT-SHADOW-PREPARATION-AUTHORIZATION-CONTRACT-READY
+    next_task: CDB-V1-070B-ALL-TENANT-SHADOW-PREPARATION-EVIDENCE-EXACT-AUTHORIZATION-REQUIRED
+    main_integration_required_before_gate_a: false
+    main_integration_owner_authorized: true
+    main_integration_state: verified_integrated_main
+    preparation_package: docs/database/cdb-v1-070b-all-tenant-shadow-preparation-package.json
+    preparation_package_sha256: 5f05cdc683299ca183961f6cf6b8cd6834d819ceb55081a16e3830a114d3a73b
+    preparation_package_ready: true
+    preparation_authorization_present: false
+    preparation_execution_ready: false
+    existing_production_financial_dual_write_active_all_tenants: true
+    existing_production_legacy_response_authority: true
+    cdb_branch_additional_work_not_yet_in_main_or_production: false
+    inventory_evidence: docs/database/protected-core-v1-surface-inventory.json
+    inventory_audit: docs/database/audits/2026-07-28-protected-production-core-surface-inventory.md
+    authority_contract_evidence: docs/database/protected-core-v1-authority-contracts.json
+    authority_contract_audit: docs/database/audits/2026-07-28-core-v1-authority-contract-freeze.md
+    inventory_summary:
+      surfaces: 954
+      http_routes: 44
+      ui_flows: 28
+      writers: 235
+      readers: 522
+      tables: 85
+      unknown_writers: 0
+      unknown_readers: 0
+    authority_contract_summary:
+      concepts: 22
+      canonical_table_owners: 19
+      governed_external_owners: 2
+      governed_registry_owners: 1
+      existing_command_boundaries: 19
+      contract_only_command_boundaries: 1
+      existing_provider_boundaries: 10
+      contract_only_provider_boundaries: 8
+      unresolved_duplicate_authorities: 0
+      non_production_scope_leakage: 0
+    writer_command_coverage: docs/database/protected-core-v1-writer-command-coverage.json
+    writer_command_coverage_audit: docs/database/audits/2026-07-28-protected-writer-command-coverage-baseline.md
+    writer_command_coverage_summary:
+      writers: 235
+      canonical_command: 118
+      atomic_compatibility: 110
+      external_governed: 3
+      command_required: 0
+      fixture_isolated: 4
+      unclassified: 0
+      implementation_groups: 0
+      full_command_coverage_complete: true
+    compensation_rule_command_evidence: docs/database/audits/2026-07-28-compensation-rule-command-implementation.md
+    compensation_rule_command_summary:
+      implementation_commit: 2aec5c07e
+      commands: [createCompensationRule, replaceCompensationRule, retireCompensationRule]
+      immutable_versioning: true
+      replay_conflict_guard: true
+      tenant_reference_isolation: true
+      compatibility_canonical_batch_rollback: true
+      route_integration_complete: true
+    compensation_rule_route_integration_evidence: docs/database/audits/2026-07-28-compensation-rule-route-integration.md
+    compensation_rule_route_integration_summary:
+      implementation_commit: 0cffb9fab
+      migration: migrations/0561_compensation_rule_route_identity.sql
+      integrated_writers: 2
+      atomic_compatibility_after: 43
+      command_required_after: 61
+      implementation_groups_after: 17
+      exact_reference_bootstrap: true
+      immutable_legacy_snapshot_bootstrap: true
+      http_compatibility_preserved: true
+      production_action_performed: false
+    practitioner_route_integration_evidence: docs/database/audits/2026-07-28-practitioner-route-integration.md
+    practitioner_route_integration_summary:
+      implementation_commit: 0a311fb31
+      migration: migrations/0563_practitioner_route_identity.sql
+      route_adapter: src/lib/canonical/practitioner-route-integration.ts
+      integrated_writers: 1
+      atomic_compatibility_after: 44
+      command_required_after: 60
+      implementation_groups_after: 15
+      exact_source_mapping_reuse: true
+      practitioner_account_link_lifecycle: true
+      compensation_source_identity_propagation: true
+      replay_conflict_and_full_rollback_proven: true
+      http_ui_compatibility_preserved: true
+      production_action_performed: false
+    patient_import_route_integration_evidence: docs/database/audits/2026-07-28-patient-import-identity-route-integration.md
+    patient_import_route_integration_summary:
+      implementation_commit: 8d5ae82e6
+      migration: migrations/0564_patient_import_route_identity.sql
+      route_adapter: src/lib/canonical/patient-import-route-integration.ts
+      integrated_writers: 1
+      atomic_compatibility_after: 45
+      command_required_after: 59
+      implementation_groups_after: 13
+      exact_hashed_batch_row_identity: true
+      no_name_phone_time_matching: true
+      unlinked_identity_placeholder: true
+      replay_conflict_and_full_rollback_proven: true
+      import_http_counter_error_contract_preserved: true
+      production_action_performed: false
+    appointment_intent_route_integration_evidence: docs/database/audits/2026-07-29-appointment-intent-route-integration.md
+    appointment_intent_route_integration_summary:
+      implementation_commit: e9bce7a88
+      migrations:
+        - migrations/0565_appointment_route_identity.sql
+        - migrations/0566_appointment_schedule_route_identity.sql
+      route_adapters:
+        - src/lib/canonical/appointment-route-integration.ts
+        - src/lib/canonical/appointment-schedule-route-integration.ts
+      integrated_writers: 4
+      atomic_compatibility_after: 49
+      command_required_after: 55
+      implementation_groups_after: 12
+      exact_patient_practitioner_appointment_encounter_mapping: true
+      immutable_reassignment_reschedule_lineage: true
+      queue_completion_requires_exact_encounter: true
+      schedule_domain_extension_not_second_authority: true
+      billing_projection_strict_financial_boundary: true
+      replay_conflict_and_full_rollback_proven: true
+      http_ui_compatibility_preserved: true
+      production_action_performed: false
+    encounter_care_route_integration_evidence: docs/database/audits/2026-07-29-encounter-care-episode-route-integration.md
+    encounter_care_route_integration_summary:
+      implementation_commit: 6098c2790
+      migration: migrations/0567_encounter_visit_route_identity.sql
+      route_adapter: src/lib/canonical/encounter-route-integration.ts
+      integrated_writers: 4
+      atomic_compatibility_after: 53
+      command_required_after: 51
+      implementation_groups_after: 11
+      complete_and_participant_replace_commands: true
+      exact_patient_practitioner_appointment_visit_encounter_mapping: true
+      direct_visit_atomic_start_update_discharge: true
+      doctor_and_queue_composite_completion: true
+      replay_conflict_and_full_rollback_proven: true
+      http_ui_compatibility_preserved: true
+      production_action_performed: false
+    service_delivery_route_integration_evidence: docs/database/audits/2026-07-29-service-delivery-event-route-integration.md
+    service_delivery_route_integration_summary:
+      implementation_commit: d8726db6d
+      migration: migrations/0568_service_delivery_route_identity.sql
+      route_adapter: src/lib/canonical/service-delivery-route-integration.ts
+      integrated_writers: 4
+      atomic_compatibility_after: 57
+      command_required_after: 47
+      implementation_groups_after: 10
+      accepted_not_delivered_semantics: true
+      exact_service_patient_encounter_practitioner_mapping: true
+      direct_visit_billing_appointment_and_cancellation_atomic: true
+      replay_conflict_and_full_rollback_proven: true
+      http_ui_compatibility_preserved: true
+      production_action_performed: false
+    compensation_accrual_adjustment_integration_evidence: docs/database/audits/2026-07-29-practitioner-compensation-accrual-adjustment-integration.md
+    compensation_accrual_adjustment_integration_summary:
+      implementation_commit: pending_local_checkpoint_commit
+      route_adapter: src/lib/canonical/compensation-accrual-route-integration.ts
+      integrated_writer_pairs: 7
+      atomic_compatibility_after: 66
+      command_required_after: 41
+      implementation_groups_after: 9
+      prepared_compensation_adjustment_command: true
+      exact_source_mapping_and_minor_unit_evidence: true
+      paid_compensation_requires_settlement_reversal: true
+      refund_reserve_release_boundaries_verified: true
+      diagnostic_and_doctor_cancellation_atomic: true
+      commission_approval_and_settlement_verified: true
+      replay_conflict_and_full_rollback_proven: true
+      http_ui_compatibility_preserved: true
+      production_action_performed: false
+    compensation_settlement_cash_custody_integration_evidence: docs/database/audits/2026-07-29-practitioner-compensation-settlement-cash-custody-integration.md
+    compensation_settlement_cash_custody_integration_summary:
+      implementation_commit: pending_local_checkpoint_commit
+      cash_custody_command: src/lib/canonical/contracts/manage-cash-custody.ts
+      live_adapter: src/lib/canonical/live-cash-custody.ts
+      targeted_writer_pairs: 5
+      promoted_writers: 7
+      atomic_compatibility_after: 73
+      command_required_after: 34
+      implementation_groups_after: 8
+      existing_command_boundaries_after: 18
+      contract_only_command_boundaries_after: 2
+      exact_minor_unit_custody_evidence: true
+      refund_return_and_dispute_recovery_atomic: true
+      settlement_practitioner_mapping_reused: true
+      replay_conflict_and_full_rollback_proven: true
+      http_ui_compatibility_preserved: true
+      production_action_performed: false
+    cash_custody_writer_integration_evidence: docs/database/audits/2026-07-29-cash-custody-writer-integration.md
+    cash_custody_writer_integration_summary:
+      implementation_commit: pending_local_checkpoint_commit
+      targeted_writer_pairs: 5
+      atomic_compatibility_after: 78
+      command_required_after: 29
+      implementation_groups_after: 7
+      counter_session_retained_as_workflow_document: true
+      appointment_cash_projection_parent_command_bound: true
+      gateway_explicitly_non_cash: true
+      cash_ledger_projection_bridge_atomic: true
+      payment_void_cash_only_custody_reversal: true
+      exact_replay_and_full_rollback_proven: true
+      focused_test_files_passed: 12
+      focused_tests_passed: 91
+      production_action_performed: false
+    credit_refund_payment_reversal_integration_evidence: docs/database/audits/2026-07-29-credit-refund-payment-reversal-integration.md
+    credit_refund_payment_reversal_integration_summary:
+      implementation_commit: pending_local_checkpoint_commit
+      targeted_writer_pairs: 5
+      atomic_compatibility_after: 83
+      command_required_after: 24
+      implementation_groups_after: 6
+      refund_hold_retained_as_workflow_document: true
+      cash_return_and_dispute_mutually_exclusive: true
+      gateway_income_projection_noncash: true
+      executed_refund_parent_reversal_verified: true
+      payment_void_parent_reversal_verified: true
+      paid_compensation_reversal_block_preserved: true
+      exact_replay_and_full_rollback_proven: true
+      focused_test_files_passed: 12
+      focused_tests_passed: 52
+      production_action_performed: false
+    service_catalog_pricing_integration_evidence: docs/database/audits/2026-07-29-service-catalog-pricing-integration.md
+    service_catalog_pricing_integration_summary:
+      implementation_commit: 68fd0af2c
+      command_module: src/lib/canonical/contracts/manage-service-catalog.ts
+      route_adapter: src/lib/canonical/service-catalog-route-integration.ts
+      migration: migrations/0569_service_catalog_route_identity.sql
+      targeted_route_writer_pairs: 5
+      adapter_compatibility_writer_pairs: 2
+      surfaces_after: 941
+      writers_after: 235
+      readers_after: 510
+      tables_after: 84
+      canonical_command_after: 117
+      atomic_compatibility_after: 96
+      command_required_after: 15
+      implementation_groups_after: 4
+      existing_command_boundaries_after: 19
+      contract_only_command_boundaries_after: 1
+      exact_service_and_price_category_identity: true
+      integer_minor_unit_currency_evidence: true
+      overlapping_effective_price_rejected: true
+      immutable_price_replacement_and_retirement: true
+      exact_replay_stale_evidence_and_tenant_isolation: true
+      compatibility_canonical_full_rollback: true
+      focused_test_files_passed: 8
+      focused_tests_passed: 76
+      migration_manifest_count: 504
+      post_main_sync_focused_test_files_passed: 14
+      post_main_sync_focused_tests_passed: 138
+      post_main_sync_canonical_governance_passed: true
+      production_action_performed: false
+    invoice_deposit_reporting_integration_evidence: docs/database/audits/2026-07-29-invoice-deposit-reporting-integration.md
+    invoice_deposit_reporting_integration_summary:
+      implementation_commit: 36e346037
+      previous_implementation_commit: 68fd0af2c
+      main_compatibility_merge_commit: e121ec306cba
+      targeted_writer_pairs: 8
+      removed_parallel_writer: src/lib/billing-payment-state.ts
+      surfaces_after: 939
+      writers_after: 234
+      readers_after: 509
+      tables_after: 84
+      canonical_command_after: 117
+      atomic_compatibility_after: 104
+      command_required_after: 6
+      implementation_groups_after: 1
+      invoice_document_command_required_after: 0
+      patient_deposit_liability_command_required_after: 0
+      reporting_metric_read_promotion_command_required_after: 0
+      exact_invoice_deposit_allocation_identity: true
+      integer_minor_unit_currency_evidence: true
+      replay_conflict_stale_snapshot_and_tenant_isolation: true
+      compatibility_canonical_full_rollback: true
+      focused_test_files_passed: 12
+      focused_tests_passed: 82
+      migration_manifest_count: 504
+      canonical_governance_passed: true
+      production_action_performed: false
+    canonical_outbox_atomic_assertion_integration_evidence: docs/database/audits/2026-07-29-canonical-outbox-atomic-assertion-integration.md
+    canonical_outbox_atomic_assertion_integration_summary:
+      implementation_commit: b1efd8d78
+      previous_implementation_commit: 36e346037
+      targeted_writer_pairs: 6
+      target_table: accounting_posting_events
+      refund_commission_command: canonical.refund_commission.impact
+      refund_dispute_writeoff_command: canonical.refund_dispute.writeoff
+      surfaces_after: 939
+      writers_after: 234
+      readers_after: 509
+      tables_after: 84
+      canonical_command_after: 117
+      atomic_compatibility_after: 110
+      command_required_after: 0
+      implementation_groups_after: 0
+      unclassified_after: 0
+      full_command_coverage_complete: true
+      exact_replay_and_changed_replay_conflict: true
+      non_phi_outbox_evidence: true
+      deterministic_source_event_identity: true
+      financial_assertion_cleanup: true
+      stale_state_complete_rollback: true
+      repository_access_writers_after: 1031
+      repository_access_readers_after: 2689
+      focused_test_files_passed: 13
+      focused_tests_passed: 60
+      post_main_sync_source_commit: 0ee410d65c0342d8e42c85503d1a43767788f110
+      post_main_sync_merge_commit: 9527a7574
+      post_main_sync_test_files_passed: 15
+      post_main_sync_tests_passed: 65
+      post_main_sync_typescript_passed: true
+      migration_manifest_count: 504
+      canonical_governance_passed: true
+      post_main_sync_canonical_governance_passed: true
+      production_action_performed: false
+    financial_read_provider_foundation_evidence: docs/database/audits/2026-07-29-financial-read-provider-foundation.md
+    financial_read_provider_foundation_summary:
+      implementation_commit: 50e2258d6
+      evidence_commit: e16bbec78
+      first_post_main_sync_evidence_commit: fc8721540
+      previous_evidence_commit: 4fc0271bb
+      prior_post_main_sync_source_commit: 757c6ebc3ed8ae07d989f84a783a7f1faaf8e275
+      prior_post_main_sync_merge_commit: f6918401f
+      post_main_sync_source_commit: f11f09f3526ea453632951455c73c727568dbfdb
+      post_main_sync_merge_commit: 1e669b7c6
+      provider_keys:
+        - canonical_invoice_provider_v1
+        - canonical_payment_provider_v1
+        - canonical_deposit_provider_v1
+      default_mode: legacy
+      rollback_mode: legacy
+      production_enabled: false
+      activation_requires_separate_authorization: true
+      exact_tenant_source_mapping: true
+      integer_bdt_minor_units: true
+      deterministic_variance_ids: true
+      non_phi_reconciliation_evidence: true
+      application_consumers_switched: 0
+      protected_clone_shadow_batch_run: false
+      surfaces_after: 951
+      writers_after: 235
+      readers_after: 519
+      tables_after: 85
+      canonical_command_after: 118
+      atomic_compatibility_after: 110
+      command_required_after: 0
+      implementation_groups_after: 0
+      existing_provider_boundaries_after: 9
+      contract_only_provider_boundaries_after: 9
+      repository_access_writers_after: 1032
+      repository_access_readers_after: 2702
+      focused_test_files_passed: 5
+      focused_tests_passed: 27
+      first_post_main_sync_backend_test_files_passed: 6
+      first_post_main_sync_backend_tests_passed: 40
+      first_post_main_sync_web_test_files_passed: 4
+      first_post_main_sync_web_tests_passed: 169
+      post_main_sync_cdb_test_files_passed: 5
+      post_main_sync_cdb_tests_passed: 27
+      post_main_sync_dashboard_test_files_passed: 6
+      post_main_sync_dashboard_tests_passed: 35
+      root_typescript_passed: true
+      web_typescript_passed: true
+      migration_manifest_count: 504
+      canonical_governance_passed: true
+      post_main_sync_canonical_governance_passed: true
+      production_action_performed: false
+    financial_read_consumer_shadow_batch_evidence: docs/database/audits/2026-07-30-financial-read-consumer-shadow-batch-integration.md
+    financial_read_consumer_shadow_batch_summary:
+      implementation_commit: 3a713901c
+      evidence_commit: 7caa1bb52
+      post_checkpoint_main_source: f11f09f3526ea453632951455c73c727568dbfdb
+      post_checkpoint_main_commits_ahead: 0
+      post_checkpoint_main_sync_required: false
+      adapter_module: src/lib/canonical/financial-read-consumer-adapters.ts
+      actual_consumer_route: GET /api/billing/:id/inspector
+      consumer_ids:
+        - cdb040b.billing-detail
+        - cdb040b.report
+        - cdb040b.dashboard
+        - cdb040b.export
+        - cdb040b.scheduled-job
+        - cdb040b.admin
+      default_mode: legacy
+      rollback_mode: legacy
+      production_enabled: false
+      local_shadow_batch_records: 6
+      local_reconciliation_rows: 6
+      local_shadow_parity: true
+      local_shadow_variance_count: 0
+      exact_source_canonical_row_keys: true
+      build_sha_evidence: cc5b5f41d
+      deposit_adjusted_invoice_settlement_normalized: true
+      application_consumers_switched: 1
+      surfaces_after: 952
+      writers_after: 235
+      readers_after: 520
+      tables_after: 85
+      repository_access_writers_after: 1032
+      repository_access_readers_after: 2703
+      focused_test_files_passed: 3
+      focused_tests_passed: 16
+      continuity_test_files_passed: 4
+      continuity_tests_passed: 21
+      combined_test_files_passed: 7
+      combined_tests_passed: 37
+      root_typescript_passed: true
+      migration_manifest_count: 504
+      canonical_governance_passed: true
+      production_action_performed: false
+      next_checkpoint: CDB-V1-040C-REMAINING-CRITICAL-READ-PROVIDER-INTEGRATION
+    critical_read_provider_consumer_evidence: docs/database/audits/2026-07-30-critical-read-provider-consumer-integration.md
+    critical_read_provider_consumer_summary:
+      implementation_commit: daba82181
+      evidence_commit: 57e23a84d
+      post_checkpoint_main_source: f11f09f3526ea453632951455c73c727568dbfdb
+      post_checkpoint_main_commits_ahead: 0
+      post_checkpoint_main_sync_required: false
+      protected_clone_package: docs/database/cdb-v1-040c-protected-clone-comparison-package.json
+      protected_clone_package_prepared: true
+      protected_clone_execution_performed: false
+      actual_consumer_routes:
+        - GET /api/reception/patients/:id/context
+        - GET /api/commissions/doctor-accruals
+      provider_keys:
+        - canonical_patient_identity_provider_v1
+        - canonical_practitioner_provider_v1
+        - canonical_appointment_provider_v1
+        - canonical_encounter_provider_v1
+        - canonical_admission_bed_provider_v1
+        - canonical_compensation_accrual_provider_v1
+      default_mode: legacy
+      rollback_mode: legacy
+      production_enabled: false
+      local_shadow_batch_records: 6
+      local_reconciliation_rows: 6
+      local_shadow_parity: true
+      local_shadow_variance_count: 0
+      exact_source_canonical_row_keys: true
+      compensation_bdt_integer_minor_units: true
+      deterministic_variance_ids: true
+      application_consumers_switched_total: 3
+      surfaces_after: 954
+      writers_after: 235
+      readers_after: 522
+      tables_after: 85
+      repository_access_writers_after: 1033
+      repository_access_readers_after: 2705
+      existing_provider_boundaries_after: 10
+      contract_only_provider_boundaries_after: 8
+      focused_test_files_passed: 6
+      focused_tests_passed: 68
+      continuity_test_files_passed: 6
+      continuity_tests_passed: 30
+      combined_test_files_passed: 12
+      combined_tests_passed: 98
+      root_typescript_passed: true
+      migration_manifest_count: 504
+      canonical_governance_passed: true
+      production_action_performed: false
+      next_checkpoint: CDB-V1-050-PROTECTED-CLONE-MIGRATION-BACKFILL-AND-ROLLBACK-REHEARSAL-AUTHORIZATION-REQUIRED
+    cdb_v1_050a_authorization_contract:
+      status: contract_ready_exact_external_bindings_absent
+      contract_module: scripts/canonical/protected-clone-rehearsal-authorization.ts
+      validator: scripts/canonical/validate-protected-clone-rehearsal-authorization.ts
+      readiness_checker: scripts/canonical/check-protected-clone-rehearsal-readiness.ts
+      readiness_evidence: docs/database/cdb-v1-050-protected-clone-rehearsal-readiness.json
+      audit: docs/database/audits/2026-07-30-protected-clone-rehearsal-authorization-contract.md
+      provider_count: 9
+      consumer_count: 12
+      source_table_count: 9
+      maximum_tenant_count: 10
+      maximum_record_count: 100
+      maximum_migration_count: 50
+      maximum_backfill_count: 30
+      migration_manifest_count: 504
+      focused_test_files_passed: 4
+      focused_tests_passed: 23
+      combined_test_files_passed: 11
+      combined_tests_passed: 63
+      root_typescript_passed: true
+      canonical_governance_passed: true
+      implementation_commit: 4a4ac0154
+      evidence_commit: fd585fa04
+      metadata_checkpoint: current_final_head_after_metadata_finalization
+      contract_ready: true
+      exact_authorization_document_present: false
+      execution_ready: false
+      network_request_performed: false
+      protected_clone_mutation_performed: false
+      production_read_performed: false
+      production_mutation_performed: false
+      next_checkpoint: CDB-V1-050-PROTECTED-CLONE-MIGRATION-BACKFILL-AND-ROLLBACK-REHEARSAL-EXACT-AUTHORIZATION-REQUIRED
+    cdb_v1_050_rehearsal_execution:
+      status: complete_verified_local_protected_clone
+      checkpoint: CDB-V1-050-PROTECTED-CLONE-MIGRATION-BACKFILL-AND-ROLLBACK-REHEARSAL-VERIFIED
+      execution_binding_commit: 6ae413f07
+      evidence_commit: 8d6379a6c
+      metadata_checkpoint: current_final_head_after_metadata_finalization
+      result: docs/database/cdb-v1-050-protected-clone-rehearsal-result.json
+      audit: docs/database/audits/2026-07-30-protected-clone-rehearsal-execution.md
+      tenant_count: 1
+      record_count: 24
+      migration_ledger_start: 497
+      migrations_applied: 19
+      migration_ledger_end: 516
+      backfills_executed: 4
+      backfill_reconciliations_passed: 4
+      second_pass_new_business_rows: 0
+      shadow_records_passed: 24
+      variance_count: 0
+      provider_error_count: 0
+      smoke_workflows_passed: 4
+      promoted_provider_count: 9
+      final_provider: legacy
+      legacy_disabled_provider_flags: 9
+      integrity_check: ok
+      foreign_key_violations: 0
+      source_snapshot_unchanged: true
+      rollback_backup_unchanged: true
+      fail_closed_attempts_restored: 3
+      network_request_performed: false
+      production_action_performed: false
+      push_performed: false
+      cdb_to_main_integration_performed: false
+      focused_test_files_passed: 13
+      focused_tests_passed: 67
+      root_typescript_passed: true
+      migration_manifest_count: 504
+      canonical_governance_passed: true
+      governed_table_count: 260
+      repository_access_writer_count: 1034
+      repository_access_reader_count: 2725
+      identity_episode_reader_pair_count: 859
+      identity_episode_path_count: 297
+      identity_episode_table_count: 63
+      identity_episode_unknown_assignments: 0
+      next_checkpoint: CDB-V1-060-PRODUCTION-AUTHORIZATION-PACKAGE-PREPARATION
+    cdb_v1_060_production_authorization_package:
+      checkpoint: CDB-V1-060-PRODUCTION-AUTHORIZATION-PACKAGE-READY
+      status: complete_verified_repository_package_execution_blocked
+      candidate_commit: 35e299d9ff2dc1781084dacd6d0f431816b0007c
+      package_contract_commit: 590dd56e7
+      preparation_cli_commit: 3a0620667
+      readiness_governance_commit: 35e299d9f
+      evidence_commit: c16b66508
+      metadata_checkpoint: current_final_head_after_metadata_finalization
+      package: docs/database/cdb-v1-060-production-authorization-package.json
+      package_sha256: a5be3083a19a827996d8c94ce2787634b24e08e526d245c11981266b69a08bf5
+      audit: docs/database/audits/2026-07-30-production-authorization-package-preparation.md
+      package_ready: true
+      execution_ready: false
+      issue_count: 0
+      unresolved_external_binding_count: 18
+      tenant_count: 1
+      canary_mode: shadow_read_only
+      migration_count: 19
+      backfill_count: 4
+      provider_count: 9
+      consumer_count: 12
+      source_table_count: 9
+      command_phase_count: 8
+      all_production_permissions_false: true
+      canonical_writes_excluded: true
+      destructive_migrations_excluded: true
+      local_sync_activation_excluded: true
+      legacy_retirement_excluded: true
+      network_request_performed: false
+      production_action_performed: false
+      push_performed: false
+      cdb_to_main_integration_performed: false
+      next_checkpoint: CDB-V1-070-STAGED-PRODUCTION-CUTOVER-EXACT-AUTHORIZATION-REQUIRED
+    completion_boundary: protected_core_canonical_authority_active_observed_rollback_proven_and_legacy_authority_retired
+    may_edit_shared_canonical_governance: true
+    production_execution_requires_new_exact_authorization: true
+
+  INVENTORY:
+    priority: 1
+    class: non_production_canonical_only_rewrite
+    status: completed_on_domain_branch_pending_serial_integration_review
+    branch: feature/inventory-modular-monolith
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/inventory-program-sync-20260724
+    owner: inventory_modular_monolith_agent
+    source_tracker: docs/inventory-hardening/task-progress.yaml
+    observed_state: INV-MM-121_complete
+    completed_on: '2026-07-29'
+    final_task: INV-MM-121
+    final_domain_checkpoint: f0afae5a7191de1583fdc9827bca8349b2bad904
+    next_task: serial_integration_review_against_updated_main
+    completion_boundary: INV-MM-121
+    production_data_migration_required: false
+    production_activation_separate: true
+    dependencies:
+      - consume_existing_canonical_shared_authorities
+      - preserve_protected_core
+    forbidden:
+      - create_parallel_inventory_authority_on_other_branch
+      - modify_protected_billing_behavior
+      - claim_production_cutover
+
+  PATIENT_MOBILE:
+    priority: 2
+    class: non_production_canonical_only_product
+    status: active_secondary_dirty_worktree_preserve
+    branch: feature/patient-mobile-app-canonical-20260725
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/patient-mobile-app-canonical-20260725
+    owner: patient_mobile_agent
+    source_tracker: docs/patient-app/patient-app-program-board.yaml
+    observed_state: PA-0901_in_progress
+    next_task: continue_PA_0901_localisation_hardening_from_owned_dirty_worktree
+    production_active: false
+    production_release_separate: true
+    forbidden:
+      - reset_or_adopt_unknown_dirty_changes
+      - enable_flutter_writes_without_backend_and_release_gates
+      - read_legacy_patient_finance_or_clinical_authority_directly
+
+  FULL_MM:
+    priority: 3
+    class: architecture_and_consumer_integration
+    status: blocked_at_finance_gate
+    branch: program/mm-canonical-inventory-sync-20260727
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/mm-canonical-inventory-sync-20260727
+    owner: full_modular_monolith_agent
+    source_tracker: docs/architecture/modular-monolith-continuous-board.yaml
+    observed_state: 34_of_45_tasks_complete
+    current_gate: MM-070
+    blocker: protected_finance_requires_clean_reviewed_checkpoint_and_core_v1_contract_alignment
+    allowed_while_blocked:
+      - read_only_review
+      - non_finance_contract_preparation_that_does_not_touch_shared_authority
+    forbidden:
+      - create_parallel_finance_inventory_or_canonical_authority
+      - change_protected_billing_invoice_collection_or_commission_behavior
+
+  ADDITIONAL_DOMAIN_REWRITE:
+    priority: 4
+    class: claimable_non_production_bounded_context
+    status: claimed_operation_theatre_migration_0562_reserved_worker_may_resume
+    branch: feature/operation-theatre-canonical-rewrite-20260728
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/operation-theatre-canonical-rewrite-20260728
+    owner: operation_theatre_canonical_rewrite_agent
+    claimed_domain: operation_theatre
+    reviewed_base: f813fd2150fd3ab346fcb00d3ce33cb313e81183
+    integrated_inventory_dependency_commit: 83752116d40052f621204f8eefade4cd8ae1eb3c
+    migration_reservation:
+      number: "0562"
+      filename: 0562_canonical_operation_theatre.sql
+      status: reserved_not_created
+      reserved_after_core_commit: 0cffb9fab
+      request_evidence: docs/operation-theatre-canonical-rewrite/migration-reservation-request.yaml
+      worker_branch_modification_by_integrator: false
+    candidates:
+      diagnostics_runtime_consumers:
+        dependencies: [CDB-125E, CDB-126E, reviewed_inventory_contracts]
+      pharmacy_runtime_rewrite:
+        dependencies: [INV-MM-110, canonical_invoice_payment_contracts]
+      operation_theatre:
+        dependencies: [reviewed_patient_encounter_practitioner_service_and_inventory_contracts]
+      nursing:
+        dependencies: [reviewed_encounter_medication_vital_and_inventory_contracts]
+      insurance:
+        dependencies: [canonical_invoice_allocation_and_accounting_contracts]
+      payroll_expense_direct_income:
+        dependencies: [clean_reviewed_non_production_finance_base]
+    claim_gate:
+      - repository_dependency_audit_complete
+      - protected_core_dependency_zero_or_explicitly_isolated
+      - no_existing_agent_or_branch_owns_same_domain
+      - migration_number_reserved_if_needed
+      - exact_owned_paths_recorded
+      - focused_baseline_tests_pass
+
+recommended_active_set:
+  - CORE_V1
+  - INVENTORY
+  - PATIENT_MOBILE
+  - one_ADDITIONAL_DOMAIN_REWRITE
+  - one_integration_review_agent
+
+next_global_action:
+  lane: CORE_V1
+  task: CDB-V1-070B-ALL-TENANT-SHADOW-PREPARATION-EVIDENCE-EXACT-AUTHORIZATION-REQUIRED
+  instruction: >-
+    The reviewed CDB checkpoint is integrated into main. Fetch and verify the exact latest origin/main before creating a new dedicated Gate A task branch/worktree. Without a fresh protected Gate A authorization, do not query production, upload a Worker version, capture Time Travel/export evidence, apply migrations/backfills, activate provider flags, change traffic, promote Canonical authority, enable local sync or retire Legacy authority.

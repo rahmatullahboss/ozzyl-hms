@@ -1,0 +1,67 @@
+{
+  "title": "Mortuary",
+  "subtitle": "Body intake, preservation, post-mortem & handover",
+  "newRecord": "New Record",
+  "stats": {
+    "total": "Total",
+    "currentlyHeld": "Currently Held",
+    "handedOver": "Handed Over",
+    "mlcCases": "MLC Cases",
+    "pendingPM": "Pending PM",
+    "awaitingNOC": "Awaiting NOC"
+  },
+  "table": {
+    "recordNo": "Record #",
+    "deceased": "Deceased",
+    "ageGender": "Age/Gender",
+    "deathDate": "Death Date",
+    "cause": "Cause",
+    "place": "Place",
+    "mlc": "MLC",
+    "pm": "PM",
+    "status": "Status"
+  },
+  "noRecords": "No records",
+  "pending": "Pending",
+  "markPreserved": "Mark Preserved",
+  "handover": "Handover",
+  "modals": {
+    "newRecord": "New Mortuary Record",
+    "deceasedName": "Deceased Name",
+    "deceasedNamePlaceholder": "Name of deceased",
+    "age": "Age",
+    "gender": "Gender",
+    "deathDate": "Death Date",
+    "cause": "Cause of Death",
+    "place": "Place of Death",
+    "placePlaceholder": "e.g. Ward A, ICU",
+    "storageUnit": "Storage Unit",
+    "storageUnitPlaceholder": "e.g. Freezer 1",
+    "mlc": "Medico-Legal Case",
+    "pmRequired": "Post-mortem Required",
+    "remarks": "Remarks",
+    "bodyHandover": "Body Handover",
+    "receivingPerson": "Receiving Person",
+    "relation": "Relation",
+    "relationPlaceholder": "e.g. Son, Brother",
+    "idNumber": "ID Number",
+    "phone": "Phone",
+    "witnessedBy": "Witnessed By",
+    "confirmHandover": "Confirm Handover"
+  },
+  "status": {
+    "received": "Received",
+    "preserved": "Preserved",
+    "awaiting_noc": "Awaiting NOC",
+    "awaiting_postmortem": "Awaiting PM",
+    "ready_for_handover": "Ready",
+    "handed_over": "Handed Over",
+    "transferred": "Transferred"
+  },
+  "toasts": {
+    "recordCreated": "Record created successfully",
+    "failed": "Operation failed",
+    "bodyHandedOver": "Body handed over successfully",
+    "recipientNameRequired": "Recipient name is required"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "ozzyl-dicom-print-agent",
+  "version": "1.0.0",
+  "description": "Local DICOM Print Agent for Ozzyl HMS — receives X-ray images from CR/DR modalities, auto-prints to local printer, and syncs to cloud",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "build": "node build.js",
+    "test": "node test/test-send.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "dcmjs-dimse": "^0.1.30",
+    "dotenv": "^16.4.0",
+    "pdf-to-printer": "^5.6.0",
+    "sharp": "^0.33.0",
+    "winston": "^3.14.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "javascript-obfuscator": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "dicom",
+    "print",
+    "xray",
+    "hospital",
+    "ozzyl",
+    "hms"
+  ],
+  "license": "UNLICENSED",
+  "private": true
+}

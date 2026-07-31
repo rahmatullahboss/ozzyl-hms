@@ -1,0 +1,60 @@
+{
+  "title": "Telemedicine",
+  "dashboard": {
+    "title": "Telemedicine Dashboard",
+    "subtitle": "Video consultations powered by Cloudflare Realtime SFU",
+    "search": "Search...",
+    "new_room": "New Room",
+    "creating": "Creating..."
+  },
+  "stats": {
+    "active_rooms": "Active Rooms",
+    "today_scheduled": "Today's Scheduled",
+    "waiting_patients": "Waiting Patients",
+    "total_this_month": "Total This Month",
+    "instant_consultation": "Instant Consultation"
+  },
+  "room_statuses": {
+    "waiting": "Waiting",
+    "active": "Active",
+    "in_progress": "In Progress",
+    "ended": "Ended"
+  },
+  "time": {
+    "just_now": "Just now",
+    "mins_ago": "{{mins}} mins ago",
+    "hours_ago": "{{hours}} hours ago"
+  },
+  "active_rooms": {
+    "title": "Active Rooms",
+    "join": "Join Room",
+    "with": "with"
+  },
+  "consultations": {
+    "title": "Upcoming Consultations",
+    "patient": "Patient",
+    "doctor": "Doctor",
+    "type": "Type",
+    "time": "Time",
+    "status": "Status",
+    "action": "Action",
+    "start": "Start"
+  },
+  "room": {
+    "consultation": "Consultation",
+    "connecting": "Connecting...",
+    "initializing": "Connecting to Cloudflare Realtime SFU...",
+    "connection_failed": "Connection Failed",
+    "waiting_participant": "Waiting for other participant to join...",
+    "no_messages": "No messages yet",
+    "placeholder_chat": "Type a message...",
+    "you": "You",
+    "duration": "Duration"
+  },
+  "consultation_types": {
+    "consultation": "Consultation"
+  },
+  "errors": {
+    "create_failed": "Failed to create telemedicine room. Check Cloudflare Realtime SFU configuration."
+  }
+}

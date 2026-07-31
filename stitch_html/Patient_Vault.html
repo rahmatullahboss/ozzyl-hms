@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Sanctuary | Patient Vault</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#446467",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#2c4c4f",
+                    "tertiary": "#834718",
+                    "surface-variant": "#e2e2e4",
+                    "on-surface-variant": "#3e494a",
+                    "tertiary-fixed": "#ffdcc6",
+                    "surface-bright": "#f9f9fb",
+                    "inverse-primary": "#7ad5dd",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#c6e9ec",
+                    "primary-container": "#007b83",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#96f1fa",
+                    "surface-dim": "#d9dadc",
+                    "surface-tint": "#006970",
+                    "surface-container-highest": "#e2e2e4",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "on-primary-fixed": "#002022",
+                    "on-surface": "#1a1c1d",
+                    "on-primary-container": "#d0fbff",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#7ad5dd",
+                    "on-tertiary-fixed-variant": "#6f3808",
+                    "tertiary-container": "#a05f2e",
+                    "on-secondary-fixed": "#002022",
+                    "on-secondary-container": "#4a6a6d",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6e797a",
+                    "primary": "#006067",
+                    "on-error": "#ffffff",
+                    "background": "#f9f9fb",
+                    "outline-variant": "#bdc9ca",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#abcdd0",
+                    "secondary-fixed": "#c6e9ec",
+                    "surface-container-high": "#e8e8ea",
+                    "on-tertiary-fixed": "#301400",
+                    "inverse-surface": "#2f3132",
+                    "surface-container-low": "#f3f3f5",
+                    "on-tertiary-container": "#fff1e9",
+                    "on-background": "#1a1c1d",
+                    "surface-container": "#edeef0",
+                    "surface": "#f9f9fb",
+                    "inverse-on-surface": "#f0f0f2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col p-6 h-screen w-72 bg-slate-50 font-['Manrope'] antialiased tracking-tight">
+<div class="mb-10 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<span class="text-xl font-bold tracking-tighter text-[#006067]">Clinical Sanctuary</span>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#006067] font-bold bg-[#ffffff] rounded-xl Active: scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+<span>Patient Vault</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-[#006067] transition-all hover:bg-white/50" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span>Lab Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-[#006067] transition-all hover:bg-white/50" href="#">
+<span class="material-symbols-outlined" data-icon="prescriptions">prescriptions</span>
+<span>Prescriptions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-[#006067] transition-all hover:bg-white/50" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span>Radiology</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-[#006067] transition-all hover:bg-white/50" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200">
+<button class="w-full py-4 px-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add_circle</span>
+                Upload New Document
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-72 min-h-screen flex flex-col">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-18rem)] h-20 px-8 flex justify-between items-center z-30 bg-white/80 backdrop-blur-xl border-b border-slate-100/50 shadow-sm shadow-[#006067]/05">
+<div class="flex items-center gap-8">
+<nav class="flex gap-6 font-['Manrope'] text-sm font-medium">
+<a class="text-[#006067] border-b-2 border-[#006067] pb-4" href="#">All Files</a>
+<a class="text-slate-400 pb-4 hover:text-[#006067] transition-colors" href="#">Recent</a>
+<a class="text-slate-400 pb-4 hover:text-[#006067] transition-colors" href="#">Shared</a>
+<a class="text-slate-400 pb-4 hover:text-[#006067] transition-colors" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-lg">search</span>
+<input class="bg-surface-container border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 ring-[#006067]/20 outline-none transition-all" placeholder="Search records..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Professional female physician with stethoscope in a clean medical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi8ODhSiHQVXqoN9xeWC40GI6pZG8sqTQ5Q_aLqg2moa7QsSms17pV_NW8qosMQ5N5-tGcnt1R46tI7J7w8meUflb_NNZFw400eE8LkX7V_4Gqw3IrDbZO7sigAwYZhbvNzNzPafyCSdKx4J8rM2x31AWIG8TMX6jRoGatr0rVb_MiERMlRMHQYKu3nrHgP0y1CwEhGoX9S8hpLnIfsU7R5_Gnno5kzKHmPCf5cHP3VjiEgyHbYL5WBSZ8JuOfCYmMo0t5DPOXSdo"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="mt-20 p-8 flex gap-8 h-[calc(100vh-5rem)] overflow-hidden">
+<!-- Category Sidebar (Split Layout Left) -->
+<div class="w-64 flex-shrink-0 flex flex-col gap-6">
+<div>
+<h2 class="font-manrope text-2xl font-bold tracking-tight text-on-surface mb-2">Vault Explorer</h2>
+<p class="text-sm text-on-surface-variant leading-relaxed">Securely organized by diagnostic category.</p>
+</div>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between p-3 rounded-xl bg-white shadow-sm text-primary font-semibold">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">biotech</span>
+<span>Lab Reports</span>
+</div>
+<span class="text-xs bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full">12</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/60 transition-colors text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">prescriptions</span>
+<span>Prescriptions</span>
+</div>
+<span class="text-xs text-slate-400">8</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/60 transition-colors text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">radiology</span>
+<span>Radiology</span>
+</div>
+<span class="text-xs text-slate-400">4</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/60 transition-colors text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">description</span>
+<span>Insurance Docs</span>
+</div>
+<span class="text-xs text-slate-400">3</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/60 transition-colors text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-xl">vaccines</span>
+<span>Vaccination Records</span>
+</div>
+<span class="text-xs text-slate-400">6</span>
+</button>
+</div>
+<div class="mt-auto p-5 rounded-2xl bg-primary/5 border border-primary/10">
+<div class="flex items-center gap-2 text-primary font-bold mb-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-xs uppercase tracking-wider">Storage Status</span>
+</div>
+<div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary" style="width: 65%"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">1.3 GB of 2.0 GB used (65%)</p>
+</div>
+</div>
+<!-- Main Grid Area (Split Layout Right) -->
+<div class="flex-1 overflow-y-auto pr-4 custom-scrollbar">
+<!-- Upload Drop-zone -->
+<div class="mb-8 p-10 bg-surface-container-lowest rounded-3xl border-2 border-dashed border-outline-variant flex flex-col items-center justify-center text-center group hover:border-primary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<h3 class="font-manrope text-xl font-bold mb-1">Upload New Document</h3>
+<p class="text-on-surface-variant text-sm mb-6 max-w-xs">Drag and drop clinical records, PDFs, or high-res images here.</p>
+<button class="px-8 py-2.5 bg-white border border-outline-variant rounded-full text-sm font-semibold hover:bg-primary hover:text-white hover:border-primary transition-all">Browse Files</button>
+</div>
+<!-- Document Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass-card p-4 rounded-[1.5rem] border border-white/40 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col gap-4">
+<div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="High-contrast medical laboratory report showing clear data columns and professional branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHXwmz04Gyh8eDBXmXsRYM5A1qxy5FLaKb00ddhzJikMduQZ65et-IZnL1dXuRnTz2yfBn-XaQfKQ9fmcKY7T3sf95NnMqy882FRPnFy-WKfcEJ_jJI4QxcbTXitNGsR6Xir1UIu_yGCDHTFKlgDIdKr-JyvvQg0Ylz2FBPfWDklEOaLJel7avAcwWqRw0LwA7mOIchMo5S3dG3KGXgdQgydNuGYFiP_ZEtddQy1aw9flAySiK2_Qf1n47oZFn9yM6_Sa0zGwyeq8"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h4 class="font-manrope font-bold text-on-surface">Blood Panel - Q3</h4>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">more_vert</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-[10px] font-bold">PDF</span>
+<span class="text-xs text-on-surface-variant">Uploaded Sep 12, 2023</span>
+</div>
+<div class="mt-2 flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-emerald-50 w-fit">
+<span class="material-symbols-outlined text-emerald-600 text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[11px] font-semibold text-emerald-700">Verified by Doctor</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-4 rounded-[1.5rem] border border-white/40 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col gap-4">
+<div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Medical X-ray showing chest cavity with detailed skeletal structure and atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG4aSfK4tX_eDWXY2PD4C-Az4e_A_Ix48sjafGWEF_FaOhB7I78X6O32oGE16SHd0UboWBTELIuQ09g-LLVrzFN0c5bvBjVDgev2YNu3BuNv5HX7uD1-y49bVlC_MuZou1bXByIOjD4LexdiW2uOLyINpPN4lChi9ZgA5t43zv78Pz5mCIUtEzk_P2HX8gkp-E78vX0ymEMJV1kL6dLDAEXZ72XQNu02gsNkbqW7qD_WcJIhr4MJdSlbL0vw_Z7C6CrGYa5rsE7_A"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h4 class="font-manrope font-bold text-on-surface">Chest X-Ray</h4>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">more_vert</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-[10px] font-bold">DICOM</span>
+<span class="text-xs text-on-surface-variant">Uploaded Aug 24, 2023</span>
+</div>
+<div class="mt-2 flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-emerald-50 w-fit">
+<span class="material-symbols-outlined text-emerald-600 text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[11px] font-semibold text-emerald-700">Verified by Doctor</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-4 rounded-[1.5rem] border border-white/40 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col gap-4">
+<div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Close up of a pharmaceutical prescription bottle with soft focus medical office in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_q8isuLTdz2ZYCPKYuD9MFpyUfPiHUYkaFi5DFC7Ex-fEKq-P3Qvje6WayyK7wsJ_PWxB6bZj6vBHqo8Rfo9WzvnwboMvTTLse52Nw0pkhIQrQMyCM-eA21Ah9k3_bPt472FkNM1C0N8Fr_PojSGu0rML9SZImLW1EEeJUmCHXONutGzklIAKxoWnDT3SEgNUHCAKyFH1xuSXtihIYHba9r0W7HoCqV4d3T_P9tg-mDTn3vDwtbkTHid6jGqsUcPGExb0l_eXn5g"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h4 class="font-manrope font-bold text-on-surface">Insulin Protocol</h4>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">more_vert</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-[10px] font-bold">JPEG</span>
+<span class="text-xs text-on-surface-variant">Uploaded Jul 10, 2023</span>
+</div>
+<div class="mt-2 flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-slate-50 w-fit border border-slate-100">
+<span class="material-symbols-outlined text-slate-400 text-base">pending</span>
+<span class="text-[11px] font-semibold text-slate-500">Verification Pending</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-4 rounded-[1.5rem] border border-white/40 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all flex flex-col gap-4">
+<div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Modern medical facility hallway with soft clean lighting and minimalist design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDar5euSaDXlCBBh4lEpnT9p7_KyhkNToaSc05BZJWV9xWGZYprK9GFisVWHzd5VS_L6gowhiX24Zn3BNjBzJDAXr3yyCInJ_YdZ789mfMNFcIVLWa7vIS2yUOLYKrRGGc_C61cvCJqxmW_urYyjd7HsgHuS16FIQfnAEfm7N8jprvFn3tHx_jA0RBdL8HRYFjUZDfkm1Bf6lZxUIoWuQl3AbULcnUqiIPn0-JFq7osDR2vCVXPEi44i0Azr2ZIu9RiFaO5fqw9zxE"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h4 class="font-manrope font-bold text-on-surface">MRI - Lower Lumbar</h4>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">more_vert</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container text-on-secondary-container text-[10px] font-bold">PDF</span>
+<span class="text-xs text-on-surface-variant">Uploaded May 15, 2023</span>
+</div>
+<div class="mt-2 flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-emerald-50 w-fit">
+<span class="material-symbols-outlined text-emerald-600 text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[11px] font-semibold text-emerald-700">Verified by Doctor</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

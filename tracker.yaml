@@ -1,0 +1,436 @@
+version: 1
+feature: test-level-performer-reserve-payout
+updated_at: 2026-07-13T21:40:00+06:00
+status: deployed_production_ui_hotfix_verified
+workspace:
+  branch: main
+  worktree: .worktrees/hotfix-performer-reserve-panel
+  base_commit: 73c4898d
+  pre_merge_main_commit: c53e2bff
+  merge_commit: 6623efd1
+  source_feature_branch: feature/test-performer-reserve-payout
+  source_feature_head: eb91a653
+  integration_branch: integration/performer-reserve-main
+  integration_review_commit: 76b96bf7
+  plan_commit: 24a4d7fe
+  original_dirty_workspace_must_remain_untouched: true
+artifacts:
+  design_spec: docs/superpowers/specs/2026-07-13-test-level-performer-reserve-payout-design.md
+  implementation_plan: docs/superpowers/plans/2026-07-13-test-level-performer-reserve-payout.md
+agent_bootstrap:
+  required_reads:
+    - agents.md
+    - .agent-rules/architecture.md
+    - .agent-rules/coding-rules.md
+    - .agent-rules/data-storage.md
+    - docs/database-guide.md
+    - docs/superpowers/specs/2026-07-13-test-level-performer-reserve-payout-design.md
+    - docs/superpowers/plans/2026-07-13-test-level-performer-reserve-payout.md
+    - tracker.yaml
+  required_skills:
+    - using-superpowers
+    - executing-plans
+    - test-driven-development
+    - verification-before-completion
+  execution_rule: Follow TDD red-green-refactor. Update this tracker after every meaningful test, code change, commit, blocker, or decision.
+invariants:
+  - Persist percentage rules as basis points; 1 percent equals 100 bps.
+  - Flat amount is the current operational default; percentage remains supported for future use.
+  - Create one immutable reserve row per invoice-item unit.
+  - Exclude tax and apply discount before performer reserve and referral commission.
+  - Never trust client-supplied reserve amount, bill-paid state, doctor name, or drawer balance.
+  - Never create normal performer accrual for reserve-enabled test units.
+  - Only fully paid, active invoice items can be paid from Cash Operations.
+  - One reserve can create at most one performer accrual and one completed settlement item.
+  - Cancellation/refund cancels unpaid reserves and blocks paid reserves until payout reversal.
+  - All financial writes must be tenant-scoped, idempotent, audited, and D1-batch guarded.
+current:
+  task_id: COMPLETE
+  task_name: Test-level performer reserve payout
+  phase: production_ui_hotfix_deployed_and_verified
+  next_action: Confirm the cashier can see the unassigned reserve panel after refreshing, then monitor the first production payout and reversal transaction.
+  blocker: null
+tasks:
+  - id: T01
+    name: Add performer rule and reserve schema
+    status: completed
+    commit: 241373bc
+    tests:
+      - pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts test/build-migration-manifest.test.ts test/production-migration-guard.test.ts
+  - id: T02
+    name: Build pure payout split and rounding calculations
+    status: completed
+    commit: 88aba7db
+    tests:
+      - pnpm vitest run test/unit/diagnostic-performer-payout.test.ts
+  - id: T03
+    name: Add test-level performer rule APIs
+    status: completed
+    commit: 51034051
+    tests:
+      - pnpm vitest run test/integration/routes/diagnostic-performer-rules.test.ts
+  - id: T04
+    name: Add Billing Master performer-rule controls
+    status: completed
+    commit: f8f65dd4
+    tests:
+      - pnpm --filter web exec vitest run src/pages/billing-master-performer-rule.test.ts src/pages/BillingMasterPage.test.ts
+  - id: T05
+    name: Create canonical reserve rows during bill finalization
+    status: completed
+    commit: f345f9ce
+    tests:
+      - pnpm vitest run test/integration/routes/diagnostic-performer-reserves.test.ts test/unit/billing-finalization.test.ts
+  - id: T06
+    name: Apply payout split to doctor commission accruals
+    status: completed
+    commit: bef58558
+    tests:
+      - pnpm vitest run test/lab-finance.test.ts test/unit/billing-finalization.test.ts test/integration/routes/diagnostic-performer-reserves.test.ts
+      - pnpm exec tsc --noEmit
+  - id: T07
+    name: Show reserve state in Billing Counter
+    status: completed
+    commit: b45ab3e2
+    tests:
+      - pnpm vitest run test/unit/billing-counter-performer-reserve.test.ts
+      - pnpm --filter web exec vitest run src/pages/BillingCounterPage.test.ts
+      - pnpm exec tsc --noEmit
+  - id: T08
+    name: Add unassigned reserve payables read API
+    status: completed
+    commit: 9bbb9904
+    tests:
+      - pnpm vitest run test/integration/routes/reception-performer-reserve-payouts.test.ts
+  - id: T09
+    name: Pay selected reserve units to one doctor atomically
+    status: completed
+    commit: 8f3eef7a
+    tests:
+      - pnpm vitest run test/integration/routes/reception-doctor-payouts.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+      - pnpm exec tsc --noEmit
+  - id: T10
+    name: Add unassigned reserve panel to Cash Operations
+    status: completed
+    commit: acdbcff5
+    tests:
+      - pnpm --filter web exec vitest run src/components/reception/UnassignedPerformerReservePanel.test.tsx src/pages/reception/CashOperationsPage.test.tsx
+  - id: T11
+    name: Enforce cancellation, refund, and reversal safety
+    status: completed
+    commit: f4f522bf
+    tests:
+      - pnpm vitest run test/unit/diagnostic-performer-reserve-lifecycle.test.ts test/unit/performer-reserve-lifecycle-route-contract.test.ts
+      - pnpm vitest run test/integration/routes/billing-cancellation.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/credit-notes-accounting.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+      - pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts test/build-migration-manifest.test.ts test/production-migration-guard.test.ts test/unit/diagnostic-performer-reserve-lifecycle.test.ts test/unit/performer-reserve-lifecycle-route-contract.test.ts test/integration/routes/billing-cancellation.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/credit-notes-accounting.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+      - pnpm exec tsc --noEmit
+  - id: T12
+    name: Add reconciliation reporting and complete verification
+    status: completed
+    commit: 0849087b
+    tests:
+      - pnpm vitest run test/unit/performer-reserve-reconciliation-contract.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+      - pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts test/unit/diagnostic-performer-payout.test.ts test/integration/routes/diagnostic-performer-rules.test.ts test/integration/routes/diagnostic-performer-reserves.test.ts test/lab-finance.test.ts test/unit/billing-finalization.test.ts test/unit/billing-counter-performer-reserve.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts test/integration/routes/reception-doctor-payouts.test.ts test/unit/diagnostic-performer-reserve-lifecycle.test.ts test/unit/performer-reserve-lifecycle-route-contract.test.ts test/unit/performer-reserve-reconciliation-contract.test.ts
+      - pnpm --filter web exec vitest run src/pages/BillingMasterPage.test.ts src/pages/billing-master-performer-rule.test.ts src/pages/BillingCounterPage.test.ts src/components/reception/UnassignedPerformerReservePanel.test.tsx src/pages/reception/CashOperationsPage.test.tsx
+      - pnpm build:migrations
+      - pnpm exec tsc --noEmit
+      - pnpm --filter web build
+      - pnpm vitest run test/integration/routes/collection-report-reconciliation.test.ts test/integration/routes/dashboard-cash-movement-kpi.test.ts test/integration/routes/billing-cancellation.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/credit-notes-accounting.test.ts test/daily-collection-route-order.test.ts
+decisions:
+  - id: D01
+    date: 2026-07-13
+    decision: Use a separate unassigned reserve ledger instead of nullable or dummy doctor accruals.
+    reason: Existing doctor commission and settlement flows require a real doctor and should remain backward compatible.
+  - id: D02
+    date: 2026-07-13
+    decision: Support flat and percentage rules; store percent as basis points.
+    reason: Flat is required now and percentage may be needed later without another schema redesign.
+  - id: D03
+    date: 2026-07-13
+    decision: Use unit-level reserve rows rather than mutable aggregate quantity.
+    reason: Exact quantity payout, deterministic rounding, auditability, and simpler race prevention.
+commits:
+  - hash: 24a4d7fe
+    message: docs: plan diagnostic performer reserve payouts
+  - hash: 241373bc
+    message: feat: add diagnostic performer reserve schema
+  - hash: 88aba7db
+    message: feat: calculate diagnostic performer payout split
+  - hash: 51034051
+    message: feat: configure performer reserve per diagnostic test
+  - hash: f8f65dd4
+    message: feat: add diagnostic performer rule controls
+  - hash: f345f9ce
+    message: feat: reserve diagnostic performer payout at billing
+  - hash: bef58558
+    message: feat: deduct performer reserve from referral commission
+  - hash: b45ab3e2
+    message: feat: show automatic performer reserve in billing
+  - hash: 9bbb9904
+    message: feat: list unassigned diagnostic performer reserves
+  - hash: 8f3eef7a
+    message: feat: pay performer reserves from reception cash
+  - hash: acdbcff5
+    message: feat: assign and pay performer reserves in cash operations
+  - hash: f4f522bf
+    message: feat: guard performer reserves during refund and cancellation
+  - hash: 0849087b
+    message: test: verify performer reserve payout reconciliation
+verification_log:
+  - at: 2026-07-13T05:28:00+06:00
+    task: T01
+    command: pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts
+    result: red_expected
+    details: Missing migration 0421 produced ENOENT before implementation.
+  - at: 2026-07-13T05:31:00+06:00
+    task: T01
+    command: pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts test/build-migration-manifest.test.ts test/production-migration-guard.test.ts
+    result: passed
+    details: 3 files, 32 tests passed.
+  - at: 2026-07-13T05:33:00+06:00
+    task: T02
+    command: pnpm vitest run test/unit/diagnostic-performer-payout.test.ts
+    result: red_expected
+    details: Calculation module did not exist.
+  - at: 2026-07-13T05:34:00+06:00
+    task: T02
+    command: pnpm vitest run test/unit/diagnostic-performer-payout.test.ts
+    result: passed
+    details: 1 file, 9 tests passed for flat, percent, rounding, discount, cap, and invalid inputs.
+  - at: 2026-07-13T05:35:00+06:00
+    task: T03
+    command: pnpm vitest run test/integration/routes/diagnostic-performer-rules.test.ts
+    result: red_expected
+    details: All 8 API tests returned 404 before endpoints existed.
+  - at: 2026-07-13T05:37:00+06:00
+    task: T03
+    command: pnpm vitest run test/integration/routes/diagnostic-performer-rules.test.ts
+    result: passed
+    details: 1 file, 8 tests passed for rule normalization, tenant scope, diagnostic scope, versioning, disable, conflict, and history.
+  - at: 2026-07-13T05:38:00+06:00
+    task: T04
+    command: pnpm --filter web exec vitest run src/pages/billing-master-performer-rule.test.ts
+    result: red_expected
+    details: Both UI contract tests failed before performer controls existed.
+  - at: 2026-07-13T05:41:00+06:00
+    task: T04
+    command: pnpm --filter web exec vitest run src/pages/billing-master-performer-rule.test.ts src/pages/BillingMasterPage.test.ts
+    result: passed
+    details: 2 files, 6 tests passed for performer rule setup and Billing Master regression.
+  - at: 2026-07-13T05:44:00+06:00
+    task: T05
+    command: pnpm vitest run test/integration/routes/diagnostic-performer-reserves.test.ts
+    result: red_expected
+    details: Reserve persistence module did not exist.
+  - at: 2026-07-13T05:46:00+06:00
+    task: T05
+    command: pnpm vitest run test/integration/routes/diagnostic-performer-reserves.test.ts test/unit/billing-finalization.test.ts
+    result: passed
+    details: 2 files, 8 tests passed for canonical mapping, tax exclusion, discount allocation, quantity, flat/percent snapshots, and finalization integration.
+  - at: 2026-07-13T05:48:00+06:00
+    task: T06
+    command: pnpm vitest run test/lab-finance.test.ts
+    result: red_expected
+    details: Reserve-enabled referral still used full line amount and bill-time performer accrual was still created.
+  - at: 2026-07-13T05:52:00+06:00
+    task: T06
+    command: pnpm vitest run test/lab-finance.test.ts test/unit/billing-finalization.test.ts test/integration/routes/diagnostic-performer-reserves.test.ts
+    result: passed
+    details: 3 files, 20 tests passed for reduced commission base, accrual snapshots, canonical hydration, and duplicate performer suppression.
+  - at: 2026-07-13T05:53:00+06:00
+    task: T06
+    command: pnpm exec tsc --noEmit
+    result: passed
+    details: TypeScript project check passed.
+  - at: 2026-07-13T05:55:00+06:00
+    task: T07
+    command: pnpm vitest run test/unit/billing-counter-performer-reserve.test.ts
+    result: red_expected
+    details: Backend rule endpoint and frontend auto-reserve state were absent; 2 tests failed.
+  - at: 2026-07-13T05:58:00+06:00
+    task: T07
+    command: pnpm vitest run test/unit/billing-counter-performer-reserve.test.ts
+    result: passed
+    details: 1 file, 2 contract tests passed.
+  - at: 2026-07-13T05:59:00+06:00
+    task: T07
+    command: pnpm --filter web exec vitest run src/pages/BillingCounterPage.test.ts
+    result: passed
+    details: 1 file, 12 Billing Counter regression tests passed.
+  - at: 2026-07-13T06:00:00+06:00
+    task: T07
+    command: pnpm exec tsc --noEmit
+    result: passed
+    details: TypeScript project check passed.
+  - at: 2026-07-13T06:02:00+06:00
+    task: T08
+    command: pnpm vitest run test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: red_expected
+    details: All 3 read-model tests returned 404 before the endpoint existed.
+  - at: 2026-07-13T06:04:00+06:00
+    task: T08
+    command: pnpm vitest run test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: passed
+    details: 1 file, 3 tests passed for grouping, eligibility, FIFO order, filters, and date validation.
+  - at: 2026-07-13T06:07:00+06:00
+    task: T09
+    command: pnpm vitest run test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: red_expected
+    details: Three mutation tests returned 404 before the reserve payout endpoint existed.
+  - at: 2026-07-13T06:11:00+06:00
+    task: T09
+    command: pnpm vitest run test/integration/routes/reception-doctor-payouts.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: passed
+    details: 2 files, 11 tests passed for reserve payout atomicity and existing doctor payout regression.
+  - at: 2026-07-13T06:12:00+06:00
+    task: T09
+    command: pnpm exec tsc --noEmit
+    result: passed
+    details: TypeScript project check passed.
+  - at: 2026-07-13T06:14:00+06:00
+    task: T10
+    command: pnpm --filter web exec vitest run src/components/reception/UnassignedPerformerReservePanel.test.tsx
+    result: red_expected
+    details: Component import failed because the reserve panel did not exist.
+  - at: 2026-07-13T06:18:00+06:00
+    task: T10
+    command: pnpm --filter web exec vitest run src/components/reception/UnassignedPerformerReservePanel.test.tsx src/pages/reception/CashOperationsPage.test.tsx
+    result: passed
+    details: 2 files, 10 tests passed for quantity selection, doctor assignment, drawer guard, exact payload, success reset, and Cash Operations integration.
+  - at: 2026-07-13T06:21:00+06:00
+    task: T11
+    command: pnpm vitest run test/unit/diagnostic-performer-reserve-lifecycle.test.ts
+    result: red_expected
+    details: Four lifecycle tests failed before paid-reserve guards and cancellation helpers existed.
+  - at: 2026-07-13T06:24:00+06:00
+    task: T11
+    command: pnpm vitest run test/unit/diagnostic-performer-reserve-lifecycle.test.ts test/unit/performer-reserve-lifecycle-route-contract.test.ts
+    result: passed
+    details: 2 files, 8 tests passed for paid guards, quantity cancellation, route integration contracts, and reversal contract.
+  - at: 2026-07-13T06:27:00+06:00
+    task: T11
+    command: pnpm vitest run test/integration/routes/billing-cancellation.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/credit-notes-accounting.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: passed
+    details: 4 files, 32 route regression tests passed.
+  - at: 2026-07-13T06:30:00+06:00
+    task: T11
+    command: pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts test/build-migration-manifest.test.ts test/production-migration-guard.test.ts test/unit/diagnostic-performer-reserve-lifecycle.test.ts test/unit/performer-reserve-lifecycle-route-contract.test.ts test/integration/routes/billing-cancellation.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/credit-notes-accounting.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: passed
+    details: 9 files, 73 tests passed for schema, lifecycle, cancellation, refunds, reversal, and migration safety.
+  - at: 2026-07-13T06:31:00+06:00
+    task: T11
+    command: pnpm exec tsc --noEmit
+    result: passed
+    details: TypeScript project check passed.
+  - at: 2026-07-13T12:13:00+06:00
+    task: T12
+    command: pnpm vitest run test/unit/performer-reserve-reconciliation-contract.test.ts
+    result: red_expected
+    details: Daily collection reversal netting and reserve reconciliation endpoint were absent; 2 tests failed.
+  - at: 2026-07-13T12:15:00+06:00
+    task: T12
+    command: pnpm vitest run test/unit/performer-reserve-reconciliation-contract.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts
+    result: passed
+    details: 2 files, 10 tests passed for signed cash-basis payout expense and reserve status reconciliation.
+  - at: 2026-07-13T12:16:00+06:00
+    task: T12
+    command: pnpm vitest run test/diagnostic-performer-reserve-migration.test.ts test/unit/diagnostic-performer-payout.test.ts test/integration/routes/diagnostic-performer-rules.test.ts test/integration/routes/diagnostic-performer-reserves.test.ts test/lab-finance.test.ts test/unit/billing-finalization.test.ts test/unit/billing-counter-performer-reserve.test.ts test/integration/routes/reception-performer-reserve-payouts.test.ts test/integration/routes/reception-doctor-payouts.test.ts test/unit/diagnostic-performer-reserve-lifecycle.test.ts test/unit/performer-reserve-lifecycle-route-contract.test.ts test/unit/performer-reserve-reconciliation-contract.test.ts
+    result: passed
+    details: 12 files, 65 backend feature tests passed.
+  - at: 2026-07-13T12:16:00+06:00
+    task: T12
+    command: pnpm --filter web exec vitest run src/pages/BillingMasterPage.test.ts src/pages/billing-master-performer-rule.test.ts src/pages/BillingCounterPage.test.ts src/components/reception/UnassignedPerformerReservePanel.test.tsx src/pages/reception/CashOperationsPage.test.tsx
+    result: passed
+    details: 5 files, 28 web feature tests passed.
+  - at: 2026-07-13T12:17:00+06:00
+    task: T12
+    command: pnpm build:migrations
+    result: passed
+    details: Feature-worktree manifest was generated; main integration later renumbered the performer migration to 0422 to avoid duplicate 0421 prefixes.
+  - at: 2026-07-13T12:17:00+06:00
+    task: T12
+    command: pnpm exec tsc --noEmit
+    result: passed
+    details: TypeScript project check passed.
+  - at: 2026-07-13T12:18:00+06:00
+    task: T12
+    command: pnpm --filter web build
+    result: passed
+    details: Production web build and PWA generation passed.
+  - at: 2026-07-13T12:18:00+06:00
+    task: T12
+    command: pnpm vitest run test/integration/routes/collection-report-reconciliation.test.ts test/integration/routes/dashboard-cash-movement-kpi.test.ts test/integration/routes/billing-cancellation.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/credit-notes-accounting.test.ts test/daily-collection-route-order.test.ts
+    result: passed
+    details: 6 files, 64 broader billing, cash, cancellation, credit-note, and collection-report tests passed.
+integration_review:
+  base_branch: main
+  base_commit: 73c4898d
+  integration_branch: integration/performer-reserve-main
+  review_findings_fixed:
+    - Renamed performer migration from duplicate prefix 0421 to unique prefix 0422.
+    - Added the missing master-data audit helper dependency used by the rule API.
+    - Preserved main's newer partial-refund and approval cancellation logic while adding performer reserve guards.
+    - Required payout reversal cash to be collected into the reversing user's active current-workstation drawer instead of mutating the original possibly closed session.
+    - Added explicit settlement reversal metadata and excluded reversed settlements from cash-ledger payout source totals.
+    - Added executable in-memory SQLite migration validation.
+  migration_application:
+    staging_preflight: failed_database_not_found_7404
+    production_preflight: passed_schema_absent
+    production_write: passed_2026-07-13_13-21_asia_dhaka
+    production_queries_executed: 19
+    production_rows_written: 90
+    production_bookmark: 00001bf9-00000008-000050a7-6fc5876788a70f515c8e7f64c794b97a
+    production_schema_readback: passed
+    production_indexes_readback: passed_8_of_8
+    local_sqlite_execution: passed
+  final_verification:
+    feature_backend_tests: 68
+    merged_refund_cash_tests: 73
+    web_tests: 28
+    migration_guard_tests: 9
+    typescript: passed
+    production_web_build: passed
+  production_deployment:
+    deployed_at: 2026-07-13T13:51:00+06:00
+    worker_name: hms-saas-production
+    worker_version_id: 827d560f-7c2a-4fdc-ad62-56e8b307afd1
+    manifest_upload: passed
+    routes:
+      - admin.ozzyl.com/*
+      - hms.ozzyl.com/*
+      - app.ozzyl.com/*
+      - '*.ozzyl.com/*'
+    live_smoke_target: https://hms.ozzyl.com
+    live_smoke_checks: 12
+    live_smoke_passed: 12
+    live_smoke_failed: 0
+    live_smoke_average_latency_ms: 169
+    live_smoke_max_latency_ms: 781
+  production_ui_hotfix:
+    root_cause: The live Cash Operations page renders DoctorPayoutWorkspace directly, while the performer reserve panel had only been wired into an unused ReceptionDoctorPayoutPanel component.
+    data_verification:
+      active_rules: 10
+      reserved_units: 14
+      paid_units: 0
+    first_hotfix_commit: 4e34fd5a
+    cache_bust_commit: 3204d2e9
+    tests:
+      command: pnpm --filter web exec vitest run src/pages/reception/CashOperationsPage.test.tsx src/components/reception/UnassignedPerformerReservePanel.test.tsx
+      files: 2
+      passed: 11
+      failed: 0
+    production_web_build: passed
+    stale_asset_detected: CashOperationsPage-C4vLhZuK.js
+    deployed_asset: CashOperationsPage-BcVumjyD.js
+    live_asset_heading_present: true
+    live_asset_api_path_present: true
+    final_worker_version_id: 8b63d631-b81f-46b2-bc79-a99c376371a9
+    final_live_smoke_checks: 12
+    final_live_smoke_passed: 12
+    final_live_smoke_failed: 0
+known_risks:
+  - Billing finalization has multiple call sites and a very large billingCounter route; change only call sites proven necessary by tests.
+  - Existing commission money fields mix integer and real types; new calculations must consistently round to two-decimal BDT.
+  - Refund and payout reversal must not partially mutate financial state.
+notes:
+  - The original checkout contains unrelated uncommitted billing/refund/E2E work; never copy or stage those files here.

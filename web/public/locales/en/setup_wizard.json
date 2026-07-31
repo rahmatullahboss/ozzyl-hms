@@ -1,0 +1,60 @@
+{
+  "welcome": {
+    "title": "Welcome to HMS!",
+    "subtitle": "Complete these steps to get your hospital live on the marketplace"
+  },
+  "progress": {
+    "title": "Setup Progress"
+  },
+  "steps": {
+    "addDoctors": {
+      "title": "Add Your Doctors",
+      "description": "Add doctor profiles with their specialties, fees, and marketplace details.",
+      "button": "Add Doctor",
+      "noSpecialty": "No specialty",
+      "published": "Published",
+      "publish": "Publish"
+    },
+    "publishHospital": {
+      "title": "Publish Hospital to Marketplace",
+      "description": "Make your hospital discoverable to patients searching for care.",
+      "button": "Publish Hospital",
+      "alreadyPublished": "Already Published",
+      "descriptionLabel": "Description",
+      "specialtiesLabel": "Specialties",
+      "photosLabel": "Photos",
+      "locationLabel": "Location"
+    },
+    "done": {
+      "title": "You're All Set!",
+      "description": "Your hospital and doctors are now live on the marketplace.",
+      "goDashboard": "Go to Dashboard"
+    }
+  },
+  "modal": {
+    "addDoctor": "Add New Doctor",
+    "name": "Name *",
+    "namePlaceholder": "Dr. Name",
+    "specialty": "Specialty",
+    "specialtyPlaceholder": "e.g. Cardiology",
+    "fee": "Consultation Fee *",
+    "mobile": "Mobile",
+    "mobilePlaceholder": "+8801...",
+    "bmdc": "BMDC Reg No",
+    "bmdcPlaceholder": "Registration number",
+    "qualifications": "Qualifications",
+    "qualificationsPlaceholder": "MBBS, FCPS, etc.",
+    "languages": "Languages (comma-separated)",
+    "languagesPlaceholder": "Bangla, English",
+    "bio": "Public Bio",
+    "bioPlaceholder": "Short bio for marketplace...",
+    "publishImmediate": "Publish to marketplace immediately"
+  },
+  "toasts": {
+    "doctorAdded": "Doctor added successfully",
+    "doctorAddFailed": "Failed to add doctor",
+    "hospitalPublished": "Hospital published to marketplace",
+    "doctorPublished": "Doctor published",
+    "failed": "Failed"
+  }
+}

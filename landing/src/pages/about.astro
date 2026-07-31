@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FounderStory from '../components/FounderStory.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="আমাদের সম্পর্কে | Ozzyl Health"
+  description="Ozzyl Health এর গল্প, ভিশন এবং পেছনের মানুষদের সম্পর্কে জানুন।"
+>
+  <Navbar />
+  <div class="pt-24 pb-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-900 mb-4">আমাদের গল্প</h1>
+      <p class="text-lg text-slate-600">জানুন কেন এবং কীভাবে Ozzyl এর যাত্রা শুরু হলো</p>
+    </div>
+  </div>
+  
+  <FounderStory />
+  
+  <Footer />
+</Layout>

@@ -1,0 +1,87 @@
+{
+  "discountReview": {
+    "title": "ডিসকাউন্ট রিভিউ",
+    "subtitle": "উচ্চ ডিসকাউন্ট বিল, রেফারেন্স প্যাটার্ন এবং স্টাফ ডিসকাউন্ট কার্যক্রম মনিটর করুন।",
+    "date": "তারিখ",
+    "highDiscounts": "উচ্চ ডিসকাউন্ট",
+    "needsReview": "রিভিউ প্রয়োজন",
+    "missingRef": "রেফারেন্স নেই",
+    "totalDiscountAmount": "মোট ডিসকাউন্ট পরিমাণ",
+    "uniqueReferences": "ইউনিক রেফারেন্স",
+    "tabs": {
+      "overview": "ওভারভিউ",
+      "pending": "পেন্ডিং",
+      "approved": "অনুমোদিত",
+      "rejected": "বাতিল",
+      "high": "উচ্চ ডিসকাউন্ট",
+      "reference": "রেফারেন্স বিশ্লেষণ",
+      "staff": "স্টাফ বিশ্লেষণ"
+    },
+    "highDiscountBillsToday": "আজকের উচ্চ ডিসকাউন্ট বিল",
+    "discountBillsToday": "আজকের সব ডিসকাউন্ট বিল",
+    "noData": "কোনো ডাটা পাওয়া যায়নি",
+    "invoice": "ইনভয়েস",
+    "total": "মোট",
+    "discount": "ডিসকাউন্ট",
+    "discountPct": "ডিসকাউন্ট %",
+    "referredBy": "রেফার করেছেন",
+    "createdBy": "তৈরি করেছেন",
+    "time": "সময়",
+    "missing": "নেই",
+    "referenceAnalysis": "রেফারেন্স বিশ্লেষণ",
+    "noReferenceData": "কোনো রেফারেন্স ডাটা পাওয়া যায়নি",
+    "referredByCol": "রেফার করেছেন",
+    "totalDiscounts": "মোট ডিসকাউন্ট",
+    "totalAmount": "মোট পরিমাণ",
+    "avgDiscountPct": "গড় ডিসকাউন্ট %",
+    "risk": "ঝুঁকি",
+    "riskHigh": "উচ্চ",
+    "riskMedium": "মাঝারি",
+    "riskLow": "কম",
+    "staffAnalysis": "স্টাফ বিশ্লেষণ",
+    "noStaffData": "কোনো স্টাফ ডাটা পাওয়া যায়নি",
+    "staff": "স্টাফ",
+    "discountCount": "ডিসকাউন্ট সংখ্যা",
+    "highDiscountBills": "উচ্চ ডিসকাউন্ট বিল",
+    "highDiscountRequired": "নির্ধারিত সীমার বেশি ডিসকাউন্ট বিল অ্যাডমিন রিভিউ প্রয়োজন।",
+    "missingRefRow": "রেফারেন্স নেই",
+    "pendingHint": "অ্যাপ্রুভাল ওয়ার্কফ্লো যুক্ত হলে পেন্ডিং ডিসকাউন্ট রিকোয়েস্ট এখানে দেখা যাবে।",
+    "approvedHint": "অ্যাপ্রুভাল ওয়ার্কফ্লো যুক্ত হলে অনুমোদিত ডিসকাউন্ট রিকোয়েস্ট এখানে দেখা যাবে।",
+    "rejectedHint": "অ্যাপ্রুভাল ওয়ার্কফ্লো যুক্ত হলে বাতিল ডিসকাউন্ট রিকোয়েস্ট এখানে দেখা যাবে।",
+    "unknown": "অজানা"
+  },
+  "discountReferenceAnalytics": {
+    "loading": "লোড হচ্ছে...",
+    "title": "ডিসকাউন্ট রেফারেন্স বিশ্লেষণ",
+    "summary": {
+      "totalReferences": "মোট রেফারেন্স",
+      "totalStaff": "মোট স্টাফ",
+      "totalDiscountAmount": "মোট ডিসকাউন্ট পরিমাণ",
+      "highDiscounts": "উচ্চ ডিসকাউন্ট (>২০%)"
+    },
+    "tabs": {
+      "referenceWise": "রেফারেন্স অনুযায়ী",
+      "staffWise": "স্টাফ অনুযায়ী"
+    },
+    "empty": {
+      "reference": "কোনো রেফারেন্স ডাটা পাওয়া যায়নি",
+      "staff": "কোনো স্টাফ ডাটা পাওয়া যায়নি"
+    },
+    "table": {
+      "referenceName": "রেফারেন্সের নাম",
+      "type": "ধরন",
+      "totalDiscounts": "মোট ডিসকাউন্ট",
+      "discountAmount": "ডিসকাউন্ট পরিমাণ",
+      "patients": "রোগী",
+      "avgDiscount": "গড় ডিসকাউন্ট",
+      "highDiscount": "উচ্চ ডিসকাউন্ট",
+      "staffName": "স্টাফের নাম",
+      "role": "রোল"
+    },
+    "typeLabels": {
+      "doctor": "ডাক্তার",
+      "staff": "স্টাফ",
+      "external": "বাহিরের"
+    }
+  }
+}

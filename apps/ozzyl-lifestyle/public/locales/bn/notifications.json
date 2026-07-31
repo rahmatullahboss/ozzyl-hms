@@ -1,0 +1,15 @@
+{
+  "title": "বিজ্ঞপ্তি",
+  "markAllRead": "সব পড়া হিসেবে চিহ্নিত করুন",
+  "noNotifications": "নতুন কোনো বিজ্ঞপ্তি নেই",
+  "none": "কোনো বিজ্ঞপ্তি নেই",
+  "newAppointment": "নতুন অ্যাপয়েন্টমেন্ট",
+  "labReady": "ল্যাব রিপোর্ট প্রস্তুত",
+  "billDue": "বিল বকেয়া",
+  "all": "সব",
+  "unread": "অপঠিত",
+  "read": "পঠিত",
+  "loadMore": "আরো দেখুন",
+  "system": "সিস্টেম",
+  "messagesSent": "{{sent}} sent, {{failed}} failed"
+}

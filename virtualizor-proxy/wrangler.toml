@@ -1,0 +1,13 @@
+name = "virtualizor-proxy"
+main = "index.js"
+compatibility_date = "2026-05-25"
+account_id = "474078d5f990169d7dadf4e1df83214a"
+
+[vars]
+TARGET_ORIGIN = "http://163.227.239.240:4081"
+
+# We route this to a subdomain 'vps.online-bazar.top' so it doesn't conflict with your main domain.
+# If you want to use the main domain, change this to "online-bazar.top/*"
+routes = [
+  { pattern = "vps.online-bazar.top/*", zone_name = "online-bazar.top" }
+]

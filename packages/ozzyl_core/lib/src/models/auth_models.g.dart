@@ -1,0 +1,79 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'auth_models.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) =>
+    _LoginRequest(
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$LoginRequestToJson(_LoginRequest instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };
+
+_RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) =>
+    _RegisterRequest(
+      email: json['email'] as String,
+      password: json['password'] as String,
+      name: json['name'] as String,
+      phone: json['phone'] as String?,
+    );
+
+Map<String, dynamic> _$RegisterRequestToJson(_RegisterRequest instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'name': instance.name,
+      'phone': instance.phone,
+    };
+
+_AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) =>
+    _AuthResponse(
+      token: json['token'] as String,
+      user: AuthUser.fromJson(json['user'] as Map<String, dynamic>),
+      mfaRequired: json['mfaRequired'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$AuthResponseToJson(_AuthResponse instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'user': instance.user,
+      'mfaRequired': instance.mfaRequired,
+    };
+
+_AuthUser _$AuthUserFromJson(Map<String, dynamic> json) => _AuthUser(
+      id: json['id'] as String,
+      email: json['email'] as String,
+      name: json['name'] as String,
+      role: json['role'] as String,
+      phone: json['phone'] as String?,
+      tenantId: json['tenantId'] as String?,
+    );
+
+Map<String, dynamic> _$AuthUserToJson(_AuthUser instance) => <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'name': instance.name,
+      'role': instance.role,
+      'phone': instance.phone,
+      'tenantId': instance.tenantId,
+    };
+
+_MfaVerifyRequest _$MfaVerifyRequestFromJson(Map<String, dynamic> json) =>
+    _MfaVerifyRequest(
+      code: json['code'] as String,
+      tempToken: json['tempToken'] as String,
+    );
+
+Map<String, dynamic> _$MfaVerifyRequestToJson(_MfaVerifyRequest instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'tempToken': instance.tempToken,
+    };

@@ -1,0 +1,22 @@
+{
+  "ocrTextNotFound": "OCR could not extract text. Use a high-quality scan.",
+  "ocrDataExtractFailed": "OCR text found but shareholder data could not be extracted",
+  "ocrSuccess": "OCR successful — {{count}} shareholders found",
+  "ocrFailed": "OCR failed. Please try again.",
+  "pdfOnly": "Only PDF files are accepted",
+  "fileSizeExceeded": "File size too large (max {{maxSize}}MB)",
+  "fileEmpty": "The file is empty",
+  "noShareholderDataFound": "No shareholder data found in PDF",
+  "pdfReadError": "Error reading PDF",
+  "importSuccess": "{{count}} shareholders imported",
+  "importFailed": "{{count}} failed to import",
+  "importError": "Error importing",
+  "loadFailed": "Failed to load shareholders",
+  "updated": "Shareholder updated",
+  "added": "Shareholder added",
+  "operationFailed": "Operation failed",
+  "calculationFailed": "Failed to calculate",
+  "profitDistributed": "Profit distributed successfully!",
+  "distributionFailed": "Distribution failed",
+  "searchPlaceholder": "Search shareholder…"
+}

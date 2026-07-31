@@ -1,0 +1,29 @@
+{
+  "categories": "ক্যাটাগরি",
+  "noCategories": "কোনো ক্যাটাগরি পাওয়া যায়নি",
+  "noItemsInSubcategory": "এই সাবক্যাটাগরিতে কোনো আইটেম নেই",
+  "searchPatient": "রোগীর নাম বা কোড দিয়ে খুঁজুন…",
+  "newAssessment": "নতুন মূল্যায়ন",
+  "pastAssessments": "পূর্ববর্তী মূল্যায়ন",
+  "assessmentTitle": "মূল্যায়নের শিরোনাম",
+  "assessmentTitlePlaceholder": "যেমন: PHQ-9 ডিপ্রেশন স্ক্রিনিং",
+  "liveScore": "লাইভ স্কোর",
+  "selectSubcategoryHint": "বাম প্যানেল থেকে একটি সাবক্যাটাগরি নির্বাচন করুন মূল্যায়ন আইটেম লোড করতে",
+  "clinicalNotes": "ক্লিনিক্যাল নোট",
+  "clinicalNotesPlaceholder": "ঐচ্ছিক ক্লিনিক্যাল পর্যবেক্ষণ, সুপারিশ…",
+  "submitAssessment": "মূল্যায়ন জমা দিন",
+  "assessmentHistory": "মূল্যায়নের ইতিহাস",
+  "selectPatientHistory": "রোগীর মূল্যায়নের ইতিহাস দেখতে একটি রোগী নির্বাচন করুন",
+  "noPastAssessments": "এই রোগীর কোনো পূর্ববর্তী মূল্যায়ন নেই",
+  "toast": {
+    "loadCategoriesFailed": "ক্যাটাগরি লোড করতে ব্যর্থ",
+    "loadSubcategoriesFailed": "সাবক্যাটাগরি লোড করতে ব্যর্থ",
+    "loadItemsFailed": "মূল্যায়ন আইটেম লোড করতে ব্যর্থ",
+    "loadHistoryFailed": "মূল্যায়নের ইতিহাস লোড করতে ব্যর্থ",
+    "selectPatient": "আগে একটি রোগী নির্বাচন করুন",
+    "assessmentTitleRequired": "মূল্যায়নের শিরোনাম আবশ্যক",
+    "selectSubcategory": "মূল্যায়ন আইটেম লোড করতে একটি সাবক্যাটাগরি নির্বাচন করুন",
+    "assessmentSaved": "মূল্যায়ন সংরক্ষিত হয়েছে",
+    "saveAssessmentFailed": "মূল্যায়ন সংরক্ষণ করতে ব্যর্থ"
+  }
+}

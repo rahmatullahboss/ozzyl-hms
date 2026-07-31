@@ -1,0 +1,171 @@
+<h2>Nurse Station — Clinical Summary Mockup</h2>
+<p class="subtitle">Approach A: Vitals Hero Card design</p>
+
+<div class="mockup">
+  <div class="mockup-header">Clinical Summary — Vitals Hero Card</div>
+  <div class="mockup-body">
+
+    <!-- Patient Header Card -->
+    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin-bottom:16px; display:flex; gap:16px; align-items:center;">
+      <div style="width:56px;height:56px;background:#3b82f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:22px;font-weight:bold;">MK</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:16px;color:#1e293b;">Mohammad Karim</div>
+        <div style="font-size:12px;color:#64748b;">P-00001 · Ward A / Bed A-1 · Dr. Rahman</div>
+        <div style="font-size:11px;color:#94a3b8;margin-top:2px;">ADM-00001 · Admitted: 28 Apr 2026 · Acute Appendicitis</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:#94a3b8;">Status</div>
+        <div style="background:#dbeafe;color:#1d4ed8;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-top:2px;">Admitted</div>
+      </div>
+    </div>
+
+    <!-- Vitals Hero Section -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;">
+      <!-- BP Card -->
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+        <div style="font-size:10px;text-transform:uppercase;color:#94a3b8;letter-spacing:0.05em;margin-bottom:6px;">Blood Pressure</div>
+        <div style="font-size:24px;font-weight:700;color:#1e293b;font-family:monospace;">125<span style="font-size:14px;color:#64748b;">/</span><span style="font-size:14px;color:#64748b;">82</span></div>
+        <div style="font-size:10px;color:#64748b;margin-top:4px;">mmHg</div>
+        <div style="margin-top:6px;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;">
+          <div style="width:78%;height:100%;background:#3b82f6;border-radius:2px;"></div>
+        </div>
+        <div style="font-size:9px;color:#94a3b8;margin-top:3px;">Normal</div>
+      </div>
+      <!-- HR Card -->
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+        <div style="font-size:10px;text-transform:uppercase;color:#94a3b8;letter-spacing:0.05em;margin-bottom:6px;">Heart Rate</div>
+        <div style="font-size:24px;font-weight:700;color:#1e293b;font-family:monospace;">78</div>
+        <div style="font-size:10px;color:#64748b;margin-top:4px;">bpm</div>
+        <div style="margin-top:6px;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;">
+          <div style="width:65%;height:100%;background:#3b82f6;border-radius:2px;"></div>
+        </div>
+        <div style="font-size:9px;color:#94a3b8;margin-top:3px;">Normal</div>
+      </div>
+      <!-- Temp Card -->
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+        <div style="font-size:10px;text-transform:uppercase;color:#94a3b8;letter-spacing:0.05em;margin-bottom:6px;">Temperature</div>
+        <div style="font-size:24px;font-weight:700;color:#1e293b;font-family:monospace;">99.1°F</div>
+        <div style="font-size:10px;color:#64748b;margin-top:4px;">°F</div>
+        <div style="margin-top:6px;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;">
+          <div style="width:40%;height:100%;background:#f59e0b;border-radius:2px;"></div>
+        </div>
+        <div style="font-size:9px;color:#f59e0b;margin-top:3px;">Slightly High</div>
+      </div>
+      <!-- SpO2 Card -->
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+        <div style="font-size:10px;text-transform:uppercase;color:#94a3b8;letter-spacing:0.05em;margin-bottom:6px;">SpO₂</div>
+        <div style="font-size:24px;font-weight:700;color:#1e293b;font-family:monospace;">97<span style="font-size:14px;color:#64748b;">%</span></div>
+        <div style="font-size:10px;color:#64748b;margin-top:4px;">%</div>
+        <div style="margin-top:6px;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden;">
+          <div style="width:97%;height:100%;background:#10b981;border-radius:2px;"></div>
+        </div>
+        <div style="font-size:9px;color:#10b981;margin-top:3px;">Normal</div>
+      </div>
+    </div>
+
+    <!-- SpO2 Trend Line -->
+    <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+      <div style="font-size:11px;font-weight:600;color:#1e293b;margin-bottom:8px;">📊 SpO₂ Trend — Last 24h</div>
+      <div style="display:flex;align-items:flex-end;gap:6px;height:50px;">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:40px;width:100%;background:#10b981;border-radius:4px 4px 0 0;opacity:0.3;"></div>
+          <div style="font-size:9px;color:#94a3b8;">2h</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:48px;width:100%;background:#10b981;border-radius:4px 4px 0 0;opacity:0.4;"></div>
+          <div style="font-size:9px;color:#94a3b8;">4h</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:44px;width:100%;background:#10b981;border-radius:4px 4px 0 0;opacity:0.6;"></div>
+          <div style="font-size:9px;color:#94a3b8;">6h</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:50px;width:100%;background:#10b981;border-radius:4px 4px 0 0;opacity:0.7;"></div>
+          <div style="font-size:9px;color:#94a3b8;">8h</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:46px;width:100%;background:#10b981;border-radius:4px 4px 0 0;opacity:0.6;"></div>
+          <div style="font-size:9px;color:#94a3b8;">10h</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:49px;width:100%;background:#10b981;border-radius:4px 4px 0 0;opacity:0.8;"></div>
+          <div style="font-size:9px;color:#94a3b8;">12h</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="height:50px;width:100%;background:#10b981;border-radius:4px 4px 0 0;"></div>
+          <div style="font-size:9px;color:#94a3b8;">Now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Sections: Allergies / Medications / Labs / Diagnoses -->
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <button class="mock-button" style="background:#3b82f6;color:white;padding:8px 16px;font-size:12px;border-radius:8px;font-weight:600;">Allergies (2)</button>
+      <button class="mock-button" style="background:white;color:#64748b;border:1px solid #e2e8f0;padding:8px 16px;font-size:12px;border-radius:8px;">Medications</button>
+      <button class="mock-button" style="background:white;color:#64748b;border:1px solid #e2e8f0;padding:8px 16px;font-size:12px;border-radius:8px;">Labs</button>
+      <button class="mock-button" style="background:white;color:#64748b;border:1px solid #e2e8f0;padding:8px 16px;font-size:12px;border-radius:8px;">Diagnoses</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <!-- Allergy Card 1 -->
+      <div style="background:white;border:2px solid #ef4444;border-radius:12px;padding:14px;display:flex;align-items:flex-start;gap:10px;">
+        <div style="width:32px;height:32px;background:#fef2f2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">⚠️</div>
+        <div>
+          <div style="font-weight:600;font-size:13px;color:#1e293b;">Penicillin</div>
+          <div style="font-size:11px;color:#64748b;">Severe · Rash, swelling</div>
+          <div style="margin-top:6px;background:#fef2f2;border-radius:6px;padding:4px 8px;font-size:10px;color:#dc2626;font-weight:600;display:inline-block;">⚠️ CONFIRMED ALLERGY</div>
+        </div>
+      </div>
+      <!-- Allergy Card 2 -->
+      <div style="background:white;border:2px solid #f59e0b;border-radius:12px;padding:14px;display:flex;align-items:flex-start;gap:10px;">
+        <div style="width:32px;height:32px;background:#fffbeb;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">⚠️</div>
+        <div>
+          <div style="font-weight:600;font-size:13px;color:#1e293b;">Sulfonamides</div>
+          <div style="font-size:11px;color:#64748b;">Moderate · Hives</div>
+          <div style="margin-top:6px;background:#fffbeb;border-radius:6px;padding:4px 8px;font-size:10px;color:#d97706;font-weight:600;display:inline-block;">⚠️ DRUG ALLERGY</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medication Card -->
+    <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-top:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-weight:600;font-size:13px;color:#1e293b;">Metronidazole 500mg</div>
+        <div style="background:#dbeafe;color:#1d4ed8;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;">Active</div>
+      </div>
+      <div style="font-size:11px;color:#64748b;display:flex;gap:16px;">
+        <span>💉 IV</span><span>Every 8h</span><span>Next: 2:00 PM</span><span>Dr. Rahman</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p style="margin-top:14px;font-size:12px;color:#64748b;line-height:1.5;">
+  <strong>Three-Second Rule:</strong> Critical patient? Color-coded cards + large vitals numbers = instant recognition.<br>
+  <strong>Progressive disclosure:</strong> Tabbed sections keep the view clean while surfacing what's most urgent first.
+</p>
+
+<div class="options" style="margin-top:20px;">
+  <div class="option" data-choice="approved" onclick="toggleSelect(this)">
+    <div class="letter">✓</div>
+    <div class="content">
+      <h3>Looks good — go ahead</h3>
+      <p>Start implementing this design for the clinical-summary tab</p>
+    </div>
+  </div>
+  <div class="option" data-choice="modify" onclick="toggleSelect(this)">
+    <div class="letter">~</div>
+    <div class="content">
+      <h3>Modify this design</h3>
+      <p>I'd like to change something — I'll describe it below</p>
+    </div>
+  </div>
+  <div class="option" data-choice="different" onclick="toggleSelect(this)">
+    <div class="letter">✗</div>
+    <div class="content">
+      <h3>Try a different approach</h3>
+      <p>Show me Approach B (Timeline Flow) instead</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "checkpoint": "CDB-V1-050-PROTECTED-CLONE-MIGRATION-BACKFILL-AND-ROLLBACK-REHEARSAL-VERIFIED",
+  "status": "passed_local_sqlite_d1_equivalent_protected_clone",
+  "executionBinding": {
+    "branch": "program/cdb-main-continuous-20260725",
+    "repositoryCommit": "6ae413f077dc66a9007a9b2f4f3974b67b5d4a10",
+    "authorizationSha256": "685be83a7fd1da5f6eb1d0c849b2b0fc4f32c3903c827587b03dc8bacd14e9f5",
+    "sourceSnapshotSha256": "39f732586ac983d4c3601338b2cf3321ac36878c0966202cab0a402c652c9fc4",
+    "rollbackBackupSha256": "39f732586ac983d4c3601338b2cf3321ac36878c0966202cab0a402c652c9fc4",
+    "targetCloneSha256": "2b0f2a8bbf22c7c40e7e428efbc67ec3aa9b6b8c6608499b330c2c63559d5998",
+    "executionEvidenceSha256": "aa0dd08b3708673d523332f56d44655e1b44fe68305e7f872518a4c77c2710ff"
+  },
+  "scope": {
+    "tenantCount": 1,
+    "recordCount": 24,
+    "providerCount": 9,
+    "consumerCount": 12,
+    "sourceTableCount": 9
+  },
+  "migration": {
+    "startingLedgerCount": 497,
+    "authorizedMigrationCount": 19,
+    "appliedMigrationCount": 19,
+    "endingLedgerCount": 516
+  },
+  "backfill": {
+    "authorizedBackfillCount": 4,
+    "executedBackfillCount": 4,
+    "passedReconciliationCount": 4,
+    "secondPassNewBusinessRows": 0
+  },
+  "shadowComparison": {
+    "recordCount": 24,
+    "passedCount": 24,
+    "varianceCount": 0,
+    "providerErrorCount": 0,
+    "mappingAmbiguityCount": 0,
+    "crossTenantReferenceCount": 0,
+    "latencyBudgetBreachCount": 0
+  },
+  "smokeAndRollback": {
+    "smokeWorkflowCount": 4,
+    "receptionPassed": true,
+    "billingPassed": true,
+    "paymentPassed": true,
+    "commissionPassed": true,
+    "promotedProviderCount": 9,
+    "finalProvider": "legacy",
+    "legacyDisabledProviderFlagCount": 9
+  },
+  "integrity": {
+    "integrityCheck": "ok",
+    "foreignKeyViolations": 0,
+    "sourceSnapshotUnchanged": true,
+    "rollbackBackupUnchanged": true,
+    "targetDistinctFromSource": true
+  },
+  "recoveryEvidence": {
+    "failClosedAttemptCount": 3,
+    "successfulExactRestoreCount": 3,
+    "restoredLedgerCount": 497,
+    "restoredIntegrityCheck": "ok",
+    "restoredForeignKeyViolations": 0
+  },
+  "safety": {
+    "aggregateOnly": true,
+    "networkRequestPerformed": false,
+    "productionReadPerformed": false,
+    "productionMutationPerformed": false,
+    "productionProviderActivationPerformed": false,
+    "deploymentPerformed": false,
+    "trafficChanged": false,
+    "localSyncActivated": false,
+    "legacyRetirementPerformed": false,
+    "pushPerformed": false,
+    "cdbToMainIntegrationPerformed": false
+  },
+  "verification": {
+    "focusedTestFileCount": 13,
+    "focusedTestCount": 67,
+    "rootTypeScriptPassed": true,
+    "migrationManifestCount": 504,
+    "canonicalGovernancePassed": true,
+    "governedTableCount": 260,
+    "repositoryAccessWriterCount": 1034,
+    "repositoryAccessReaderCount": 2725,
+    "identityEpisodeReaderPairCount": 859,
+    "identityEpisodePathCount": 297,
+    "identityEpisodeTableCount": 63,
+    "identityEpisodeUnknownAssignments": 0
+  },
+  "nextCheckpoint": "CDB-V1-060-PRODUCTION-AUTHORIZATION-PACKAGE-PREPARATION"
+}

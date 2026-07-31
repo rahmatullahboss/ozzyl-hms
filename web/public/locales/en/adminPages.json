@@ -1,0 +1,786 @@
+{
+  "actionCenter": {
+    "eyebrow": "Action Center",
+    "navigationLabel": "Action Center",
+    "navigation": {
+      "overview": "Overview",
+      "approvals": "Approvals",
+      "exceptions": "Exceptions",
+      "collections": "Collections",
+      "tasks": "Tasks"
+    },
+    "loading": "Loading Action Center summary…",
+    "stale": "Counts are temporarily unavailable. Queue actions remain available.",
+    "capabilityUnavailable": "This workflow is not active yet.",
+    "overview": {
+      "title": "Action Center",
+      "subtitle": "Prioritize approvals, risks, receivables, and follow-ups from one operational workspace.",
+      "loadError": "The overview could not be refreshed. Queue navigation remains available.",
+      "metricsLabel": "Operational metrics",
+      "open": "open",
+      "reviewOnly": "Review only",
+      "notActive": "Not active",
+      "metrics": {
+        "pending": "Pending approvals",
+        "pendingDetail": "Decisions currently waiting for review",
+        "highPriority": "High priority",
+        "highPriorityDetail": "Financial or operational risk requiring attention",
+        "slaBreached": "SLA breached",
+        "slaBreachedDetail": "Approval items beyond their expected review window",
+        "receivables": "Open receivables",
+        "receivablesDetail": "Invoices with a positive outstanding balance",
+        "exposure": "Receivable exposure",
+        "exposureDetail": "Live outstanding amount across eligible bills",
+        "resolvedToday": "Resolved today",
+        "resolvedTodayDetail": "Approval decisions completed today"
+      },
+      "workstreamsTitle": "Operational workstreams",
+      "workstreamsSubtitle": "Open the right workspace without duplicating decision queues.",
+      "workstreams": {
+        "approvals": {
+          "title": "Approvals",
+          "description": "Review evidence, request information, approve, or reject auditable decisions.",
+          "action": "Review approvals"
+        },
+        "exceptions": {
+          "title": "Exceptions",
+          "activeDescription": "Acknowledge, assign, and resolve persistent operational exceptions.",
+          "previewDescription": "Alerts are available for review; acknowledgement workflow is not active yet.",
+          "action": "Review alerts"
+        },
+        "collections": {
+          "title": "Collections",
+          "activeDescription": "Manage contact, promises, disputes, escalation, and payment follow-up.",
+          "previewDescription": "Review live receivables now; collection case actions are not active yet.",
+          "action": "Review receivables"
+        },
+        "tasks": {
+          "title": "Tasks",
+          "activeDescription": "Manage assigned operational tasks and due dates.",
+          "previewDescription": "Task assignment workflow is not active yet.",
+          "action": "Open tasks"
+        }
+      },
+      "nextBestAction": {
+        "title": "Next best action",
+        "reviewPending": "Review oldest pending approval",
+        "description": "Start with the oldest decision or a high-priority item.",
+        "action": "Review oldest pending approval",
+        "clearTitle": "No approval decision is waiting right now.",
+        "clearDescription": "Use the workstream cards to review receivables or operational reports."
+      }
+    }
+  },
+  "pendingApprovals": {
+    "title": "Pending Approvals",
+    "reviewUx": {
+      "governanceReview": "Governance review",
+      "revision": "Revision {{revision}}",
+      "approvalProgress": "{{count}}/{{required}} approvals",
+      "currentUserApproved": "You approved this revision",
+      "firstApprovalRecorded": "First approval recorded",
+      "firstApprovalPending": "First approval pending",
+      "finalApprovalRecorded": "Final approval recorded",
+      "finalApprovalPending": "Final approval pending",
+      "approvalRecorded": "Approval recorded",
+      "approvalPending": "Approval pending",
+      "executedRefundTitle": "Refund completed — awaiting review",
+      "executedRefundDescription": "The financial refund is already recorded. Approval decisions provide post-facto governance review and will not pay the refund again.",
+      "actions": {
+        "approve": "Approve",
+        "recordFirst": "Record first approval",
+        "giveFinal": "Give final approval",
+        "retryExecution": "Retry execution",
+        "returnForCorrection": "Return for correction",
+        "reject": "Reject",
+        "rejectReverseRefund": "Reject & reverse refund",
+        "confirm": "Confirm {{action}}",
+        "cancel": "Cancel",
+        "saving": "Saving…"
+      },
+      "approvalNote": "Approval note",
+      "approvalNoteRequired": "Approval note (required)",
+      "approvalNoteOptional": "Approval note (optional)",
+      "approvalNotePlaceholderRequired": "Record the evidence reviewed and reason for approval.",
+      "approvalNotePlaceholderOptional": "Add an optional review note.",
+      "reviewOnlyExplanation": "This records a governance decision only. Executed financial actions are not repeated by approval.",
+      "dialog": {
+        "header": "Approval #{{id}} · Revision {{revision}}",
+        "description": "Review the consequences before confirming this controlled decision.",
+        "close": "Close decision dialog",
+        "closeBackdrop": "Close decision dialog backdrop",
+        "returnTitle": "Return for correction",
+        "rejectRefundTitle": "Reject & reverse refund",
+        "rejectTitle": "Reject request",
+        "currentApprovalSuperseded": "Current {{count}}/{{required}} approval will be superseded.",
+        "revisionReset": "Revision {{revision}} will restart at 0/{{required}}. Previous decisions remain visible in the audit history.",
+        "financialStateUnchangedTitle": "Financial state does not roll back on return.",
+        "financialStateUnchangedDescription": "The completed refund remains financially recorded while the requester supplies corrections for the next review revision.",
+        "correctionReason": "Correction reason",
+        "correctionReasonPlaceholder": "Explain exactly what must be corrected before review resumes.",
+        "requiredCorrections": "Required corrections or evidence",
+        "requiredCorrectionsPlaceholder": "One item per line, for example: Corrected receipt",
+        "requiredCorrectionsHelp": "These items will be shown to the requester as a structured correction checklist.",
+        "financialReversalTitle": "The refund will be financially reversed.",
+        "financialReversalDescription": "Invoice, credit note, commission and canonical records will be reconciled. Physical cash must be resolved separately below.",
+        "rejectionReason": "Rejection reason",
+        "rejectionReasonPlaceholder": "State the evidence and reason for rejecting this request.",
+        "cashResolution": "Physical cash resolution",
+        "openDispute": "Open cash-recovery dispute",
+        "openDisputeDescription": "Default and safest option. No second cash-out is created; the amount remains a tracked recovery receivable.",
+        "cashReturned": "Cash already returned",
+        "cashReturnedDescription": "Available only when the original source counter session is eligible to receive and verify the returned cash.",
+        "cashAcknowledgement": "I confirm the physical cash was received and verified at the eligible source counter.",
+        "terminalRejection": "This decision is terminal for the current request. The reason will remain in the audit history.",
+        "returnSubmit": "Return and start revision {{revision}}",
+        "rejectReverseSubmit": "Reject and reverse refund",
+        "rejectSubmit": "Reject request"
+      }
+    },
+    "summary": {
+      "totalPending": "Total Pending",
+      "highPriority": "High Priority",
+      "olderThan24h": "Older than 24h",
+      "slaBreached": "SLA Breached",
+      "dueSoon": "Due Soon",
+      "blocked": "Decision Blocked",
+      "cashHandover": "Cash Variance / Disputes",
+      "missingEvidence": "Missing Evidence",
+      "executionFailed": "Failed Execution",
+      "needsInfo": "Needs Info",
+      "todayApproved": "Today Approved"
+    },
+    "tabs": {
+      "all": "All",
+      "discount": "Discount",
+      "refund": "Refund",
+      "expense": "Expense",
+      "billCancel": "Bill Cancel",
+      "paymentVoid": "Payment Void",
+      "stockAdjustment": "Stock Adjustment",
+      "doctorPayout": "Doctor Payout",
+      "manualAdjustment": "Manual Adj"
+    },
+    "empty": "No pending approvals found",
+    "table": {
+      "requestId": "Request ID",
+      "type": "Type",
+      "requestedBy": "Requested By",
+      "department": "Department",
+      "amount": "Amount",
+      "reason": "Reason",
+      "submittedAt": "Submitted At",
+      "risk": "Risk",
+      "status": "Status"
+    },
+    "bulk": {
+      "approveSelected": "Approve Selected",
+      "rejectSelected": "Reject Selected",
+      "approveConfirm": "Approve all selected items?",
+      "rejectConfirm": "Reject all selected items?"
+    },
+    "toast": {
+      "approvalUpdated": "Approval updated",
+      "updateFailed": "Failed to update approval",
+      "approvedRequests": "Approved {{count}} request(s)",
+      "bulkResult": "{{succeeded}} succeeded, {{failed}} failed",
+      "bulkFailed": "Bulk review failed",
+      "convertedToCreditNote": "Bill has payments — credit note {{creditNoteNo}} created for review."
+    },
+    "typeLabels": {
+      "discount": "Discount",
+      "refund": "Refund",
+      "expense": "Expense",
+      "bill_cancellation": "Bill cancellation",
+      "payment_void": "Payment void",
+      "stock_adjustment": "Stock adjustment",
+      "doctor_payout": "Doctor payout",
+      "receivable_write_off": "Receivable write-off",
+      "manual_adjustment": "Manual adjustment"
+    },
+    "riskLabels": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "statusLabels": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "titleTodayApproved": "Today's Approved",
+    "backToPending": "Back to pending",
+    "filter": {
+      "activeHigh": "Showing only high-priority requests",
+      "activeStale": "Showing only requests older than 24 hours",
+      "clear": "Clear filter"
+    }
+  },
+  "alerts": {
+    "loading": "Loading exceptions…",
+    "title": "Alerts & Exceptions",
+    "subtitle": "Acknowledge, assign, investigate, snooze, resolve, or dismiss persistent operational exceptions.",
+    "refresh": "Refresh queue",
+    "close": "Close exception details",
+    "error": "The exception queue could not be loaded.",
+    "retry": "Try again",
+    "stale": "The latest refresh failed. Previously loaded cases remain available.",
+    "emptyTitle": "No exceptions match these filters",
+    "empty": "Change the filters or refresh after the next detector run.",
+    "openSource": "Open source",
+    "unassigned": "Unassigned",
+    "systemActor": "System",
+    "actionError": "The exception action could not be completed.",
+    "conflict": "This case changed after you opened it. Refresh before trying the action again.",
+    "refreshCase": "Refresh case",
+    "summary": {
+      "label": "Exception summary",
+      "total": "Total cases",
+      "totalAlerts": "Total alerts",
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "filters": {
+      "label": "Exception filters",
+      "status": "Status",
+      "severity": "Severity",
+      "type": "Rule type",
+      "assignee": "Assignee",
+      "search": "Search",
+      "searchPlaceholder": "Search title, source, or rule…",
+      "allSeverities": "All severities",
+      "allTypes": "All rule types",
+      "allAssignees": "All assignees",
+      "assignedToMe": "Assigned to me"
+    },
+    "severity": {
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "status": {
+      "all": "All statuses",
+      "active": "Active work",
+      "open": "Open",
+      "acknowledged": "Acknowledged",
+      "in_progress": "In progress",
+      "snoozed": "Snoozed",
+      "resolved": "Resolved",
+      "dismissed": "Dismissed"
+    },
+    "rules": {
+      "cash": { "stale_handover": "Stale cash handover" },
+      "billing": {
+        "high_discount": "High discount bill",
+        "missing_discount_reference": "Discount approver not recorded",
+        "same_day_cancellation": "Same-day bill cancellation"
+      },
+      "inventory": { "low_stock": "Low medicine stock" }
+    },
+    "table": {
+      "exception": "Exception",
+      "type": "Type",
+      "severity": "Severity",
+      "module": "Module",
+      "message": "Message",
+      "user": "User",
+      "time": "Time",
+      "status": "Status",
+      "assignee": "Assignee",
+      "age": "SLA age",
+      "updated": "Last updated",
+      "source": "Source"
+    },
+    "pagination": {
+      "summary": "Page {{page}} of {{totalPages}} · {{total}} cases",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "drawer": {
+      "eyebrow": "Exception case",
+      "loadingTitle": "Loading exception…",
+      "loading": "Loading exception details…",
+      "error": "Exception details could not be loaded.",
+      "actionsTitle": "Case actions",
+      "reopenTitle": "Reopen this case",
+      "timelineTitle": "Case timeline",
+      "timelineLoading": "Loading timeline…",
+      "timelineEmpty": "No timeline events are available yet."
+    },
+    "actions": {
+      "acknowledge": "Acknowledge",
+      "assignToMe": "Assign to me",
+      "start": "Start investigation",
+      "snooze": "Snooze",
+      "resolve": "Resolve case",
+      "dismiss": "Dismiss as false positive",
+      "reopen": "Reopen case"
+    },
+    "fields": {
+      "rule": "Rule",
+      "module": "Module",
+      "assignee": "Assignee",
+      "slaAge": "SLA age",
+      "firstDetected": "First detected",
+      "lastDetected": "Last detected",
+      "snoozedUntil": "Snooze until",
+      "resolutionCode": "Resolution code",
+      "resolutionNote": "Resolution note",
+      "dismissalReason": "Dismissal reason",
+      "reopenNote": "Reopen note"
+    },
+    "events": {
+      "created": "Case created",
+      "acknowledged": "Acknowledged",
+      "assigned": "Assigned",
+      "started": "Investigation started",
+      "snoozed": "Snoozed",
+      "resolved": "Resolved",
+      "auto_resolved": "Automatically resolved",
+      "dismissed": "Dismissed",
+      "reopened": "Reopened"
+    },
+    "tabs": {
+      "all": "All",
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "severityLabels": {
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "statusLabels": {
+      "open": "Open",
+      "closed": "Closed",
+      "resolved": "Resolved",
+      "acknowledged": "Acknowledged"
+    }
+  },
+  "tasks": {
+    "loading": "Loading tasks…",
+    "title": "Tasks & Follow-ups",
+    "subtitle": "Assign, prioritize, resolve, and audit operational follow-ups from one queue.",
+    "refresh": "Refresh",
+    "error": "Tasks could not be loaded. Try again.",
+    "retry": "Retry",
+    "emptyTitle": "No matching tasks",
+    "empty": "Change the view or filters, or return later when a follow-up is created.",
+    "conflict": "This task changed after you opened it. Refresh before taking another action.",
+    "actionError": "The task action failed. Review the details and try again.",
+    "views": {
+      "mine": "My tasks",
+      "team": "Team tasks",
+      "dueToday": "Due today",
+      "overdue": "Overdue",
+      "completed": "Completed"
+    },
+    "filters": {
+      "view": "Task views",
+      "priority": "Priority",
+      "allPriorities": "All priorities",
+      "sourceType": "Source",
+      "allSources": "All sources",
+      "search": "Search",
+      "searchPlaceholder": "Search task title or source"
+    },
+    "source": {
+      "exception": "Exception",
+      "collection": "Collection",
+      "manual": "Manual"
+    },
+    "table": {
+      "task": "Task",
+      "priority": "Priority",
+      "status": "Status",
+      "assignee": "Assignee",
+      "due": "Due",
+      "source": "Source"
+    },
+    "priorityLabels": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "statusLabels": {
+      "open": "Open",
+      "in_progress": "In progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "overdue": "Overdue"
+    },
+    "actions": {
+      "openSource": "Open source",
+      "assign": "Assign",
+      "start": "Start",
+      "reschedule": "Reschedule",
+      "complete": "Complete",
+      "cancel": "Cancel",
+      "close": "Close task details",
+      "closeDialog": "Close",
+      "saveAssignment": "Save assignment",
+      "startTask": "Start task",
+      "saveSchedule": "Save schedule",
+      "completeTask": "Complete task",
+      "cancelTask": "Cancel task",
+      "refreshTask": "Refresh task"
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "summary": "Page {{page}} of {{totalPages}}"
+    },
+    "drawer": {
+      "priority": "Priority",
+      "status": "Status",
+      "assignee": "Assignee",
+      "unassigned": "Unassigned",
+      "due": "Due",
+      "source": "Task details",
+      "created": "Created",
+      "updated": "Updated",
+      "completedBy": "Completed by",
+      "completionNote": "Completion note",
+      "actions": "Task actions",
+      "fields": {
+        "assignee": "Assignee",
+        "noteOptional": "Note (optional)",
+        "noteRequired": "Note (required)",
+        "dueAt": "New due date and time"
+      },
+      "dialog": {
+        "assignTitle": "Assign task",
+        "startTitle": "Start task",
+        "rescheduleTitle": "Reschedule task",
+        "completeTitle": "Complete task",
+        "cancelTitle": "Cancel task"
+      }
+    },
+    "timeline": {
+      "title": "Timeline",
+      "empty": "No task activity has been recorded.",
+      "system": "System",
+      "by": "By"
+    },
+    "event": {
+      "created": "Created",
+      "assigned": "Assigned",
+      "started": "Started",
+      "rescheduled": "Rescheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "source_relinked": "Source relinked",
+      "reopened": "Reopened",
+      "updated": "Updated"
+    }
+  },
+  "auditExplorer": {
+    "loading": "Loading...",
+    "title": "Audit Explorer",
+    "subtitle": "Complete audit trail of all system activities",
+    "filters": "Filters",
+    "filterPanel": {
+      "dateRange": "Date Range",
+      "user": "User",
+      "searchUser": "Search user...",
+      "role": "Role",
+      "allRoles": "All Roles",
+      "module": "Module",
+      "allModules": "All Modules",
+      "eventType": "Event Type",
+      "allEvents": "All Events",
+      "invoiceRecord": "Invoice / Record",
+      "search": "Search..."
+    },
+    "summary": {
+      "totalEvents": "Total Events",
+      "highSeverity": "High Severity",
+      "mediumSeverity": "Medium Severity",
+      "lowSeverity": "Low Severity"
+    },
+    "tabs": {
+      "all": "All",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "empty": "No audit events found",
+    "table": {
+      "time": "Time",
+      "user": "User",
+      "event": "Event",
+      "module": "Module",
+      "record": "Record",
+      "ip": "IP",
+      "severity": "Severity"
+    },
+    "severityLabels": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "diff": {
+      "before": "Before",
+      "after": "After"
+    }
+  },
+  "loginSessions": {
+    "title": "Login Sessions",
+    "activeSessions": "Active Sessions",
+    "todayLogins": "Today's Logins",
+    "uniqueUsers": "Unique Users",
+    "suspicious": "Suspicious",
+    "all": "All",
+    "active": "Active",
+    "expired": "Expired",
+    "noData": "No login sessions found",
+    "user": "User",
+    "device": "Device",
+    "ip": "IP",
+    "browser": "Browser",
+    "loginTime": "Login Time",
+    "lastActive": "Last Active",
+    "branch": "Branch",
+    "status": "Status",
+    "statusLabels": {
+      "active": "Active",
+      "suspicious": "Suspicious",
+      "expired": "Expired"
+    }
+  },
+  "financialAudit": {
+    "loading": "Loading...",
+    "title": "Financial Activity Audit",
+    "summary": {
+      "totalEvents": "Total Events",
+      "highSeverity": "High Severity",
+      "activeUsers": "Active Users",
+      "modulesAffected": "Modules Affected"
+    },
+    "tabs": {
+      "all": "All",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "empty": "No audit entries found",
+    "table": {
+      "time": "Time",
+      "user": "User",
+      "event": "Event",
+      "module": "Module",
+      "record": "Record",
+      "ip": "IP",
+      "severity": "Severity"
+    },
+    "severityLabels": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  },
+  "suspiciousActivities": {
+    "title": "Suspicious Activities",
+    "autoDetectionRules": "Auto Detection Rules",
+    "noData": "No suspicious activities found",
+    "summary": {
+      "totalAlerts": "Total Alerts",
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "resolved": "Resolved"
+    },
+    "tabs": {
+      "all": "All"
+    },
+    "rules": {
+      "highDiscount": "High discount approvals",
+      "unusualReference": "Unusual reference usage",
+      "refundSpike": "Refund spike detection",
+      "repeatedCancellations": "Repeated bill cancellations",
+      "cashShortage": "Cash shortage patterns",
+      "sharedPin": "Shared PIN or account behavior",
+      "nightExports": "Night-time export activity",
+      "stockManipulation": "Stock manipulation signals",
+      "bulkAccess": "Bulk patient record access"
+    },
+    "table": {
+      "rule": "Rule",
+      "description": "Description",
+      "severity": "Severity",
+      "user": "User",
+      "detected": "Detected",
+      "status": "Status"
+    },
+    "severityLabels": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "statusLabels": {
+      "open": "Open",
+      "investigating": "Investigating",
+      "resolved": "Resolved",
+      "dismissed": "Dismissed"
+    }
+  },
+  "exportHistory": {
+    "title": "Export History",
+    "totalExports": "Total Exports",
+    "today": "Today",
+    "uniqueUsers": "Unique Users",
+    "csv": "CSV",
+    "pdf": "PDF",
+    "all": "All",
+    "noData": "No export history found",
+    "time": "Time",
+    "user": "User",
+    "report": "Report",
+    "format": "Format",
+    "filters": "Filters",
+    "rows": "Rows",
+    "device": "Device",
+    "ip": "IP"
+  },
+  "discountReferenceAnalytics": {
+    "loading": "Loading...",
+    "title": "Discount Reference Analytics",
+    "summary": {
+      "totalReferences": "Total References",
+      "totalStaff": "Total Staff",
+      "totalDiscountAmount": "Total Discount Amount"
+    },
+    "empty": {
+      "reference": "No reference data found",
+      "staff": "No staff data found"
+    }
+  },
+  "dueReceivables": {
+    "loading": "Loading...",
+    "title": "Due & Receivables",
+    "summary": {
+      "totalDue": "Total Due",
+      "current": "0-7 Days",
+      "days30": "8-30 Days",
+      "days60": "31-60 Days",
+      "days90Plus": "60+ Days"
+    },
+    "empty": "No outstanding dues found"
+  },
+  "inventoryAlerts": {
+    "loading": "Loading...",
+    "title": "Inventory Alerts",
+    "summary": {
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock",
+      "expired": "Expired",
+      "expiring30": "Expiring in 30 Days",
+      "expiring90": "Expiring in 90 Days"
+    },
+    "empty": "No alerts found",
+    "tabs": {
+      "all": "All",
+      "low": "Low Stock",
+      "out": "Out of Stock",
+      "expiring": "Expiring Soon",
+      "expired": "Expired"
+    }
+  },
+  "approvalPolicies": {
+    "loading": "Loading...",
+    "title": "Approval Policies",
+    "empty": "No approval policies configured",
+    "statusLabels": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    }
+  },
+  "escalationRules": {
+    "loading": "Loading...",
+    "title": "Escalation Rules",
+    "subtitle": "Configure automatic notification escalation",
+    "actions": {
+      "addRule": "Add Rule"
+    },
+    "summary": {
+      "totalRules": "Total Rules",
+      "activeRules": "Active Rules",
+      "categories": "Categories"
+    },
+    "empty": "No escalation rules configured"
+  },
+  "notificationSettings": {
+    "loading": "Loading...",
+    "title": "Notification Settings",
+    "empty": "No notification rules configured",
+    "statusLabels": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    }
+  },
+  "discountRules": {
+    "loading": "Loading...",
+    "title": "Discount Rules",
+    "summary": {
+      "totalRules": "Total Rules",
+      "activeRules": "Active Rules",
+      "avgDiscountPct": "Avg Discount %"
+    },
+    "empty": "No discount rules configured",
+    "statusLabels": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    }
+  },
+  "patientRecordAccess": {
+    "loading": "Loading...",
+    "title": "Patient Record Access",
+    "subtitle": "Track who accessed which patient records",
+    "summary": {
+      "totalViews": "Total Views",
+      "uniquePatients": "Unique Patients",
+      "uniqueUsers": "Unique Users"
+    },
+    "empty": "No record access events found"
+  },
+  "collectionFollowup": {
+    "loading": "Loading...",
+    "title": "Collection Follow-up",
+    "empty": "No follow-up tasks found"
+  },
+  "stockOverview": {
+    "loading": "Loading...",
+    "title": "Stock Overview",
+    "empty": "No stock data found"
+  },
+  "stockMovement": {
+    "loading": "Loading...",
+    "title": "Stock Movements",
+    "empty": "No stock movements found"
+  },
+  "branchComparison": {
+    "loading": "Loading...",
+    "title": "Branch Comparison",
+    "empty": "No branch data found"
+  },
+  "financialReports": {
+    "loading": "Loading...",
+    "title": "Financial Reports",
+    "empty": "No financial data found"
+  },
+  "staffActivity": {
+    "loading": "Loading...",
+    "title": "Staff Activity",
+    "empty": "No activity records found"
+  },
+  "telemed": {
+    "loading": "Loading...",
+    "title": "Telemedicine Monitor",
+    "empty": "No telemedicine sessions found"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "create": {
+    "title": "Create Cross-Hospital Referral",
+    "subtitle": "Send a patient referral to another hospital",
+    "steps": {
+      "hospital": "Select Receiving Hospital",
+      "patient": "Select Patient",
+      "details": "Referral Details"
+    },
+    "placeholders": {
+      "searchHospital": "Search hospitals by name...",
+      "searchPatient": "Search patients by name or code...",
+      "reason": "e.g. Patient requires cardiac surgery not available at our facility...",
+      "clinicalNotes": "Relevant clinical history, current medications, allergies..."
+    },
+    "labels": {
+      "urgency": "Urgency",
+      "doctor": "Referring Doctor (optional)",
+      "reason": "Reason for Referral *",
+      "clinicalNotes": "Clinical Notes",
+      "attachedDocs": "Attached Documents",
+      "summary": "Referral Summary"
+    },
+    "actions": {
+      "addDoc": "Add Document",
+      "sending": "Sending...",
+      "send": "Send Referral",
+      "success": "Referral sent successfully",
+      "failed": "Failed to send referral"
+    },
+    "docTypes": {
+      "prescription": "Prescription",
+      "lab_report": "Lab Report",
+      "radiology_report": "Radiology",
+      "discharge_summary": "Discharge",
+      "clinical_note": "Clinical Note",
+      "other": "Other"
+    }
+  },
+  "queue": {
+    "title": "Cross-Hospital Referrals",
+    "subtitle": "Manage incoming and outgoing patient referrals",
+    "actions": {
+      "new": "New Referral",
+      "viewDetails": "View Details",
+      "accept": "Accept",
+      "decline": "Decline",
+      "complete": "Mark Completed",
+      "statusUpdated": "Referral status updated"
+    },
+    "table": {
+      "patient": "Patient",
+      "hospitalFrom": "From Hospital",
+      "hospitalTo": "To Hospital",
+      "doctor": "Doctor",
+      "urgency": "Urgency",
+      "status": "Status",
+      "date": "Date"
+    },
+    "modal": {
+      "referralId": "Referral #{{id}}",
+      "declineReason": "Decline Reason (optional):",
+      "declineTitle": "Decline Reason"
+    }
+  }
+}

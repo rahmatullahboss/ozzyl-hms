@@ -1,0 +1,64 @@
+{
+  "title": "কোয়ালিটি এবং KPI ড্যাশবোর্ড",
+  "subtitle": "মূল কার্যক্ষমতা সূচক এবং গুণমান মেট্রিক্স",
+  "filters": {
+    "to": "থেকে"
+  },
+  "errors": {
+    "loadFailed": "KPI তথ্য লোড করতে ব্যর্থ হয়েছে"
+  },
+  "cards": {
+    "alos": {
+      "title": "গড় অবস্থানকাল",
+      "unit": "দিন"
+    },
+    "bedOccupancy": {
+      "title": "বেড অকুপেন্সি",
+      "unit": "%"
+    },
+    "readmissionRate": {
+      "title": "পুনরায় ভর্তির হার",
+      "unit": "%"
+    },
+    "opdVolume": {
+      "title": "OPD ভলিউম"
+    },
+    "ipdVolume": {
+      "title": "IPD ভলিউম"
+    },
+    "labTat": {
+      "title": "ল্যাব TAT",
+      "unit": "মিনিট"
+    },
+    "lowStock": {
+      "title": "লো স্টক অ্যালার্ট"
+    },
+    "emergencyVolume": {
+      "title": "ইমার্জেন্সি ভলিউম"
+    },
+    "staffOnDuty": {
+      "title": "ডিউটিতে থাকা স্টাফ"
+    },
+    "vsLastPeriod": "আগের সময়ের তুলনায়"
+  },
+  "revenue": {
+    "title": "রাজস্ব ওভারভিউ",
+    "collectedOfBilled": "{{billed}} বিলের মধ্যে {{collected}} সংগৃহীত",
+    "collectionRate": "সংগ্রহের হার",
+    "billed": "বিলকৃত",
+    "collected": "সংগৃহীত",
+    "outstanding": "বকেয়া"
+  },
+  "trends": {
+    "title": "প্রবণতা বিশ্লেষণ",
+    "noData": "নির্বাচিত সময়ের জন্য কোন প্রবণতা তথ্য নেই।",
+    "table": {
+      "date": "তারিখ",
+      "alos": "ALOS",
+      "bedOcc": "বেড অকুপেন্সি %",
+      "readmit": "পুনরায় ভর্তি %",
+      "opd": "ওপিডি (OPD)",
+      "ipd": "আইপিডি (IPD)"
+    }
+  }
+}

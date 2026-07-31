@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#c6e9ec",
+                    "on-background": "#1a1c1d",
+                    "surface-container-highest": "#e2e2e4",
+                    "secondary-container": "#c6e9ec",
+                    "on-surface": "#1a1c1d",
+                    "inverse-surface": "#2f3132",
+                    "surface-tint": "#006970",
+                    "on-primary-container": "#d0fbff",
+                    "tertiary-container": "#a05f2e",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdcc6",
+                    "surface-dim": "#d9dadc",
+                    "secondary-fixed-dim": "#abcdd0",
+                    "primary-fixed-dim": "#7ad5dd",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#446467",
+                    "on-tertiary-container": "#fff1e9",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#301400",
+                    "on-surface-variant": "#3e494a",
+                    "on-secondary-fixed": "#002022",
+                    "outline-variant": "#bdc9ca",
+                    "surface-variant": "#e2e2e4",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#96f1fa",
+                    "on-secondary-fixed-variant": "#2c4c4f",
+                    "inverse-primary": "#7ad5dd",
+                    "inverse-on-surface": "#f0f0f2",
+                    "tertiary": "#834718",
+                    "on-primary-fixed": "#002022",
+                    "primary": "#006067",
+                    "surface-container-high": "#e8e8ea",
+                    "surface-container-low": "#f3f3f5",
+                    "primary-container": "#007b83",
+                    "background": "#f9f9fb",
+                    "surface-bright": "#f9f9fb",
+                    "outline": "#6e797a",
+                    "on-secondary-container": "#4a6a6d",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface": "#f9f9fb",
+                    "surface-container": "#edeef0",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#6f3808"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "xxl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden">
+<!-- SideNavBar Integration -->
+<nav class="h-screen w-64 fixed left-0 top-0 border-r-0 flex flex-col h-full py-8 px-4 bg-[#f9f9fb] border-none shadow-[inset_-1px_0_0_rgba(0,0,0,0.05)] z-50">
+<div class="mb-12 px-2">
+<div class="text-xl font-black text-[#006067] font-['Manrope'] tracking-tight">Clinical Sanctuary</div>
+<div class="text-xs text-on-surface-variant font-medium mt-1">Premium Concierge</div>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Active Tab: Overview (Matches Hospital Services Intent) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#006067] font-bold border-r-4 border-[#006067] hover:bg-[#edeef0] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Manrope']">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#3e494a] font-medium hover:bg-[#edeef0] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-['Manrope']">Services</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#3e494a] font-medium hover:bg-[#edeef0] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="local_hospital">local_hospital</span>
+<span class="font-['Manrope']">Hospitals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#3e494a] font-medium hover:bg-[#edeef0] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Manrope']">Profile</span>
+</a>
+</div>
+<div class="mt-auto p-4 bg-surface-container rounded-xxl flex items-center gap-3">
+<img alt="Provider Profile" class="w-10 h-10 rounded-full object-cover" data-alt="close-up portrait of a professional healthcare provider in clean clinical attire smiling warmly against a soft blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFJAOtLZXAQQO5_4aMyZ1yqLSYGUclwezHO2nKUyxqqKHbTabDQv7Ydx0ogR3DhCElgNULYa2zzyPwtx_Dc_quUPyjBmjREObKtdZE5peVpmxjoudmibMCF7xSHhVWR3aU0gPykI-AGV9pPp-_fh_3GXEtg21C5eK4KSHYuo2QD8Qa7mXf_cUpAVje4oI8XwYNWNMzxAF_sOMgrBDQ96vjNXR8XYXyXEP6NVRZCHAiFgoHciT3_MsnwKs_Pl3p6a4EiSmNCsAFwqQ"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-on-surface truncate">Dr. Julian Vance</p>
+<p class="text-[10px] text-on-surface-variant">Chief Concierge</p>
+</div>
+</div>
+</nav>
+<!-- TopAppBar Integration -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-white/80 backdrop-blur-xl flex justify-between items-center px-12 w-full z-40">
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="bg-surface-container border-none rounded-full py-2 pl-10 pr-6 text-sm w-80 focus:ring-2 focus:ring-[#007b83]/20 transition-all outline-none" placeholder="Search medical records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-[#007b83] transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-[#007b83] transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<span class="text-[#006067] font-['Inter'] text-sm font-bold">Hospital Services</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-12 pb-12">
+<!-- Hero Section -->
+<section class="mb-12 mt-4">
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Hospital Services</h1>
+<p class="text-on-surface-variant text-lg font-light max-w-2xl leading-relaxed">
+                Experience prioritized clinical care and seamless coordination within our global network of premier medical sanctuaries.
+            </p>
+</section>
+<!-- Linked Hospitals Section (Horizontal Cards) -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold tracking-tight">Partner Sanctuaries</h2>
+<button class="text-sm font-semibold text-primary flex items-center gap-2 hover:opacity-70 transition-opacity">
+                    View Network <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
+<!-- Hospital Card 1 -->
+<div class="min-w-[380px] bg-surface-container-lowest rounded-xxl p-2 shadow-[0_12px_40px_rgba(0,96,103,0.06)] group cursor-pointer transition-all hover:scale-[1.01]">
+<div class="relative h-48 w-full rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="ultra-modern glass hospital exterior at dusk with architectural lighting and serene landscape gardens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVkYuC8B1zmYCkNycAE5uUCAg7w71-vJsCrVUhFhdDN8g8gBtmH0GbcoAEL59O1cST_Yl9DgulUOTYETcFMFZNTNMSGszI1xjVZC3siDpIFb0FLp5wSb79Za19MRJCrykqsU-hQfyqwpwIIUDloU4jwCEwttoY1DS9NIshzBjzqSFBbMvXLtXFxuM_rowpzS1Or9E3P9IOSzC9qGx2dgn1j9e_LOncsyPOymgJs_PVbUmYTVjc0po8sEwBNx3qaGugx09XE1miwuE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4 text-white">
+<span class="text-[10px] uppercase tracking-widest font-bold px-2 py-1 bg-primary/80 backdrop-blur rounded-sm">Featured</span>
+</div>
+</div>
+<div class="px-4 pb-4">
+<h3 class="text-xl font-bold text-on-surface mb-1">St. Jude Medical Center</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                            Upper East Side, New York
+                        </p>
+</div>
+</div>
+<!-- Hospital Card 2 -->
+<div class="min-w-[380px] bg-surface-container-lowest rounded-xxl p-2 shadow-[0_12px_40px_rgba(0,96,103,0.06)] group cursor-pointer transition-all hover:scale-[1.01]">
+<div class="relative h-48 w-full rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="clean minimalist luxury hospital lobby with marble floors and soft diffuse natural light from large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgO3KfSQ2S5k7WOLY-Jr3FITOt_IbH3zmvR1PiNOrS4c1O421boHZQRNrd9G_SlwBixlMQr4lvTYFZSQg7T9OgYSQmn6SVr2dnstA0ffDHkJ1ovoqH-IdUW78SqbbMeVE3Gu37YUHNdvmu91bf7w_CENY5OF-wvLyGV_IbnYMUwWGwVD7TPpBsrA59tC9sBYkivTtsLBxtMAUuiBuFbF_a4qjDtvGQ2PLSUJw5MEkGXi6OndnK6KaVDRrKSN1xY1iLhSsNwFMfYfE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<div class="px-4 pb-4">
+<h3 class="text-xl font-bold text-on-surface mb-1">Pacific Wellness Institute</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                            Santa Monica, California
+                        </p>
+</div>
+</div>
+<!-- Hospital Card 3 -->
+<div class="min-w-[380px] bg-surface-container-lowest rounded-xxl p-2 shadow-[0_12px_40px_rgba(0,96,103,0.06)] group cursor-pointer transition-all hover:scale-[1.01]">
+<div class="relative h-48 w-full rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="architectural view of a modern clinic corridor with soft teal accents and warm wood paneling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6pHaSvcqJ-CSxiCYbwpQxFhJkuj_f7NFd5GyV7JxNNr162bFPJQLvOckz6_OyswFH--jX6dfZLLBC05biUD0NuM4a0RdX1_iL2Zi6ZFiizO9SgyuMuEsQdf6THjYJHwdDpDwXsEIxRCsamSfyqr5pgjcj7aKJtfdyQjiSWX64pq1vd0Rc8CNVz5_8tpZMcNEAiTbJINV_jdVtKLWeO0Ce7ntgNn5PB6lbaB8SMNzZc7jM_9myTIb1OD9RL_HEWcdvDarpKuEOCuM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<div class="px-4 pb-4">
+<h3 class="text-xl font-bold text-on-surface mb-1">The London Clinic</h3>
+<p class="text-on-surface-variant text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                            Marylebone, London
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Large Action Cards Grid (Main Focus) -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold tracking-tight mb-8">Clinical Management</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Action 1: Book Appointment -->
+<div class="group bg-surface-container-lowest p-8 rounded-xxl shadow-[0_12px_40px_rgba(0,96,103,0.06)] flex flex-col justify-between h-[320px] transition-all hover:translate-y-[-4px]">
+<div>
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3 leading-tight">Book Appointment</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Schedule priority visits with world-renowned specialists and primary care providers.</p>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-[#006067] to-[#007b83] text-white rounded-xl font-bold tracking-tight flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
+                        Schedule Now <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+<!-- Action 2: Prescription Refill -->
+<div class="group bg-surface-container-lowest p-8 rounded-xxl shadow-[0_12px_40px_rgba(0,96,103,0.06)] flex flex-col justify-between h-[320px] transition-all hover:translate-y-[-4px]">
+<div>
+<div class="w-14 h-14 rounded-xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="medication">medication</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3 leading-tight">Request Refill</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Swift renewal of your essential prescriptions delivered to your preferred apothecary.</p>
+</div>
+<button class="w-full py-4 bg-transparent border-2 border-outline-variant/30 text-primary rounded-xl font-bold tracking-tight hover:bg-surface-container transition-all">
+                        Review Records
+                    </button>
+</div>
+<!-- Action 3: Lab Orders -->
+<div class="group bg-surface-container-lowest p-8 rounded-xxl shadow-[0_12px_40px_rgba(0,96,103,0.06)] flex flex-col justify-between h-[320px] transition-all hover:translate-y-[-4px]">
+<div>
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="biotech">biotech</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3 leading-tight">View Lab Orders</h3>
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold rounded uppercase tracking-wider">2 Pending Results</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Access comprehensive diagnostic data and pathology reports in real-time.</p>
+</div>
+<button class="w-full py-4 bg-transparent border-2 border-outline-variant/30 text-primary rounded-xl font-bold tracking-tight hover:bg-surface-container transition-all">
+                        Open Reports
+                    </button>
+</div>
+<!-- Action 4: Message Doctor -->
+<div class="group bg-surface-container-lowest p-8 rounded-xxl shadow-[0_12px_40px_rgba(0,96,103,0.06)] flex flex-col justify-between h-[320px] transition-all hover:translate-y-[-4px]">
+<div>
+<div class="w-14 h-14 rounded-xl bg-secondary-container/30 flex items-center justify-center text-on-secondary-container mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="forum">forum</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3 leading-tight">Message Doctor</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Direct, secure communication with your dedicated concierge medical team.</p>
+</div>
+<button class="w-full py-4 bg-primary text-white rounded-xl font-bold tracking-tight flex items-center justify-center gap-2 hover:bg-primary-container transition-all">
+                        Start Chat <span class="material-symbols-outlined text-base">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Section: Recent Vital Statistics (Bento/Card Hybrid) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xxl p-10 shadow-[0_12px_40px_rgba(0,96,103,0.04)]">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold tracking-tight">Recent Activity Timeline</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">more_horiz</span>
+</div>
+<div class="relative space-y-12">
+<!-- Timeline Thread -->
+<div class="absolute left-[18px] top-2 bottom-2 w-1 bg-surface-container rounded-full"></div>
+<div class="relative flex gap-6">
+<div class="z-10 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white ring-8 ring-white">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Annual Physical Completed</p>
+<p class="text-xs text-on-surface-variant">St. Jude Medical Center • 2 days ago</p>
+<div class="mt-3 p-4 bg-surface-container-low rounded-xl text-sm italic text-on-surface-variant border-l-4 border-primary/20">
+                                "Overall health remains excellent. Vitamin D supplementation advised." — Dr. Vance
+                            </div>
+</div>
+</div>
+<div class="relative flex gap-6">
+<div class="z-10 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white ring-8 ring-white">
+<span class="material-symbols-outlined text-xl">medication</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Prescription Refilled</p>
+<p class="text-xs text-on-surface-variant">Central Apothecary • 1 week ago</p>
+</div>
+</div>
+<div class="relative flex gap-6">
+<div class="z-10 w-10 h-10 rounded-full bg-outline-variant flex items-center justify-center text-white ring-8 ring-white">
+<span class="material-symbols-outlined text-xl">science</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Lab Order Created</p>
+<p class="text-xs text-on-surface-variant">Lipid Profile &amp; Glucose • 1 week ago</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<!-- Status Card: Vitality Chip -->
+<div class="bg-surface-container-lowest rounded-xxl p-8 shadow-[0_12px_40px_rgba(0,96,103,0.04)]">
+<h3 class="text-lg font-bold mb-6">Patient Vitality</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Heart Rate</span>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">72 BPM</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Blood Pressure</span>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">120/80</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Oxygen Saturation</span>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">98%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Glucose Level</span>
+<span class="px-3 py-1 bg-error-container text-on-error-container text-xs font-bold rounded-full">105 mg/dL</span>
+</div>
+</div>
+</div>
+<!-- Promotional Premium Card -->
+<div class="relative overflow-hidden bg-primary p-8 rounded-xxl text-white group cursor-pointer">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary-container rounded-full opacity-20 transition-transform group-hover:scale-110"></div>
+<div class="relative z-10">
+<span class="material-symbols-outlined mb-4 opacity-80" data-weight="fill">verified_user</span>
+<h4 class="text-xl font-bold mb-2">Elevate Your Care</h4>
+<p class="text-xs opacity-70 mb-6 leading-relaxed">Upgrade to Elite Concierge for 24/7 home visits and international transport services.</p>
+<button class="text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

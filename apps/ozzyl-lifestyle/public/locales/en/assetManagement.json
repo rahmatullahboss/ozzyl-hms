@@ -1,0 +1,22 @@
+{
+  "title": "Asset Management",
+  "subtitle": "Equipment tracking, AMC contracts & maintenance",
+  "tabs": {
+    "assets": "Assets",
+    "amc": "AMC Contracts",
+    "maintenance": "Maintenance",
+    "allocations": "Allocations"
+  },
+  "toast": {
+    "assetRegistered": "Asset registered",
+    "registerAssetFailed": "Failed to register asset",
+    "amcCreated": "AMC contract created",
+    "createAmcFailed": "Failed to create contract",
+    "maintenanceLogged": "Maintenance logged",
+    "logMaintenanceFailed": "Failed to log maintenance",
+    "assetAllocated": "Asset allocated",
+    "allocFailed": "Failed",
+    "assetReturned": "Asset returned",
+    "returnAssetFailed": "Failed"
+  }
+}

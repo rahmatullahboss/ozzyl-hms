@@ -1,0 +1,62 @@
+{
+  "center": {
+    "kicker": "Reception",
+    "title": "Reception Print Center",
+    "subtitle": "Generate single documents (vouchers, slips, delivery slip) and statements for your shift. Counter is locked to your active counter.",
+    "singleDocs": "Single Documents",
+    "statements": "Statements & Reports",
+    "dateFrom": "Date From",
+    "dateTo": "Date To",
+    "activeCounter": "Active Counter",
+    "refresh": "Refresh",
+    "generate": "Generate",
+    "selected": "Selected:",
+    "scope": "Scope:",
+    "context": "Counter / shift context: {{counter}} · Cashier: {{cashier}}.",
+    "auditNote": "All prints are audit-logged with your user ID and timestamp."
+  },
+  "status": {
+    "draft": "DRAFT",
+    "submitted": "SUBMITTED",
+    "pending": "PENDING APPROVAL",
+    "approved": "APPROVED",
+    "cancelled": "CANCELLED",
+    "paid": "PAID",
+    "partial": "PARTIAL",
+    "due": "DUE"
+  },
+  "watermark": {
+    "duplicate": "DUPLICATE COPY",
+    "draft": "DRAFT",
+    "void": "VOID",
+    "cancelled": "CANCELLED",
+    "pending": "PENDING APPROVAL"
+  },
+  "slip": {
+    "opening": "Shift Opening Slip",
+    "denomination": "Cash Denomination Sheet",
+    "handover": "Cash Handover Slip",
+    "delivery": "Report Delivery Slip"
+  },
+  "voucher": {
+    "expense": "Expense Voucher",
+    "refund": "Refund Voucher",
+    "discount": "Discount Voucher"
+  },
+  "receipt": {
+    "duplicate": "Duplicate Receipt",
+    "dueCollection": "Due Collection Receipt"
+  },
+  "ids": {
+    "billId": "BILL ID",
+    "orderId": "ORDER ID",
+    "expenseId": "EXPENSE ID",
+    "handoverId": "HANDOVER ID"
+  },
+  "placeholders": {
+    "billId": "Enter bill ID",
+    "orderId": "Enter lab order ID",
+    "expenseId": "Enter expense ID",
+    "handoverId": "Enter handover ID"
+  }
+}

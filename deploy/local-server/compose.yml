@@ -1,0 +1,92 @@
+name: hms-local-server
+
+x-hms-app-build: &hms-app-build
+  context: ../..
+  dockerfile: deploy/local-server/Dockerfile
+
+services:
+  hms-app:
+    build: *hms-app-build
+    image: ${HMS_LOCAL_IMAGE:-hms-local-server}:${HMS_LOCAL_IMAGE_TAG:-local}
+    restart: unless-stopped
+    environment:
+      HMS_LOCAL_IP: 0.0.0.0
+      HMS_LOCAL_PORT: 8787
+      HMS_LOCAL_STATE_DIR: /data/hms/state
+      HMS_LOCAL_UPLOADS_DIR: /data/hms/uploads
+      HMS_LOCAL_VARS_FILE: /data/hms/secrets/.dev.vars.local_server
+      HMS_LOCAL_APPLY_VERSIONED_MIGRATIONS: ${HMS_LOCAL_APPLY_VERSIONED_MIGRATIONS:-0}
+    volumes:
+      - /data/hms:/data/hms
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8787/api/local-server/status >/dev/null"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 45s
+    networks:
+      - hms-lan
+
+  hms-sync:
+    build: *hms-app-build
+    image: ${HMS_LOCAL_IMAGE:-hms-local-server}:${HMS_LOCAL_IMAGE_TAG:-local}
+    restart: unless-stopped
+    command: ["bash", "scripts/local-server/sync-worker.sh"]
+    environment:
+      HMS_LOCAL_STATUS_URL: http://hms-app:8787/api/local-server/status
+      HMS_LOCAL_SYNC_INTERVAL_SECONDS: ${HMS_LOCAL_SYNC_INTERVAL_SECONDS:-300}
+      HMS_LOCAL_SYNC_CONNECT_TIMEOUT_SECONDS: ${HMS_LOCAL_SYNC_CONNECT_TIMEOUT_SECONDS:-10}
+      HMS_LOCAL_SYNC_REQUEST_TIMEOUT_SECONDS: ${HMS_LOCAL_SYNC_REQUEST_TIMEOUT_SECONDS:-60}
+      HMS_LOCAL_SYNC_STARTUP_JITTER_SECONDS: ${HMS_LOCAL_SYNC_STARTUP_JITTER_SECONDS:-30}
+      HMS_LOCAL_STATE_DIR: /data/hms/state
+      HMS_LOCAL_VARS_FILE: /data/hms/secrets/.dev.vars.local_server
+    volumes:
+      - /data/hms:/data/hms
+    depends_on:
+      hms-app:
+        condition: service_healthy
+    networks:
+      - hms-lan
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /data/hms/caddy/data:/data
+      - /data/hms/caddy/config:/config
+    depends_on:
+      hms-app:
+        condition: service_healthy
+    networks:
+      - hms-lan
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - /data/hms/uptime-kuma:/app/data
+    networks:
+      - hms-lan
+
+  glances:
+    image: nicolargo/glances:latest-full
+    restart: unless-stopped
+    pid: host
+    ports:
+      - "61208:61208"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/os-release:/etc/os-release:ro
+    environment:
+      - GLANCES_OPT=-w
+    networks:
+      - hms-lan
+
+networks:
+  hms-lan:
+    driver: bridge

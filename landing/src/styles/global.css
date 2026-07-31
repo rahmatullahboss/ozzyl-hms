@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ── Theme (replaces tailwind.config.mjs) ─────────────────────────── */
+@theme {
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+
+  --font-sans: 'Figtree', system-ui, sans-serif;
+  --font-bengali: 'Noto Sans Bengali', sans-serif;
+}
+
+/* ── Self-hosted fonts ────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/figtree-var.woff2') format('woff2');
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  src: url('/fonts/noto-sans-bengali-var.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --surface-glass: rgba(255, 255, 255, 0.76);
+  --surface-line: rgba(148, 163, 184, 0.18);
+  --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.glass-panel {
+  background: var(--surface-glass);
+  border: 1px solid var(--surface-line);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+}
+
+.mesh-bg {
+  position: relative;
+}
+
+.mesh-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(20, 184, 166, 0.16), transparent 22%),
+    radial-gradient(circle at 85% 18%, rgba(59, 130, 246, 0.10), transparent 22%),
+    radial-gradient(circle at 80% 85%, rgba(16, 185, 129, 0.12), transparent 24%);
+  pointer-events: none;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.section-kicker::before {
+  content: '';
+  width: 2.75rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.hero-orb {
+  animation: floatOrb 9s ease-in-out infinite;
+}
+
+.hero-card-lift {
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+.hero-card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
+}
+
+.reveal-0,
+.reveal-1,
+.reveal-2,
+.reveal-3 {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: revealUp 700ms ease forwards;
+}
+
+.reveal-1 { animation-delay: 120ms; }
+.reveal-2 { animation-delay: 240ms; }
+.reveal-3 { animation-delay: 360ms; }
+
+.ambient-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.ambient-shine::after {
+  content: '';
+  position: absolute;
+  inset: -120% auto auto -30%;
+  width: 50%;
+  height: 240%;
+  transform: rotate(16deg);
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.26), transparent);
+  transition: transform 700ms ease;
+  pointer-events: none;
+}
+
+.ambient-shine:hover::after {
+  transform: translateX(220%) rotate(16deg);
+}
+
+.grid-noise {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-orb,
+  .reveal-0,
+  .reveal-1,
+  .reveal-2,
+  .reveal-3 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-card-lift:hover {
+    transform: none;
+  }
+
+  .ambient-shine::after {
+    display: none;
+  }
+}
+
+/* ── Interactive Overhauls (Bento, Scroll Reveals, Glows) ─────────── */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay modifiers for staggered entrances */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Bento hover glow effect */
+.bento-glow-card {
+  position: relative;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.bento-glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 184, 166, 0.4),
+    rgba(20, 184, 166, 0.05) 40%,
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bento-glow-card:hover::before {
+  opacity: 1;
+}
+
+.icon-box-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bento-glow-card:hover .icon-box-lift {
+  transform: scale(1.1) translateY(-2px);
+}
+

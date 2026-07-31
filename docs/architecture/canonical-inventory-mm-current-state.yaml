@@ -1,0 +1,260 @@
+schema_version: 2
+program: hms_post_canonical_inventory_modular_monolith_release
+observed_at: '2026-07-31T18:52:00+06:00'
+observation_scope: verified_git_program_evidence_and_cdb_v1_071b_production_release
+production_database_queried: true
+production_mutation: true
+production_mutation_scope: exact_cdb_v1_071b_migration_reconciliation_and_worker_release
+
+repository:
+  remote: origin
+  observed_origin_main_sha: 3da958da07e7a20d016dbe08176a629bd6f54b65
+  current_main_release_sha: 3da958da07e7a20d016dbe08176a629bd6f54b65
+  current_main_contains_cdb_program: true
+  current_main_contains_inventory_program: false
+  current_main_contains_full_mm_program: false
+
+production:
+  worker_name: hms-saas-production
+  active_worker_version_id: 4ff275b8-f17e-4956-a104-e9083a0a1d57
+  active_worker_traffic_percent: 100
+  rollback_worker_version_id: 4f5d8f93-92d4-4fda-8fba-c0a2863f1b71
+  rollback_worker_traffic_percent: 0
+  release_checkpoint: CDB-V1-071B-PRODUCTION-DEPLOYMENT-COMPLETE
+  release_status: complete_observation_pending
+  migration_0571_applied: true
+  pending_migrations_at_release_completion: 0
+  reconciliation:
+    canonical_admissions: 38
+    canonical_bed_stays: 16
+    dependency_issues_resolved: 54
+    cache_variance_issues_waived: 4
+    remaining_open_target_issues: 0
+    second_pass_zero_new: true
+    source_legacy_rows_written: 0
+    unexpected_tenant_writes: 0
+  custom_domain_health_and_version_smoke: passed
+  protected_receipt:
+    path: /Users/rahmatullahzisan/.hms-protected/cdb-v1-071b-execution-20260731120911/final-deployment-receipt.json
+    sha256: e7de7b306b7e75685b86b1b1efebc653e2b2dab4ec8b5ceeb0acca4b52230144
+  provider_flags_changed: false
+  routes_changed: false
+  canonical_authority_broadly_promoted: false
+  local_sync_activated: false
+  legacy_retired: false
+
+status_model:
+  code_deployed: route_or_ui_is_present_in_active_worker_bundle
+  operationally_commissioned: hospital_configured_trained_and_using_module
+  canonical_authority_complete: reviewed_single_authority_integration_data_and_retirement_gates_passed
+
+programs:
+  canonical_database_core_v1:
+    branch: program/cdb-main-continuous-20260725
+    observed_branch_head_sha: 8613993888f64fab82aee897466f2339c8278ae0
+    branch_is_ancestor_of_current_main: true
+    repository_status: integrated_to_main
+    production_release_status: released_100_percent
+    current_checkpoint: CDB-V1-071B-PRODUCTION-DEPLOYMENT-COMPLETE
+    next_checkpoint: OBS-001-POST-RELEASE-OBSERVATION-BASELINE
+    protected_core:
+      - reception_patient_registration_lookup_appointment_checkin_queue_visit
+      - billing_invoice_receipt_payment_allocation_collection
+      - hospital_tenant_department_service_price_configuration
+      - doctor_practitioner_setup_and_commission
+      - required_users_roles_permissions_audit_dependencies
+    writer_command_coverage_complete: true
+    post_release_observation_24h: pending
+    post_release_observation_72h: pending
+    new_record_business_reconciliation: pending
+    broad_provider_authority_promotion: separate_future_gate
+    legacy_compatibility_retirement: separate_future_gate
+
+  inventory_modular_monolith:
+    branch: feature/inventory-modular-monolith
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/inventory-program-sync-20260724
+    head_sha: c3dbee241e0ee480762339f50c261eb69b92bb41
+    branch_is_ancestor_of_current_main: false
+    authority_mode: canonical_only_greenfield
+    production_data_migration_required: false
+    development_status: complete
+    program_status: closed_27_of_27
+    latest_integrated_task: INV-MM-121
+    final_task_merge_sha: f0afae5a7191de1583fdc9827bca8349b2bad904
+    closeout_sha: c3dbee241e0ee480762339f50c261eb69b92bb41
+    verification:
+      focused_architecture: 35_of_35
+      inventory_total: 1138_of_1138
+      protected_reception_billing: 183_of_183
+      security: 45_of_45
+      rbac: 1039_of_1039
+      typescript_errors: 0
+      migration_manifest_count_at_program_close: 491
+      canonical_governance_issues: 0
+      canonical_inventory_tables: 39_of_39
+      registry_targets: 31_of_31
+      runtime_write_read_import_schema_references: 0_0_0_0
+      remediation_active_unresolved: 0_0
+      foreign_key_violations: 0
+    main_integration_status: pending_latest_main_reconciliation
+    production_activation_status: not_authorized_not_performed
+    next_task: INV-INT-001-INVENTORY-LATEST-MAIN-INTEGRATION-REHEARSAL
+
+  full_modular_monolith:
+    branch: program/mm-canonical-inventory-sync-20260727
+    worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/mm-canonical-inventory-sync-20260727
+    head_sha: da3c63bbafd92017252f5aff77d1503dd0081eeb
+    branch_is_ancestor_of_current_main: false
+    dirty_worktree_observed: true
+    development_status: active_requires_current_main_and_inventory_rebaseline
+    completed_tasks: 34
+    total_tasks: 45
+    task_progress_percent: 75.6
+    completed_phases: 8
+    total_phases: 10
+    phase_progress_percent: 80
+    recorded_latest_inventory_task: INV-MM-089
+    required_latest_inventory_task: INV-MM-121
+    required_inventory_checkpoint: c3dbee241e0ee480762339f50c261eb69b92bb41
+    role: consume_reviewed_inventory_public_contracts_without_duplicate_inventory_authority
+    remaining_tasks:
+      - MM-070
+      - MM-071
+      - MM-072
+      - MM-073
+      - MM-074
+      - MM-090
+      - MM-091
+      - MM-092
+      - MM-093
+      - MM-094
+      - MM-095
+    next_task: MM-RB-001-FULL-MM-CURRENT-MAIN-REBASELINE-AUDIT
+    production_mutation_status: not_authorized_not_performed
+
+integration_gate:
+  direct_inventory_to_main_merge_allowed: false
+  direct_full_mm_to_main_merge_allowed: false
+  direct_program_branch_deploy_allowed: false
+  inventory_migration_reconciliation_required: true
+  current_main_latest_migration: 0571_canonical_admission_encounter_type_alignment.sql
+  inventory_new_range_must_be_reserved_after_0571: true
+  historical_conflicting_migration_prefixes:
+    - '0537'
+    - '0538'
+    - '0539'
+    - '0540'
+    - '0541'
+    - '0542'
+    - '0543'
+    - '0550'
+    - '0551'
+    - '0552'
+    - '0553'
+  required_order:
+    - observe_cdb_v1_071b_without_blocking_repository_work
+    - create_fresh_inventory_integration_rehearsal_from_latest_origin_main
+    - reserve_post_0571_inventory_migration_range
+    - renumber_and_reconcile_inventory_migrations_and_references
+    - exclude_destructive_inventory_retirement_from_additive_release
+    - run_full_inventory_and_protected_core_verification
+    - rebaseline_full_mm_on_current_main_and_final_inventory_contracts
+    - integrate_reviewed_workers_serially
+    - use_separate_exact_authorization_for_each_production_release
+  ordinary_release_may_include_destructive_retirement: false
+
+monitoring:
+  current_foundation:
+    public_health_version_endpoint: true
+    workers_observability_enabled: true
+    structured_server_error_logging: true
+    manual_tail_script: true
+    admin_md_monitoring_dashboards: true
+    rollback_worker_retained: true
+  pending_evidence:
+    - post_release_24h_report
+    - post_release_72h_report
+    - critical_route_error_and_latency_baseline
+    - appointment_visit_invoice_receipt_allocation_commission_reconciliation
+    - durable_log_export_and_alert_delivery
+    - incident_response_drill
+  immediate_task: OBS-001-POST-RELEASE-OBSERVATION-BASELINE
+
+non_production_module_policy:
+  canonical_first_rewrite_allowed: true
+  eligibility_required: true
+  eligibility_checks:
+    - module_not_operationally_commissioned
+    - live_business_rows_zero_or_formally_irrelevant
+    - no_route_report_export_job_queue_or_integration_dependency
+    - no_hidden_protected_core_money_identity_price_commission_or_stock_authority
+    - fresh_install_schema_verified
+    - rollback_worker_compatible
+  direct_legacy_table_drop_allowed: false
+  preferred_next_audit: DIAG-AUD-001-DIAGNOSTICS-CANONICAL-GREENFIELD-ELIGIBILITY
+
+migration_and_retirement:
+  additive_inventory_migrations_required_before_inventory_runtime_activation: true
+  exact_production_pending_migration_set_at_cdb_v1_071b_completion: []
+  destructive_retirement_migration: migrations/0558d_retire_legacy_inventory_tables.sql
+  destructive_retirement_status: hold_separate_authorization_required
+  legacy_inventory_tables_may_be_dropped_now: false
+  required_retirement_evidence:
+    - exact_live_table_and_row_inventory
+    - protected_core_dependency_scan
+    - live_foreign_key_check
+    - repository_and_background_consumer_reference_scan
+    - canonical_reconciliation
+    - fresh_install_verification
+    - backup_and_restore_drill
+    - rollback_and_worker_compatibility_plan
+    - exact_destructive_production_authorization
+
+release_authorization:
+  cdb_v1_071b_repository_integration: complete
+  cdb_v1_071b_production_release: complete
+  post_release_read_only_observation: owner_requested
+  unrelated_production_migration_or_deployment_during_initial_observation: false
+  inventory_repository_rehearsal: allowed
+  inventory_production_migration_or_activation: false
+  feature_or_provider_activation: false
+  destructive_legacy_retirement: false
+  local_sync_activation: false
+
+parallel_execution:
+  max_implementation_workers: 4
+  required_integration_review_owner: 1
+  workers:
+    - OBS-001
+    - INV-INT-001
+    - MM-RB-001
+    - DIAG-AUD-001_or_patient_mobile_consumer_lane
+  merge_policy: serial_after_review
+  shared_file_changes_serialized: true
+
+next_actions:
+  immediate:
+    - OBS-001-POST-RELEASE-OBSERVATION-BASELINE
+    - INV-INT-001-INVENTORY-LATEST-MAIN-INTEGRATION-REHEARSAL
+    - MM-RB-001-FULL-MM-CURRENT-MAIN-REBASELINE-AUDIT
+    - DIAG-AUD-001-DIAGNOSTICS-CANONICAL-GREENFIELD-ELIGIBILITY
+  after_initial_observation:
+    - integrate_reviewed_inventory_if_all_gates_pass
+    - select_one_inactive_canonical_first_domain
+    - prepare_separate_inventory_production_authorization_package
+  deferred:
+    - broad_protected_finance_authority_change
+    - pharmacy_broad_rewrite_without_live_usage_audit
+    - financial_compatibility_retirement
+    - destructive_legacy_table_drop
+    - agentos_and_foundry
+
+source_documents:
+  - docs/architecture/2026-07-31-post-canonical-production-roadmap.md
+  - docs/architecture/post-canonical-parallel-execution-board.yaml
+  - docs/production-readiness/CURRENT_NEXT_TASK.md
+  - docs/production-readiness/TASK_STATUS.md
+  - docs/operations/canonical-shadow-safe-production-deploy.md
+  - docs/CLOUDFLARE_TAIL_LOGGING.md
+  - feature/inventory-modular-monolith:docs/inventory-hardening/CURRENT_EXECUTION_STATE.yaml
+  - program/mm-canonical-inventory-sync-20260727:docs/architecture/2026-07-28-modular-monolith-current-state-review.md

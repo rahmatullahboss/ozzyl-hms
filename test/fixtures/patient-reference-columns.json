@@ -1,0 +1,1068 @@
+[
+  {
+    "table": "accounting_journal_lines",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_verified_accounting",
+    "note": "Move unverified lines only; verified voucher lines remain immutable evidence."
+  },
+  {
+    "table": "admission_remarks",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "admissions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ai_patient_summaries",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ambulance_trips",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "appointments",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "baby_birth_details",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "bed_reservations",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_credit_bill_status",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_credit_notes",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_deposits",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_provisional_items",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_refund_cash_holds",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_scheme_members",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_scheme_usage",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "billing_settlements",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "bills",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "blood_cross_match",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "blood_donors",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "blood_transfusions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "canonical_credit_notes",
+    "column": "legacy_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "canonical_deposits",
+    "column": "legacy_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "canonical_encounters",
+    "column": "legacy_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "canonical_invoices",
+    "column": "legacy_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "canonical_payment_receipts",
+    "column": "legacy_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "canonical_service_requests",
+    "column": "legacy_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "clinical_cache",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "clinical_consents",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "clinical_images",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "clinical_notes",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "clinical_vitals",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "cln_medication_orders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "cln_medication_reconciliation",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "cln_patient_clinical_info",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "commissions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "consultation_completion_claims",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "consultations",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "cross_hospital_referrals",
+    "column": "from_local_patient_id",
+    "tenantColumn": "from_tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "cross_hospital_referrals",
+    "column": "to_local_patient_id",
+    "tenantColumn": "to_tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "death_details",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "diagnostic_performer_reserves",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "discharge_checklists",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "discharge_summaries",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "doctor_certificates",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Issued certificate evidence cannot be rewritten."
+  },
+  {
+    "table": "doctor_commission_accruals",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "doctor_commission_accruals_old_0391",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Historical migration backup table."
+  },
+  {
+    "table": "doctor_commission_settlement_items",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "doctor_commission_settlement_items_old_0401",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Historical migration backup table."
+  },
+  {
+    "table": "doctor_visits",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "document_records",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "eligibility_logs",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Eligibility decision audit evidence."
+  },
+  {
+    "table": "encounters",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "er_discharge_summaries",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "er_file_uploads",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "er_patients",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "final_diagnosis",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "health_cards",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "health_record_access_tokens",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "health_record_consents",
+    "column": "granting_patient_id",
+    "tenantColumn": "granting_tenant_id",
+    "policy": "retain_immutable",
+    "note": "Consent-grant evidence retains the original local patient identifier."
+  },
+  {
+    "table": "health_record_sensitivity_labels",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "helpdesk_tickets",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "hemodialysis_reports",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "hospital_link_audit",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Patient-hospital link audit evidence."
+  },
+  {
+    "table": "hospital_links",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "insurance_claims",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "insurance_policies",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ipd_charges",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ipd_doctor_rounds",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ipd_ledger_entries",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "kitchen_meal_orders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "lab_orders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "lab_specimens",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "lab_workflow_events",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "lis_analyzer_inbox",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Analyzer source evidence is trigger-protected and immutable."
+  },
+  {
+    "table": "lis_result_retraction_requests",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "LIS retraction evidence is trigger-protected and immutable."
+  },
+  {
+    "table": "maternity_anc_visits",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "maternity_delivery",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "maternity_newborns",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "maternity_patients",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "maternity_pnc_visits",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "medical_records",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "medication_orders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "mlc_cases",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "mortuary_records",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "mrd_chart_completion_tasks",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "mrd_discharge_summary_archives",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "mrd_medico_legal_files",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_blood_sugar_monitoring",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_care_plans",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_consultation_requests",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_drug_requisitions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_handover",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_intake_output",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_iv_drugs",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_medication_admin",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_notes",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_orders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_patient_diets",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_patient_monitoring",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_patient_transfers",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_ward_billing_requests",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nur_wound_care",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nursing_emergency_alerts",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nursing_favourite_patients",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nursing_final_diagnoses",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nursing_opd_referrals",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "nursing_respiratory",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_anesthesia_records",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_bills",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_bookings",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_recovery_handovers",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_surgery_notes",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_team_members",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ot_vitals",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_active_medications",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_aliases",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_allergies",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_bed_infos",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_bridge_audit",
+    "column": "requested_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Cross-tenant resolution audit evidence."
+  },
+  {
+    "table": "patient_bridge_audit",
+    "column": "resolved_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Cross-tenant resolution audit evidence."
+  },
+  {
+    "table": "patient_card_qr_scan_audit",
+    "column": "destination_patient_id",
+    "tenantColumn": "scanned_by_tenant_id",
+    "policy": "retain_immutable",
+    "note": "QR scan audit evidence."
+  },
+  {
+    "table": "patient_card_qr_scan_audit",
+    "column": "source_patient_id",
+    "tenantColumn": "source_tenant_id",
+    "policy": "retain_immutable",
+    "note": "QR scan audit evidence."
+  },
+  {
+    "table": "patient_card_qr_tokens",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_claim_codes",
+    "column": "issued_for_patient_id",
+    "tenantColumn": "issued_by_tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_consents",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_credentials",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_documents",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_family_links",
+    "column": "child_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_family_links",
+    "column": "parent_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_guardians",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_health_links",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_insurance",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_memberships",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_messages",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_portal_audit",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Portal audit evidence."
+  },
+  {
+    "table": "patient_portal_notifications",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "retain_immutable",
+    "note": "Portal notification evidence is trigger-protected and immutable."
+  },
+  {
+    "table": "patient_reminder_status",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_tip_engagement",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_tip_feedback",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_tip_scores",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_vaccinations",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patient_vitals",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "patients",
+    "column": "duplicate_of_patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move",
+    "note": "Collapse existing duplicate chains onto the surviving patient."
+  },
+  {
+    "table": "payment_reminders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_deposits",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_invoices",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_narcotic_records",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_prescriptions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_provisional_invoices",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_provisional_return_items",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_returns",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_sales",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "pharmacy_settlements",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "prescription_overrides",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "prescription_refill_requests",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "prescription_safety_checks",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "prescriptions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "procedure_orders",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "provisional_discharges",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "queue_entries",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "radiology_dicom_studies",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "radiology_reports",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "radiology_requisitions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ris_study_reconciliation_queue",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "serials",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ssf_invoices",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ssf_patient_info",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "tests",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "visit_services",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "visits",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "vital_alerts",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ward_supply_location_transactions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "ward_supply_requisitions",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "website_reviews",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  },
+  {
+    "table": "whatsapp_messages",
+    "column": "patient_id",
+    "tenantColumn": "tenant_id",
+    "policy": "move"
+  }
+]

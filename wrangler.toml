@@ -1,0 +1,284 @@
+name = "hms-saas"
+main = "src/index.ts"
+account_id = "474078d5f990169d7dadf4e1df83214a"
+compatibility_date = "2026-02-17"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── Observability (Worker Logs + Traces) ─────────────────────────────
+# Keep Workers Observability enabled at 100% sampling for production 5xx logs.
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+# ─── Static Assets (React SPA) ────────────────────────────────────────
+# Vite builds to web/dist/ — served free, without invoking the Worker
+[assets]
+directory = "./web/dist/"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+# API + dynamic public hospital-site routes run the Worker. Patient deep routes
+# still run Worker-first so src/index.ts can serve the patient SPA shell.
+run_worker_first = ["/api/*", "/patient/*", "/site", "/site/*"]
+
+# ─── Cloudflare Bindings ──────────────────────────────────────────────
+[[d1_databases]]
+binding = "DB"
+database_name = "hms-super-admin-production-apac"
+database_id = "c68a5360-a2c1-44cc-9e71-f21057bea102"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "ed8650b9af6549ecbaf5cc90b187d53b"
+
+[[r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "hms-uploads"
+
+# ─── AI Memory (Vectorize + Workers AI) ──────────────────────────────
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "hms-ai-memory"
+
+[ai]
+binding = "AI"
+
+# ─── Durable Objects (Real-time Dashboard) ───────────────────────────
+[[durable_objects.bindings]]
+name = "DASHBOARD_DO"
+class_name = "DashboardDO"
+
+# Note: migrations v1-dashboard-do was applied when DashboardDO was first created.
+# DO NOT re-apply - Cloudflare will reject with "already depended on by existing Durable Objects"
+
+[[migrations]]
+tag = "v4-migrate-to-sqlite"
+sqlite_classes = ["DashboardDO"]
+
+# ─── CRON Triggers ────────────────────────────────────────────────────
+# NOTE: Account limit is 5 cron triggers total. Only configure in env.production below.
+# [triggers]
+# crons = ["0 0 * * *"]
+
+# ─── Default (development) vars ───────────────────────────────────────
+# JWT_SECRET must be set as a Wrangler secret (never in vars!):
+#   wrangler secret put JWT_SECRET
+[vars]
+ENVIRONMENT = "development"
+ALLOWED_ORIGINS = "http://localhost:5174,http://localhost:5173"
+# Email — set BREVO_API_KEY via: wrangler secret put BREVO_API_KEY
+# Without a real email API secret, emails are logged to console (stub mode)
+EMAIL_PROVIDER = "brevo"
+BREVO_FROM_EMAIL = "HMS Dev <dev@hms.local>"
+RESEND_FROM_EMAIL = "HMS Dev <dev@hms.local>"
+# Patient portal base URL for email links (password reset, invite accept)
+PATIENT_PORTAL_URL = "http://localhost:5173/patient-portal"
+# HMS app base URL for staff invite links
+HMS_APP_URL = "https://hms.ozzyl.com"
+# SMS — set SMS_API_KEY + SMS_SENDER_ID via wrangler secrets when service is purchased
+# ─── AI (OpenRouter) ──────────────────────────────────────────────────────────
+# wrangler secret put OPENROUTER_API_KEY
+# wrangler secret put OLLAMA_API_KEY
+# Optional: set AI_MODEL env var to override default (openrouter/healer-alpha)
+PATIENT_AI_MODEL = "@cf/moonshotai/kimi-k2.5"
+PATIENT_AI_FALLBACK_MODEL = "glm-5.1:cloud"
+SMS_PROVIDER = "stub"
+# ─── Phase 3: bKash / Nagad / Daily.co (set real values via wrangler secrets) ─
+# wrangler secret put BKASH_APP_KEY
+# wrangler secret put BKASH_APP_SECRET
+# wrangler secret put BKASH_USERNAME
+# wrangler secret put BKASH_PASSWORD
+# wrangler secret put NAGAD_MERCHANT_ID
+# wrangler secret put NAGAD_MERCHANT_PRIVATE_KEY
+# — Telemedicine: Cloudflare Realtime SFU (Dashboard → Realtime SFU → Create App)
+# wrangler secret put CF_REALTIME_APP_ID
+# wrangler secret put CF_REALTIME_APP_SECRET
+# Without secrets, Jitsi free fallback is used automatically.
+
+# ─── Staging environment ──────────────────────────────────────────────
+[env.staging]
+name = "hms-saas-staging"
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+ALLOWED_ORIGINS = "https://hms-saas-staging.rahmatullahzisan.workers.dev"
+EMAIL_PROVIDER = "brevo"
+BREVO_FROM_EMAIL = "HMS Staging <noreply@hms-staging.app>"
+RESEND_FROM_EMAIL = "HMS Staging <noreply@hms-staging.app>"
+PATIENT_PORTAL_URL = "https://hms-saas-staging.rahmatullahzisan.workers.dev/patient-portal"
+HMS_APP_URL = "https://stage.ozzyl.com"
+SMS_PROVIDER = "stub"
+PATIENT_AI_MODEL = "@cf/moonshotai/kimi-k2.5"
+PATIENT_AI_FALLBACK_MODEL = "glm-5.1:cloud"
+# bKash/Nagad/Daily — set via wrangler secrets (--env staging)
+
+[env.staging.assets]
+directory = "./web/dist/"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*", "/patient/*", "/site", "/site/*"]
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "hms-super-admin-staging"
+# Active isolated staging D1, verified from the deployed staging Worker on 2026-07-18.
+# This is different from production c68a5360-a2c1-44cc-9e71-f21057bea102.
+database_id = "860ffc7b-3add-4b99-9538-1fdb707c9590"
+
+[[env.staging.kv_namespaces]]
+binding = "KV"
+# Dedicated staging KV namespace — created 2026-03-11
+# ISOLATED from production (ed8650b9af6549ecbaf5cc90b187d53b)
+id = "7907d8fc866848e3ba115fbe975a0fde"
+
+[[env.staging.r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "hms-uploads-staging"
+
+[[env.staging.vectorize]]
+binding = "VECTORIZE"
+index_name = "hms-ai-memory"
+
+[env.staging.ai]
+binding = "AI"
+
+# ─── Production environment ───────────────────────────────────────────
+# P0-40 / P0-41: workers_dev is OFF in production and stub/placeholder
+# vars are clearly marked. Production deploy must fail if these markers
+# remain (see docs/INCIDENT_RUNBOOK.md).
+[env.production]
+name = "hms-saas-production"
+# P0-40: workers_dev disabled. Production traffic must come in via the
+# `routes` below (admin/hms/app.ozzyl.com). The *.workers.dev preview
+# URL is reserved for non-production environments only.
+workers_dev = false
+routes = [
+  { pattern = "admin.ozzyl.com/*", zone_name = "ozzyl.com" },
+  { pattern = "hms.ozzyl.com/*", zone_name = "ozzyl.com" },
+  { pattern = "app.ozzyl.com/*", zone_name = "ozzyl.com" },
+  { pattern = "*.ozzyl.com/*", zone_name = "ozzyl.com" }
+]
+
+[env.production.observability]
+enabled = true
+head_sampling_rate = 1
+
+[env.production.observability.logs]
+invocation_logs = true
+head_sampling_rate = 1
+
+[env.production.observability.traces]
+enabled = true
+head_sampling_rate = 1
+
+[env.production.version_metadata]
+binding = "CF_VERSION_METADATA"
+
+# P0-40 migration note: once a real Ozzyl domain is the only allowed
+# origin, REMOVE the `hms-saas-production.rahmatullahzisan.workers.dev`
+# entry from ALLOWED_ORIGINS, PATIENT_PORTAL_URL, and any CSP list below.
+# Do NOT add new workers.dev URLs.
+
+[[env.production.durable_objects.bindings]]
+name = "DASHBOARD_DO"
+class_name = "DashboardDO"
+
+# P0-41: CRON trigger disabled — account limit of 5 reached. Plan:
+# move scheduled jobs to a dedicated `hms-jobs` worker. See
+# docs/INCIDENT_RUNBOOK.md → "Scheduled jobs" for the migration plan.
+# Do not add new crons to this worker until the limit is raised or
+# the jobs worker is in place.
+# [env.production.triggers]
+# crons = ["0 0 * * *"]
+
+[env.production.vars]
+ENVIRONMENT = "production"
+ALLOWED_ORIGINS = "https://hms.ozzyl.com,https://app.ozzyl.com,https://admin.ozzyl.com,https://*.ozzyl.com"
+EMAIL_PROVIDER = "resend"
+BREVO_FROM_EMAIL = "Ozzyl Health <noreply@ozzyl.com>"
+RESEND_FROM_EMAIL = "Ozzyl Health <noreply@ozzyl.com>"
+# Patient portal base URL for email links
+PATIENT_PORTAL_URL = "https://app.ozzyl.com/patient-portal"
+HMS_APP_URL = "https://hms.ozzyl.com"
+# SMS is intentionally disabled until a real provider and secrets are configured.
+# The application must report SMS delivery as unavailable, never as a successful stub send.
+SMS_PROVIDER = "disabled"
+PATIENT_AI_MODEL = "@cf/moonshotai/kimi-k2.5"
+PATIENT_AI_FALLBACK_MODEL = "glm-5.1:cloud"
+# bKash/Nagad/Daily — set via wrangler secrets (--env production)
+# NOTE: HMS subdomains (hms-*.ozzyl.com) are routed here via
+# multi-store-saas worker's service binding (HMS_SERVICE).
+
+[env.production.assets]
+directory = "./web/dist/"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*", "/patient/*", "/site", "/site/*"]
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "hms-super-admin-production-apac"
+database_id = "c68a5360-a2c1-44cc-9e71-f21057bea102"
+
+[[env.production.kv_namespaces]]
+binding = "KV"
+id = "ed8650b9af6549ecbaf5cc90b187d53b"
+
+[[env.production.r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "hms-uploads-production"
+
+[[env.production.vectorize]]
+binding = "VECTORIZE"
+index_name = "hms-ai-memory"
+
+[env.production.ai]
+binding = "AI"
+
+# ─── Hospital Local Server Environment ───────────────────────────────
+# Runs on the hospital LAN with local Wrangler storage simulation.
+# Use scripts/local-server/start.sh; do not deploy this env to Cloudflare.
+[env.local_server]
+name = "hms-saas-local-server"
+
+[env.local_server.vars]
+ENVIRONMENT = "local_server"
+ALLOWED_ORIGINS = "http://localhost:8787,http://127.0.0.1:8787,http://hms.local:8787"
+EMAIL_PROVIDER = "stub"
+BREVO_FROM_EMAIL = "HMS Local <noreply@hms.local>"
+RESEND_FROM_EMAIL = "HMS Local <noreply@hms.local>"
+PATIENT_PORTAL_URL = "http://hms.local:8787/patient"
+HMS_APP_URL = "http://hms.local:8787"
+SMS_PROVIDER = "stub"
+LOCAL_SERVER_ID = "hospital-lan-primary"
+PATIENT_AI_MODEL = "disabled-local-server"
+PATIENT_AI_FALLBACK_MODEL = "disabled-local-server"
+
+[env.local_server.assets]
+directory = "./web/dist/"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*", "/patient/*", "/site", "/site/*"]
+
+[[env.local_server.durable_objects.bindings]]
+name = "DASHBOARD_DO"
+class_name = "DashboardDO"
+
+[[env.local_server.d1_databases]]
+binding = "DB"
+database_name = "hms-local-server"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[[env.local_server.kv_namespaces]]
+binding = "KV"
+id = "00000000000000000000000000000000"
+
+[[env.local_server.r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "hms-local-uploads"
+
+[[env.local_server.vectorize]]
+binding = "VECTORIZE"
+index_name = "hms-ai-memory"
+
+[env.local_server.ai]
+binding = "AI"

@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "CodexPro": {
+      "command": "node",
+      "args": [
+        "/Users/rahmatullahzisan/.hermes/node/lib/node_modules/codexpro/dist/stdio.js",
+        "--root",
+        "/Users/rahmatullahzisan/Desktop/Dev/hms",
+        "--allow-root",
+        "/Users/rahmatullahzisan/Desktop/Dev",
+        "--bash",
+        "full",
+        "--write",
+        "workspace",
+        "--tool-mode",
+        "full"
+      ]
+    },
+    "minimax": {
+      "command": "uvx",
+      "args": ["minimax-coding-plan-mcp", "-y"],
+      "env": {
+        "MINIMAX_API_KEY": "${MINIMAX_API_KEY}",
+        "MINIMAX_API_HOST": "https://api.minimax.io"
+      }
+    }
+  }
+}

@@ -1,0 +1,203 @@
+---
+---
+
+<section class="py-24 bg-gradient-to-b from-white to-slate-50 overflow-hidden relative" id="dicom-agent">
+  <!-- Background decoration -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-50/40 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <p class="text-sm font-semibold text-indigo-600 uppercase tracking-widest mb-3" data-i18n="dicom.badge">Hardware Integration</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight" data-i18n="dicom.title">
+        X-Ray Auto Print & Cloud Sync
+      </h2>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed" data-i18n="dicom.subtitle">
+        Download our free agent software — connect your X-ray machine directly to your printer and Health cloud. Works with any printer brand.
+      </p>
+    </div>
+
+    <!-- Architecture diagram -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-900/5 p-8 sm:p-10 overflow-hidden">
+        <!-- Flow diagram -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-2 items-center">
+          <!-- Step 1: X-Ray Machine -->
+          <div class="text-center group">
+            <div class="w-16 h-16 mx-auto bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 border border-slate-200">
+              <svg class="w-8 h-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <p class="text-sm font-semibold text-slate-700" data-i18n="dicom.flow.xray">X-Ray Machine</p>
+            <p class="text-xs text-slate-500" data-i18n="dicom.flow.xray.sub">CR / DR / CT</p>
+          </div>
+
+          <!-- Arrow -->
+          <div class="hidden md:flex items-center justify-center">
+            <div class="flex items-center gap-1">
+              <div class="h-[2px] w-full bg-gradient-to-r from-slate-300 to-indigo-400"></div>
+              <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-1 whitespace-nowrap">DICOM</p>
+          </div>
+          <!-- Mobile arrow -->
+          <div class="md:hidden flex justify-center">
+            <svg class="w-6 h-6 text-indigo-400 rotate-90" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+          </div>
+
+          <!-- Step 2: Print Agent (center, highlighted) -->
+          <div class="text-center group">
+            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center mb-3 shadow-xl shadow-indigo-500/30 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <p class="text-sm font-bold text-indigo-700" data-i18n="dicom.flow.agent">Print Agent</p>
+            <p class="text-[10px] text-indigo-500 font-medium bg-indigo-50 rounded-full px-2 py-0.5 inline-block mt-1" data-i18n="dicom.flow.agent.sub">Download Free</p>
+          </div>
+
+          <!-- Arrow splits to printer + cloud -->
+          <div class="hidden md:flex items-center justify-center">
+            <div class="flex items-center gap-1">
+              <div class="h-[2px] w-full bg-gradient-to-r from-indigo-400 to-emerald-400"></div>
+              <svg class="w-5 h-5 text-emerald-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+            </div>
+          </div>
+          <div class="md:hidden flex justify-center">
+            <svg class="w-6 h-6 text-emerald-400 rotate-90" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+          </div>
+
+          <!-- Step 3: Outputs -->
+          <div class="space-y-4">
+            <div class="text-center group">
+              <div class="w-14 h-14 mx-auto bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300 border border-emerald-200">
+                <svg class="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p class="text-xs font-semibold text-emerald-700" data-i18n="dicom.flow.printer">Any Printer</p>
+            </div>
+            <div class="text-center group">
+              <div class="w-14 h-14 mx-auto bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300 border border-cyan-200">
+                <svg class="w-7 h-7 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+              </div>
+              <p class="text-xs font-semibold text-cyan-700" data-i18n="dicom.flow.cloud">Ozzyl Health Cloud</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features + Download -->
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+      
+      <!-- Features list -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold text-slate-900" data-i18n="dicom.features.title">How It Works</h3>
+        
+        <div class="space-y-4">
+          <div class="flex items-start gap-4 bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-lg font-bold text-indigo-600">1</span>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800" data-i18n="dicom.feat.1.h">Install on hospital PC</p>
+              <p class="text-sm text-slate-500 mt-1" data-i18n="dicom.feat.1.p">Download, extract, run — no complex setup needed</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-lg font-bold text-indigo-600">2</span>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800" data-i18n="dicom.feat.2.h">X-ray machine sends images</p>
+              <p class="text-sm text-slate-500 mt-1" data-i18n="dicom.feat.2.p">Standard DICOM protocol — compatible with all CR/DR machines</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-lg font-bold text-emerald-600">3</span>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800" data-i18n="dicom.feat.3.h">Auto print + cloud sync</p>
+              <p class="text-sm text-slate-500 mt-1" data-i18n="dicom.feat.3.p">Prints to any connected printer and saves to your Health cloud</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Printer brands -->
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+          <p class="text-sm font-semibold text-slate-700 mb-3" data-i18n="dicom.printers.title">Works with any printer:</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="text-xs font-medium bg-white text-slate-600 px-3 py-1.5 rounded-full border border-slate-200">Epson</span>
+            <span class="text-xs font-medium bg-white text-slate-600 px-3 py-1.5 rounded-full border border-slate-200">HP</span>
+            <span class="text-xs font-medium bg-white text-slate-600 px-3 py-1.5 rounded-full border border-slate-200">Canon</span>
+            <span class="text-xs font-medium bg-white text-slate-600 px-3 py-1.5 rounded-full border border-slate-200">Brother</span>
+            <span class="text-xs font-medium bg-white text-slate-600 px-3 py-1.5 rounded-full border border-slate-200" data-i18n="dicom.printers.any">& any others</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Download Card -->
+      <div class="flex flex-col">
+        <div class="bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 rounded-3xl p-8 sm:p-10 text-white shadow-2xl shadow-indigo-900/20 flex-1 flex flex-col justify-between relative overflow-hidden">
+          <!-- Decorative circles -->
+          <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full"></div>
+          <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white/5 rounded-full"></div>
+
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-white/15 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold" data-i18n="dicom.download.title">DICOM Print Agent</h3>
+                <p class="text-white/70 text-sm">v1.0.0 • Windows / Linux / macOS</p>
+              </div>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-emerald-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                <span class="text-white/90 text-sm" data-i18n="dicom.download.f1">Free — no license required</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-emerald-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                <span class="text-white/90 text-sm" data-i18n="dicom.download.f2">Works with all CR/DR/CT machines</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-emerald-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                <span class="text-white/90 text-sm" data-i18n="dicom.download.f3">Auto-start as Windows service</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <svg class="w-5 h-5 text-emerald-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                <span class="text-white/90 text-sm" data-i18n="dicom.download.f4">Offline printing — internet needed only for sync</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="relative z-10 space-y-3">
+            <a
+              id="dicom-download-btn"
+              href="/downloads/ozzyl-dicom-print-agent-v1.0.0.zip"
+              class="w-full flex items-center justify-center gap-2 bg-white text-indigo-700 font-bold py-3.5 px-6 rounded-2xl hover:bg-indigo-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              download
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              <span data-i18n="dicom.download.btn">Download for Windows</span>
+            </a>
+            <p class="text-center text-white/50 text-xs" data-i18n="dicom.download.req">Requires Node.js 18+ • 15 MB download</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

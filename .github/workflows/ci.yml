@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '22'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  # ─── Build, migrate, test, and Playwright smoke against local server ───
+  ci:
+    name: Build / Test / Smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Force Playwright to a safe local URL. Production URLs require
+      # ALLOW_PROD_E2E=1 (see playwright.config.ts). This is the default for
+      # every push and PR — production smoke is handled in
+      # .github/workflows/security.yml and the existing ci-cd.yml deploy job.
+      BASE_URL: http://localhost:8787
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build migration manifest
+        run: pnpm build:migrations
+
+      - name: Build all workspaces
+        run: pnpm build
+
+      - name: Run production unit tests
+        run: pnpm test:production:unit
+
+      - name: Install Playwright (Chromium only)
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Apply local-server baseline schema
+        # The local_server env uses a separate D1 (hms-local-server).
+        # CI starts with schema.sql + the stable tenant baseline required by
+        # smoke routes. Historical version replay is a separate debug concern;
+        # normal hospital snapshot/bootstrap behavior is unchanged.
+        run: |
+          HMS_LOCAL_CI_BOOTSTRAP=1 bash scripts/local-server/migrate.sh
+
+      - name: Start local server for smoke tests
+        # Boots the HMS Worker on :8787 in the background. CI uses
+        # `wrangler dev` with the local_server env (which uses local
+        # D1/KV/R2 stubs). The full scripts/local-server/start.sh is
+        # intended for the production on-prem Dell R730 box and tries
+        # to `mkdir /data`, which is not writable in the Actions
+        # runner; we explicitly skip it here.
+        run: |
+          nohup pnpm exec wrangler dev --env local_server --port 8787 >/tmp/hms-local.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:8787/api/health >/dev/null 2>&1; then
+              echo "Local server is up after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://localhost:8787/api/health || (echo "--- local log ---" && tail -200 /tmp/hms-local.log && exit 1)
+
+      - name: Run Playwright smoke tests
+        run: pnpm test:e2e:smoke
+        env:
+          BASE_URL: http://localhost:8787
+
+      - name: Stop local server
+        if: always()
+        run: |
+          pkill -f "wrangler dev" || true
+          pkill -f "local-server/start.sh" || true

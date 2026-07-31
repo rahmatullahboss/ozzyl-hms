@@ -1,0 +1,60 @@
+{
+  "welcome": {
+    "title": "HMS-এ স্বাগতম!",
+    "subtitle": "আপনার হাসপাতালকে মার্কেটপ্লেসে লাইভ করতে এই ধাপগুলো সম্পন্ন করুন"
+  },
+  "progress": {
+    "title": "সেটআপ অগ্রগতি"
+  },
+  "steps": {
+    "addDoctors": {
+      "title": "আপনার ডাক্তারদের যুক্ত করুন",
+      "description": "তাদের বিশেষজ্ঞতা, ফি এবং মার্কেটপ্লেসের বিবরণ সহ ডাক্তার প্রোফাইল যুক্ত করুন।",
+      "button": "ডাক্তার যোগ করুন",
+      "noSpecialty": "কোন বিশেষজ্ঞতা নেই",
+      "published": "প্রকাশিত",
+      "publish": "প্রকাশ করুন"
+    },
+    "publishHospital": {
+      "title": "হাসপাতাল মার্কেটপ্লেসে প্রকাশ করুন",
+      "description": "চিকিৎসা সেবা অনুসন্ধানরত রোগীদের কাছে আপনার হাসপাতালকে পরিচিত করে তুলুন।",
+      "button": "হাসপাতাল প্রকাশ করুন",
+      "alreadyPublished": "ইতিমধ্যেই প্রকাশিত",
+      "descriptionLabel": "বিবরণ",
+      "specialtiesLabel": "বিশেষজ্ঞতা",
+      "photosLabel": "ছবি",
+      "locationLabel": "অবস্থান"
+    },
+    "done": {
+      "title": "সব ঠিক আছে!",
+      "description": "আপনার হাসপাতাল এবং ডাক্তাররা এখন মার্কেটপ্লেসে লাইভ আছেন।",
+      "goDashboard": "ড্যাশবোর্ডে ফিরে যান"
+    }
+  },
+  "modal": {
+    "addDoctor": "নতুন ডাক্তার যোগ করুন",
+    "name": "নাম *",
+    "namePlaceholder": "ডাক্তারের নাম",
+    "specialty": "বিশেষজ্ঞতা",
+    "specialtyPlaceholder": "যেমন: হৃদরোগ বিশেষজ্ঞ",
+    "fee": "পরামর্শ ফি *",
+    "mobile": "মোবাইল",
+    "mobilePlaceholder": "+৮৮০১...",
+    "bmdc": "বিএমডিসি রেজি নং",
+    "bmdcPlaceholder": "রেজিস্ট্রেশন নম্বর",
+    "qualifications": "শিক্ষাগত যোগ্যতা",
+    "qualificationsPlaceholder": "এমবিবিএস, এফসিপিএস, ইত্যাদি",
+    "languages": "ভাষা (কমা দিয়ে আলাদা করুন)",
+    "languagesPlaceholder": "বাংলা, ইংরেজি",
+    "bio": "জনসাধারণের জন্য তথ্য",
+    "bioPlaceholder": "মার্কেটপ্লেসের জন্য ছোট বিবরণ...",
+    "publishImmediate": "অবিলম্বে মার্কেটপ্লেসে প্রকাশ করুন"
+  },
+  "toasts": {
+    "doctorAdded": "ডাক্তার সফলভাবে যোগ করা হয়েছে",
+    "doctorAddFailed": "ডাক্তার যোগ করতে ব্যর্থ হয়েছে",
+    "hospitalPublished": "হাসপাতাল মার্কেটপ্লেসে প্রকাশ করা হয়েছে",
+    "doctorPublished": "ডাক্তার প্রকাশিত হয়েছে",
+    "failed": "ব্যর্থ হয়েছে"
+  }
+}

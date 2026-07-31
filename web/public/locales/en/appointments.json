@@ -1,0 +1,184 @@
+{
+  "title": "Appointments",
+  "newAppointment": "New Appointment",
+  "doctor": "Doctor",
+  "patient": "Patient",
+  "appointmentDate": "Appointment Date",
+  "time": "Time",
+  "type": "Type",
+  "opd": "OPD",
+  "followUp": "Follow Up",
+  "emergency": "Emergency",
+  "confirmed": "Confirmed",
+  "cancelled": "Cancelled",
+  "pending": "Pending",
+  "noAppointments": "No appointments found",
+  "scheduleAppointment": "Schedule Appointment",
+  "bookAppointment": "Book Appointment",
+  "schedule": "Schedule",
+  "noSchedules": "No schedules found",
+  "doctorSchedule": "Doctor Schedule",
+  "addSchedule": "Add Schedule",
+  "appointmentBooked": "Appointment booked! Token #{{tokenNo}}",
+  "walkIn": "Walk-in",
+  "today": "Today",
+  "total": "Total",
+  "scheduled": "Scheduled",
+  "completed": "Completed",
+  "noShow": "No Show",
+  "markCompleted": "Mark Completed",
+  "markNoShow": "Mark No Show",
+  "reschedule": "Reschedule",
+  "cancelAppointment": "Cancel",
+  "confirmNoShow": "Mark as No Show?",
+  "confirmReschedule": "Mark as Scheduled?",
+  "confirmCancel": "Cancel this appointment?",
+  "allDoctors": "All Doctors",
+  "allStatuses": "All Statuses",
+  "noAppointmentsForDate": "No appointments for this date.",
+  "bookFirstAppointment": "Book First Appointment",
+  "viewPatient": "View Patient",
+  "search_by_name_id_or_mobile": "Search by name, ID, or mobile",
+  "please_select_a_patient": "Please select a patient",
+  "status_updated": "Status updated",
+  "failed_to_update": "Failed to update",
+  "patients_main_concern": "Patient's main concern",
+  "booking": "Booking...",
+  "doctorScheduleRoster": "Doctor Schedule / Roster",
+  "manageDoctorAvailability": "Manage doctor availability and consultation hours",
+  "weeklyScheduleFor": "Weekly Schedule — {{name}}",
+  "holiday": "Holiday",
+  "off": "Off",
+  "totalWeeklySlots": "Total Weekly Slots",
+  "maxPatientsPerWeek": "Max Patients/Week",
+  "avgPerSlot": "Avg Per Slot",
+  "editSchedule": "Edit Schedule",
+  "addScheduleSlot": "Add Schedule Slot",
+  "dayOfWeek": "Day of Week",
+  "session": "Session",
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "chamberRoom": "Chamber / Room",
+  "maxPatients": "Max Patients",
+  "updateSlot": "Update Slot",
+  "addSlot": "Add Slot",
+  "saving": "Saving...",
+  "removeScheduleSlot": "Remove this schedule slot?",
+  "eg_chamber_3": "e.g. Chamber 3",
+  "optional_notes": "Optional notes",
+  "days": {
+    "sun": "Sunday",
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday"
+  },
+  "sessions": {
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "night": "Night"
+  },
+  "slot_placeholder": "{{count}} slot",
+  "slot_placeholder_plural": "{{count}} slots",
+  "schedule_updated": "Schedule updated successfully",
+  "schedule_added": "Schedule added successfully",
+  "failed_to_save_schedule": "Failed to save schedule",
+  "schedule_removed": "Schedule slot removed",
+  "failed_to_remove_schedule": "Failed to remove schedule",
+  "general": "General",
+  "onlineApproval": "Online Appointment Approval",
+  "onlineApprovalDesc": "Review and approve patient-booked appointments",
+  "noPending": "No Pending Requests",
+  "noPendingDesc": "All online appointment requests have been processed.",
+
+  "rescheduled": "Appointment rescheduled",
+  "reminderSent": "Reminder sent",
+  "reminderFailed": "Failed to send reminder",
+  "rescheduleAppointment": "Reschedule Appointment",
+  "newDate": "New Date",
+  "payNow": "Pay Now",
+  "checkIn": "Check In",
+  "sendReminder": "Remind",
+
+  "toast": {
+    "failed_to_book": "Failed to book",
+    "failed_to_reschedule": "Failed to reschedule",
+    "checked_in": "Checked in → Visit {{visitNo}}{{fee}}",
+    "failed_to_check_in": "Failed to check in",
+    "consultation_fee_paid": "Consultation fee paid{{invoice}}",
+    "failed_to_collect_payment": "Failed to collect appointment payment",
+    "sent_to_billing": "Sent to billing counter",
+    "failed_to_send_to_billing": "Failed to send to billing counter",
+    "due_approved": "Due approved for consultation",
+    "failed_to_approve_due": "Failed to approve due"
+  },
+
+  "type": {
+    "new_patient": "New patient",
+    "old_patient": "Follow up",
+    "follow_up": "Follow up",
+    "report_show": "Report show",
+    "free_visit": "Free visit",
+    "discounted_visit": "Discounted visit",
+    "emergency": "Emergency"
+  },
+
+  "billing_status": {
+    "no_charge": "No charge",
+    "pending": "Billing pending",
+    "unpaid": "Unpaid",
+    "partial_paid": "Partial paid",
+    "paid": "Paid",
+    "due_approved": "Due approved",
+    "refunded": "Refunded",
+    "cancelled": "Cancelled"
+  },
+
+  "form": {
+    "original": "Original",
+    "discount": "Discount",
+    "payable": "Payable",
+    "reason": "Reason"
+  },
+
+  "placeholder": {
+    "approval_note": "Approval note"
+  },
+
+  "btn": {
+    "pay_now": "Pay Now",
+    "send_to_billing": "Send to Billing",
+    "approve_due": "Approve Due",
+    "check_in": "Check In",
+    "remind": "Remind"
+  },
+
+  "source": {
+    "walk_in": "Walk-in",
+    "online": "Online",
+    "phone": "Phone"
+  },
+
+  "fee": {
+    "discount_info": "discount ৳{{discount}} of ৳{{original}}"
+  },
+
+  "page": {
+    "opd_serial_title": "OPD Serial & Appointment",
+    "registration_badge": "Registration + doctor serial"
+  },
+
+  "tooltip": {
+    "collect_payment_before_queue": "Collect payment or approve due before doctor queue"
+  },
+  "tokenMode": "Token mode",
+  "tokenModeAuto": "Auto",
+  "tokenModeReserved": "Reserved",
+  "tokenModeManual": "Manual",
+  "manualTokenPlaceholder": "Enter token number",
+  "forceTokenNoRequired": "Manual token is required",
+  "tokenAlreadyTaken": "This token is already taken"
+}

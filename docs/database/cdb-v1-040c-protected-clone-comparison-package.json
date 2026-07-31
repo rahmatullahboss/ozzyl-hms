@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "checkpoint": "CDB-V1-040C-REMAINING-CRITICAL-READ-PROVIDER-INTEGRATION",
+  "status": "prepared_not_authorized",
+  "branch": "program/cdb-main-continuous-20260725",
+  "baseMetadataCommit": "4a86b6096",
+  "execution": {
+    "entryPoint": "runCriticalReadShadowBatch",
+    "module": "src/lib/canonical/critical-read-consumer-adapters.ts",
+    "recordLimit": 100,
+    "performed": false,
+    "protectedCloneQueried": false,
+    "productionQueried": false,
+    "providerActivated": false,
+    "trafficChanged": false,
+    "deploymentPerformed": false
+  },
+  "authorization": {
+    "freshExactAuthorizationRequired": true,
+    "present": false,
+    "historicalAuthorizationReusable": false,
+    "requiredBindings": [
+      "exact Cloudflare account and D1 database identity",
+      "protected clone identity and source snapshot SHA-256",
+      "reviewed repository commit and deployed build SHA",
+      "exact tenant and source-row scope",
+      "bounded maintenance or observation window",
+      "named execution owner and rollback owner",
+      "backup or export identity and checksum",
+      "abort conditions and observation owner"
+    ]
+  },
+  "providerKeys": [
+    "canonical_patient_identity_provider_v1",
+    "canonical_practitioner_provider_v1",
+    "canonical_appointment_provider_v1",
+    "canonical_encounter_provider_v1",
+    "canonical_admission_bed_provider_v1",
+    "canonical_compensation_accrual_provider_v1"
+  ],
+  "consumerIds": [
+    "cdb040c.reception-patient-context.patient",
+    "cdb040c.reception-patient-context.practitioner",
+    "cdb040c.reception-patient-context.appointment",
+    "cdb040c.reception-patient-context.encounter",
+    "cdb040c.reception-patient-context.admission",
+    "cdb040c.commission-accrual-admin"
+  ],
+  "sourceScopes": [
+    "patients",
+    "doctors",
+    "appointments",
+    "visits",
+    "admissions",
+    "doctor_commission_accruals"
+  ],
+  "canonicalScopes": [
+    "canonical_tenant_patient_links",
+    "canonical_practitioners",
+    "canonical_appointments",
+    "canonical_encounters",
+    "canonical_admissions",
+    "canonical_compensation_accruals"
+  ],
+  "evidenceContract": {
+    "exactSourceRowKeyRequired": true,
+    "exactCanonicalRowKeyRequired": true,
+    "tenantScopeRequired": true,
+    "buildShaRequired": true,
+    "sourceSnapshotSha256Required": true,
+    "normalizedStatusRequired": true,
+    "bdtIntegerMinorUnitsRequiredForCompensation": true,
+    "deterministicVarianceIdsRequired": true,
+    "latencyEvidenceRequired": true,
+    "phiMinimized": true,
+    "persistenceTable": "canonical_reconciliation_runs"
+  },
+  "acceptance": {
+    "selectedProvider": "legacy",
+    "rollbackMode": "legacy",
+    "criticalUnexplainedVarianceCount": 0,
+    "varianceIds": [],
+    "providerErrorCount": 0,
+    "mappingAmbiguityCount": 0,
+    "crossTenantReferenceCount": 0,
+    "latencyBudgetBreachCount": 0,
+    "secondPassNewBusinessRows": 0
+  },
+  "abortConditions": [
+    "missing or ambiguous source mapping",
+    "any source or Canonical row outside the exact tenant scope",
+    "any unexplained identity, status, lifecycle, row-key or compensation minor-unit variance",
+    "any provider error or missing shadow evidence",
+    "any latency budget breach",
+    "build SHA, source snapshot or protected clone identity does not match the authorization package",
+    "rollback target is not the reviewed legacy provider"
+  ],
+  "postExecutionRequiredEvidence": [
+    "sanitized comparison receipt",
+    "exact record count and provider/consumer scopes",
+    "zero-variance and latency summary",
+    "build and source snapshot SHA-256 bindings",
+    "legacy rollback verification",
+    "proof that production and source clone data were not mutated"
+  ]
+}

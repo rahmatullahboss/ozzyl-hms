@@ -1,0 +1,22 @@
+{
+  "title": "অ্যাসেট ব্যবস্থাপনা",
+  "subtitle": "সরঞ্জাম ট্র্যাকিং, AMC চুক্তি এবং রক্ষণাবেক্ষণ",
+  "tabs": {
+    "assets": "অ্যাসেট",
+    "amc": "AMC চুক্তি",
+    "maintenance": "রক্ষণাবেক্ষণ",
+    "allocations": "বরাদ্দ"
+  },
+  "toast": {
+    "assetRegistered": "অ্যাসেট নিবন্ধিত হয়েছে",
+    "registerAssetFailed": "অ্যাসেট নিবন্ধন করতে ব্যর্থ",
+    "amcCreated": "AMC চুক্তি তৈরি হয়েছে",
+    "createAmcFailed": "চুক্তি তৈরি করতে ব্যর্থ",
+    "maintenanceLogged": "রক্ষণাবেক্ষণ লগ হয়েছে",
+    "logMaintenanceFailed": "রক্ষণাবেক্ষণ লগ করতে ব্যর্থ",
+    "assetAllocated": "অ্যাসেট বরাদ্দ হয়েছে",
+    "allocFailed": "ব্যর্থ",
+    "assetReturned": "অ্যাসেট ফেরত হয়েছে",
+    "returnAssetFailed": "ব্যর্থ"
+  }
+}

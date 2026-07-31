@@ -1,0 +1,75 @@
+name: Build iOS App
+
+on:
+  # Disabled: no Apple Developer account yet.
+  # Uncomment to auto-build on push to main:
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  build-ios:
+    name: Build iOS App
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install root dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install web dependencies
+        run: npm install
+        working-directory: web
+
+      - name: Build web app
+        run: npm run build
+        working-directory: web
+
+      - name: Sync Capacitor
+        run: npx cap sync ios
+        working-directory: web
+
+      - name: Resolve Swift Package dependencies
+        run: xcodebuild -resolvePackageDependencies -project App.xcodeproj -scheme App
+        working-directory: web/ios/App
+
+      - name: Build iOS App (unsigned, for simulator)
+        run: |
+          xcodebuild \
+            -project App.xcodeproj \
+            -scheme App \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            ONLY_ACTIVE_ARCH=NO \
+            build
+        working-directory: web/ios/App
+
+      - name: Find and zip the .app bundle
+        run: |
+          find ~/Library/Developer/Xcode/DerivedData -name "*.app" -path "*/Debug-iphonesimulator/*" | head -1 | xargs -I{} zip -r hms-ios-simulator.zip {}
+        shell: bash
+
+      - name: Upload iOS build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hms-ios-simulator-${{ github.run_number }}
+          path: hms-ios-simulator.zip
+          retention-days: 30

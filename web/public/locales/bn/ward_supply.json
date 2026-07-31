@@ -1,0 +1,93 @@
+{
+  "title": "ওয়ার্ড সরবরাহ ব্যবস্থাপনা",
+  "subtitle": "হাসপাতালের ওয়ার্ডের জন্য চাহিদা, প্রেরণ এবং ইনভেন্টরি ম্যানেজমেন্ট",
+  "pendingRequisitions": "অপেক্ষমাণ চাহিদা",
+  "todayDispatches": "আজকের পাঠানো সরবরাহ",
+  "lowStockAlerts": "স্বল্প মজুদের সতর্কতা",
+  "thisMonth": "এই মাসের মোট (চাহিদা)",
+  "tabs": {
+    "requisitions": "চাহিদা লিপি",
+    "dispatches": "প্রেরিত সরবরাহ",
+    "stock": "ওয়ার্ড মজুদ"
+  },
+  "filters": {
+    "ward": "ওয়ার্ড",
+    "wardId": "ওয়ার্ড আইডি",
+    "status": "অবস্থা",
+    "all": "সব অবস্থা"
+  },
+  "status": {
+    "draft": "খসড়া",
+    "submitted": "জমা দেওয়া হয়েছে",
+    "approved": "অনুমোদিত",
+    "partially_dispatched": "আংশিক পাঠানো হয়েছে",
+    "fully_dispatched": "সম্পূর্ণ পাঠানো হয়েছে",
+    "fully_received": "সম্পূর্ণ গ্রহণ করা হয়েছে",
+    "rejected": "প্রত্যাখ্যাত",
+    "cancelled": "বাতিল"
+  },
+  "priority": {
+    "routine": "সাধারণ",
+    "urgent": "জরুরি",
+    "emergency": "অতি জরুরি"
+  },
+  "buttons": {
+    "newRequisition": "নতুন চাহিদা",
+    "remove": "মুছে ফেলুন",
+    "addItem": "আইটেম যোগ করুন",
+    "dispatch": "পাঠিয়ে দিন",
+    "confirmReceipt": "প্রাপ্তি নিশ্চিত করুন"
+  },
+  "table": {
+    "reqNo": "চাহিদা নম্বর",
+    "ward": "ওয়ার্ড",
+    "requestedBy": "আবেদনকারী",
+    "items": "আইটেম",
+    "value": "মূল্য",
+    "priority": "অগ্রাধিকার",
+    "status": "অবস্থা",
+    "date": "তারিখ",
+    "actions": "পদক্ষেপ",
+    "dispatchNo": "চালান নম্বর",
+    "dispatchedBy": "প্রেরণকারী",
+    "item": "আইটেম",
+    "code": "কোড",
+    "currentStock": "বর্তমান মজুদ",
+    "minLevel": "সর্বনিম্ন সীমা",
+    "unit": "একক",
+    "lastReceipt": "শেষ প্রাপ্তি"
+  },
+  "empty": {
+    "noRequisitions": "কোনো চাহিদা পাওয়া যায়নি",
+    "noRequisitionsDesc": "একটি নতুন সরবরাহ চাহিদা তৈরি করে শুরু করুন",
+    "noDispatches": "কোনো চালান পাওয়া যায়নি",
+    "noDispatchesDesc": "চাহিদা প্রসেস করা হলে চালানগুলো এখানে প্রদর্শিত হবে",
+    "noStock": "কোনো মজুদের তথ্য পাওয়া যায়নি",
+    "noStockDesc": "এই ওয়ার্ডের ইনভেন্টরি লেভেল এখানে প্রদর্শিত হবে"
+  },
+  "modal": {
+    "newRequisition": "নতুন চাহিদা লিপি",
+    "wardId": "ওয়ার্ড আইডি",
+    "wardName": "ওয়ার্ডের নাম",
+    "requestedBy": "আবেদনকারী",
+    "remarks": "মন্তব্য",
+    "itemName": "আইটেমের নাম",
+    "qty": "পরিমাণ",
+    "createDispatch": "{{no}} এর জন্য সরবরাহ পাঠান",
+    "batch": "ব্যাচ নম্বর",
+    "recordReceipt": "{{no}} এর প্রাপ্তি নথিভুক্ত করুন",
+    "receivedBy": "গ্রহণকারী",
+    "receiptRemarks": "প্রাপ্তির মন্তব্য",
+    "qtyReceived": "প্রাপ্ত পরিমাণ"
+  },
+  "toasts": {
+    "reqCreated": "চাহিদা সফলভাবে তৈরি করা হয়েছে",
+    "statusUpdated": "অবস্থা সফলভাবে আপডেট করা হয়েছে",
+    "dispatchCreated": "সরবরাহ সফলভাবে পাঠানো হয়েছে",
+    "receiptRecorded": "প্রাপ্তি সফলভাবে নথিভুক্ত করা হয়েছে",
+    "fillRequired": "অনুগ্রহ করে সব প্রয়োজনীয় ক্ষেত্র এবং আইটেম পূরণ করুন",
+    "noItems": "পাঠানোর মতো কোনো বৈধ আইটেম নেই",
+    "enterReceiver": "অনুগ্রহ করে গ্রহণকারীর নাম লিখুন",
+    "failed": "কাজটি ব্যর্থ হয়েছে"
+  }
+}

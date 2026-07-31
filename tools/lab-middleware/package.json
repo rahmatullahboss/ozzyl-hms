@@ -1,0 +1,13 @@
+{
+  "name": "ozzyl-lab-middleware",
+  "version": "1.0.0",
+  "description": "ASTM LIS2-A2 / HL7 MLLP middleware for Bangladesh hospital lab analyzers. Bridges physical machines to Ozzyl HMS API.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

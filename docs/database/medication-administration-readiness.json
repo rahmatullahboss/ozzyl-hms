@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "domain": "medication_administration",
+  "checkpoint": "CDB-124E",
+  "claims": {
+    "localReady": true,
+    "productionReady": false,
+    "providerEnabled": false,
+    "routeCutoverPerformed": false,
+    "productionObservationPresent": false,
+    "ownerAuthorizationPresent": false,
+    "legacyRetirementApproved": false,
+    "productionMutationPerformed": false,
+    "productionQueryPerformed": false,
+    "localSyncActivated": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  },
+  "verifiedContracts": {
+    "schema": true,
+    "commands": true,
+    "boundedBackfill": true,
+    "backfillPartitionCount": 8,
+    "reconciliationCheckCount": 22,
+    "providerDefaultLegacy": true,
+    "providerDisabledSafe": true,
+    "exactSourceMappingRequired": true,
+    "textTimeSimilarityForbidden": true,
+    "correctionHistoryVisible": true,
+    "reconciliationHistoryVisible": true,
+    "shadowEvidencePhiMinimised": true,
+    "rollbackMode": "legacy",
+    "runtimeRoutesUnchanged": true
+  },
+  "requiredEvidence": [
+    {
+      "kind": "design",
+      "path": "docs/superpowers/specs/2026-07-28-cdb-124a-medication-administration-authority-design.md"
+    },
+    {
+      "kind": "schema",
+      "path": "migrations/0557_canonical_medication_administration.sql"
+    },
+    {
+      "kind": "commands",
+      "path": "src/lib/canonical/commands/manage-medication-administration.ts"
+    },
+    {
+      "kind": "backfill",
+      "path": "scripts/canonical/backfill-medication-administration.ts"
+    },
+    {
+      "kind": "reconciliation",
+      "path": "scripts/canonical/reconcile-medication-administration.ts"
+    },
+    {
+      "kind": "provider",
+      "path": "src/lib/canonical/medication-administration-provider.ts"
+    },
+    {
+      "kind": "adapters",
+      "path": "src/lib/canonical/medication-administration-read-adapters.ts"
+    },
+    {
+      "kind": "coverage",
+      "path": "docs/database/canonical-medication-administration-provider-coverage.json"
+    },
+    {
+      "kind": "receipt",
+      "path": "docs/database/migration-runs/P12-canonical-medication-administration-backfill-reconciliation.md"
+    }
+  ],
+  "blockedGates": [
+    {
+      "gate": "production_activation",
+      "status": "blocked",
+      "reason": "Provider flag is disabled, runtime routes are unchanged, and production migration, observation, rollback execution evidence, and exact owner authorization are absent."
+    },
+    {
+      "gate": "legacy_retirement",
+      "status": "blocked",
+      "reason": "MAR and medication-reconciliation writers/readers remain active and no production observation or explicit retirement authorization exists."
+    }
+  ]
+}

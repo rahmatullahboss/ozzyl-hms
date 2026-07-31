@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "domain": "patient_vital_measurement",
+  "checkpoint": "CDB-123E",
+  "claims": {
+    "localReady": true,
+    "productionReady": false,
+    "providerEnabled": false,
+    "routeCutoverPerformed": false,
+    "productionObservationPresent": false,
+    "ownerAuthorizationPresent": false,
+    "legacyRetirementApproved": false,
+    "productionMutationPerformed": false,
+    "productionQueryPerformed": false,
+    "localSyncActivated": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  },
+  "verifiedContracts": {
+    "schema": true,
+    "commands": true,
+    "boundedBackfill": true,
+    "backfillPartitionCount": 9,
+    "reconciliationCheckCount": 20,
+    "providerDefaultLegacy": true,
+    "providerDisabledSafe": true,
+    "exactSourceMappingRequired": true,
+    "shadowEvidencePhiMinimised": true,
+    "rollbackMode": "legacy",
+    "runtimeRoutesUnchanged": true
+  },
+  "requiredEvidence": [
+    {
+      "kind": "design",
+      "path": "docs/superpowers/specs/2026-07-28-cdb-123a-patient-vital-measurement-authority-design.md"
+    },
+    {
+      "kind": "plan",
+      "path": "docs/superpowers/plans/2026-07-28-cdb-123-patient-vital-measurement-authority.md"
+    },
+    {
+      "kind": "schema",
+      "path": "migrations/0556_canonical_patient_vital_measurement.sql"
+    },
+    {
+      "kind": "schema_module",
+      "path": "src/db/schema/canonical/vital-observations.ts"
+    },
+    {
+      "kind": "commands",
+      "path": "src/lib/canonical/commands/manage-vital-observations.ts"
+    },
+    {
+      "kind": "backfill",
+      "path": "scripts/canonical/backfill-patient-vital-measurement.ts"
+    },
+    {
+      "kind": "reconciliation",
+      "path": "scripts/canonical/reconcile-patient-vital-measurement.ts"
+    },
+    {
+      "kind": "provider",
+      "path": "src/lib/canonical/patient-vital-measurement-provider.ts"
+    },
+    {
+      "kind": "adapters",
+      "path": "src/lib/canonical/patient-vital-measurement-read-adapters.ts"
+    },
+    {
+      "kind": "schema_tests",
+      "path": "test/canonical/patient-vital-measurement-schema.test.ts"
+    },
+    {
+      "kind": "command_tests",
+      "path": "test/canonical/patient-vital-measurement-commands.test.ts"
+    },
+    {
+      "kind": "backfill_reconciliation_tests",
+      "path": "test/canonical/patient-vital-measurement-backfill-reconciliation.test.ts"
+    },
+    {
+      "kind": "provider_tests",
+      "path": "test/canonical/patient-vital-measurement-provider.test.ts"
+    },
+    {
+      "kind": "coverage",
+      "path": "docs/database/canonical-patient-vital-measurement-provider-coverage.json"
+    }
+  ],
+  "blockedGates": [
+    {
+      "gate": "production_activation",
+      "status": "blocked",
+      "reason": "Exact owner authorization, production migration and bounded backfill rehearsal, shadow observation, reader and writer cutover evidence, and rollback proof are absent."
+    },
+    {
+      "gate": "legacy_retirement",
+      "status": "blocked",
+      "reason": "Legacy vital sources remain active and must be retained until exact mapping, production observation, rollback proof, cutover evidence, and explicit retirement approval exist."
+    }
+  ]
+}

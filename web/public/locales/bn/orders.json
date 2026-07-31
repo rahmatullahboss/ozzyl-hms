@@ -1,0 +1,140 @@
+{
+  "title": "অর্ডার সেট ম্যানেজার",
+  "subtitle": "ওষুধ, ল্যাব এবং নার্সিং অর্ডারের পূর্ব-নির্মিত বান্ডিল",
+  "tabs": {
+    "orderSets": "অর্ডার সেট",
+    "favorites": "আমার প্রিয়"
+  },
+  "search": {
+    "placeholder": "অর্ডার সেট খুঁজুন...",
+    "specialty": "সব স্পেশালিটি",
+    "category": "সব ক্যাটাগরি"
+  },
+  "actions": {
+    "createNew": "নতুন তৈরি করুন",
+    "apply": "প্রয়োগ করুন",
+    "addItem": "আইটেম যোগ করুন",
+    "addFirstItem": "প্রথম আইটেম যোগ করুন",
+    "createOrderSet": "অর্ডার সেট তৈরি করুন",
+    "saveFavorite": "প্রিয়তে সেভ করুন",
+    "edit": "এডিট",
+    "deactivate": "নিষ্ক্রিয় করুন"
+  },
+  "table": {
+    "name": "নাম",
+    "specialty": "স্পেশালিটি",
+    "category": "ক্যাটাগরি",
+    "items": "আইটেম"
+  },
+  "detail": {
+    "title": "অর্ডার সেট বিস্তারিত",
+    "emptyState": {
+      "title": "এখনো কোনো আইটেম নেই",
+      "description": "এই অর্ডার সেটে ওষুধ, ল্যাব টেস্ট, নার্সিং অর্ডার এবং আরও অনেক কিছু যোগ করুন।"
+    }
+  },
+  "modals": {
+    "create": {
+      "title": "অর্ডার সেট তৈরি করুন",
+      "name": "নাম",
+      "namePlaceholder": "উদা: বুক ব্যথার জন্য অ্যাডমিশন অর্ডার",
+      "description": "বিবরণ",
+      "descPlaceholder": "এই অর্ডার সেটটি কখন ব্যবহার করতে হবে তার সংক্ষিপ্ত বিবরণ",
+      "specialty": "স্পেশালিটি",
+      "category": "ক্যাটাগরি",
+      "submit": "তৈরি করুন"
+    },
+    "edit": {
+      "title": "অর্ডার সেট এডিট করুন",
+      "submit": "আপডেট করুন"
+    },
+    "addItem": {
+      "title": "অর্ডার সেটে আইটেম যোগ করুন",
+      "itemType": "আইটেমের ধরন",
+      "priority": "অগ্রাধিকার",
+      "name": "নাম",
+      "namePlaceholderMed": "উদা: অ্যাসপিরিন ৮১ মি.গ্রা.",
+      "namePlaceholderLab": "উদা: CBC with Differential",
+      "dose": "ডোজ",
+      "route": "রুট",
+      "frequency": "ফ্রিকোয়েন্সি",
+      "duration": "সময়কাল",
+      "testCode": "টেস্ট কোড",
+      "description": "বিবরণ",
+      "optional": "ঐচ্ছিক আইটেম (প্রয়োগ করার সময় ডিফল্টভাবে আনচেক করা থাকে)",
+      "submit": "আইটেম যোগ করুন"
+    },
+    "apply": {
+      "title": "প্রয়োগ: {{name}}",
+      "patient": "রোগী",
+      "searchPlaceholder": "নাম বা MRN দিয়ে রোগী খুঁজুন...",
+      "visitId": "ভিজিট আইডি (ঐচ্ছিক)",
+      "visitIdPlaceholder": "খালি থাকলে বর্তমান ভিজিট অটো-ডিটেক্ট করবে",
+      "itemsToApply": "প্রয়োগ করার জন্য আইটেম",
+      "checkSafety": "সুরক্ষা যাচাই করুন",
+      "checking": "যাচাই করা হচ্ছে...",
+      "safetyResults": "সুরক্ষা যাচাইয়ের ফলাফল",
+      "noSafetyConcerns": "কোনো সুরক্ষা উদ্বেগ পাওয়া যায়নি",
+      "noSafetyConcernsDesc": "সব আইটেম সুরক্ষা যাচাইয়ে উত্তীর্ণ হয়েছে। আপনি এগিয়ে যেতে পারেন।",
+      "applying": "প্রয়োগ করা হচ্ছে...",
+      "applyOrderSet": "অর্ডার সেট প্রয়োগ করুন",
+      "success": "অর্ডার সেট সফলভাবে প্রয়োগ করা হয়েছে",
+      "appliedTo": "{{name}}-এর জন্য প্রয়োগ করা হয়েছে",
+      "prescriptions": "প্রেসক্রিপশন",
+      "labOrders": "ল্যাব অর্ডার",
+      "nursingNotes": "নার্সিং নোট",
+      "dietOrders": "ডায়েট অর্ডার",
+      "instructions": "নির্দেশনা"
+    }
+  },
+  "sections": {
+    "medication": "ওষুধ",
+    "lab_test": "ল্যাব টেস্ট",
+    "nursing_order": "নার্সিং অর্ডার",
+    "diet_order": "ডায়েট অর্ডার",
+    "instruction": "নির্দেশনা"
+  },
+  "priorities": {
+    "stat": "তাত্ক্ষণিক (Stat)",
+    "urgent": "জরুরি (Urgent)",
+    "routine": "সাধারণ (Routine)"
+  },
+  "specialties": {
+    "general": "সাধারণ (General)",
+    "internal_medicine": "ইনটারনাল মেডিসিন",
+    "surgery": "সার্জারি",
+    "pediatrics": "পেডিয়াট্রিকস",
+    "ob_gyn": "গাইনি",
+    "cardiology": "কার্ডিওলজি",
+    "neurology": "নিউরোলজি",
+    "orthopedics": "অর্থোপেডিকস",
+    "ent": "ENT",
+    "dermatology": "ডার্মাটোলজি",
+    "psychiatry": "সাইকিয়াট্রি",
+    "emergency": "ইমার্জেন্সি",
+    "icu": "ICU",
+    "oncology": "অঙ্কোলজি",
+    "nephrology": "নেফ্রোলজি",
+    "pulmonology": "পালমোনোলজি"
+  },
+  "categories": {
+    "admission": "ভর্তি (Admission)",
+    "discharge": "ছাড়পত্র (Discharge)",
+    "pre_op": "অপারেশনের আগে (Pre-Op)",
+    "post_op": "অপারেশনের পরে (Post-Op)",
+    "emergency": "জরুরি অবস্থা (Emergency)",
+    "routine": "নিয়মিত (Routine)",
+    "chronic_disease": "দীর্ঘস্থায়ী রোগ",
+    "diagnostic": "ডায়াগনস্টিক",
+    "preventive": "প্রতিরোধমূলক"
+  },
+  "status": {
+    "orderSetUpdated": "অর্ডার সেট আপডেট করা হয়েছে",
+    "orderSetCreated": "অর্ডার সেট তৈরি করা হয়েছে",
+    "itemAdded": "আইটেম যোগ করা হয়েছে",
+    "itemRemoved": "আইটেম মুছে ফেলা হয়েছে",
+    "deactivated": "অর্ডার সেট নিষ্ক্রিয় করা হয়েছে",
+    "savedFavorite": "প্রিয়তে সেভ করা হয়েছে",
+    "favoriteRemoved": "প্রিয় থেকে মুছে ফেলা হয়েছে"
+  }
+}

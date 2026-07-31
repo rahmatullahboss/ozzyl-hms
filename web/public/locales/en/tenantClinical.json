@@ -1,0 +1,341 @@
+{
+  "intraOpCanvas": {
+    "noBooking": "No booking selected. Open a case from the OT Dashboard.",
+    "backToOT": "Back to OT",
+    "patient": "Patient",
+    "id": "ID",
+    "age": "Age",
+    "gender": "Gender",
+    "riskSignals": "Risk Signals",
+    "score": "Score",
+    "allergies": "Allergies",
+    "medications": "Medications",
+    "lastVitals": "Last Vitals",
+    "bp": "BP",
+    "pulse": "Pulse",
+    "bpm": "bpm",
+    "spo2": "SpO2",
+    "temp": "Temp",
+    "clearance": "Clearance",
+    "verifyNotice": "Verify all fields against the patient file before any surgical decision.",
+    "tab": {
+      "clearance": "Clearance",
+      "consents": "Consents",
+      "vitals": "Vitals",
+      "safety": "Safety",
+      "anesthesia": "Anesthesia",
+      "billing": "Billing",
+      "recovery": "Recovery",
+      "audit": "Audit"
+    },
+    "vitalsRecorded": "Vitals recorded",
+    "failed": "Failed",
+    "atLeastOneVital": "At least one vital required",
+    "vitalsTimeline": "VITALS TIMELINE",
+    "record": "Record",
+    "bpSys": "BP Sys",
+    "bpDia": "BP Dia",
+    "rr": "RR",
+    "pain": "Pain",
+    "cancel": "Cancel",
+    "saving": "Saving…",
+    "save": "Save",
+    "noVitals": "No vitals recorded.",
+    "time": "Time",
+    "noClearanceChecks": "No clearance checks.",
+    "done": "Done",
+    "waive": "Waive",
+    "noConsents": "No consents.",
+    "sign": "Sign",
+    "verify": "Verify",
+    "noSafetyChecklist": "No safety checklist.",
+    "noAnesthesiaLogs": "No anesthesia logs.",
+    "type": "Type",
+    "airway": "Airway",
+    "drugs": "Drugs",
+    "complications": "Complications",
+    "notes": "Notes",
+    "noBill": "No bill generated.",
+    "status": "Status",
+    "gross": "Gross",
+    "discount": "Discount",
+    "net": "Net",
+    "head": "Head",
+    "description": "Description",
+    "qty": "Qty",
+    "price": "Price",
+    "total": "Total",
+    "noRecoveryHandover": "No recovery handover.",
+    "shiftedTo": "Shifted to",
+    "consciousness": "Consciousness",
+    "instructions": "Instructions",
+    "noAuditEntries": "No audit entries.",
+    "by": "by",
+    "unknown": "unknown"
+  },
+  "doctorLabResults": {
+    "kicker": "Doctor Lab Results",
+    "title": "Results Inbox",
+    "subtitle": "Review abnormal and critical reports, acknowledge results, and schedule follow-up without losing track of pending work.",
+    "searchPlaceholder": "Search by patient or test name",
+    "tab": {
+      "recent": "Recent",
+      "pending": "Pending",
+      "abnormal": "Abnormal",
+      "critical": "Critical",
+      "needsReview": "Needs Review",
+      "trend": "Trend"
+    },
+    "stat": {
+      "totalReports": "Total Reports",
+      "pending": "Pending",
+      "abnormal": "Abnormal",
+      "critical": "Critical",
+      "needsReview": "Needs Review"
+    },
+    "trendHeading": "Lab Trends",
+    "loadingTrends": "Loading trends...",
+    "heading": {
+      "recent": "Recent Lab Results",
+      "pending": "Pending Lab Results",
+      "abnormal": "Abnormal Lab Results",
+      "critical": "Critical Lab Results",
+      "needsReview": "Results Needing Review"
+    },
+    "showingRecords": "Showing {{count}} records",
+    "loading": "Loading...",
+    "noRecords": "No records found.",
+    "status": {
+      "pending": "Pending",
+      "acknowledged": "Acknowledged"
+    },
+    "column": {
+      "patient": "Patient",
+      "test": "Test",
+      "date": "Date",
+      "keyResult": "Key Result",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "action": {
+      "view": "View",
+      "acknowledge": "Acknowledge",
+      "chart": "Chart",
+      "followUp": "Follow-up"
+    },
+    "toast": {
+      "acknowledged": "Result acknowledged",
+      "acknowledgeFailed": "Failed to acknowledge result"
+    }
+  },
+  "otCalendar": {
+    "title": "OT Schedule",
+    "subtitle": "Room-wise timeline view",
+    "day": "Day",
+    "week": "Week",
+    "today": "Today",
+    "time": "Time",
+    "room": "Room",
+    "unassigned": "Unassigned",
+    "dayShort": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    }
+  },
+  "otSettings": {
+    "title": "OT Settings",
+    "subtitle": "Configure Operation Theatre module behavior",
+    "saving": "Saving…",
+    "saveChanges": "Save Changes",
+    "minutes": "Minutes",
+    "toast": {
+      "saved": "OT settings saved",
+      "failed": "Failed to save"
+    },
+    "section": {
+      "roomDefaults": {
+        "title": "Room Defaults",
+        "desc": "Default durations for room turnover",
+        "cleaning": "Cleaning Duration",
+        "sterilization": "Sterilization Duration"
+      },
+      "monitoring": {
+        "title": "Monitoring & Alerts",
+        "desc": "Intra-operative reminders",
+        "vitalsReminder": "Vitals Reminder Interval",
+        "vitalsReminderHint": "Minutes between vitals reminders",
+        "emergencyOverride": "Emergency Override Allowed",
+        "emergencyOverrideHint": "Allow bypassing clearance blocks for emergency OT"
+      },
+      "hardBlocks": {
+        "title": "Pre-OT Hard Blocks",
+        "desc": "Block OT start when clearance items are pending",
+        "blockConsent": "Block on Consent",
+        "blockConsentHint": "Block if surgery consent is missing",
+        "blockAnesthesia": "Block on Anesthesia Fitness",
+        "blockAnesthesiaHint": "Block if anesthesia fitness certificate is missing",
+        "blockPayment": "Block on Payment",
+        "blockPaymentHint": "Block if payment/advance is pending",
+        "blockBlood": "Block on Blood Arrangement",
+        "blockBloodHint": "Block if blood arrangement is pending"
+      },
+      "billing": {
+        "title": "Billing",
+        "desc": "OT billing workflow settings",
+        "billPostReview": "Bill Post Requires Review",
+        "billPostReviewHint": "Bills must be reviewed before posting to IPD",
+        "commissionCalc": "Commission Calculation Enabled",
+        "commissionCalcHint": "Auto-calculate surgeon/anesthetist commissions on bill posting",
+        "autoDeductStock": "Auto-Deduct Stock on Post",
+        "autoDeductStockHint": "Automatically deduct inventory when bill is posted"
+      },
+      "offline": {
+        "title": "Offline Support",
+        "desc": "Local server offline capabilities",
+        "offlineDraft": "Offline Draft Enabled",
+        "offlineDraftHint": "Allow creating OT drafts when offline"
+      }
+    }
+  },
+  "doctorReportReview": {
+    "title": "Report Review",
+    "subtitle": "Review reported investigations with the previous prescription in context.",
+    "loading": "Loading report-show queue...",
+    "emptyState": "No report-show patient is pending for this date.",
+    "lastPrescription": "Last Prescription",
+    "completedReports": "Completed Reports",
+    "pendingTests": "Pending Tests",
+    "noDiagnosis": "No diagnosis recorded",
+    "medicine": "Medicine",
+    "noCompletedReport": "No completed report.",
+    "noPendingTest": "No pending test.",
+    "testFallback": "Test",
+    "reviewNoteFor": "Review note for {{name}}",
+    "reviewNotePlaceholder": "Clinical review note (optional)",
+    "markReviewed": "Mark Reviewed",
+    "validity": {
+      "validReportShow": "Valid Report Show",
+      "reportShowExpired": "Report Show Expired",
+      "validFollowUp": "Valid Follow-up",
+      "followUpExpired": "Follow-up Expired",
+      "paymentPending": "Payment Pending",
+      "fallback": "Report Show"
+    },
+    "toast": {
+      "saved": "Report review saved",
+      "saveFailed": "Could not save report review"
+    }
+  },
+  "doctorCertificates": {
+    "title": "Medical Certificates",
+    "subtitle": "Issued certificates are final records. Cancel with a reason and issue a new record for corrections.",
+    "issueSection": "Issue Certificate",
+    "searchPatient": "Search patient",
+    "searchPlaceholder": "Search by patient name, code or phone",
+    "selected": "Selected",
+    "type": "Type",
+    "typeOption": {
+      "medical": "Medical certificate",
+      "fitness": "Fitness certificate",
+      "sick_leave": "Sick leave certificate",
+      "work_rest": "Work rest advice"
+    },
+    "issueDate": "Issue date",
+    "restDays": "Rest days",
+    "purpose": "Purpose (optional)",
+    "recommendation": "Recommendation",
+    "issue": "Issue Certificate",
+    "issuedList": "Issued Certificates",
+    "loading": "Loading...",
+    "noCertificate": "No certificate issued yet.",
+    "table": {
+      "certificateNo": "Certificate No",
+      "patient": "Patient",
+      "type": "Type",
+      "date": "Date",
+      "status": "Status"
+    },
+    "status": {
+      "final": "Final",
+      "cancelled": "Cancelled"
+    },
+    "preview": "Preview & Print",
+    "cancel": "Cancel",
+    "cancellationPrompt": "Cancellation reason",
+    "previewAria": "Certificate print preview",
+    "print": "Print Document",
+    "close": "Close",
+    "previewPatient": "Patient:",
+    "restAdvised": "Rest advised: {{count}} day(s)",
+    "issuingDoctor": "Issuing doctor",
+    "digitalFinal": "Digitally issued final record",
+    "validationError": "Select the patient identity and enter a recommendation",
+    "toast": {
+      "issued": "Certificate issued and audit logged",
+      "issueFailed": "Certificate could not be issued",
+      "cancelled": "Certificate cancelled",
+      "cancelFailed": "Certificate could not be cancelled"
+    }
+  },
+  "otReports": {
+    "title": "OT Reports",
+    "subtitle": "Analytics and utilization reports",
+    "from": "From",
+    "to": "To",
+    "reset": "Reset",
+    "noData": "No data",
+    "items": "items",
+    "minutes": "min",
+    "tab": {
+      "daily": "Daily Report",
+      "financial": "Financial",
+      "inventory": "Inventory",
+      "utilization": "Utilization"
+    },
+    "daily": {
+      "scheduled": "Scheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "emergency": "Emergency",
+      "inProgress": "In Progress",
+      "roomUtilization": "Room Utilization",
+      "surgeonCases": "Surgeon Cases",
+      "procedures": "Procedures"
+    },
+    "financial": {
+      "totalRevenue": "Total Revenue",
+      "netRevenue": "Net Revenue",
+      "totalDiscount": "Total Discount",
+      "surgeonCommission": "Surgeon Commission",
+      "revenueBreakdown": "Revenue Breakdown",
+      "surgeryCharges": "Surgery Charges",
+      "medicineCharges": "Medicine Charges",
+      "implantCharges": "Implant Charges",
+      "surgeonCommissionRow": "Surgeon Commission",
+      "anesthetistCommission": "Anesthetist Commission"
+    },
+    "inventory": {
+      "itemsUsed": "Items Used",
+      "totalValue": "Total Value",
+      "wastage": "Wastage",
+      "returned": "Returned",
+      "bySource": "By Source",
+      "byChargeHead": "By Charge Head"
+    },
+    "utilization": {
+      "avgSurgeryDuration": "Avg Surgery Duration",
+      "avgCleaningDuration": "Avg Cleaning Duration",
+      "roomUtilization": "Room Utilization",
+      "room": "Room",
+      "bookings": "Bookings",
+      "avgDuration": "Avg Duration",
+      "utilization": "Utilization",
+      "delayReasons": "Delay Reasons"
+    }
+  }
+}

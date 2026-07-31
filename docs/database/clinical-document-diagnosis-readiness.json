@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "domain": "clinical_document_diagnosis",
+  "checkpoint": "CDB-122E",
+  "claims": {
+    "localReady": true,
+    "productionReady": false,
+    "providerEnabled": false,
+    "routeCutoverPerformed": false,
+    "productionObservationPresent": false,
+    "ownerAuthorizationPresent": false,
+    "legacyRetirementApproved": false,
+    "productionMutationPerformed": false,
+    "productionQueryPerformed": false,
+    "localSyncActivated": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  },
+  "verifiedContracts": {
+    "schema": true,
+    "commands": true,
+    "boundedBackfill": true,
+    "reconciliationCheckCount": 20,
+    "providerDefaultLegacy": true,
+    "providerDisabledSafe": true,
+    "exactSourceMappingRequired": true,
+    "shadowEvidencePhiMinimised": true,
+    "rollbackMode": "legacy",
+    "runtimeRoutesUnchanged": true
+  },
+  "requiredEvidence": [
+    { "kind": "migration", "path": "migrations/0555_canonical_clinical_document_diagnosis.sql" },
+    { "kind": "schema", "path": "src/db/schema/canonical/clinical-documents.ts" },
+    { "kind": "commands", "path": "src/lib/canonical/commands/manage-clinical-document-diagnosis.ts" },
+    { "kind": "backfill", "path": "scripts/canonical/backfill-clinical-document-diagnosis.ts" },
+    { "kind": "reconciliation", "path": "scripts/canonical/reconcile-clinical-document-diagnosis.ts" },
+    { "kind": "provider", "path": "src/lib/canonical/clinical-document-diagnosis-provider.ts" },
+    { "kind": "adapters", "path": "src/lib/canonical/clinical-document-diagnosis-read-adapters.ts" },
+    { "kind": "schema_test", "path": "test/canonical/clinical-document-diagnosis-schema.test.ts" },
+    { "kind": "command_test", "path": "test/canonical/clinical-document-diagnosis-commands.test.ts" },
+    { "kind": "backfill_reconciliation_test", "path": "test/canonical/clinical-document-diagnosis-backfill-reconciliation.test.ts" },
+    { "kind": "provider_test", "path": "test/canonical/clinical-document-diagnosis-provider.test.ts" },
+    { "kind": "source_registry", "path": "docs/database/canonical-source-of-truth.yaml" },
+    { "kind": "authority_matrix", "path": "docs/database/canonical-authority-matrix.yaml" },
+    { "kind": "provider_coverage", "path": "docs/database/canonical-clinical-document-diagnosis-provider-coverage.json" }
+  ],
+  "blockedGates": [
+    {
+      "gate": "production_activation",
+      "status": "blocked",
+      "reason": "production observation and exact owner authorization are absent"
+    },
+    {
+      "gate": "legacy_retirement",
+      "status": "blocked",
+      "reason": "reader migration, production observation, rollback proof, and retirement authorization are absent"
+    }
+  ]
+}

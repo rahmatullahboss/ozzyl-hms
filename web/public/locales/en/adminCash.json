@@ -1,0 +1,255 @@
+{
+  "cashDrawerDetail": {
+    "loading": "Loading...",
+    "titleFallback": "Cash Drawer Detail",
+    "shift": "Shift",
+    "summaryCards": {
+      "openingFloat": "Opening Float",
+      "collection": "Collection",
+      "refund": "Refund",
+      "expense": "Expense",
+      "transfer": "Transfer",
+      "bankDeposit": "Bank Deposit",
+      "expectedClosing": "Expected Closing"
+    },
+    "tabs": {
+      "summary": "Summary",
+      "transactions": "Transactions",
+      "handoverHistory": "Handover History"
+    },
+    "cashFlowSummary": "Cash Flow Summary",
+    "flow": {
+      "openingFloat": "Opening Float",
+      "patientCollection": "+ Patient Collection",
+      "refunds": "- Refunds",
+      "expenses": "- Expenses",
+      "drawerTransfer": "- Drawer Transfer",
+      "bankDeposit": "- Bank Deposit",
+      "expectedClosingBalance": "Expected Closing Balance"
+    },
+    "transactions": {
+      "empty": "No transactions found",
+      "table": {
+        "time": "Time",
+        "type": "Type",
+        "description": "Description",
+        "amount": "Amount",
+        "balance": "Balance",
+        "reference": "Reference"
+      }
+    },
+    "handover": {
+      "empty": "No handover records found",
+      "table": {
+        "time": "Time",
+        "from": "From",
+        "to": "To",
+        "declared": "Declared",
+        "received": "Received",
+        "variance": "Variance",
+        "status": "Status"
+      }
+    },
+    "statusLabels": {
+      "active": "Active",
+      "handover pending": "Handover pending",
+      "disputed": "Disputed",
+      "closed": "Closed",
+      "verified": "Verified",
+      "pending": "Pending"
+    }
+  },
+  "shiftHandoverDetail": {
+    "loading": "Loading...",
+    "notFound": "Handover record not found",
+    "title": "Shift Handover",
+    "session": "Session",
+    "outgoingStaff": "Outgoing Staff",
+    "incomingStaff": "Incoming Staff",
+    "handoverTime": "Handover Time",
+    "cashSummary": "Cash Summary",
+    "flow": {
+      "shiftOpenAmount": "Shift Opening Amount",
+      "totalCashReceived": "+ Total Cash Received",
+      "totalCashPaidOut": "- Total Cash Paid Out",
+      "declaredCash": "Declared Cash"
+    },
+    "denominationBreakdown": "Denomination Breakdown",
+    "noDenominationData": "No denomination data",
+    "denominationTable": {
+      "noteCoin": "Note / Coin",
+      "count": "Count",
+      "total": "Total"
+    },
+    "variance": {
+      "noVariance": "No Variance",
+      "variance": "Variance",
+      "over": "Over",
+      "under": "Short",
+      "declared": "Declared",
+      "received": "Received"
+    },
+    "notes": "Notes",
+    "statusLabels": {
+      "verified": "Verified",
+      "disputed": "Disputed",
+      "pending": "Pending"
+    }
+  },
+  "dailyCollection": {
+    "loading": "Loading...",
+    "title": "Daily Collection Report",
+    "actions": {
+      "export": "Export",
+      "print": "Print"
+    },
+    "summary": {
+      "totalCollection": "Total Collection",
+      "totalRefund": "Total Refund",
+      "totalExpense": "Total Expense",
+      "netCollection": "Net Collection",
+      "activeCounters": "Active Counters"
+    },
+    "tabs": {
+      "counterWise": "Counter-wise",
+      "departmentWise": "Department-wise",
+      "paymentMethod": "Payment Method"
+    },
+    "empty": {
+      "counter": "No counter data found",
+      "department": "No department data found",
+      "payment": "No payment data found"
+    },
+    "counterTable": {
+      "counter": "Counter",
+      "staff": "Staff",
+      "opening": "Opening",
+      "collection": "Collection",
+      "refund": "Refund",
+      "expense": "Expense",
+      "expected": "Expected",
+      "actual": "Actual",
+      "variance": "Variance"
+    },
+    "departmentTable": {
+      "department": "Department",
+      "invoices": "Invoices",
+      "revenue": "Revenue",
+      "discount": "Discount",
+      "net": "Net"
+    },
+    "paymentTable": {
+      "paymentMethod": "Payment Method",
+      "amount": "Amount",
+      "percentage": "Percentage"
+    }
+  },
+  "refundDetail": {
+    "title": "Refund Detail",
+    "subtitle": "Review and monitor refund requests",
+    "summary": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "totalRequests": "Total Requests",
+      "totalAmount": "Total Amount"
+    },
+    "tabs": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "completed": "Completed",
+      "flagged": "Flagged"
+    },
+    "noData": "No {{tab}} refund requests found",
+    "refundId": "Refund ID",
+    "bill": "Bill",
+    "patient": "Patient",
+    "amount": "Amount",
+    "reason": "Reason",
+    "requestedBy": "Requested By",
+    "status": "Status",
+    "date": "Date",
+    "statusLabels": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "completed": "Completed",
+      "flagged": "Flagged"
+    }
+  },
+  "cashControlLedger": {
+    "title": "Cash Control Ledger",
+    "subtitle": "Live counter cash, handover, expense, receipt, variance, and cash movement in one place.",
+    "actions": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "refreshAria": "Refresh cash control ledger"
+    },
+    "errors": {
+      "loadFailed": "Cash control data could not be loaded. Please refresh again."
+    },
+    "filters": {
+      "title": "Review filters",
+      "subtitle": "Quickly review by counter, operator, movement type, missing receipt, or variance.",
+      "clear": "Clear filters",
+      "counter": "Counter",
+      "allCounters": "All counters",
+      "operator": "Operator / user",
+      "allUsers": "All users",
+      "movementType": "Movement type",
+      "allMovements": "All movements",
+      "missingReceiptOnly": "Missing receipt only",
+      "varianceHandoversOnly": "Variance handovers only",
+      "showingSummary": "Showing {{visibleMovements}} of {{totalMovements}} movements, {{visibleCounters}} of {{totalCounters}} active counters, {{visibleHandovers}} of {{totalHandovers}} handovers."
+    },
+    "summaryCards": {
+      "activeCounterCash": {
+        "label": "Active counter cash",
+        "detail": "{{count}} active counters"
+      },
+      "pendingCash": {
+        "label": "Pending / in-transit cash",
+        "ledgerDetail": "Unreceived transfer / bank deposit pending",
+        "legacyDetail": "{{count}} handovers waiting"
+      },
+      "custody": {
+        "label": "Admin / bank custody",
+        "detail": "Received by admin/counter/bank"
+      },
+      "disputed": {
+        "label": "Disputed / variance",
+        "ledgerDetail": "{{count}} unresolved cash items",
+        "legacyDetail": "{{count}} closed sessions"
+      }
+    },
+    "cashIn": {
+      "patientBill": "Patient bill / due collection",
+      "manualDrawerReceive": "Manual drawer cash received"
+    },
+    "cashOut": {
+      "refund": "Refund / return to patient",
+      "expensePayout": "Expense / payout from drawer"
+    },
+    "custody": {
+      "counterHandoverReceived": "Counter handover received",
+      "cashDrop": "Cash drop / MD / bank custody"
+    },
+    "sections": {
+      "operationalCashIn": {
+        "title": "Operational cash in",
+        "subtitle": "Patient collection and drawer cash receive",
+        "total": "Total operational in"
+      },
+      "operationalCashOut": {
+        "title": "Operational cash out",
+        "subtitle": "Refund, expense, and payout only",
+        "total": "Total operational out"
+      },
+      "custodyTransfer": {
+        "title": "Custody transfer",
+        "subtitle": "Handover/transfer; this will not be counted as expense",
+        "total": "Total custody moved"
+      }
+    }
+  }
+}

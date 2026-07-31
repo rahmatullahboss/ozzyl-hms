@@ -1,0 +1,22 @@
+{
+  "title": "Reports",
+  "generate": "Generate Report",
+  "dateRange": "Date Range",
+  "from": "From",
+  "to": "To",
+  "revenueReport": "Revenue Report",
+  "patientReport": "Patient Report",
+  "labReport": "Lab Report",
+  "pharmacyReport": "Pharmacy Report",
+  "download": "Download",
+  "export": "Export",
+  "subtitle": "Subtitle",
+  "monthlyRevenueVsExpenses": "Monthly Revenue vs Expenses",
+  "revenueBySource": "Revenue by Source",
+  "revenueSources": "Revenue Sources",
+  "netProfit": "Net Profit",
+  "totalExpenses": "Total Expenses",
+  "totalRevenue": "Total Revenue",
+  "monthlyBreakdown": "Monthly Breakdown",
+  "exportCsv": "Export CSV"
+}

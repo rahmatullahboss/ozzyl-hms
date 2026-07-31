@@ -1,0 +1,150 @@
+{
+  "title": "Vaccination Module",
+  "subtitle": "Manage vaccines, records, and track due schedules",
+  "kpi": {
+    "vaccineTypes": "Vaccine Types",
+    "totalRecords": "Total Records",
+    "dueToday": "Due Today",
+    "overdue": "Overdue",
+    "thisMonth": "This Month"
+  },
+  "tabs": {
+    "records": "Records",
+    "catalog": "Catalog",
+    "reports": "Reports"
+  },
+  "actions": {
+    "refresh": "Refresh",
+    "search": "Search",
+    "cancel": "Cancel",
+    "save": "Save",
+    "update": "Update"
+  },
+  "records": {
+    "searchPlaceholder": "Search patient by name, phone, or ID...",
+    "recordVaccination": "Record Vaccination",
+    "certificate": "Certificate",
+    "noRecords": "No vaccination records for this patient",
+    "tableHeaders": {
+      "vaccine": "Vaccine",
+      "dose": "Dose",
+      "date": "Date",
+      "route": "Route",
+      "batch": "Batch",
+      "status": "Status",
+      "nextDose": "Next Dose",
+      "actions": "Actions"
+    }
+  },
+  "catalog": {
+    "searchPlaceholder": "Search vaccines...",
+    "addVaccine": "Add Vaccine",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noVaccines": "No vaccines in catalog. Add your first vaccine above.",
+    "tableHeaders": {
+      "code": "Code",
+      "name": "Name",
+      "doses": "Doses",
+      "interval": "Interval",
+      "ageGroup": "Age Group",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "reports": {
+    "dueOverdue": "Due / Overdue",
+    "dateRange": "Date Range",
+    "from": "From",
+    "to": "To",
+    "generate": "Generate",
+    "noDueVaccinations": "No due vaccinations found",
+    "clickGenerate": "Click \"Generate\" to load report",
+    "kpi": {
+      "totalDue": "Total Due",
+      "overdue": "Overdue",
+      "dueToday": "Due Today",
+      "total": "Total",
+      "completed": "Completed",
+      "missed": "Missed",
+      "uniquePatients": "Unique Patients"
+    },
+    "tableHeaders": {
+      "patient": "Patient",
+      "vaccine": "Vaccine",
+      "dose": "Dose",
+      "dueDate": "Due Date",
+      "date": "Date",
+      "status": "Status",
+      "mobile": "Mobile"
+    }
+  },
+  "recordModal": {
+    "editTitle": "Edit Vaccination",
+    "addTitle": "Record Vaccination",
+    "vaccineLabel": "Vaccine *",
+    "selectVaccine": "Select vaccine...",
+    "doseLabel": "Dose #",
+    "dateLabel": "Date *",
+    "routeLabel": "Route",
+    "siteLabel": "Site",
+    "sitePlaceholder": "e.g. Left deltoid",
+    "batchLabel": "Batch #",
+    "manufacturerLabel": "Manufacturer",
+    "statusLabel": "Status",
+    "nextDoseDateLabel": "Next Dose Date",
+    "adverseEffectsLabel": "Adverse Effects",
+    "remarksLabel": "Remarks"
+  },
+  "vaccineModal": {
+    "editTitle": "Edit Vaccine",
+    "addTitle": "Add Vaccine",
+    "codeLabel": "Code *",
+    "codePlaceholder": "e.g. BCG",
+    "nameLabel": "Name *",
+    "nameBnLabel": "Name (Bangla)",
+    "descriptionLabel": "Description",
+    "dosesLabel": "Doses",
+    "intervalLabel": "Interval (days)",
+    "ageGroupLabel": "Age Group",
+    "ageGroupPlaceholder": "e.g. 0-1y"
+  },
+  "routeOptions": {
+    "IM": "IM (Intramuscular)",
+    "SC": "SC (Subcutaneous)",
+    "ID": "ID (Intradermal)",
+    "PO": "PO (Oral)",
+    "IN": "IN (Intranasal)"
+  },
+  "statusOptions": {
+    "completed": "Completed",
+    "scheduled": "Scheduled",
+    "missed": "Missed",
+    "cancelled": "Cancelled"
+  },
+  "confirm": {
+    "deleteRecord": "Delete this vaccination record?"
+  },
+  "toast": {
+    "success": {
+      "recordUpdated": "Record updated",
+      "vaccinationRecorded": "Vaccination recorded",
+      "recordDeleted": "Record deleted",
+      "vaccineUpdated": "Vaccine updated",
+      "vaccineAdded": "Vaccine added",
+      "vaccineDeactivated": "Vaccine deactivated",
+      "vaccineActivated": "Vaccine activated"
+    },
+    "error": {
+      "searchPatientsFailed": "Failed to search patients",
+      "loadVaccinationFailed": "Failed to load vaccination records",
+      "saveRecordFailed": "Failed to save record",
+      "deleteRecordFailed": "Failed to delete record",
+      "loadVaccineCatalog": "Failed to load vaccine catalog",
+      "saveVaccineFailed": "Failed to save vaccine",
+      "updateVaccineStatus": "Failed to update vaccine status",
+      "loadDueVaccinations": "Failed to load due vaccinations",
+      "loadReport": "Failed to load report"
+    }
+  }
+}

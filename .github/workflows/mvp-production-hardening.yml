@@ -1,0 +1,66 @@
+name: MVP Production Hardening
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  unit-and-build:
+    name: MVP unit tests and production build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run MVP unit hardening tests
+        run: pnpm test:mvp:unit
+
+      - name: Build production bundle
+        run: pnpm build
+
+  e2e-production:
+    name: MVP production E2E hardening
+    runs-on: ubuntu-latest
+    needs: unit-and-build
+    env:
+      BASE_URL: ${{ vars.E2E_BASE_URL || 'https://hms-saas-production.rahmatullahzisan.workers.dev' }}
+      E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Skip E2E when secret is missing
+        if: env.E2E_PASSWORD == ''
+        run: echo "E2E_PASSWORD secret is not configured; skipping production E2E."
+
+      - name: Run MVP production E2E hardening tests
+        if: env.E2E_PASSWORD != ''
+        run: pnpm test:mvp:e2e

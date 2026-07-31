@@ -1,0 +1,306 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const MAIN_APP_URL = import.meta.env.PUBLIC_MAIN_APP_URL || 'https://hms-saas-production.rahmatullahzisan.workers.dev';
+const PATIENT_LOGIN_URL = `${MAIN_APP_URL}/patient/login`;
+const HOSPITAL_LOGIN_URL = MAIN_APP_URL;
+---
+
+<Layout
+  title="Ozzyl Health — My Health Account for Patients and Hospitals"
+  description="Patient-first digital health platform. রোগীরা এক account-এ health card, reports, prescriptions, records রাখবেন; providers আলাদা hospital system-এ কাজ করবেন।"
+  pageType="homepage"
+>
+  <Navbar />
+
+  <main class="mesh-bg bg-slate-50 selection:bg-teal-500 selection:text-white pb-16">
+
+    <!-- ─── 0. Background Decorative Elements ─── -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-teal-100/50 to-transparent blur-3xl opacity-50 rounded-full translate-x-1/3 -translate-y-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-t from-emerald-100/50 to-transparent blur-3xl opacity-50 rounded-full -translate-x-1/4 translate-y-1/4"></div>
+    </div>
+
+    <!-- ─── 1. Hero Section ─── -->
+    <section class="relative pt-24 pb-16 z-10 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Badge -->
+        <div class="reveal-0 inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-teal-100/50 text-teal-700 px-5 py-2 rounded-full text-sm font-bold mb-8 shadow-sm hover:shadow-md transition-shadow cursor-default">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
+          </span>
+          <span>Patient-first health account + provider network</span>
+        </div>
+        
+        <!-- Headline -->
+        <h1 class="reveal-1 text-5xl md:text-7xl lg:text-[5.2rem] font-black tracking-tighter mb-6 leading-[1.05] text-slate-900 drop-shadow-sm">
+          <span>আপনার</span> <span class="text-transparent bg-clip-text bg-gradient-to-br from-teal-600 via-emerald-500 to-teal-800">হেলথ ডাটা</span>
+          <br class="hidden md:block"/>
+          <span>আপনারই account-এ রাখুন</span>
+        </h1>
+        
+        <!-- Subheadline -->
+        <p class="reveal-2 text-xl md:text-2xl text-slate-500 mb-10 max-w-4xl mx-auto font-medium leading-relaxed">
+          Ozzyl My Health account খুলে prescription, test report, health card, visit history আর patient-reported data এক জায়গায় রাখুন। আর provider হলে আলাদা hospital workflow-এ কাজ করুন।
+        </p>
+
+        <div class="reveal-3 max-w-3xl mx-auto mb-10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+          <div class="glass-panel hero-card-lift rounded-2xl p-4">
+            <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Account</p>
+            <p class="mt-2 text-sm font-semibold text-slate-800">এক patient account, এক portable identity</p>
+          </div>
+          <div class="glass-panel hero-card-lift rounded-2xl p-4">
+            <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Records</p>
+            <p class="mt-2 text-sm font-semibold text-slate-800">Prescription, reports, vault, visits</p>
+          </div>
+          <div class="glass-panel hero-card-lift rounded-2xl p-4">
+            <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Card</p>
+            <p class="mt-2 text-sm font-semibold text-slate-800">QR health card for faster matching</p>
+          </div>
+          <div class="glass-panel hero-card-lift rounded-2xl p-4">
+            <p class="text-xs uppercase tracking-widest font-bold text-slate-500">Privacy</p>
+            <p class="mt-2 text-sm font-semibold text-slate-800">আপনার অনুমতি ছাড়া record share হবে না</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center gap-4 relative z-20">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/my-health" data-track-event="homepage_patient_primary_click" data-track-label="My Health দেখুন" data-track-location="hero_primary" class="ambient-shine inline-flex items-center justify-center rounded-2xl bg-teal-600 px-7 py-4 text-base font-bold text-white shadow-lg shadow-teal-600/20 hover:bg-teal-700 transition-colors">
+              My Health দেখুন
+            </a>
+            <a href={PATIENT_LOGIN_URL} data-track-event="homepage_patient_login_click" data-track-label="Patient Login / Register" data-track-location="hero_secondary" class="inline-flex items-center justify-center rounded-2xl border border-teal-200 bg-white px-7 py-4 text-base font-semibold text-teal-700 hover:bg-teal-50 transition-colors">
+              Patient Login / Register
+            </a>
+          </div>
+
+          <div class="rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm text-slate-600">
+            Provider? <a href="/hospital" data-track-event="homepage_provider_page_click" data-track-label="Hospital page দেখুন" data-track-location="hero_provider_strip" class="font-semibold text-blue-700 hover:text-blue-800">Hospital page দেখুন</a> অথবা <a href={HOSPITAL_LOGIN_URL} data-track-event="homepage_provider_login_click" data-track-label="direct login" data-track-location="hero_provider_strip" class="font-semibold text-slate-900 hover:text-slate-700">direct login</a>
+          </div>
+        </div>
+
+        <!-- Dual CTA -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 relative z-20">
+          <!-- Patients CTA -->
+          <a href="/my-health" data-track-event="homepage_patient_card_click" data-track-label="My Health Account" data-track-location="hero_dual_card" class="ambient-shine hero-card-lift group relative flex flex-col items-center justify-center p-8 glass-panel border-2 border-teal-200 rounded-3xl w-full sm:w-[360px] cursor-pointer">
+            <div class="w-16 h-16 bg-gradient-to-br from-teal-50 to-teal-100/50 rounded-2xl flex items-center justify-center text-teal-600 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-inner">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-2">My Health Account</h3>
+            <p class="text-sm text-slate-500 text-center mb-5 leading-relaxed">Health card, prescriptions, reports, vault, visits আর self-reported data এক জায়গায় রাখুন</p>
+            <div class="inline-flex items-center justify-center bg-slate-900 text-white w-full py-3 rounded-xl font-semibold group-hover:bg-teal-600 transition-colors">
+              <span>Start as Patient</span> 
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </a>
+
+          <!-- Providers CTA -->
+          <a href="/hospital" data-track-event="homepage_provider_card_click" data-track-label="Provider / Hospital" data-track-location="hero_dual_card" class="ambient-shine hero-card-lift group relative flex flex-col items-center justify-center p-8 bg-slate-900 rounded-3xl shadow-[0_20px_40px_rgb(0,0,0,0.15)] border border-slate-700 transition-all duration-300 w-full sm:w-[300px] cursor-pointer overflow-hidden">
+            <!-- Glow effect -->
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            
+            <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 shadow-inner relative z-10">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2 relative z-10">Provider / Hospital</h3>
+            <p class="text-sm text-slate-400 text-center mb-5 leading-relaxed relative z-10">Hospital operations, EHR, billing, lab, pharmacy, AI workflow</p>
+            <div class="inline-flex items-center justify-center bg-blue-600 text-white w-full py-3 rounded-xl font-semibold group-hover:bg-blue-500 transition-colors relative z-10">
+              <span>Explore Hospital Page</span> 
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── 2. Social Proof / Stats Ribbon ─── -->
+    <section class="border-y border-slate-200 bg-white/60 backdrop-blur-lg relative z-20">
+      <div class="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-slate-400 tracking-widest uppercase mb-8" data-i18n="hub.stats.trust">Trust Metrics</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
+          <div>
+            <p class="text-4xl font-extrabold text-slate-900 mb-1">10k+</p>
+            <p class="text-sm font-medium text-slate-500" data-i18n="hub.stats.1">রোগীর মেডিকেল রেকর্ড</p>
+          </div>
+          <div>
+            <p class="text-4xl font-extrabold text-slate-900 mb-1">50+</p>
+            <p class="text-sm font-medium text-slate-500" data-i18n="hub.stats.2">স্পেশালিস্ট ডাক্তার</p>
+          </div>
+          <div>
+            <p class="text-4xl font-extrabold text-slate-900 mb-1">25+</p>
+            <p class="text-sm font-medium text-slate-500" data-i18n="hub.stats.3">হাসপাতাল ও ডায়াগনস্টিক</p>
+          </div>
+          <div>
+            <p class="text-4xl font-extrabold text-slate-900 mb-1">100%</p>
+            <p class="text-sm font-medium text-slate-500" data-i18n="hub.stats.4">ডাটা সুরক্ষা ও গোপনীয়তা</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative z-10 py-18">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel rounded-[2rem] p-8 md:p-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-8">
+          <div>
+            <p class="section-kicker text-teal-700">My Health account</p>
+            <h2 class="mt-4 text-3xl md:text-4xl font-black tracking-tight text-slate-900">একটি account খুলে কী পাবেন</h2>
+            <p class="mt-4 max-w-2xl text-slate-600 text-lg leading-8">একবার account খুললে আপনার health card, reports, prescriptions আর important documents এক জায়গা থেকে দেখতে ও গুছিয়ে রাখতে পারবেন।</p>
+            <div class="mt-6 grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                <div class="text-xs font-bold uppercase tracking-widest text-slate-500">Step 01</div>
+                <p class="mt-2 text-lg font-bold text-slate-900">Account খুলুন</p>
+                <p class="mt-2 text-sm leading-7 text-slate-600">Phone বা email দিয়ে শুরু করুন।</p>
+              </div>
+              <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                <div class="text-xs font-bold uppercase tracking-widest text-slate-500">Step 02</div>
+                <p class="mt-2 text-lg font-bold text-slate-900">Health card পান</p>
+                <p class="mt-2 text-sm leading-7 text-slate-600">একটি personal health card পাবেন, যা connected hospital-এ আপনাকে দ্রুত চিনতে সাহায্য করবে।</p>
+              </div>
+              <div class="rounded-2xl bg-white p-5 border border-slate-200">
+                <div class="text-xs font-bold uppercase tracking-widest text-slate-500">Step 03</div>
+                <p class="mt-2 text-lg font-bold text-slate-900">আপনার record গড়ুন</p>
+                <p class="mt-2 text-sm leading-7 text-slate-600">Reports, prescriptions, visit history আর important files ধীরে ধীরে এক জায়গায় রাখুন।</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid-noise rounded-[1.75rem] border border-slate-200 bg-slate-950 p-6 text-white">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <p class="text-xs uppercase tracking-[0.22em] text-teal-300 font-bold">My Health</p>
+                <h3 class="mt-2 text-2xl font-black">My Health Profile</h3>
+              </div>
+              <div class="hero-orb h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center ring-1 ring-white/15">
+                <span class="text-sm font-black">QR</span>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-xs uppercase tracking-widest text-slate-400">Identity</p>
+                <p class="mt-1 font-semibold">একটি account, আপনার নিজের health profile</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-xs uppercase tracking-widest text-slate-400">Records</p>
+                <p class="mt-1 font-semibold">Prescription, report, visit history, uploaded documents</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-xs uppercase tracking-widest text-slate-400">Control</p>
+                <p class="mt-1 font-semibold">আপনি ঠিক করবেন কোন তথ্য কোথায় শেয়ার হবে</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 3. Ecosystem Bento Grid ─── -->
+    <section class="py-24 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-teal-600 font-bold tracking-widest uppercase text-xs mb-3" data-i18n="hub.bento.eyebrow">Ecosystem</h2>
+          <h3 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+            <span data-i18n="hub.bento.h3">পুরো স্বাস্থ্যসেবা</span>
+          </h3>
+          <p class="text-lg text-slate-500 font-medium" data-i18n="hub.bento.p">রোগী, হাসপাতাল ও ডাক্তারদের মধ্যে নির্বিঘ্ন ডেটা শেয়ারিং এবং রিয়েল-টাইম ইন্টিগ্রেশন।</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Big Box 1 (Left) -->
+          <div class="md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-10 overflow-hidden relative group text-white">
+            <div class="absolute inset-0 opacity-10 mix-blend-overlay"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-md mb-6 border border-white/10">
+                <svg class="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <h4 class="text-3xl font-bold mb-3" data-i18n="hub.bento.box1.title">অটোমেটিক মেডিকেল রেকর্ড</h4>
+              <p class="text-slate-300 max-w-md text-lg leading-relaxed" data-i18n="hub.bento.box1.desc">হাসপাতাল থেকে তৈরি হওয়া প্রেসক্রিপশন এবং টেস্ট রিপোর্ট স্বয়ংক্রিয়ভাবে রোগীর প্রোফাইলে চলে যায়। কাগজের কোনো ঝামেলা নেই।</p>
+            </div>
+            <!-- Decorative circle -->
+            <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl group-hover:bg-teal-500/30 transition-colors"></div>
+          </div>
+
+          <!-- Vertical Box 2 (Right) -->
+          <div class="bg-white rounded-[2rem] p-10 border border-slate-200 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all relative overflow-hidden group">
+            <div class="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center mb-6 border border-teal-100 group-hover:bg-teal-500 transition-colors">
+              <svg class="w-6 h-6 text-teal-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3" data-i18n="hub.bento.box2.title">স্মার্ট হসপিটাল ড্যাশবোর্ড</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.bento.box2.desc">ইনভেন্টরি, ল্যাব, অ্যাকাউন্টিং এবং বিলিং—সবকিছু একটি ক্লাউড সিস্টেমে ম্যানেজ করুন।</p>
+          </div>
+
+          <!-- Standard Box 3 -->
+          <div class="bg-white rounded-[2rem] p-10 border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all relative group">
+            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6 border border-blue-100 group-hover:bg-blue-500 transition-colors">
+              <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3" data-i18n="hub.bento.box3.title">ইউনিভার্সাল পেশেন্ট আইডি</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.bento.box3.desc">রোগীর মোবাইল নম্বরই তার ডিজিটাল হেলথ আইডি। যেকোনো নেটওয়ার্ক হাসপাতালে এটি গ্রহণযোগ্য।</p>
+          </div>
+
+          <!-- Standard Box 4 -->
+          <div class="bg-white rounded-[2rem] p-10 border border-slate-200 shadow-sm hover:shadow-xl hover:border-emerald-100 transition-all relative group">
+            <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 border border-emerald-100 group-hover:bg-emerald-500 transition-colors">
+              <svg class="w-6 h-6 text-emerald-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3" data-i18n="hub.bento.box4.title">শতভাগ ডাটা প্রাইভেসি</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.bento.box4.desc">রোগীর সম্মতি ছাড়া কোনো ডাক্তার তার মেডিকেল রেকর্ড দেখতে পারবেন না (HIPAA স্ট্যান্ডার্ড)।</p>
+          </div>
+
+          <!-- Standard Box 5 -->
+          <div class="bg-white rounded-[2rem] p-10 border border-slate-200 shadow-sm hover:shadow-xl hover:border-cyan-100 transition-all relative group">
+            <div class="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center mb-6 border border-cyan-100 group-hover:bg-cyan-500 transition-colors">
+              <svg class="w-6 h-6 text-cyan-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-3" data-i18n="hub.bento.box5.title">টেলিমেডিসিন ও অ্যাপয়েন্টমেন্ট</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.bento.box5.desc">ঘরে বসেই ভিডিও কনসালটেশন বা সরাসরি সিরিয়াল বুকিংয়ের সম্পূর্ণ সুবিধা।</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 4. Detailed Core Benefits ─── -->
+    <section class="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+      <!-- Decor -->
+      <div class="absolute -right-64 top-0 w-[500px] h-[500px] border-[40px] border-teal-50 rounded-full opacity-50"></div>
+      <div class="absolute -left-64 bottom-0 w-[500px] h-[500px] border-[40px] border-emerald-50 rounded-full opacity-50"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-5" data-i18n="hub.benefits.h3">কেন একটি হেলথ রেকর্ড রাখা জরুরি?</h2>
+          <p class="text-lg text-slate-500 font-medium leading-relaxed" data-i18n="hub.benefits.p">সুস্থ অবস্থায় রেকর্ড গুছিয়ে রাখলে, জরুরি মুহূর্তে তা জীবন বাঁচাতে পারে। Ozzyl Health-এ আপনার সব তথ্য থাকে শতভাগ সুরক্ষিত।</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-x-12 gap-y-16">
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-teal-50 rounded-[2rem] rotate-3 flex items-center justify-center text-teal-600 mx-auto mb-8 group-hover:-rotate-3 group-hover:scale-110 transition-all shadow-sm">
+              <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-800 mb-4" data-i18n="hub.benefits.1.title">সঠিক রোগ নির্ণয়</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.benefits.1.desc">ডাক্তাররা আপনার পুরনো মেডিকেল হিস্ট্রি দেখে দ্রুত এবং নির্ভুলভাবে রোগ নির্ণয় করতে পারবেন, কোনো অনুমান ছাড়াই।</p>
+          </div>
+          
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-rose-50 rounded-[2rem] -rotate-3 flex items-center justify-center text-rose-500 mx-auto mb-8 group-hover:rotate-3 group-hover:scale-110 transition-all shadow-sm">
+              <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-800 mb-4" data-i18n="hub.benefits.2.title">ভুল চিকিৎসার ঝুঁকি হ্রাস</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.benefits.2.desc">ভুল ওষুধের রিয়েকশন থেকে বাঁচায় এবং একই টেস্ট বারবার করার আর্থিক অপচয় রোধ করে।</p>
+          </div>
+
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-blue-50 rounded-[2rem] rotate-3 flex items-center justify-center text-blue-600 mx-auto mb-8 group-hover:-rotate-3 group-hover:scale-110 transition-all shadow-sm">
+              <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
+            <h4 class="text-2xl font-bold text-slate-800 mb-4" data-i18n="hub.benefits.3.title">সারাজীবনের মেডিকেল হিস্ট্রি</h4>
+            <p class="text-slate-500 leading-relaxed font-medium" data-i18n="hub.benefits.3.desc">কাগজের প্রেসক্রিপশন আর হারাবে না। আপনার সব ভিজিট, টেস্ট এবং ওষুধের রেকর্ড আজীবন এক জায়গায় সুরক্ষিত থাকবে।</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

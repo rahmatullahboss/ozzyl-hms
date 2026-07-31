@@ -1,0 +1,208 @@
+{
+  "version": 2,
+  "incidentId": "production-schema-drift-20260725",
+  "observedOn": "2026-07-25",
+  "reviewedMainBase": "f42f83ef858284f3adf42359aad9d760ee593e79",
+  "database": {
+    "name": "hms-super-admin-production-apac",
+    "id": "c68a5360-a2c1-44cc-9e71-f21057bea102"
+  },
+  "readOnlyEvidence": {
+    "migrationRows": 482,
+    "latestMigrationId": 484,
+    "canonicalTableCount": 65,
+    "changedDb": false,
+    "rowsWritten": 0,
+    "oldMigrationLedgerEntries": 0,
+    "canonicalMigrations0505Through0515Recorded": true
+  },
+  "productionMutationPerformed": false,
+  "globalRules": {
+    "oldSqlMayBeApplied": false,
+    "oldImplementationMayBeRestored": false,
+    "orphanCleanupRequiresSeparateAuthorisation": true,
+    "dirtyRootMustRemainReadOnly": true
+  },
+  "entries": [
+    {
+      "filename": "0424_canonical_financial_reconciliation.sql",
+      "disposition": "abandoned",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "absent",
+      "replacementMigrations": [],
+      "replacementObjects": [],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "The uncommitted shift-closing reconciliation shape was never reviewed into main and is absent from production. Any future implementation requires a new design and a new migration number."
+    },
+    {
+      "filename": "0425_canonical_cash_ledger_event_identity.sql",
+      "disposition": "abandoned",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "absent",
+      "replacementMigrations": [],
+      "replacementObjects": [],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "The uncommitted cash-ledger event identity columns are absent from production and were not integrated into reviewed main."
+    },
+    {
+      "filename": "0426_canonical_cash_ledger_business_date.sql",
+      "disposition": "abandoned",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "absent",
+      "replacementMigrations": [],
+      "replacementObjects": [],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "The uncommitted cash-ledger business-date columns are absent from production and require a separately reviewed future design if still needed."
+    },
+    {
+      "filename": "0427_financial_event_outbox.sql",
+      "disposition": "superseded",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "superseded_equivalent_present",
+      "replacementMigrations": [
+        "0505_canonical_program_foundation.sql"
+      ],
+      "replacementObjects": [
+        "canonical_outbox_events",
+        "canonical_processing_issues"
+      ],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "The reviewed canonical programme foundation provides the durable outbox and issue model; the abandoned parallel financial_event_outbox must not be introduced."
+    },
+    {
+      "filename": "0428_shift_closing_canonical_evidence.sql",
+      "disposition": "abandoned",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "absent",
+      "replacementMigrations": [],
+      "replacementObjects": [],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "The uncommitted shift-closing evidence columns are absent from production and were not adopted by reviewed main."
+    },
+    {
+      "filename": "0429_financial_provider_config_backfill.sql",
+      "disposition": "superseded",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "superseded_equivalent_present",
+      "replacementMigrations": [
+        "0505_canonical_program_foundation.sql"
+      ],
+      "replacementObjects": [
+        "canonical_feature_flags",
+        "canonical_migration_runs",
+        "canonical_reconciliation_runs",
+        "canonical_backfill_checkpoints"
+      ],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "Reviewed canonical feature flags and programme run/checkpoint tables supersede the abandoned tenant_financial_provider_config and financial_backfill_runs authority."
+    },
+    {
+      "filename": "0430_doctor_commission_ledger_hardening.sql",
+      "disposition": "active_compatibility_recovery_ledger_pending_canonical_retirement",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "present",
+      "replacementMigrations": [
+        "0513_canonical_practitioner_compensation.sql",
+        "0524_refund_commission_reservations.sql",
+        "0531_canonical_compensation_refund_reservations.sql",
+        "0538_doctor_commission_recovery_compatibility.sql"
+      ],
+      "replacementObjects": [
+        "doctor_commission_accruals.canonical_source_key",
+        "billing_refund_commission_reservations",
+        "canonical_compensation_adjustments",
+        "canonical_compensation_refund_reservations"
+      ],
+      "activeCompatibilityObjects": [
+        "table:doctor_commission_adjustments",
+        "index:idx_doctor_commission_adjustments_doctor_status",
+        "index:idx_doctor_commission_adjustments_credit_note"
+      ],
+      "orphanObjects": [
+        "column:doctor_commission_accruals.bill_item_id",
+        "column:doctor_commission_accruals.source_line_type",
+        "column:doctor_commission_accruals.source_line_id",
+        "column:doctor_commission_accruals.accrual_key",
+        "column:doctor_commission_accruals.original_accrual_id",
+        "column:doctor_commission_accruals.reversal_of_accrual_id",
+        "column:doctor_commission_accruals.reversed_amount",
+        "column:doctor_commission_accruals.clawback_amount",
+        "index:idx_doctor_commission_accruals_key",
+        "index:idx_doctor_commission_accruals_bill_item"
+      ],
+      "retirementGates": [
+        "all compatibility obligations and applications are mapped to canonical compensation adjustments and settlement allocations",
+        "canonical parity is verified for gross commission, recovery deduction, and net paid amount",
+        "production observation completes with no pending compatibility obligations or reconciliation differences",
+        "destructive cleanup receives separate explicit authorisation"
+      ],
+      "currentRuntimeAuthority": true,
+      "action": "preserve_active_compatibility_until_canonical_retirement",
+      "reason": "The reviewed 0538 compatibility migration and payout runtime now use doctor_commission_adjustments as the authoritative ledger for previously omitted recovery obligations. The old 0430 SQL remains prohibited, and its abandoned accrual identity columns remain non-authoritative cleanup candidates."
+    },
+    {
+      "filename": "0431_doctor_commission_settlement_accounting.sql",
+      "disposition": "active_compatibility_recovery_ledger_pending_canonical_retirement",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "present",
+      "replacementMigrations": [
+        "0513_canonical_practitioner_compensation.sql",
+        "0524_refund_commission_reservations.sql",
+        "0531_canonical_compensation_refund_reservations.sql",
+        "0538_doctor_commission_recovery_compatibility.sql"
+      ],
+      "replacementObjects": [
+        "billing_refund_commission_reservations",
+        "canonical_compensation_settlements",
+        "canonical_compensation_settlement_allocations",
+        "canonical_compensation_refund_reservations"
+      ],
+      "activeCompatibilityObjects": [
+        "table:doctor_commission_adjustment_applications",
+        "index:idx_doctor_commission_adjustment_applications_adjustment",
+        "index:idx_doctor_commission_adjustment_applications_settlement"
+      ],
+      "orphanObjects": [
+        "column:doctor_commission_settlements.tds_deduction",
+        "column:doctor_commission_settlements.clawback_deduction"
+      ],
+      "retirementGates": [
+        "all compatibility applications are mapped to canonical compensation settlement allocations",
+        "canonical and legacy settlement totals remain equal for gross commission, deductions, and net paid amount",
+        "no outstanding compatibility adjustment balance remains without an approved canonical successor",
+        "destructive cleanup receives separate explicit authorisation"
+      ],
+      "currentRuntimeAuthority": true,
+      "action": "preserve_active_compatibility_until_canonical_retirement",
+      "reason": "The reviewed 0538 compatibility migration and payout runtime now use doctor_commission_adjustment_applications as the authoritative allocation ledger for recovery deductions. The old 0431 SQL remains prohibited, and its unused settlement deduction columns remain non-authoritative cleanup candidates."
+    },
+    {
+      "filename": "0432_lab_test_commission_eligibility.sql",
+      "disposition": "superseded",
+      "productionLedgerRecorded": false,
+      "productionSchemaEffect": "superseded_equivalent_present",
+      "replacementMigrations": [
+        "0520_lab_test_commission_eligibility.sql"
+      ],
+      "replacementObjects": [
+        "column:lab_test_catalog.is_commissionable"
+      ],
+      "orphanObjects": [],
+      "currentRuntimeAuthority": false,
+      "action": "do_not_apply",
+      "reason": "The reviewed migration 0520 owns the lab-test commission eligibility column and is recorded in production."
+    }
+  ]
+}

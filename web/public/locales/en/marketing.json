@@ -1,0 +1,139 @@
+{
+  "landing": {
+    "heroTitle": "Find & Book the Best Healthcare",
+    "heroSubtitle": "Search for top doctors and hospitals in your area. Book appointments instantly and securely.",
+    "searchPlaceholder": "Search by name, specialty, or hospital...",
+    "browseHospitals": "Browse Hospitals",
+    "findDoctors": "Find Doctors",
+    "registerChamber": "Register Your Chamber",
+    "browseBySpecialty": "Browse by Specialty",
+    "topHospitals": "Top Hospitals",
+    "topDoctors": "Top Doctors",
+    "viewAll": "View All",
+    "doctorCta": {
+      "title": "Are you a Doctor?",
+      "subtitle": "Join our platform to manage your appointments, patient records, and grow your practice.",
+      "register": "Register for FREE",
+      "login": "Doctor Login"
+    },
+    "specialties": {
+      "cardiology": "Cardiology",
+      "dermatology": "Dermatology",
+      "ent": "ENT",
+      "gastroenterology": "Gastroenterology",
+      "general_medicine": "General Medicine",
+      "general_surgery": "General Surgery",
+      "gynecology": "Gynecology",
+      "neurology": "Neurology",
+      "oncology": "Oncology",
+      "ophthalmology": "Ophthalmology",
+      "orthopedics": "Orthopedics",
+      "pediatrics": "Pediatrics",
+      "psychiatry": "Psychiatry",
+      "pulmonology": "Pulmonology",
+      "urology": "Urology"
+    }
+  },
+  "directory": {
+    "doctors": {
+      "title": "Doctors",
+      "marketplace": "Marketplace",
+      "searchPlaceholder": "Search by name, specialty...",
+      "resultsCount": "{{count}} doctor found",
+      "resultsCount_plural": "{{count}} doctors found",
+      "searching": "Searching...",
+      "noResults": "No doctors found",
+      "adjustFilters": "Try adjusting your search or filters"
+    },
+    "hospitals": {
+      "title": "Hospitals",
+      "marketplace": "Marketplace",
+      "searchPlaceholder": "Search hospitals...",
+      "resultsCount": "{{count}} hospital found",
+      "resultsCount_plural": "{{count}} hospitals found",
+      "searching": "Searching...",
+      "noResults": "No hospitals found",
+      "adjustFilters": "Try adjusting your search or filters"
+    }
+  },
+  "filters": {
+    "title": "Filters",
+    "specialty": "Specialty",
+    "allSpecialties": "All Specialties",
+    "language": "Language",
+    "allLanguages": "All Languages",
+    "maxFee": "Max Fee (৳)",
+    "type": "Type",
+    "allTypes": "All Types",
+    "typeHospital": "Hospital",
+    "typeChamber": "Doctor Chamber",
+    "minRating": "Min Rating",
+    "anyRating": "Any Rating"
+  },
+  "cards": {
+    "experience": "{{years}} Years Exp",
+    "fee": "Consultation: ৳{{amount}}",
+    "feeUnit": "per visit",
+    "visitHospital": "Visit Hospital",
+    "viewProfile": "View Profile",
+    "bookNow": "Book Now",
+    "reviews": "{{count}} Review",
+    "reviews_plural": "{{count}} Reviews",
+    "noReviews": "No reviews yet",
+    "verifiedVisit": "Verified visit"
+  },
+  "profile": {
+    "bmdcReg": "BMDC Reg",
+    "qualifications": "Qualifications",
+    "bio": "Biography",
+    "schedule": "Schedule",
+    "maxPatients": "Max {{count}} patients",
+    "noSchedule": "No schedule available",
+    "bookAppointment": "Book Appointment",
+    "date": "Date",
+    "availableTimes": "Available Times",
+    "noSlots": "No slots available for this date",
+    "confirmBooking": "Confirm Appointment",
+    "booking": "Booking...",
+    "bookingSuccess": "Appointment booked successfully!",
+    "bookingFailed": "Booking failed",
+    "connect": "Connect",
+    "connecting": "Connecting...",
+    "connected": "Connected!",
+    "alreadyConnected": "Already connected",
+    "connectionFailed": "Failed to connect",
+    "operatingHours": "Operating Hours"
+  },
+  "languages": {
+
+
+    "english": "English",
+    "bengali": "Bengali",
+    "hindi": "Hindi",
+    "arabic": "Arabic",
+    "urdu": "Urdu"
+  },
+  "schemes": {
+    "toast": {
+      "added": "Scheme added",
+      "saveFailed": "Failed to save scheme"
+    },
+    "count": "{{count}} schemes",
+    "addScheme": "Add Scheme",
+    "schemeName": "Scheme Name",
+    "commissionPercent": "Commission %",
+    "description": "Description",
+    "noSchemesYet": "No schemes yet",
+    "noSchemesDesc": "Create your first referral scheme.",
+    "addSchemeTitle": "Add Referral Scheme",
+    "schemeNameLabel": "Scheme Name *",
+    "schemeNamePlaceholder": "e.g. Standard Referral",
+    "commissionPercentLabel": "Commission Percent *",
+    "commissionPlaceholder": "e.g. 10",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Optional description...",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "addSchemeButton": "Add Scheme"
+  }
+}

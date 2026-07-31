@@ -1,0 +1,482 @@
+program:
+  id: admin-dashboard-control-center-20260722
+  title: Ozzyl HMS Admin Dashboard Control Center
+  status: planned
+  controlling_docs:
+    - docs/admin-dashboard/README.md
+    - docs/admin-dashboard/2026-07-22-current-state-audit.md
+    - docs/admin-dashboard/2026-07-22-product-requirements.md
+    - docs/admin-dashboard/2026-07-22-information-architecture-ux-spec.md
+    - docs/admin-dashboard/2026-07-22-data-semantic-api-contract.md
+    - docs/admin-dashboard/2026-07-22-implementation-roadmap.md
+    - docs/admin-dashboard/2026-07-22-qa-acceptance-test-plan.md
+    - docs/superpowers/plans/2026-07-22-admin-dashboard-control-center-implementation.md
+  global_constraints:
+    - Start from a clean reviewed base in an isolated worktree.
+    - Use operational tables as sources of truth; do not create a parallel ledger.
+    - Use TDD for behavior changes.
+    - Keep migrations additive and feature-flagged.
+    - Do not mutate production without separate authorization and runbook evidence.
+    - Preserve tenant scoping and server-enforced field permissions.
+    - A source failure must not display as a verified zero.
+    - Financial summaries must expose reconciliation.
+    - Commit after each verified safe checkpoint.
+
+phases:
+  - id: ADC-00
+    title: Baseline and metric contract freeze
+    status: planned
+    priority: P0
+    dependencies: []
+    tasks:
+      - id: ADC-001
+        title: Verify clean implementation baseline
+        owner: engineering
+        status: planned
+        paths:
+          - web/src/pages/admin
+          - web/src/components/dashboard
+          - web/src/hooks/useExecutiveDashboardKpis.ts
+          - src/routes/tenant/dashboard.ts
+        actions:
+          - Run current targeted dashboard backend and frontend tests.
+          - Record failing tests as baseline evidence before implementation.
+          - Confirm branch and worktree are isolated from dirty finance work.
+        verification:
+          - git status is clean before changes
+          - targeted dashboard tests recorded
+      - id: ADC-002
+        title: Freeze explicit metric meanings
+        owner: product-engineering
+        status: planned
+        paths:
+          - packages/shared/src/dashboard
+          - src/lib/dashboard
+          - web/src/lib/dashboard
+        actions:
+          - Define value type, temporal mode, date basis, formula, source, direction, permission, and drill target for every displayed metric.
+          - Resolve collection, net income, due, deposit, and commission ambiguities.
+          - Move uncategorized values to warning/exception semantics.
+        verification:
+          - registry completeness test passes
+          - ambiguous-label test passes
+      - id: ADC-003
+        title: Create golden reconciliation fixtures
+        owner: qa-engineering
+        status: planned
+        paths:
+          - test/fixtures/admin-dashboard
+          - test/helpers
+        actions:
+          - Build deterministic billing, payment, deposit, expense, payout, cash, commission, IPD, and source-failure fixtures.
+          - Document expected totals and reconciliation bridges.
+        verification:
+          - fixture loader tests pass
+          - expected-value manifest is deterministic
+
+  - id: ADC-10
+    title: Shared semantic foundation
+    status: planned
+    priority: P0
+    dependencies:
+      - ADC-00
+    tasks:
+      - id: ADC-101
+        title: Add shared dashboard semantic types
+        owner: engineering
+        status: planned
+        paths:
+          - packages/shared/src/dashboard
+          - packages/shared/src/index.ts
+        actions:
+          - Add temporal mode, date basis, health, source status, comparison, target, warning, drill, permission, and reconciliation types.
+          - Export types for backend and frontend use.
+        verification:
+          - shared package typecheck passes
+          - contract unit tests pass
+      - id: ADC-102
+        title: Add normalized filter and comparison utilities
+        owner: backend
+        status: planned
+        paths:
+          - src/lib/dashboard/filter-context.ts
+          - src/lib/dashboard/comparison-period.ts
+          - test/unit/admin-dashboard-filter-context.test.ts
+        actions:
+          - Normalize presets and custom ranges in Asia/Dhaka.
+          - Resolve previous comparable period.
+          - Reject invalid dates, ranges, and unsupported date bases.
+        verification:
+          - date boundary and comparison tests pass
+      - id: ADC-103
+        title: Add source-status and reconciliation helpers
+        owner: backend
+        status: planned
+        paths:
+          - src/lib/dashboard/source-status.ts
+          - src/lib/dashboard/reconciliation.ts
+          - test/unit/admin-dashboard-source-status.test.ts
+          - test/unit/admin-dashboard-reconciliation.test.ts
+        actions:
+          - Implement complete, partial, stale, unavailable, and unreconciled states.
+          - Enforce complete-zero semantics.
+          - Calculate full-result reconciliation independent of pagination.
+        verification:
+          - source failure never returns healthy zero in tests
+          - reconciliation invariants pass
+
+  - id: ADC-20
+    title: Versioned overview API
+    status: planned
+    priority: P0
+    dependencies:
+      - ADC-10
+    tasks:
+      - id: ADC-201
+        title: Add bounded overview providers
+        owner: backend
+        status: planned
+        paths:
+          - src/lib/dashboard/providers
+          - test/unit/admin-dashboard-providers.test.ts
+        actions:
+          - Add billing/collection, due/deposit, expense/payout, cash/custody, operations/capacity, and domain-health providers.
+          - Group compatible measures and avoid one query per card.
+          - Return typed source status and warnings.
+        verification:
+          - provider unit tests pass
+          - high-volume queries are bounded and indexed
+      - id: ADC-202
+        title: Add admin overview route
+        owner: backend
+        status: planned
+        paths:
+          - src/routes/tenant/dashboard.ts
+          - src/lib/dashboard/admin-overview.ts
+          - test/integration/routes/admin-dashboard-overview.test.ts
+        actions:
+          - Add GET /api/dashboard/admin-overview behind a tenant feature flag.
+          - Enforce tenant and field permissions.
+          - Return compact role-oriented metrics, health, financial reconciliation, operations, and domain health.
+          - Record provider latency and response size without PHI.
+        verification:
+          - API contract tests pass
+          - tenant/permission tests pass
+          - overview response contains no detail rows
+          - payload target is measured
+      - id: ADC-203
+        title: Add partial-domain behavior
+        owner: backend
+        status: planned
+        paths:
+          - src/lib/dashboard/admin-overview.ts
+          - test/integration/routes/admin-dashboard-partial-state.test.ts
+        actions:
+          - Prevent an optional provider failure from blanking unrelated domains.
+          - Set affected metric value to null or documented partial value.
+          - Aggregate health state and recovery warnings.
+        verification:
+          - partial and unavailable integration tests pass
+
+  - id: ADC-30
+    title: Role presets and control center shell
+    status: planned
+    priority: P0
+    dependencies:
+      - ADC-20
+    tasks:
+      - id: ADC-301
+        title: Add role presets
+        owner: fullstack
+        status: planned
+        paths:
+          - packages/shared/src/dashboard/presets.ts
+          - src/routes/tenant/dashboard.ts
+          - web/src/hooks/useExecutiveDashboardKpis.ts
+          - test/unit/admin-dashboard-presets.test.ts
+        actions:
+          - Define Hospital Admin, MD/Director, Accountant, and Manager Operations presets.
+          - Limit Hospital Admin to at most ten primary cards.
+          - Preserve existing tenant overrides and add reset-to-preset behavior.
+        verification:
+          - preset count and compatibility tests pass
+      - id: ADC-302
+        title: Add URL-backed global context
+        owner: frontend
+        status: planned
+        paths:
+          - web/src/pages/admin/Dashboard.tsx
+          - web/src/components/dashboard/AdminDashboardContextBar.tsx
+          - web/src/types/executiveDashboard.ts
+          - web/src/lib/dashboardUrlState.ts
+        actions:
+          - Store preset, start/end, date basis, and optional filters in URL state.
+          - Display timezone, server generated time, and aggregate data health.
+          - Reset pagination and selection on context change.
+        verification:
+          - refresh/back/copied URL tests pass
+      - id: ADC-303
+        title: Add decision-grade KPI cards
+        owner: frontend
+        status: planned
+        paths:
+          - web/src/components/dashboard/KPICard.tsx
+          - web/src/components/dashboard/DashboardMetricCard.tsx
+          - web/src/pages/admin/Dashboard.test.tsx
+        actions:
+          - Render temporal mode, comparison, target, source status, and reconciliation.
+          - Use metric-specific direction.
+          - Preserve keyboard operation and accessible labels.
+        verification:
+          - component state and accessibility tests pass
+
+  - id: ADC-40
+    title: Financial reconciliation control center
+    status: planned
+    priority: P0
+    dependencies:
+      - ADC-20
+      - ADC-30
+    tasks:
+      - id: ADC-401
+        title: Add financial reconciliation API view
+        owner: backend
+        status: planned
+        paths:
+          - src/lib/dashboard/financial-reconciliation-view.ts
+          - test/integration/routes/admin-dashboard-reconciliation.test.ts
+        actions:
+          - Assemble billing, collection, cash, and custody bridges from authoritative providers.
+          - Separate current-period bill collection, prior-period due collection, deposits, refunds, expenses, payouts, drops, and handovers.
+          - Link unexplained differences to Action Center context.
+        verification:
+          - golden fixtures reconcile
+          - deposits are not counted as operating revenue
+          - mirrored providers are not double-counted
+      - id: ADC-402
+        title: Add reconciliation UI
+        owner: frontend
+        status: planned
+        paths:
+          - web/src/components/dashboard/FinancialReconciliationBridge.tsx
+          - web/src/components/dashboard/FinancialReconciliationBridge.test.tsx
+          - web/src/pages/admin/Dashboard.tsx
+        actions:
+          - Render bridge rows with operators, temporal/date context, health, and drill actions.
+          - Display balanced or unexplained difference state.
+        verification:
+          - complete, partial, unavailable, and unreconciled UI tests pass
+
+  - id: ADC-50
+    title: Action Center consolidation
+    status: planned
+    priority: P0
+    dependencies:
+      - ADC-20
+    tasks:
+      - id: ADC-501
+        title: Extend dashboard Action Center summary
+        owner: backend
+        status: planned
+        paths:
+          - src/routes/tenant/action-center.ts
+          - src/lib/action-center
+          - test/integration/routes/action-center-dashboard-summary.test.ts
+        actions:
+          - Add amount, age, SLA, owner, capability, and filtered drill targets.
+          - Add source/reconciliation/unknown/unmapped/evidence/posting/commission rules.
+        verification:
+          - rule and sorting tests pass
+      - id: ADC-502
+        title: Remove duplicate frontend risk center
+        owner: frontend
+        status: planned
+        paths:
+          - web/src/pages/admin/widgets/KPISummaryCards.tsx
+          - web/src/pages/admin/widgets/ActionRequiredPanel.tsx
+        actions:
+          - Delete riskRows and the duplicate exception section.
+          - Render only Action Center-owned items.
+        verification:
+          - no frontend severity threshold remains
+          - dashboard action tests pass
+
+  - id: ADC-60
+    title: Trend, payment, operations, and live state
+    status: planned
+    priority: P1
+    dependencies:
+      - ADC-20
+      - ADC-30
+    tasks:
+      - id: ADC-601
+        title: Add period-aware trend
+        owner: fullstack
+        status: planned
+        paths:
+          - src/routes/tenant/dashboard.ts
+          - src/lib/dashboard/trend.ts
+          - web/src/pages/admin/widgets/RevenueTrendChart.tsx
+        actions:
+          - Add explicit metric/date-basis/granularity trend contract.
+          - Rename chart according to actual measure.
+          - Add accessible data table and text summary.
+        verification:
+          - selected-range and chart accessibility tests pass
+      - id: ADC-602
+        title: Add period-aware payment mix
+        owner: fullstack
+        status: planned
+        paths:
+          - src/lib/dashboard/payment-mix.ts
+          - web/src/pages/admin/widgets/PaymentMethodBreakdown.tsx
+        actions:
+          - Follow global period.
+          - Return server-owned total and normalized methods.
+          - Treat unknown methods as warning/action state.
+        verification:
+          - payment total and unknown-method tests pass
+      - id: ADC-603
+        title: Separate patient flow and capacity
+        owner: fullstack
+        status: planned
+        paths:
+          - src/lib/dashboard/operations-overview.ts
+          - web/src/pages/admin/widgets/OperationsSnapshot.tsx
+          - web/src/components/dashboard/PatientFlowFunnel.tsx
+          - web/src/components/dashboard/CurrentCapacityStrip.tsx
+        actions:
+          - Add period flow and live/as-of capacity contracts.
+          - Remove duplicate operations summary.
+          - Avoid rates across incompatible grains.
+        verification:
+          - temporal and compatible-grain tests pass
+      - id: ADC-604
+        title: Correct live cash failure states
+        owner: frontend-backend
+        status: planned
+        paths:
+          - web/src/pages/admin/widgets/LiveCashDrawerWidget.tsx
+          - src/routes/tenant/dashboard.ts
+        actions:
+          - Expose generatedAt and source status for active counters and cash control.
+          - Display partial/unavailable instead of zero when the secondary source fails.
+          - Label the widget Live.
+        verification:
+          - secondary request failure regression test passes
+
+  - id: ADC-70
+    title: Business audit and drillthrough
+    status: planned
+    priority: P1
+    dependencies:
+      - ADC-20
+      - ADC-30
+    tasks:
+      - id: ADC-701
+        title: Add material business audit events
+        owner: backend
+        status: planned
+        paths:
+          - src/lib/audit/dashboard-events.ts
+          - src/routes/tenant/audit.ts
+          - test/unit/dashboard-audit-events.test.ts
+        actions:
+          - Map material business events to server-owned severity and narrative.
+          - Preserve actor, subject, amount difference, review state, and drill target.
+        verification:
+          - event policy and permission tests pass
+      - id: ADC-702
+        title: Replace raw dashboard audit feed
+        owner: frontend
+        status: planned
+        paths:
+          - web/src/pages/admin/widgets/AuditFeedWidget.tsx
+          - web/src/pages/admin/widgets/AuditFeedWidget.test.tsx
+        actions:
+          - Remove CRUD-verb severity inference.
+          - Render material event narrative and direct target.
+        verification:
+          - frontend performs no severity inference
+          - accessible event feed tests pass
+      - id: ADC-703
+        title: Upgrade metric drillthrough contract
+        owner: fullstack
+        status: planned
+        paths:
+          - src/routes/tenant/dashboard.ts
+          - web/src/components/dashboard/KpiBreakdownDrawer.tsx
+        actions:
+          - Add source status, warnings, reconciliation, and server aggregates.
+          - Preserve filters in URL/full-page actions.
+          - Add dialog focus management.
+        verification:
+          - full-result aggregate, URL, and focus tests pass
+
+  - id: ADC-80
+    title: Performance, accessibility, and rollout
+    status: planned
+    priority: P1
+    dependencies:
+      - ADC-40
+      - ADC-50
+      - ADC-60
+      - ADC-70
+    tasks:
+      - id: ADC-801
+        title: Reduce default fan-out
+        owner: fullstack
+        status: planned
+        paths:
+          - web/src/pages/admin/Dashboard.tsx
+          - web/src/hooks/useExecutiveDashboardAnalytics.ts
+          - src/lib/dashboard/admin-overview.ts
+        actions:
+          - Load only role-required overview providers.
+          - Lazy-load optional below-fold panels.
+          - Stop polling hidden/disabled sections.
+        verification:
+          - request-count and payload tests pass
+      - id: ADC-802
+        title: Complete accessibility and responsive hardening
+        owner: frontend-qa
+        status: planned
+        paths:
+          - web/src/pages/admin
+          - web/src/components/dashboard
+          - test/e2e/admin-dashboard-control-center.spec.ts
+        actions:
+          - Add chart table fallback, focus trap/restore, text status, reduced motion, and narrow-screen alternatives.
+        verification:
+          - keyboard script passes
+          - no critical accessibility violations
+          - no page-level horizontal overflow at required viewports
+      - id: ADC-803
+        title: Add observability and performance evidence
+        owner: backend-qa
+        status: planned
+        paths:
+          - src/lib/dashboard/observability.ts
+          - docs/production-readiness/evidence
+        actions:
+          - Record latency, provider duration, payload size, partial rate, stale rate, reconciliation failures, and unknown/unmapped counts without PHI.
+          - Review D1 query plans and indexes.
+        verification:
+          - observability payload contains no PHI
+          - performance evidence recorded
+      - id: ADC-804
+        title: Run shadow and pilot rollout
+        owner: release
+        status: planned
+        paths:
+          - docs/operations
+          - docs/production-readiness/evidence
+        actions:
+          - Deploy additive contracts with UI flag off.
+          - Run staging parity and internal tenant observation.
+          - Resolve material unexplained differences.
+          - Enable read-only pilot and document rollback evidence.
+        verification:
+          - all release gates in QA plan pass
+          - no unresolved critical reconciliation issue
+          - production mutation separately authorized

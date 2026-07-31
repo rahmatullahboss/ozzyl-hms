@@ -1,0 +1,967 @@
+{
+  "adminModuleCatalog": {
+    "title": "সফটওয়্যার মডিউল",
+    "subtitle": "এই HMS-এ অন্তর্ভুক্ত প্রতিটি অ্যাডমিন নিয়ন্ত্রণ, অপারেশনাল, ফাইন্যান্স, ক্লিনিক্যাল এবং বিশেষায়িত মডিউল দেখুন।",
+    "adminInventory": "অ্যাডমিন ইনভেন্টরি",
+    "blueprintItems": "ব্লুপ্রিন্ট আইটেম",
+    "specializedModules": "বিশেষায়িত মডিউল",
+    "sensitiveControls": "সংবেদনশীল নিয়ন্ত্রণ",
+    "searchPlaceholder": "সফটওয়্যার মডিউল অনুসন্ধান করুন... ডেন্টাল, সার্জারি, বিলিং, ল্যাব, অডিট",
+    "searchAriaLabel": "সফটওয়্যার মডিউল অনুসন্ধান",
+    "blueprintCoverage": "ব্লুপ্রিন্ট কভারেজ",
+    "specializedModulesTitle": "বিশেষায়িত মডিউল",
+    "modulesCount": "{{count}}টি মডিউল",
+    "noModulesMatched": "কোনো মডিউল পাওয়া যায়নি",
+    "noModulesHint": "বিলিং, ডেন্টাল, ল্যাব, IPD বা অডিট অনুসন্ধান করুন।",
+    "open": "খুলুন"
+  },
+  "adminTransactionControlCenter": {
+    "title": "লেনদেন নিয়ন্ত্রণ কেন্দ্র",
+    "subtitle": "সকল নগদ, হস্তান্তর, কমিশন, বকেয়া, অডিট ও পোস্টিং নিয়ন্ত্রণ এক জায়গায়",
+    "from": "থেকে",
+    "to": "পর্যন্ত",
+    "refreshAriaLabel": "লেনদেন নিয়ন্ত্রণ ডেটা রিফ্রেশ করুন",
+    "ranges": {
+      "today": "আজ",
+      "yesterday": "গতকাল",
+      "week": "গত ৭ দিন",
+      "month": "এই মাস",
+      "custom": "কাস্টম"
+    },
+    "cards": {
+      "cashInHand": {
+        "label": "হাতে নগদ",
+        "detail": "সক্রিয় কাউন্টার নগদ + বকেয়া হস্তান্তর"
+      },
+      "pendingHandover": {
+        "label": "বকেয়া হস্তান্তর",
+        "detail": "{{count}}টি অমীমাংসিত হস্তান্তর"
+      },
+      "commissionPayable": {
+        "label": "প্রদেয় কমিশন",
+        "detail": "{{count}}টি প্রদেয় আইটেম"
+      },
+      "netHospitalIncome": {
+        "label": "নিট হাসপাতাল আয়",
+        "detail": "ডাক্তার ভিজিট + টেস্ট বিয়োগ কমিশন"
+      }
+    },
+    "watchlistTitle": "একীভূত লেনদেন ওয়াচলিস্ট",
+    "watchlistSubtitle": "পর্যবেক্ষণ ও সরাসরি ব্যবস্থাপনা কর্মের জন্য অগ্রাধিকার সারি",
+    "table": {
+      "area": "লেনদেন ক্ষেত্র",
+      "owner": "মালিক",
+      "amount": "পরিমাণ",
+      "count": "সংখ্যা",
+      "status": "অবস্থা",
+      "details": "বিস্তারিত",
+      "action": "কর্ম"
+    },
+    "statusAction": "ব্যবস্থা",
+    "statusWatch": "নজরদারি",
+    "statusOk": "ঠিক আছে",
+    "activeCounterTitle": "সক্রিয় কাউন্টার স্ন্যাপশট",
+    "noActiveCounters": "এই মুহূর্তে কোনো সক্রিয় কাউন্টার নেই",
+    "counterFallback": "কাউন্টার",
+    "transactions": "লেনদেন",
+    "riskShortcutsTitle": "ঝুঁকি শর্টকাট",
+    "risk": {
+      "cancellation": "বাতিলকরণ পর্যালোচনা",
+      "auditLog": "অডিট লগ",
+      "postingQueue": "পোস্টিং সারি",
+      "cashBook": "নগদ বই",
+      "deposits": "আমানত"
+    },
+    "items": {
+      "handover": {
+        "title": "বকেয়া কাউন্টার নগদ",
+        "owner": "রিসেপশন",
+        "detail": "অ্যাডমিন সংগ্রহের জন্য {{count}}টি হস্তান্তর অপেক্ষমান",
+        "actionLabel": "বকেয়া হস্তান্তর খুলুন"
+      },
+      "counter": {
+        "title": "লাইভ কাউন্টার নগদ",
+        "owner": "রিসেপশন",
+        "detail": "{{count}}টি সক্রিয় কাউন্টার",
+        "actionLabel": "লাইভ কাউন্টার খুলুন"
+      },
+      "commission": {
+        "title": "প্রদেয় ডাক্তার কমিশন",
+        "owner": "অর্থ",
+        "detail": "কমিশন খতিয়ানসহ {{count}} জন ডাক্তার",
+        "actionLabel": "কমিশন নিষ্পত্তি করুন"
+      },
+      "cancellations": {
+        "title": "বিল বাতিলকরণ ঝুঁকি",
+        "owner": "অডিট",
+        "detail": "{{canceled}}টি বাতিলকরণ, {{highDiscount}}টি উচ্চ ছাড়",
+        "actionLabel": "বাতিলকরণ পর্যালোচনা"
+      },
+      "posting": {
+        "title": "হিসাব পোস্টিং সারি",
+        "owner": "হিসাব",
+        "detail": "অপোস্টকৃত হিসাব ইভেন্ট পর্যালোচনা প্রয়োজন",
+        "actionLabel": "হিসাব সারি পোস্ট করুন"
+      },
+      "due": {
+        "title": "রোগী বকেয়া ঝুঁকি",
+        "owner": "বিলিং",
+        "detail": "বিলকৃত রোগীদের প্রাপ্য ব্যালেন্স",
+        "actionLabel": "বকেয়া সংগ্রহ করুন"
+      },
+      "advance": {
+        "title": "রোগী অগ্রিম দায়",
+        "owner": "আমানত",
+        "detail": "রোগী আমানত ও অগ্রিম দায়",
+        "actionLabel": "আমানত পর্যালোচনা"
+      },
+      "audit": {
+        "title": "অডিট ট্রেইল",
+        "owner": "নিরাপত্তা",
+        "detail": "নগদ বিচ্যুতি ও সংবেদনশীল লেনদেন অডিট",
+        "actionLabel": "অডিট ট্রেইল খুলুন"
+      }
+    }
+  },
+  "shareholderManagement": {
+    "title": "শেয়ারহোল্ডার ব্যবস্থাপনা",
+    "subtitle": "শেয়ারহোল্ডার, শেয়ার এবং লাভ বণ্টন পরিচালনা করুন",
+    "pdfImport": "PDF ইমপোর্ট",
+    "addShareholder": "শেয়ারহোল্ডার যোগ করুন",
+    "editShareholder": "শেয়ারহোল্ডার সম্পাদনা করুন",
+    "totalShareholders": "মোট শেয়ারহোল্ডার",
+    "totalShares": "মোট শেয়ার",
+    "totalInvestment": "মোট বিনিয়োগ",
+    "distributions": "বণ্টন",
+    "tabShareholders": "শেয়ারহোল্ডার",
+    "tabDistributionHistory": "বণ্টন ইতিহাস",
+    "tabCalculateProfit": "লাভ গণনা করুন",
+    "filterAll": "সব",
+    "searchPlaceholder": "শেয়ারহোল্ডার খুঁজুন...",
+    "noShareholders": "কোনো শেয়ারহোল্ডার পাওয়া যায়নি",
+    "noDistributions": "এখনও কোনো বণ্টন নেই",
+    "added": "শেয়ারহোল্ডার যোগ হয়েছে",
+    "updated": "শেয়ারহোল্ডার আপডেট হয়েছে",
+    "operationFailed": "অপারেশন ব্যর্থ",
+    "calculationFailed": "গণনা ব্যর্থ",
+    "profitDistributed": "লাভ সফলভাবে বণ্টন করা হয়েছে",
+    "distributionFailed": "বণ্টন ব্যর্থ",
+    "loadFailed": "শেয়ারহোল্ডার লোড ব্যর্থ",
+    "name": "নাম",
+    "type": "ধরন",
+    "shares": "শেয়ার",
+    "investment": "বিনিয়োগ",
+    "phone": "ফোন",
+    "address": "ঠিকানা",
+    "actions": "কার্যক্রম",
+    "month": "মাস",
+    "totalProfit": "মোট লাভ",
+    "distributable": "বণ্টনযোগ্য",
+    "profitPct": "লাভ %",
+    "approved": "অনুমোদিত",
+    "calculate": "গণনা করুন",
+    "income": "আয়",
+    "expenses": "ব্যয়",
+    "netProfit": "নিট লাভ",
+    "retainedEarnings": "সঞ্চিত আয়",
+    "tdsApplicable": "TDS @{{rate}}% প্রযোজ্য",
+    "perShare": "প্রতি শেয়ার: ৳{{value}} x {{shares}} শেয়ার",
+    "shareholder": "শেয়ারহোল্ডার",
+    "gross": "মোট",
+    "tax": "কর",
+    "netPayable": "নিট প্রদেয়",
+    "distributing": "বণ্টন হচ্ছে...",
+    "approveAndDistribute": "অনুমোদন ও বণ্টন করুন",
+    "saving": "সংরক্ষণ হচ্ছে...",
+    "update": "আপডেট",
+    "cancel": "বাতিল",
+    "closeAria": "মডাল বন্ধ করুন",
+    "typeOwner": "মালিক",
+    "typeProfit": "লাভ",
+    "typeProfitHolder": "লাভভোগী",
+    "typeInvestor": "বিনিয়োগকারী",
+    "typeDoctor": "ডাক্তার",
+    "typeShareholder": "শেয়ারহোল্ডার",
+    "typeLabels": {
+      "owner": "মালিক",
+      "profit": "লাভ",
+      "investor": "বিনিয়োগকারী",
+      "doctor": "ডাক্তার",
+      "shareholder": "শেয়ারহোল্ডার"
+    }
+  },
+  "chartOfAccounts": {
+    "title": "অ্যাকাউন্টের চার্ট",
+    "addAccount": "অ্যাকাউন্ট যোগ করুন",
+    "editAccount": "অ্যাকাউন্ট সম্পাদনা করুন",
+    "updated": "অ্যাকাউন্ট আপডেট হয়েছে",
+    "created": "অ্যাকাউন্ট তৈরি হয়েছে",
+    "failedSave": "অ্যাকাউন্ট সংরক্ষণে ত্রুটি",
+    "confirmDelete": "এই অ্যাকাউন্ট মুছে ফেলবেন?",
+    "deleted": "অ্যাকাউন্ট মুছে ফেলা হয়েছে",
+    "failedDelete": "অ্যাকাউন্ট মুছে ফেলতে ত্রুটি",
+    "searchPlaceholder": "অ্যাকাউন্ট খুঁজুন…",
+    "allTypes": "সব ধরন",
+    "noAccounts": "কোনো অ্যাকাউন্ট পাওয়া যায়নি",
+    "accounts": "অ্যাকাউন্ট",
+    "code": "কোড",
+    "name": "নাম",
+    "type": "ধরন",
+    "accountCode": "অ্যাকাউন্ট কোড",
+    "codePlaceholder": "যেমন. 5001",
+    "accountName": "অ্যাকাউন্টের নাম",
+    "namePlaceholder": "যেমন. ঔষধ ক্রয়",
+    "update": "আপডেট",
+    "create": "তৈরি করুন",
+    "status": "অবস্থা",
+    "actions": "কার্যক্রম",
+    "active": "সক্রিয়",
+    "inactive": "নিষ্ক্রিয়",
+    "loading": "অ্যাকাউন্ট লোড হচ্ছে…",
+    "cancel": "বাতিল",
+    "editAria": "অ্যাকাউন্ট সম্পাদনা",
+    "deleteAria": "অ্যাকাউন্ট মুছুন",
+    "closeAria": "মডাল বন্ধ করুন",
+    "types": {
+      "asset": "সম্পদ",
+      "liability": "দায়",
+      "equity": "ইক্যুইটি",
+      "income": "আয়",
+      "expense": "ব্যয়"
+    }
+  },
+  "approvalCenter": {
+    "title": "অনুমোদন কেন্দ্র",
+    "subtitle": "সংবেদনশীল কর্ম তাদের অডিটকৃত অপারেশনাল ওয়ার্কফ্লোতে পর্যালোচিত হয়।",
+    "pendingNow": "এখন অপেক্ষমান",
+    "summary": {
+      "totalPending": "মোট অপেক্ষমান",
+      "highPriority": "উচ্চ অগ্রাধিকার",
+      "expense": "ব্যয়",
+      "inventory": "ইনভেন্টরি"
+    },
+    "queues": {
+      "refund": {
+        "title": "ফেরত অনুরোধ",
+        "description": "ইনভয়েস, ক্যাশিয়ার নগদ ও অডিট ইতিহাস হালনাগাদকারী ক্রেডিট নোট অনুমোদন করুন।",
+        "action": "ফেরত পর্যালোচনা"
+      },
+      "pharmacy": {
+        "title": "ফার্মেসি গ্রহণ ও রাইট-অফ",
+        "description": "মালামাল গ্রহণ ও রাইট-অফ ইনভেন্টরি পোস্টিং ওয়ার্কফ্লোতে পর্যালোচনা করুন।",
+        "action": "ফার্মেসি অনুমোদন পর্যালোচনা"
+      },
+      "inventory": {
+        "title": "ইনভেন্টরি সমন্বয়",
+        "description": "স্টক ও হিসাব অডিট রেকর্ড বজায় রাখা জমা দেওয়া স্টক সংশোধন অনুমোদন করুন।",
+        "action": "সমন্বয় পর্যালোচনা"
+      },
+      "expense": {
+        "title": "ব্যয় অনুমোদন",
+        "description": "ফাইন্যান্স এক্সিকিউশনের আগে রসিদ প্রমাণসহ অপেক্ষমান ব্যয় পর্যালোচনা করুন।",
+        "action": "ব্যয় পর্যালোচনা"
+      },
+      "cashHandover": {
+        "title": "নগদ হস্তান্তর পর্যালোচনা",
+        "description": "অ্যাডমিন যাচাইয়ের জন্য অপেক্ষমান চূড়ান্ত নগদ হস্তান্তর পর্যালোচনা করুন।",
+        "action": "হস্তান্তর পর্যালোচনা"
+      }
+    },
+    "controlledActionsTitle": "নিয়ন্ত্রিত কর্ম",
+    "controlledActionsSubtitle": "সম্পূর্ণ পোস্টিং ও অডিট ওয়ার্কফ্লো না হওয়া পর্যন্ত এই নিয়ন্ত্রণগুলো তাদের উৎস মডিউলে থাকবে।",
+    "billCancellationControl": "বিল বাতিলকরণ নিয়ন্ত্রণ",
+    "cashHandoverControl": "নগদ হস্তান্তর ও বিচ্যুতি",
+    "discountPolicy": "ছাড় নীতি",
+    "warning": "বিল সম্পাদনা ও ছাড়ের অনুরোধ এখানে অনুমোদন করা উচিত নয় যতক্ষণ না তাদের বিলিং ও হিসাব মিউটেশন বাস্তবায়িত ও অডিট-পরীক্ষিত হচ্ছে।"
+  },
+  "customReportBuilder": {
+    "title": "কাস্টম প্রতিবেদন বিল্ডার",
+    "chooseModule": "মডিউল নির্বাচন করুন",
+    "chooseColumns": "কলাম নির্বাচন করুন",
+    "addFilters": "ফিল্টার যোগ করুন",
+    "previewExport": "প্রিভিউ ও রপ্তানি",
+    "columnsAvailable_one": "{{count}}টি কলাম উপলব্ধ",
+    "columnsAvailable_other": "{{count}}টি কলাম উপলব্ধ",
+    "back": "পিছনে",
+    "next": "পরবর্তী",
+    "all": "সব",
+    "moduleLabel": "মডিউল",
+    "columnsLabel": "কলাম",
+    "previewPlaceholder": "ব্যাকএন্ড API সংযুক্ত হলে এখানে প্রিভিউ দেখা যাবে",
+    "exportPdf": "PDF রপ্তানি",
+    "exportExcel": "Excel রপ্তানি",
+    "saveTemplate": "টেমপ্লেট সংরক্ষণ",
+    "step": {
+      "module": "মডিউল",
+      "columns": "কলাম",
+      "filters": "ফিল্টার",
+      "preview": "প্রিভিউ"
+    },
+    "module": {
+      "billing": "বিলিং",
+      "patients": "রোগী",
+      "lab": "ল্যাব",
+      "pharmacy": "ফার্মেসি",
+      "ipd": "আইপিডি",
+      "expenses": "ব্যয়"
+    }
+  },
+  "dashboard": "ড্যাশবোর্ড",
+  "pendingApprovals": "অপেক্ষমাণ অনুমোদন",
+  "opdAppointments": "অ্যাপয়েন্টমেন্ট",
+  "diagnosticLab": "ডায়াগনস্টিক ল্যাব",
+  "ipdBeds": "IPD বেড",
+  "otProcedures": "অপারেশন থিয়েটার",
+  "pharmacyMonitor": "ফার্মেসি",
+  "emergencyMonitor": "জরুরি বিভাগ",
+  "liveCashDrawers": "লাইভ ক্যাশ ড্রয়ার",
+  "shiftHandover": "শিফট হ্যান্ডওভার",
+  "collectionReports": "আদায় রিপোর্ট",
+  "discounts": "ছাড়",
+  "refunds": "ফেরত",
+  "expenses": "খরচ",
+  "doctorCommission": "ডাক্তার কমিশন",
+  "recurringExpenses": "পুনরাবৃত্ত খরচ",
+  "patientDeposits": "রোগীর আমানত",
+  "cashBankBook": "নগদ ও ব্যাংক বহি",
+  "stockOverview": {
+    "title": "স্টক সারসংক্ষেপ",
+    "subtitle": "সকল ক্যাটাগরির ইনভেন্টরি আইটেম",
+    "summary": {
+      "totalItems": "মোট আইটেম",
+      "stockValue": "স্টকের মূল্য",
+      "lowStock": "কম স্টক",
+      "outOfStock": "স্টক শেষ",
+      "nearExpiry": "মেয়াদোত্তীর্ণের কাছাকাছি",
+      "expired": "মেয়াদোত্তীর্ণ"
+    },
+    "tabs": {
+      "all": "সব স্টক",
+      "low": "কম স্টক",
+      "out": "স্টক শেষ",
+      "nearExpiry": "মেয়াদোত্তীর্ণের কাছাকাছি",
+      "expired": "মেয়াদোত্তীর্ণ"
+    },
+    "table": {
+      "item": "আইটেম",
+      "category": "ক্যাটাগরি",
+      "stock": "স্টক",
+      "reorderLevel": "পুনঃঅর্ডার স্তর",
+      "batch": "ব্যাচ",
+      "expiry": "মেয়াদ",
+      "purchase": "ক্রয়",
+      "selling": "বিক্রয়",
+      "status": "অবস্থা"
+    },
+    "statusBadges": {
+      "ok": "ঠিক আছে",
+      "low": "কম স্টক",
+      "out": "স্টক শেষ",
+      "expired": "মেয়াদোত্তীর্ণ",
+      "nearExpiry": "মেয়াদোত্তীর্ণের কাছাকাছি"
+    },
+    "searchPlaceholder": "আইটেম অনুসন্ধান...",
+    "refresh": "রিফ্রেশ"
+  },
+  "purchaseRequests": "ক্রয় অনুরোধ",
+  "stockAdjustments": "স্টক সমন্বয়",
+  "staff": "কর্মী",
+  "rolesPermissions": "ভূমিকা ও অনুমতি",
+  "hrDashboard": "HR ড্যাশবোর্ড",
+  "leave": "ছুটি",
+  "doctors": "ডাক্তার",
+  "auditExplorer": "অডিট এক্সপ্লোরার",
+  "reports": "রিপোর্ট",
+  "branchesDepartments": "শাখা ও বিভাগ",
+  "servicesPricing": "সেবা ও মূল্য",
+  "printLayouts": "প্রিন্ট লেআউট",
+  "smsEmail": "SMS ও ইমেইল",
+  "systemPreferences": "সিস্টেম পছন্দ",
+  "adminMonitor": {
+    "ipd": {
+      "title": "IPD ও বেড মনিটর",
+      "summary": {
+        "totalBeds": "মোট বেড",
+        "occupied": "দখলকৃত",
+        "available": "উপলব্ধ",
+        "occupancy": "দখল হার",
+        "dischargesToday": "আজ ছাড়পত্র",
+        "avgStay": "গড় থাকা (দিন)",
+        "cleaning": "পরিষ্কার",
+        "maintenance": "রক্ষণাবেক্ষণ"
+      },
+      "viewTabs": {
+        "overview": "সারসংক্ষেপ",
+        "bedMap": "বেড ম্যাপ",
+        "patientList": "রোগীর তালিকা",
+        "dischargePending": "ছাড়পত্র বকেয়া"
+      },
+      "bedStatus": {
+        "available": "উপলব্ধ",
+        "occupied": "দখলকৃত",
+        "cleaning": "পরিষ্কার",
+        "maintenance": "রক্ষণাবেক্ষণ",
+        "reserved": "সংরক্ষিত",
+        "blocked": "অবরুদ্ধ"
+      },
+      "legend": "চিহ্ন",
+      "noWards": "কোনো ওয়ার্ড কনফিগার করা হয়নি",
+      "noAdmissions": "কোনো সক্রিয় ভর্তি নেই",
+      "noDischargePending": "কোনো ছাড়পত্র বকেয়া নেই",
+      "patientList": {
+        "patient": "রোগী",
+        "bed": "বেড",
+        "ward": "ওয়ার্ড",
+        "doctor": "ডাক্তার",
+        "diagnosis": "রোগ নির্ণয়",
+        "days": "দিন"
+      },
+      "dischargeTable": {
+        "patient": "রোগী",
+        "bed": "বেড",
+        "ward": "ওয়ার্ড",
+        "doctor": "ডাক্তার",
+        "approval": "অনুমোদন",
+        "bill": "বিল",
+        "approved": "অনুমোদিত",
+        "pending": "বকেয়া",
+        "cleared": "পরিষ্কার"
+      },
+      "overview": {
+        "quickSummary": "দ্রুত সারসংক্ষেপ",
+        "bedUtilization": "বেড ব্যবহার",
+        "occupied": "{{percent}}% দখলকৃত",
+        "todaysActivity": "আজকের কার্যকলাপ",
+        "dischargesCount": "{{count}}টি ছাড়পত্র",
+        "avgStayValue": "গড় থাকা: {{days}} দিন"
+      }
+    },
+    "opd": {
+      "title": "OPD ও অ্যাপয়েন্টমেন্ট মনিটর",
+      "summary": {
+        "totalTokens": "মোট টোকেন",
+        "waiting": "অপেক্ষমাণ",
+        "serving": "পরিবেশন",
+        "completed": "সম্পন্ন",
+        "noShow": "অনুপস্থিত",
+        "cancelled": "বাতিল"
+      },
+      "delayedDoctors": "বিলম্বিত ডাক্তার",
+      "delayMinutes": "{{count}} মিনিট",
+      "patientsWaiting": "{{count}} জন রোগী অপেক্ষমাণ",
+      "noTokens": "আজ কোনো টোকেন নেই",
+      "statusTabs": {
+        "all": "সব",
+        "waiting": "অপেক্ষমাণ",
+        "serving": "পরিবেশন",
+        "completed": "সম্পন্ন",
+        "noShow": "অনুপস্থিত",
+        "cancelled": "বাতিল"
+      },
+      "table": {
+        "token": "টোকেন",
+        "patient": "রোগী",
+        "doctor": "ডাক্তার",
+        "department": "বিভাগ",
+        "apptTime": "অ্যাপয়েন্টমেন্ট সময়",
+        "wait": "অপেক্ষা",
+        "status": "অবস্থা"
+      }
+    },
+    "diagnostic": {
+      "title": "ডায়াগনস্টিক ও ল্যাব মনিটর",
+      "summary": {
+        "totalToday": "আজকের মোট পরীক্ষা",
+        "samplePending": "নমুনা বকেয়া",
+        "processing": "প্রক্রিয়াধীন",
+        "reportReady": "রিপোর্ট প্রস্তুত",
+        "delayed": "বিলম্বিত",
+        "critical": "গুরুতর"
+      },
+      "criticalResults": "গুরুতর ফলাফল",
+      "noLabOrders": "আজ কোনো ল্যাব অর্ডার নেই",
+      "statusTabs": {
+        "all": "সব",
+        "samplePending": "নমুনা বকেয়া",
+        "processing": "প্রক্রিয়াধীন",
+        "reportReady": "রিপোর্ট প্রস্তুত",
+        "delayed": "বিলম্বিত"
+      },
+      "table": {
+        "orderId": "অর্ডার আইডি",
+        "patient": "রোগী",
+        "test": "পরীক্ষা",
+        "department": "বিভাগ",
+        "sample": "নমুনা",
+        "report": "রিপোর্ট",
+        "expected": "প্রত্যাশিত",
+        "delay": "বিলম্ব",
+        "onTime": "সময়মতো"
+      }
+    },
+    "pharmacy": {
+      "title": "ফার্মেসি মনিটর",
+      "summary": {
+        "todaySales": "আজকের বিক্রয়",
+        "todayInvoices": "{{count}}টি চালান",
+        "grossMargin": "মোট মুনাফা",
+        "lowStock": "কম স্টক",
+        "nearExpiry": "মেয়াদোত্তীর্ণের কাছাকাছি",
+        "pendingPRs": "বকেয়া ক্রয় অনুরোধ",
+        "todayReturns": "আজকের ফেরত"
+      },
+      "inventoryOverview": "ইনভেন্টরি সারসংক্ষেপ",
+      "investment": {
+        "total": "মোট বিনিয়োগ",
+        "income": "মোট আয়",
+        "profit": "মোট লাভ",
+        "medicines": "মোট ওষুধ"
+      },
+      "lowStockAlert": "কম স্টক সতর্কতা",
+      "noLowStock": "কম স্টক আইটেম নেই",
+      "currentReorder": "বর্তমান / পুনঃঅর্ডার",
+      "nearExpiryAlert": "মেয়াদোত্তীর্ণের কাছাকাছি সতর্কতা",
+      "noExpiring": "মেয়াদোত্তীর্ণ আইটেম নেই",
+      "batchQty": "ব্যাচ: {{batch}} | পরিমাণ: {{qty}}",
+      "days": "{{count}} দিন"
+    }
+  },
+  "adminDashboard": {
+    "title": "অ্যাডমিন ড্যাশবোর্ড",
+    "subtitle": "রিয়েল-টাইম অপারেশন, ফাইন্যান্স ও অডিট সারসংক্ষেপ",
+    "kpi": {
+      "todayCollection": "আজকের আদায়",
+      "todayExpense": "আজকের খরচ",
+      "outstandingDue": "বকেয়া পাওনা",
+      "todayDiscount": "আজকের ছাড়",
+      "opdPatients": "OPD রোগী",
+      "ipdAdmitted": "IPD ভর্তি"
+    },
+    "revenueTrend": {
+      "title": "আয়ের প্রবণতা",
+      "periodToday": "আজ",
+      "period7d": "৭ দিন",
+      "noData": "এই সময়ের জন্য কোনো তথ্য নেই"
+    },
+    "paymentMethods": {
+      "title": "পেমেন্ট পদ্ধতি",
+      "noData": "আজ কোনো পেমেন্ট তথ্য নেই",
+      "cash": "নগদ",
+      "bkash": "বিকাশ",
+      "nagad": "নগদ",
+      "card": "কার্ড",
+      "bankTransfer": "ব্যাংক ট্রান্সফার",
+      "cheque": "চেক",
+      "unknown": "অজানা"
+    },
+    "actionRequired": {
+      "title": "পদক্ষেপ প্রয়োজন",
+      "alertsCount_one": "{{count}}টি সতর্কতা",
+      "alertsCount_other": "{{count}}টি সতর্কতা",
+      "empty": "কোনো অপেক্ষমাণ পদক্ষেপ নেই। সব পরিষ্কার!",
+      "pendingApprovals": "অপেক্ষমাণ অনুমোদন",
+      "staleHandovers": "পুরোনো ক্যাশ হ্যান্ডওভার",
+      "highDiscountBills": "উচ্চ ছাড়ের বিল",
+      "missingDiscountReference": "ডিসকাউন্ট অনুমোদনকারী উল্লেখ নেই",
+      "canceledBillsToday": "আজ বাতিল হওয়া বিল",
+      "handoverDiscrepancies": "হস্তান্তরের অমিল",
+      "lowStockAlerts": "কম স্টক সতর্কতা"
+    },
+    "liveCashDrawers": {
+      "title": "লাইভ ক্যাশ ড্রয়ার",
+      "viewAll": "সব দেখুন",
+      "active": "সক্রিয়",
+      "noActiveDrawers": "কোনো সক্রিয় ড্রয়ার নেই",
+      "moreCount": "+{{count}}টি আরো"
+    },
+    "operationsSnapshot": {
+      "title": "অপারেশন সারসংক্ষেপ",
+      "opdQueue": "OPD সারি",
+      "opdAppointments": "অ্যাপয়েন্টমেন্ট",
+      "opdCompleted": "সম্পন্ন",
+      "diagnostic": "ডায়াগনস্টিক",
+      "diagnosticPending": "বকেয়া",
+      "diagnosticCompleted": "সম্পন্ন",
+      "ipd": "IPD",
+      "ipdOccupied": "দখলকৃত",
+      "ipdAvailable": "উপলব্ধ",
+      "ipdOccupancy": "দখল হার",
+      "pharmacy": "ফার্মেসি",
+      "pharmacyTodaySales": "আজকের বিক্রয়"
+    },
+    "auditFeed": {
+      "title": "অডিট ফিড",
+      "viewAll": "সব দেখুন",
+      "noEntries": "সাম্প্রতিক কোনো অডিট এন্ট্রি নেই",
+      "showingEntries": "{{count}}টি এন্ট্রি দেখানো হচ্ছে",
+      "autoRefresh": "স্বয়ংক্রিয় রিফ্রেশ: ৩০ সেকেন্ড",
+      "timeAgo": {
+        "justNow": "এইমাত্র",
+        "minutesAgo": "{{count}} মিনিট আগে",
+        "hoursAgo": "{{count}} ঘণ্টা আগে",
+        "daysAgo": "{{count}} দিন আগে"
+      },
+      "severity": {
+        "low": "কম",
+        "medium": "মাঝারি",
+        "high": "উচ্চ",
+        "critical": "গুরুতর"
+      }
+    },
+    "errors": {
+      "loadFailed": "ড্যাশবোর্ড ডেটা লোড করা যায়নি",
+      "retry": "আবার চেষ্টা করুন"
+    },
+    "ipdBilling": {
+      "eyebrow": "ইনপেশেন্ট ফাইন্যান্স",
+      "title": "IPD বিলিং নিয়ন্ত্রণ",
+      "subtitle": "ভর্তি রোগীর বিলিং OPD আদায়, বেড দখল ও সাধারণ ক্যাশ হিসাব থেকে আলাদাভাবে দেখা হচ্ছে।",
+      "open": "IPD বিলিং খুলুন",
+      "openAria": "IPD বিলিং কর্মক্ষেত্র খুলুন",
+      "chargesToday": "আজকের চার্জ",
+      "chargesTodayDetail": "আজ যোগ হওয়া প্রভিশনাল IPD ও বেড চার্জ",
+      "settledToday": "আজ নিষ্পত্তি",
+      "settledTodayDetail": "আজ সম্পূর্ণ পরিশোধ হওয়া চূড়ান্ত IPD বিল",
+      "pendingBilling": "অপেক্ষমাণ বিলিং",
+      "pendingBillingDetail": "প্রভিশনাল চার্জসহ বর্তমানে ভর্তি রোগী",
+      "highDuePatients": "বেশি বকেয়ার রোগী",
+      "highDuePatientsDetail": "নির্ধারিত উচ্চ-বকেয়া সীমার বেশি থাকা ভর্তি রোগী",
+      "currentlyAdmitted": "বর্তমানে ভর্তি",
+      "admissionsToday": "আজ ভর্তি",
+      "dischargesToday": "আজ ছাড়পত্র",
+      "packagePatients": "প্যাকেজ রোগী",
+      "loadError": "IPD বিলিং সারসংক্ষেপ লোড করা যায়নি।",
+      "retry": "আবার চেষ্টা করুন"
+    }
+  },
+  "branchComparison": {
+    "title": "শাখা তুলনা",
+    "subtitle": "একাধিক শাখার কার্যকারিতা সারসংক্ষেপ",
+    "totalCollection": "মোট আদায়",
+    "totalExpense": "মোট ব্যয়",
+    "totalPatients": "মোট রোগী",
+    "ipdOccupied": "IPD দখল",
+    "avgOccupancy": "গড় দখল",
+    "branches": "শাখা",
+    "collection": "আদায়",
+    "expense": "ব্যয়",
+    "opd": "OPD",
+    "ipd": "IPD",
+    "occupancy": "দখল",
+    "due": "বকেয়া",
+    "staffCount_one": "{{count}} জন কর্মী",
+    "staffCount_other": "{{count}} জন কর্মী",
+    "current": "বর্তমান",
+    "viewDashboard": "ড্যাশবোর্ড দেখুন",
+    "noBranchData": "কোনো শাখার তথ্য পাওয়া যায়নি",
+    "refresh": "রিফ্রেশ"
+  },
+  "collectionFollowup": {
+    "title": "আদায় ফলো-আপ",
+    "subtitle": "বকেয়া পরিশোধ ট্র্যাক ও ফলো-আপ করুন",
+    "totalPending": "মোট বকেয়া",
+    "contacted": "যোগাযোগ হয়েছে",
+    "promised": "প্রতিশ্রুতি",
+    "escalated": "এসকেলেটেড",
+    "totalDue": "মোট বকেয়া",
+    "all": "সব",
+    "patient": "রোগী",
+    "phone": "ফোন",
+    "invoice": "ইনভয়েস",
+    "due": "বকেয়া",
+    "daysOverdue": "বকেয়া দিন",
+    "followups": "ফলো-আপ",
+    "assignedTo": "দায়িত্বে",
+    "nextFollowup": "পরবর্তী ফলো-আপ",
+    "status": "অবস্থা",
+    "noData": "কোনো আদায় ফলো-আপ পাওয়া যায়নি",
+    "refresh": "রিফ্রেশ"
+  },
+  "discountReview": {
+    "title": "ছাড় পর্যালোচনা",
+    "subtitle": "হাসপাতাল জুড়ে ছাড়ের ধরন পর্যবেক্ষণ ও বিশ্লেষণ।",
+    "tabs": {
+      "overview": "সারসংক্ষেপ",
+      "pending": "বিচারাধীন",
+      "approved": "অনুমোদিত",
+      "rejected": "প্রত্যাখ্যাত",
+      "high": "উচ্চ ছাড়",
+      "reference": "রেফারেন্স অনুযায়ী",
+      "staff": "কর্মী অনুযায়ী"
+    },
+    "highDiscounts": "উচ্চ ছাড়",
+    "needsReview": "পর্যালোচনা প্রয়োজন",
+    "missingRef": "রেফারেন্স অনুপস্থিত (>২০%)",
+    "totalDiscountAmount": "মোট ছাড়ের পরিমাণ",
+    "uniqueReferences": "অনন্য রেফারেন্স",
+    "highDiscountBillsToday": "আজকের উচ্চ ছাড়ের বিল",
+    "referenceAnalysis": "রেফারেন্স অনুযায়ী ছাড়ের বিশ্লেষণ",
+    "staffAnalysis": "কর্মী অনুযায়ী ছাড়ের বিশ্লেষণ",
+    "highDiscountBills": "উচ্চ ছাড়ের বিল (>২০%)",
+    "noData": "আজ কোনো উচ্চ ছাড়ের বিল নেই",
+    "noReferenceData": "কোনো রেফারেন্স তথ্য নেই",
+    "noStaffData": "কোনো কর্মী তথ্য নেই",
+    "invoice": "ইনভয়েস",
+    "total": "মোট",
+    "discount": "ছাড়",
+    "discountPct": "ছাড় %",
+    "referredBy": "রেফারেন্স",
+    "createdBy": "তৈরিকারী",
+    "time": "সময়",
+    "missing": "⚠ অনুপস্থিত — >২০% এর জন্য আবশ্যক",
+    "missingRefRow": "⚠ রেফারেন্স অনুপস্থিত",
+    "highDiscountRequired": "২০% এর উপরে সকল ছাড়ের জন্য একটি বাধ্যতামূলক রেফারেন্স নাম প্রয়োজন। হাইলাইট করা সারিগুলোতে রেফারেন্স অনুপস্থিত।",
+    "referredByCol": "রেফারেন্সকারী",
+    "totalDiscounts": "মোট ছাড়",
+    "totalAmount": "মোট পরিমাণ",
+    "avgDiscountPct": "গড় ছাড় %",
+    "risk": "ঝুঁকি",
+    "riskHigh": "উচ্চ",
+    "riskMedium": "মধ্যম",
+    "riskLow": "নিম্ন",
+    "staff": "কর্মী",
+    "discountCount": "ছাড়ের সংখ্যা",
+    "pendingHint": "অনুমোদন ওয়ার্কফ্লো সক্রিয় হলে এখানে বিচারাধীন ছাড়ের অনুমোদন দেখা যাবে।",
+    "approvedHint": "অনুমোদিত ছাড় এখানে দেখা যাবে।",
+    "rejectedHint": "প্রত্যাখ্যাত ছাড়ের অনুরোধ এখানে দেখা যাবে।"
+  },
+  "exportHistory": {
+    "title": "রপ্তানি ইতিহাস",
+    "totalExports": "মোট রপ্তানি",
+    "today": "আজ",
+    "uniqueUsers": "অনন্য ব্যবহারকারী",
+    "csv": "CSV",
+    "pdf": "PDF",
+    "all": "সব",
+    "time": "সময়",
+    "user": "ব্যবহারকারী",
+    "report": "রিপোর্ট",
+    "format": "ফরম্যাট",
+    "filters": "ফিল্টার",
+    "rows": "সারি",
+    "device": "ডিভাইস",
+    "ip": "IP",
+    "noData": "কোনো রপ্তানি ইতিহাস পাওয়া যায়নি"
+  },
+  "loginSessions": {
+    "title": "লগইন সেশন",
+    "activeSessions": "সক্রিয় সেশন",
+    "todayLogins": "আজকের লগইন",
+    "uniqueUsers": "অনন্য ব্যবহারকারী",
+    "suspicious": "সন্দেহজনক",
+    "all": "সব",
+    "active": "সক্রিয়",
+    "expired": "মেয়াদোত্তীর্ণ",
+    "user": "ব্যবহারকারী",
+    "device": "ডিভাইস",
+    "ip": "IP",
+    "browser": "ব্রাউজার",
+    "loginTime": "লগইন সময়",
+    "lastActive": "শেষ সক্রিয়",
+    "branch": "শাখা",
+    "status": "অবস্থা",
+    "noData": "কোনো সক্রিয় সেশন নেই"
+  },
+  "refundDetail": {
+    "title": "রিফান্ড ব্যবস্থাপনা",
+    "subtitle": "রিফান্ড অনুরোধ পর্যালোচনা, অনুমোদন ও ট্র্যাক করুন।",
+    "tabs": {
+      "pending": "বিচারাধীন",
+      "approved": "অনুমোদিত",
+      "rejected": "প্রত্যাখ্যাত",
+      "completed": "সম্পন্ন",
+      "flagged": "ফ্ল্যাগড"
+    },
+    "summary": {
+      "pending": "বিচারাধীন",
+      "approved": "অনুমোদিত",
+      "totalRequests": "মোট অনুরোধ",
+      "totalAmount": "মোট পরিমাণ"
+    },
+    "noData_one": "কোনো {{tab}} রিফান্ড পাওয়া যায়নি",
+    "noData_other": "কোনো {{tab}} রিফান্ড পাওয়া যায়নি",
+    "refundId": "রিফান্ড আইডি",
+    "bill": "বিল",
+    "patient": "রোগী",
+    "amount": "পরিমাণ",
+    "reason": "কারণ",
+    "requestedBy": "অনুরোধকারী",
+    "status": "অবস্থা",
+    "date": "তারিখ"
+  },
+  "staffActivityLog": {
+    "title": "কর্মী কার্যকলাপ লগ",
+    "subtitle": "সিস্টেম জুড়ে সকল ব্যবহারকারীর কার্যকলাপ ট্র্যাক করুন",
+    "summary": {
+      "totalActions": "মোট কার্যকলাপ",
+      "activeUsers": "সক্রিয় ব্যবহারকারী",
+      "topAction": "শীর্ষ কার্যকলাপ",
+      "topModule": "শীর্ষ মডিউল"
+    },
+    "searchPlaceholder": "কার্যকলাপ অনুসন্ধান...",
+    "emptyMessage": "কোনো কার্যকলাপ লগ পাওয়া যায়নি",
+    "table": {
+      "time": "সময়",
+      "user": "ব্যবহারকারী",
+      "role": "ভূমিকা",
+      "action": "কার্যকলাপ",
+      "module": "মডিউল",
+      "description": "বিবরণ",
+      "ip": "IP",
+      "device": "ডিভাইস"
+    },
+    "refresh": "রিফ্রেশ"
+  },
+  "financialReports": {
+    "title": "আর্থিক প্রতিবেদন",
+    "subtitle": "লাভ-ক্ষতি, আয়ের বিভাজন, ব্যয়ের বিশ্লেষণ",
+    "periods": {
+      "today": "আজ",
+      "week": "এই সপ্তাহ",
+      "month": "এই মাস",
+      "quarter": "এই কোয়ার্টার",
+      "year": "এই বছর"
+    },
+    "summary": {
+      "revenue": "আয়",
+      "expenses": "ব্যয়",
+      "netIncome": "নিট আয়",
+      "grossMargin": "স্থূল মুনাফা",
+      "outstandingDue": "বকেয়া",
+      "refunds": "রিফান্ড",
+      "discounts": "ছাড়"
+    },
+    "revenueByDepartment": "বিভাগ অনুযায়ী আয়",
+    "revenueByPaymentMode": "পেমেন্ট মোড অনুযায়ী আয়",
+    "expensesByCategory": "ক্যাটাগরি অনুযায়ী ব্যয়",
+    "refresh": "রিফ্রেশ"
+  },
+  "telemedicineMonitor": {
+    "title": "টেলিমেডিসিন মনিটর",
+    "subtitle": "লাইভ টেলিকনসালটেশন তদারকি",
+    "summary": {
+      "totalToday": "আজ মোট",
+      "inProgress": "চলমান",
+      "scheduled": "নির্ধারিত",
+      "completed": "সম্পন্ন",
+      "cancelled": "বাতিল",
+      "noShow": "অনুপস্থিত",
+      "avgDuration": "গড় সময়কাল"
+    },
+    "tabs": {
+      "all": "সব",
+      "inProgress": "চলমান",
+      "scheduled": "নির্ধারিত",
+      "completed": "সম্পন্ন",
+      "cancelled": "বাতিল"
+    },
+    "noData": "কোনো টেলিমেডিসিন সেশন পাওয়া যায়নি",
+    "table": {
+      "patient": "রোগী",
+      "doctor": "ডাক্তার",
+      "department": "বিভাগ",
+      "scheduled": "নির্ধারিত",
+      "started": "শুরু",
+      "duration": "সময়কাল",
+      "status": "অবস্থা"
+    },
+    "refresh": "রিফ্রেশ"
+  },
+  "stockMovementPage": {
+    "title": "স্টক চলাচল",
+    "subtitle": "আইটেম-স্তরের স্টক লেনদেনের ইতিহাস",
+    "summary": {
+      "totalIn": "মোট প্রবেশ",
+      "totalOut": "মোট বাহির",
+      "netMovement": "নিট চলাচল",
+      "transactions": "লেনদেন"
+    },
+    "filters": {
+      "all": "সব",
+      "purchase": "ক্রয়",
+      "issue": "ইস্যু",
+      "adjustment": "সমন্বয়",
+      "transfer": "স্থানান্তর",
+      "return": "ফেরত",
+      "writeOff": "ছাঁটাই"
+    },
+    "badges": {
+      "purchase": "ক্রয়",
+      "issue": "ইস্যু",
+      "adjustment": "সমন্বয়",
+      "transfer": "স্থানান্তর",
+      "return": "ফেরত",
+      "writeOff": "ছাঁটাই"
+    },
+    "table": {
+      "date": "তারিখ",
+      "item": "আইটেম",
+      "category": "ক্যাটাগরি",
+      "type": "ধরন",
+      "qty": "পরিমাণ",
+      "batch": "ব্যাচ",
+      "from": "থেকে",
+      "to": "প্রতি",
+      "reference": "রেফারেন্স",
+      "by": "দ্বারা"
+    },
+    "searchPlaceholder": "চলাচল অনুসন্ধান...",
+    "emptyMessage": "কোনো স্টক চলাচল পাওয়া যায়নি",
+    "refresh": "রিফ্রেশ"
+  },
+  "suspiciousActivities": {
+    "title": "সন্দেহজনক কার্যকলাপ",
+    "summary": {
+      "totalAlerts": "মোট সতর্কতা",
+      "critical": "সংকটাপন্ন",
+      "high": "উচ্চ",
+      "medium": "মধ্যম",
+      "low": "নিম্ন",
+      "resolved": "সমাধান"
+    },
+    "autoDetectionRules": "স্বয়ংক্রিয় সনাক্তকরণ নিয়ম",
+    "rules": {
+      "highDiscount": "১. উচ্চ ছাড়ের ঘনঘনতা",
+      "unusualReference": "২. অস্বাভাবিক রেফারেন্স ব্যক্তি",
+      "refundSpike": "৩. শিফট শেষের কাছে রিফান্ড বৃদ্ধি",
+      "repeatedCancellations": "৪. পুনরাবৃত্ত বাতিলকরণ",
+      "cashShortage": "৫. নগদ ঘাটতির ধরন",
+      "sharedPin": "৬. শেয়ার্ড PIN ব্যবহার",
+      "nightExports": "৭. রাতের বেলা রপ্তানি",
+      "stockManipulation": "৮. স্টক কারসাজি",
+      "bulkAccess": "৯. বাল্ক রোগী রেকর্ড অ্যাক্সেস"
+    },
+    "tabs": {
+      "all": "সব",
+      "critical": "সংকটাপন্ন",
+      "high": "উচ্চ",
+      "medium": "মধ্যম",
+      "low": "নিম্ন"
+    },
+    "table": {
+      "rule": "নিয়ম",
+      "description": "বিবরণ",
+      "severity": "তীব্রতা",
+      "user": "ব্যবহারকারী",
+      "detected": "সনাক্ত",
+      "status": "অবস্থা"
+    },
+    "noData": "কোনো সন্দেহজনক কার্যকলাপ সনাক্ত হয়নি"
+  },
+  "auditLogs": {
+    "breadcrumbDashboard": "ড্যাশবোর্ড",
+    "breadcrumbAudit": "অডিট",
+    "subtitle": "হাসপাতালের গুরুত্বপূর্ণ কাজ, বিলিং পরিবর্তন, ক্যাশ মুভমেন্ট ও ইউজার অ্যাক্সেস রিভিউ করুন।",
+    "filters": "ফিল্টার",
+    "exportCsv": "CSV এক্সপোর্ট",
+    "actionLabel": "অ্যাকশন",
+    "entityLabel": "এন্টিটি",
+    "allActions": "সব অ্যাকশন",
+    "allEntities": "সব এন্টিটি",
+    "searchPlaceholder": "ইউজার, বিস্তারিত বা রেকর্ড আইডি সার্চ করুন",
+    "reset": "রিসেট",
+    "noRecords": "কোনো অডিট রেকর্ড পাওয়া যায়নি",
+    "showing": "{{total}}টির মধ্যে {{shown}}টি দেখানো হচ্ছে",
+    "todayCount": "আজ {{count}}টি"
+  }
+}

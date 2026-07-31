@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "checkpoint": "CDB-113F-IDENTITY-EPISODE-READ-PROMOTION",
+  "scope": "local_selected_adapter_readiness_only",
+  "coverage": {
+    "registryPath": "docs/database/canonical-identity-episode-provider-coverage-registry.json",
+    "registrySha256": "8788f51aef0790ca8eb7472daf08e6168512430d724fe28717383f468766c632",
+    "sourceRegistrySha256": "1c2c82c1d4f13c47612b65c24de9cc707fcad2205193ad1fc0f1701479488c66",
+    "eligibleReaderPairs": 859,
+    "uniquePaths": 297,
+    "uniqueTables": 63,
+    "unknownProviderAssignments": 0
+  },
+  "providers": [
+    {
+      "provider": "patient_identity",
+      "modulePath": "src/lib/canonical/patient-identity-provider.ts",
+      "flagKey": "canonical_patient_identity_provider_v1",
+      "enabledByDefault": false
+    },
+    {
+      "provider": "practitioner",
+      "modulePath": "src/lib/canonical/practitioner-provider.ts",
+      "flagKey": "canonical_practitioner_provider_v1",
+      "enabledByDefault": false
+    },
+    {
+      "provider": "appointment",
+      "modulePath": "src/lib/canonical/appointment-provider.ts",
+      "flagKey": "canonical_appointment_provider_v1",
+      "enabledByDefault": false
+    },
+    {
+      "provider": "encounter",
+      "modulePath": "src/lib/canonical/encounter-provider.ts",
+      "flagKey": "canonical_encounter_provider_v1",
+      "enabledByDefault": false
+    },
+    {
+      "provider": "admission_bed",
+      "modulePath": "src/lib/canonical/admission-bed-provider.ts",
+      "flagKey": "canonical_admission_bed_provider_v1",
+      "enabledByDefault": false
+    }
+  ],
+  "selectedAdapters": [
+    {
+      "provider": "patient_identity",
+      "consumerId": "iep_9e15a85d3192ddf2b5e1f00e",
+      "adapterId": "cdb113f_patient_detail"
+    },
+    {
+      "provider": "practitioner",
+      "consumerId": "iep_3f8153a1979d8be8dc62ba1e",
+      "adapterId": "cdb113f_practitioner_detail"
+    },
+    {
+      "provider": "appointment",
+      "consumerId": "iep_88e8fd6a576f26453d8e9a07",
+      "adapterId": "cdb113f_appointment_detail"
+    },
+    {
+      "provider": "encounter",
+      "consumerId": "iep_f66a0c03e735fc404a00b35b",
+      "adapterId": "cdb113f_encounter_detail"
+    },
+    {
+      "provider": "admission_bed",
+      "consumerId": "iep_e12431f76bf10680d69ee2f7",
+      "adapterId": "cdb113f_admission_detail"
+    }
+  ],
+  "focusedTests": [
+    "test/canonical/identity-episode-read-promotion-design-contract.test.ts",
+    "test/canonical/identity-episode-provider-coverage.test.ts",
+    "test/canonical/patient-identity-provider.test.ts",
+    "test/canonical/identity-episode-shadow-evidence.test.ts",
+    "test/canonical/identity-episode-read-adapters.test.ts",
+    "test/canonical/identity-episode-read-promotion-readiness.test.ts"
+  ],
+  "secondPassEvidence": [
+    "docs/database/migration-runs/P11-canonical-patient-link-foundation.md",
+    "docs/database/migration-runs/P11-canonical-practitioner-operational-adoption.md",
+    "docs/database/migration-runs/P11-canonical-appointment-authority.md",
+    "docs/database/migration-runs/P11-canonical-encounter-admission-bed-convergence.md"
+  ],
+  "mappingPolicy": {
+    "requiresExactTenantScopedMapping": true,
+    "acceptedIssueIds": [],
+    "namePhoneLabelNumericOrTimeMatchingAllowed": false
+  },
+  "localShadowEvidence": {
+    "criticalUnexplainedVarianceCount": 0,
+    "errorCount": 0,
+    "latencyBudgetMs": 100,
+    "maxObservedElapsedMs": 12,
+    "acceptedExceptionIds": []
+  },
+  "rollback": {
+    "mode": "legacy",
+    "description": "Return the selected provider mode to legacy while retaining canonical mappings, receipts, and reconciliation evidence."
+  },
+  "claims": {
+    "localSelectedAdapterEvidenceComplete": true,
+    "productionObservationPresent": false,
+    "ownerAuthorizationPresent": false,
+    "productionReady": false,
+    "legacyRetirementApproved": false
+  },
+  "safety": {
+    "productionMutationPerformed": false,
+    "providerFlagChanged": false,
+    "trafficChanged": false,
+    "localSyncActivated": false,
+    "legacyReaderRemoved": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  }
+}

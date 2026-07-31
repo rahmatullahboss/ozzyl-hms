@@ -1,0 +1,103 @@
+---
+import LanguageToggle from '../components/LanguageToggle.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  pageType?: string;
+}
+
+const {
+  title = 'Ozzyl Health — Hospital Management System for Bangladesh',
+  description = 'Cloud-native Hospital Management System built for Bangladesh. OPD, Billing, Lab, Pharmacy, Telemedicine, AI — all in one. No server required.',
+  pageType = 'landing',
+} = Astro.props;
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- OG / WhatsApp / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://pub-a74ba5f700fd48ce994572e5834f5e60.r2.dev/assets/ozzyl_hms_og_image.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://hmssaas.com" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ozzyl Health",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web",
+        "description": "Cloud-native Hospital Management System for Bangladesh"
+      }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {GA_MEASUREMENT_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+        <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID, {
+            page_path: window.location.pathname,
+          });
+        </script>
+      </>
+    )}
+  </head>
+  <body class="bg-white text-gray-900 font-sans antialiased" data-page-type={pageType}>
+    <slot />
+    <LanguageToggle />
+    <script is:inline>
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const tracked = target.closest('[data-track-event]');
+        if (!(tracked instanceof HTMLElement)) return;
+        if (typeof window.gtag !== 'function') return;
+
+        const eventName = tracked.dataset.trackEvent;
+        if (!eventName) return;
+
+        const pageType = document.body?.dataset.pageType || 'landing';
+        const label = tracked.dataset.trackLabel || tracked.textContent?.trim() || '';
+        const location = tracked.dataset.trackLocation || 'unknown';
+        const destination = tracked.getAttribute('href') || tracked.dataset.trackDestination || '';
+
+        window.gtag('event', eventName, {
+          event_category: 'landing_cta',
+          event_label: label,
+          page_type: pageType,
+          cta_location: location,
+          destination,
+        });
+      }, { capture: true });
+    </script>
+  </body>
+</html>

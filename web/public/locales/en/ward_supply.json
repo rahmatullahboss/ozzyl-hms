@@ -1,0 +1,93 @@
+{
+  "title": "Ward Supply Management",
+  "subtitle": "Requisitions, dispatches, and inventory management for hospital wards",
+  "pendingRequisitions": "Pending Requisitions",
+  "todayDispatches": "Today's Dispatches",
+  "lowStockAlerts": "Low Stock Alerts",
+  "thisMonth": "Total This Month (Reqs)",
+  "tabs": {
+    "requisitions": "Requisitions",
+    "dispatches": "Dispatches",
+    "stock": "Ward Stock"
+  },
+  "filters": {
+    "ward": "Ward",
+    "wardId": "Ward ID",
+    "status": "Status",
+    "all": "All Statuses"
+  },
+  "status": {
+    "draft": "Draft",
+    "submitted": "Submitted",
+    "approved": "Approved",
+    "partially_dispatched": "Partially Dispatched",
+    "fully_dispatched": "Fully Dispatched",
+    "fully_received": "Fully Received",
+    "rejected": "Rejected",
+    "cancelled": "Cancelled"
+  },
+  "priority": {
+    "routine": "Routine",
+    "urgent": "Urgent",
+    "emergency": "Emergency"
+  },
+  "buttons": {
+    "newRequisition": "New Requisition",
+    "remove": "Remove",
+    "addItem": "Add Item",
+    "dispatch": "Dispatch",
+    "confirmReceipt": "Confirm Receipt"
+  },
+  "table": {
+    "reqNo": "Req No",
+    "ward": "Ward",
+    "requestedBy": "Requested By",
+    "items": "Items",
+    "value": "Value",
+    "priority": "Priority",
+    "status": "Status",
+    "date": "Date",
+    "actions": "Actions",
+    "dispatchNo": "Dispatch No",
+    "dispatchedBy": "Dispatched By",
+    "item": "Item",
+    "code": "Code",
+    "currentStock": "Current Stock",
+    "minLevel": "Min Level",
+    "unit": "Unit",
+    "lastReceipt": "Last Receipt"
+  },
+  "empty": {
+    "noRequisitions": "No requisitions found",
+    "noRequisitionsDesc": "Start by creating a new supply requisition",
+    "noDispatches": "No dispatches found",
+    "noDispatchesDesc": "Dispatches will appear here once requisitions are processed",
+    "noStock": "No stock data found",
+    "noStockDesc": "Inventory levels for this ward will appear here"
+  },
+  "modal": {
+    "newRequisition": "New Requisition",
+    "wardId": "Ward ID",
+    "wardName": "Ward Name",
+    "requestedBy": "Requested By",
+    "remarks": "Remarks",
+    "itemName": "Item Name",
+    "qty": "Qty",
+    "createDispatch": "Create Dispatch for {{no}}",
+    "batch": "Batch No",
+    "recordReceipt": "Record Receipt for {{no}}",
+    "receivedBy": "Received By",
+    "receiptRemarks": "Receipt Remarks",
+    "qtyReceived": "Qty Received"
+  },
+  "toasts": {
+    "reqCreated": "Requisition created successfully",
+    "statusUpdated": "Status updated successfully",
+    "dispatchCreated": "Dispatch created successfully",
+    "receiptRecorded": "Receipt recorded successfully",
+    "fillRequired": "Please fill all required fields and items",
+    "noItems": "No valid items to dispatch",
+    "enterReceiver": "Please enter receiver name",
+    "failed": "Operation failed"
+  }
+}

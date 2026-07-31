@@ -1,0 +1,184 @@
+{
+  "title": "অ্যাপয়েন্টমেন্ট শিডিউলার",
+  "newAppointment": "নতুন অ্যাপয়েন্টমেন্ট",
+  "bookAppointment": "অ্যাপয়েন্টমেন্ট বুক করুন",
+  "doctor": "ডাক্তার",
+  "patient": "রোগী",
+  "appointmentDate": "অ্যাপয়েন্টমেন্টের তারিখ",
+  "time": "সময়",
+  "type": "ধরন",
+  "opd": "ওপিডি",
+  "followUp": "ফলো আপ",
+  "emergency": "জরুরি",
+  "confirmed": "নিশ্চিত",
+  "cancelled": "বাতিল",
+  "pending": "অপেক্ষমাণ",
+  "noAppointments": "এই তারিখে কোনো অ্যাপয়েন্টমেন্ট নেই।",
+  "scheduleAppointment": "অ্যাপয়েন্টমেন্ট নির্ধারণ করুন",
+  "doctorSchedule": "ডাক্তারের সময়সূচি",
+  "addSchedule": "সময়সূচি যোগ করুন",
+  "schedule": "সময়সূচি",
+  "noSchedules": "কোনো সময়সূচি পাওয়া যায়নি",
+  "appointmentBooked": "অ্যাপয়েন্টমেন্ট বুক করা হয়েছে! টোকেন #{{tokenNo}}",
+  "walkIn": "ওয়াক-ইন",
+  "today": "আজ",
+  "total": "মোট",
+  "scheduled": "নির্ধারিত",
+  "completed": "সম্পন্ন",
+  "noShow": "উপস্থিত নেই",
+  "markCompleted": "সম্পন্ন করুন",
+  "markNoShow": "উপস্থিত নেই চিহ্নিত করুন",
+  "reschedule": "পুনরায় নির্ধারণ",
+  "cancelAppointment": "বাতিল করুন",
+  "confirmNoShow": "উপস্থিত নেই চিহ্নিত করবেন?",
+  "confirmReschedule": "পুনরায় নির্ধারণ করবেন?",
+  "confirmCancel": "এই অ্যাপয়েন্টমেন্ট বাতিল করবেন?",
+  "allDoctors": "সব ডাক্তার",
+  "allStatuses": "সব স্ট্যাটাস",
+  "noAppointmentsForDate": "এই তারিখে কোনো অ্যাপয়েন্টমেন্ট নেই।",
+  "bookFirstAppointment": "প্রথম অ্যাপয়েন্টমেন্ট বুক করুন",
+  "viewPatient": "রোগী দেখুন",
+  "search_by_name_id_or_mobile": "নাম, আইডি বা মোবাইল দিয়ে খুঁজুন",
+  "please_select_a_patient": "অনুগ্রহ করে একজন রোগী নির্বাচন করুন",
+  "status_updated": "স্ট্যাটাস আপডেট করা হয়েছে",
+  "failed_to_update": "আপডেট করতে ব্যর্থ হয়েছে",
+  "patients_main_concern": "রোগীর প্রধান সমস্যা",
+  "booking": "বুকিং করা হচ্ছে...",
+  "doctorScheduleRoster": "ডাক্তারের সময়সূচি / রোস্টার",
+  "manageDoctorAvailability": "ডাক্তারের প্রাপ্যতা এবং কনসালটেশন সময় পরিচালনা করুন",
+  "weeklyScheduleFor": "সাপ্তাহিক সময়সূচি — {{name}}",
+  "holiday": "ছুটি",
+  "off": "বন্ধ",
+  "totalWeeklySlots": "মোট সাপ্তাহিক স্লট",
+  "maxPatientsPerWeek": "সপ্তাহে সর্বোচ্চ রোগী",
+  "avgPerSlot": "স্লট প্রতি গড়",
+  "editSchedule": "সময়সূচি সম্পাদনা",
+  "addScheduleSlot": "সময়সূচি স্লট যোগ করুন",
+  "dayOfWeek": "সপ্তাহের দিন",
+  "session": "সেশন",
+  "startTime": "শুরু",
+  "endTime": "শেষ",
+  "chamberRoom": "চেম্বার / রুম",
+  "maxPatients": "সর্বোচ্চ রোগী",
+  "updateSlot": "স্লট আপডেট করুন",
+  "addSlot": "স্লট যোগ করুন",
+  "saving": "সংরক্ষণ করা হচ্ছে...",
+  "removeScheduleSlot": "এই সময়সূচি স্লটটি মুছে ফেলতে চান?",
+  "eg_chamber_3": "যেমন: চেম্বার ৩",
+  "optional_notes": "ঐচ্ছিক নোট",
+  "days": {
+    "sun": "রবিবার",
+    "mon": "সোমবার",
+    "tue": "মঙ্গলবার",
+    "wed": "বুধবার",
+    "thu": "বৃহস্পতিবার",
+    "fri": "শুক্রবার",
+    "sat": "শনিবার"
+  },
+  "sessions": {
+    "morning": "সকাল",
+    "afternoon": "বিকাল",
+    "evening": "সন্ধ্যা",
+    "night": "রাত"
+  },
+  "slot_placeholder": "{{count}}টি স্লট",
+  "slot_placeholder_plural": "{{count}}টি স্লট",
+  "schedule_updated": "সময়সূচি সফলভাবে আপডেট হয়েছে",
+  "schedule_added": "সময়সূচি সফলভাবে যোগ করা হয়েছে",
+  "failed_to_save_schedule": "সময়সূচি সংরক্ষণ করতে ব্যর্থ হয়েছে",
+  "schedule_removed": "সময়সূচি স্লট সরানো হয়েছে",
+  "failed_to_remove_schedule": "সময়সূচি সরাতে ব্যর্থ হয়েছে",
+  "general": "সাধারণ",
+  "onlineApproval": "অনলাইন অ্যাপয়েন্টমেন্ট অনুমোদন",
+  "onlineApprovalDesc": "রোগী-বুক করা অ্যাপয়েন্টমেন্ট পর্যালোচনা এবং অনুমোদন করুন",
+  "noPending": "কোন অপেক্ষমাণ অনুরোধ নেই",
+  "noPendingDesc": "সব অনলাইন অ্যাপয়েন্টমেন্ট অনুরোধ প্রক্রিয়া করা হয়েছে",
+
+  "rescheduled": "অ্যাপয়েন্টমেন্ট পুনরায় নির্ধারণ করা হয়েছে",
+  "reminderSent": "রিমাইন্ডার পাঠানো হয়েছে",
+  "reminderFailed": "রিমাইন্ডার পাঠাতে ব্যর্থ হয়েছে",
+  "rescheduleAppointment": "অ্যাপয়েন্টমেন্ট পুনরায় নির্ধারণ করুন",
+  "newDate": "নতুন তারিখ",
+  "payNow": "এখন পরিশোধ করুন",
+  "checkIn": "চেক ইন",
+  "sendReminder": "রিমাইন্ড করুন",
+
+  "toast": {
+    "failed_to_book": "বুক করতে ব্যর্থ হয়েছে",
+    "failed_to_reschedule": "পুনরায় নির্ধারণ করতে ব্যর্থ হয়েছে",
+    "checked_in": "চেক ইন হয়েছে → ভিজিট {{visitNo}}{{fee}}",
+    "failed_to_check_in": "চেক ইন করতে ব্যর্থ হয়েছে",
+    "consultation_fee_paid": "কনসালটেশন ফি পরিশোধ হয়েছে{{invoice}}",
+    "failed_to_collect_payment": "অ্যাপয়েন্টমেন্ট পেমেন্ট সংগ্রহ করতে ব্যর্থ হয়েছে",
+    "sent_to_billing": "বিলিং কাউন্টারে পাঠানো হয়েছে",
+    "failed_to_send_to_billing": "বিলিং কাউন্টারে পাঠাতে ব্যর্থ হয়েছে",
+    "due_approved": "কনসালটেশনের জন্য বকেয়া অনুমোদিত হয়েছে",
+    "failed_to_approve_due": "বকেয়া অনুমোদন করতে ব্যর্থ হয়েছে"
+  },
+
+  "type": {
+    "new_patient": "নতুন রোগী",
+    "old_patient": "ফলো আপ",
+    "follow_up": "ফলো আপ",
+    "report_show": "রিপোর্ট দেখানো",
+    "free_visit": "বিনামূল্যে ভিজিট",
+    "discounted_visit": "ছাড়ে ভিজিট",
+    "emergency": "জরুরি"
+  },
+
+  "billing_status": {
+    "no_charge": "চার্জ নেই",
+    "pending": "বিলিং অপেক্ষমাণ",
+    "unpaid": "অপরিশোধিত",
+    "partial_paid": "আংশিক পরিশোধিত",
+    "paid": "পরিশোধিত",
+    "due_approved": "বকেয়া অনুমোদিত",
+    "refunded": "ফেরত দেওয়া হয়েছে",
+    "cancelled": "বাতিল"
+  },
+
+  "form": {
+    "original": "মূল",
+    "discount": "ছাড়",
+    "payable": "প্রদেয়",
+    "reason": "কারণ"
+  },
+
+  "placeholder": {
+    "approval_note": "অনুমোদনের নোট"
+  },
+
+  "btn": {
+    "pay_now": "এখন পরিশোধ করুন",
+    "send_to_billing": "বিলিং-এ পাঠান",
+    "approve_due": "বকেয়া অনুমোদন করুন",
+    "check_in": "চেক ইন",
+    "remind": "রিমাইন্ড করুন"
+  },
+
+  "source": {
+    "walk_in": "ওয়াক-ইন",
+    "online": "অনলাইন",
+    "phone": "ফোন"
+  },
+
+  "fee": {
+    "discount_info": "ছাড় ৳{{discount}} / মূল ৳{{original}}"
+  },
+
+  "page": {
+    "opd_serial_title": "ওপিডি সিরিয়াল ও অ্যাপয়েন্টমেন্ট",
+    "registration_badge": "রেজিস্ট্রেশন + ডাক্তার সিরিয়াল"
+  },
+
+  "tooltip": {
+    "collect_payment_before_queue": "ডাক্তার কিউ-তে যাওয়ার আগে পেমেন্ট সংগ্রহ করুন বা বকেয়া অনুমোদন করুন"
+  },
+  "tokenMode": "টোকেন মোড",
+  "tokenModeAuto": "স্বয়ংক্রিয়",
+  "tokenModeReserved": "রিজার্ভকৃত",
+  "tokenModeManual": "ম্যানুয়াল",
+  "manualTokenPlaceholder": "টোকেন নম্বর লিখুন",
+  "forceTokenNoRequired": "ম্যানুয়াল টোকেন আবশ্যক",
+  "tokenAlreadyTaken": "এই টোকেন ইতিমধ্যে ব্যবহৃত হয়েছে"
+}

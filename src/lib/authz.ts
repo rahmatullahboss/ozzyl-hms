@@ -1,0 +1,48 @@
+export {
+  DEFAULT_ROLE_ROUTES,
+  TENANT_ROLE_LABELS,
+  VALID_TENANT_ROLES,
+  PLATFORM_ROLES,
+  getPermissionsForRole,
+  isRoleAllowed,
+  normalizeRole,
+  ALL_PERMISSIONS,
+  PERMISSION_GROUPS,
+  ALL_MODULES,
+  MODULE_PERMISSION_MAP,
+  getPermissionsForModule,
+  WORKSPACE_BUNDLES,
+  WORKSPACE_LEVEL_GROUPS,
+  getWorkspaceBundle,
+  getWorkspaceLevelGroup,
+  getWorkspaceLevelOption,
+  getWorkspaceLevelManagedPermissions,
+  getWorkspaceLevelForPermissions,
+  getWorkspaceLevelPermissionDelta,
+  getMissingWorkspaceBundlePermissions,
+  isWorkspaceBundleGranted,
+  type WorkspaceBundle,
+  type WorkspaceLevelGroup,
+  type WorkspaceLevelOption,
+  type WorkspaceLevelValue,
+  type AppRole,
+  type TenantRole,
+  type PlatformRole,
+  type Permission,
+} from '../../packages/shared/src/authz';
+
+// Re-export the central route-permission matrix from `lib/route-permissions`
+// so route-side imports only need to know about `lib/authz` (the original
+// seam that other fix branches already import from).
+export {
+  ROUTE_PERMISSION_MATRIX,
+  ROUTE_PERMISSIONS,
+  getRequiredRoutePermission,
+  getRouteActionPermission,
+  centralRoutePermission,
+  type RouteRule,
+  type RoutePermission,
+  type RoutePermissionLookup,
+  type CentralRoutePermissionContext,
+  type HttpVerb,
+} from './route-permissions';

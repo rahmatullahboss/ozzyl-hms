@@ -1,0 +1,62 @@
+Running `(cd /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/; TMPDIR=/var/folders/s1/nr4lptjd1jjcggyx6j6kyn0r0000gn/T/ PATH=/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.antigravity/antigravity/bin:/Users/rahmatullahzisan/.opencode/bin:/Users/rahmatullahzisan/.local/bin:/Users/rahmatullahzisan/.local/bin:/Users/rahmatullahzisan/.nvm/versions/node/v24.11.1/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pkg/env/active/bin:/opt/pmk/env/global/bin:/usr/local/co.palokaj.battery:/Library/Apple/usr/bin:/Applications/Warp.app/Contents/Resources/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/code-review/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/playwright/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/skill-creator/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/security-guidance/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/context7/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-code-warp/warp/2.0.0/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/feature-dev/unknown/bin:/Users/rahmatullahzisan/.claude/plugins/cache/claude-plugins-official/claude-code-setup/1.0.0/bin HOME=/Users/rahmatullahzisan /opt/homebrew/share/flutter/bin/cache/dart-sdk/bin/dart --packages=/Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/package_config.json /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/objective_c/de310349bc9076cf1346d708eeebe4f4/hook.dill --config=/Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/objective_c/de310349bc9076cf1346d708eeebe4f4/input.json )`.
+INFO: 2026-04-24 12:24:58.187614: Running `/Library/Developer/CommandLineTools/usr/bin/clang --version`.
+
+INFO: 2026-04-24 12:24:58.281569: Running `/Library/Developer/CommandLineTools/usr/bin/clang --version`.
+
+INFO: 2026-04-24 12:24:58.293530: Running: /Library/Developer/CommandLineTools/usr/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 -c /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c.c -fpic -I src -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c.c.o
+
+art_api_dl.c.o
+
+INFO: 2026-04-24 12:24:58.293660: Running: /Library/Developer/CommandLineTools/usr/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 -c /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/test/util.c -fpic -I src -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/test/util.c.o
+
+INFO: 2026-04-24 12:24:58.293764: Running: /Library/Developer/CommandLineTools/usr/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 -x objective-c -fobjc-arc -c /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/input_stream_adapter.m -fpic -I src -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-04-24 12:24:58.293948: Running: /Library/Developer/CommandLineTools/usr/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 -x objective-c -fobjc-arc -c /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/observer.m -fpic -I src -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/observer.m.o
+
+.m.o
+
+INFO: 2026-04-24 12:24:58.294123: Running: /Library/Developer/CommandLineTools/usr/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 -x objective-c -fobjc-arc -c /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/protocol.m -fpic -I src -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/protocol.m.o
+
+
+
+INFO: 2026-04-24 12:24:58.294211: Running: /Library/Developer/CommandLineTools/usr/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 -x objective-c -fobjc-arc -c /Users/rahmatullahzisan/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c_bindings_generated.m -fpic -I src -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-04-24 12:24:58.423044: 
+INFO: 2026-04-24 12:24:58.423221: 
+INFO: 2026-04-24 12:24:58.423283: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/include/dart_api_dl.c.o
+INFO: 2026-04-24 12:24:58.423596: 
+INFO: 2026-04-24 12:24:58.423626: 
+INFO: 2026-04-24 12:24:58.423642: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c.c.o
+
+INFO: 2026-04-24 12:24:58.433758: 
+INFO: 2026-04-24 12:24:58.433817: 
+INFO: 2026-04-24 12:24:58.433838: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/observer.m.o
+
+INFO: 2026-04-24 12:24:58.436460: 
+INFO: 2026-04-24 12:24:58.436521: 
+INFO: 2026-04-24 12:24:58.436539: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/protocol.m.o
+
+INFO: 2026-04-24 12:24:58.441805: 
+INFO: 2026-04-24 12:24:58.441859: 
+INFO: 2026-04-24 12:24:58.441879: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/test/util.c.o
+
+INFO: 2026-04-24 12:24:58.673171: 
+INFO: 2026-04-24 12:24:58.673208: 
+INFO: 2026-04-24 12:24:58.673218: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/ns_number.m.o
+
+INFO: 2026-04-24 12:24:58.681023: 
+INFO: 2026-04-24 12:24:58.681034: 
+INFO: 2026-04-24 12:24:58.681041: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c.m.o
+
+ter.m.o
+
+INFO: 2026-04-24 12:24:58.697140: 
+INFO: 2026-04-24 12:24:58.697170: 
+INFO: 2026-04-24 12:24:58.697179: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-04-24 12:24:58.697435: Running: /Library/Developer/CommandLineTools/usr/bin/clang -shared -Wl,-encryptable -undefined dynamic_lookup -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -target arm64-apple-darwin -mmacos-version-min=13 /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/include/dart_api_dl.c.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c.c.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/test/util.c.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/input_stream_adapter.m.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c.m.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/observer.m.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/ns_number.m.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/protocol.m.o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/obj/src/objective_c_bindings_generated.m.o -o /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/objective_c.dylib
+
+INFO: 2026-04-24 12:24:58.802901: 
+INFO: 2026-04-24 12:24:58.802967: 
+INFO: 2026-04-24 12:24:58.802979: Generated /Users/rahmatullahzisan/Desktop/Dev/hms/packages/ozzyl_core/.dart_tool/hooks_runner/shared/objective_c/build/de310349bc/objective_c.dylib
+

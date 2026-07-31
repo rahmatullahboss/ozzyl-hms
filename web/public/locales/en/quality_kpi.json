@@ -1,0 +1,64 @@
+{
+  "title": "Quality & KPI Dashboard",
+  "subtitle": "Key performance indicators and quality metrics",
+  "filters": {
+    "to": "to"
+  },
+  "errors": {
+    "loadFailed": "Failed to load KPI data"
+  },
+  "cards": {
+    "alos": {
+      "title": "Avg. Length of Stay",
+      "unit": "days"
+    },
+    "bedOccupancy": {
+      "title": "Bed Occupancy",
+      "unit": "%"
+    },
+    "readmissionRate": {
+      "title": "Readmission Rate",
+      "unit": "%"
+    },
+    "opdVolume": {
+      "title": "OPD Volume"
+    },
+    "ipdVolume": {
+      "title": "IPD Volume"
+    },
+    "labTat": {
+      "title": "Lab TAT",
+      "unit": "min"
+    },
+    "lowStock": {
+      "title": "Low Stock Alerts"
+    },
+    "emergencyVolume": {
+      "title": "Emergency Volume"
+    },
+    "staffOnDuty": {
+      "title": "Staff on Duty"
+    },
+    "vsLastPeriod": "vs last period"
+  },
+  "revenue": {
+    "title": "Revenue Overview",
+    "collectedOfBilled": "{{collected}} collected of {{billed}} billed",
+    "collectionRate": "Collection Rate",
+    "billed": "Billed",
+    "collected": "Collected",
+    "outstanding": "Outstanding"
+  },
+  "trends": {
+    "title": "Trend Analysis",
+    "noData": "No trend data available for selected period.",
+    "table": {
+      "date": "Date",
+      "alos": "ALOS",
+      "bedOcc": "Bed Occ. %",
+      "readmit": "Readmit %",
+      "opd": "OPD",
+      "ipd": "IPD"
+    }
+  }
+}

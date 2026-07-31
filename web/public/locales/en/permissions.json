@@ -1,0 +1,68 @@
+{
+  "title": "Permission Management",
+  "subtitle": "Configure roles, user overrides, and system-wide module visibility",
+  "tabs": {
+    "roleMatrix": "Role Matrix",
+    "userOverrides": "User Overrides",
+    "moduleVisibility": "Module Visibility"
+  },
+  "roleMatrix": {
+    "title": "Module Access Matrix",
+    "subtitle": "Set default permissions for each hospital role",
+    "searchPlaceholder": "Search modules...",
+    "globalToggle": "Toggle all for {{role}}",
+    "saveSuccess": "Role permissions updated successfully",
+    "saveError": "Failed to update role permissions"
+  },
+  "userOverrides": {
+    "title": "User-Specific Overrides",
+    "subtitle": "Grant or revoke specific access for individual staff members",
+    "searchUser": "Search staff by name or email...",
+    "noUserSelected": "Select a staff member to manage their overrides",
+    "activeOverrides": "Active Overrides",
+    "addOverride": "Add Custom Permission",
+    "selectModule": "Select Module",
+    "selectPermission": "Select Permission",
+    "history": "Override History",
+    "saveSuccess": "User override updated",
+    "saveError": "Failed to update override",
+    "deleteConfirm": "Remove this override?",
+    "deleteSuccess": "Override removed"
+  },
+  "moduleVisibility": {
+    "title": "Global Module Visibility",
+    "subtitle": "Enable or disable entire modules hospital-wide (Standard HMS)",
+    "toggleHint": "Disabling a module hides it for ALL users regardless of their permissions.",
+    "saveSuccess": "Module visibility settings saved",
+    "saveError": "Failed to save visibility settings"
+  },
+  "status": {
+    "global": "Global (Role-based)",
+    "override": "Override (User-specific)",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "inherit": "Inherit from Role"
+  },
+  "actions": {
+    "save": "Save Changes",
+    "reset": "Reset to Defaults",
+    "addException": "Add Exception",
+    "viewHistory": "View History"
+  },
+  "modules": {
+    "dashboard": "Dashboard",
+    "appointments": "Appointments",
+    "patients": "Patient Management",
+    "billing": "Billing & Invoicing",
+    "pharmacy": "Pharmacy Inventory",
+    "laboratory": "Laboratory & Imaging",
+    "inventory": "General Inventory",
+    "hr": "Human Resources",
+    "reports": "Reports & Analytics",
+    "settings": "Hospital Settings",
+    "referral": "Referrals",
+    "maternity": "Maternity",
+    "dental": "Dental",
+    "psychiatry": "Psychiatry"
+  }
+}

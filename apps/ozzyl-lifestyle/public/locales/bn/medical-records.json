@@ -1,0 +1,216 @@
+{
+  "title": "মেডিকেল রেকর্ড",
+  "subtitle": "রোগীর রেকর্ড, জন্ম/মৃত্যু নিবন্ধন, ICD-10 কোডিং ও রেফারেল",
+  "kpis": {
+    "medRecords": "মেড রেকর্ড",
+    "births": "জন্ম",
+    "deaths": "মৃত্যু",
+    "diagnoses": "ডায়াগনোসিস",
+    "referrals": "রেফারেল"
+  },
+  "tabs": {
+    "records": "মেডিকেল রেকর্ড",
+    "births": "জন্ম রেজিস্টার",
+    "deaths": "মৃত্যু রেজিস্টার",
+    "icd10": "ICD-10 ব্রাউজার",
+    "referrals": "রেফারেল"
+  },
+  "actions": {
+    "newRecord": "নতুন রেকর্ড",
+    "registerBirth": "জন্ম নিবন্ধন",
+    "registerDeath": "মৃত্যু নিবন্ধন",
+    "apply": "প্রয়োগ",
+    "refresh": "রিফ্রেশ"
+  },
+  "common": {
+    "yes": "হ্যাঁ",
+    "no": "না",
+    "cancel": "বাতিল",
+    "select": "সিলেক্ট করুন\u2026",
+    "creating": "তৈরি হচ্ছে\u2026",
+    "registering": "নিবন্ধন হচ্ছে\u2026"
+  },
+  "records": {
+    "patient": "রোগী",
+    "fileNo": "ফাইল নং.",
+    "dischargeType": "ডিসচার্জের ধরন",
+    "operation": "অপারেশন",
+    "referredTo": "রেফার করা হয়েছে",
+    "created": "তৈরি হয়েছে",
+    "actions": "অ্যাকশন",
+    "viewDetails": "বিস্তারিত দেখুন",
+    "noRecordsFound": "কোনো মেডিকেল রেকর্ড পাওয়া যায়নি। প্রথমটি তৈরি করুন।"
+  },
+  "birth": {
+    "registerTitle": "জন্ম রেজিস্টার ({{count}})",
+    "from": "থেকে",
+    "to": "পর্যন্ত",
+    "certificateNo": "সার্টিফিকেট নং.",
+    "babyName": "শিশুর নাম",
+    "sex": "লিঙ্গ",
+    "weightKg": "ওজন (কেজি)",
+    "birthDate": "জন্ম তারিখ",
+    "birthTime": "জন্ম সময়",
+    "birthType": "জন্মের ধরন",
+    "birthCondition": "জন্মের অবস্থা",
+    "deliveryType": "ডেলিভারির ধরন",
+    "mother": "মা",
+    "father": "বাবা",
+    "fatherName": "বাবার নাম",
+    "motherName": "মায়ের নাম",
+    "noRecordsFound": "কোনো জন্ম রেকর্ড পাওয়া যায়নি।",
+    "sexValues": {
+      "male": "পুরুষ",
+      "female": "মহিলা",
+      "other": "অন্যান্য"
+    },
+    "birthTypes": {
+      "single": "একক",
+      "twin": "যমজ",
+      "triplet": "ত্রয়ী",
+      "quadruplet": "চতুর্গুণ"
+    },
+    "deliveryTypes": {
+      "normal": "স্বাভাবিক",
+      "cesarean": "সিজারিয়ান",
+      "forceps": "ফোর্সেপস",
+      "vacuum": "ভ্যাকুয়াম"
+    },
+    "birthConditions": {
+      "alive": "জীবিত",
+      "stillborn": "স্টিলবর্ন"
+    }
+  },
+  "death": {
+    "registerTitle": "মৃত্যু রেজিস্টার ({{count}})",
+    "from": "থেকে",
+    "to": "পর্যন্ত",
+    "certificateNo": "সার্টিফিকেট নং.",
+    "patient": "রোগী",
+    "dateOfDeath": "মৃত্যুর তারিখ",
+    "timeOfDeath": "মৃত্যুর সময়",
+    "time": "সময়",
+    "causeOfDeath": "মৃত্যুর কারণ",
+    "secondaryCause": "গৌণ কারণ",
+    "manner": "ধরন",
+    "mannerOfDeath": "মৃত্যুর ধরন",
+    "place": "স্থান",
+    "placeOfDeath": "মৃত্যুর স্থান",
+    "age": "বয়স",
+    "ageAtDeath": "মৃত্যুকালে বয়স",
+    "fatherName": "বাবার নাম",
+    "motherName": "মায়ের নাম",
+    "spouseName": "স্বামী/স্ত্রীর নাম",
+    "noRecordsFound": "কোনো মৃত্যুর রেকর্ড পাওয়া যায়নি।",
+    "mannerValues": {
+      "natural": "স্বাভাবিক",
+      "accident": "দুর্ঘটনা",
+      "suicide": "আত্মহত্যা",
+      "homicide": "খুন",
+      "undetermined": "অনির্ধারিত"
+    },
+    "placeValues": {
+      "ward": "ওয়ার্ড",
+      "icu": "ICU",
+      "emergency": "জরুরি বিভাগ",
+      "ot": "OT",
+      "other": "অন্যান্য"
+    }
+  },
+  "icd10": {
+    "code": "ICD-10 কোড",
+    "description": "বিবরণ",
+    "groupId": "গ্রুপ ID",
+    "showingCodes": "{{count}}টি কোড দেখানো হচ্ছে। ফিল্টার করতে টাইপ করুন।",
+    "showingCodes_plural": "{{count}}টি কোড দেখানো হচ্ছে। ফিল্টার করতে টাইপ করুন।",
+    "showingCodes_0": "০টি কোড দেখানো হচ্ছে। ফিল্টার করতে টাইপ করুন।",
+    "noCodesFound": "কোনো ICD-10 কোড পাওয়া যায়নি। মাইগ্রেশন প্রয়োগ নাও হয়ে থাকতে পারে।",
+    "noCodesFoundWithSearch": "কোনো ICD-10 কোড পাওয়া যায়নি। অন্য সার্চ টার্ম চেষ্টা করুন।"
+  },
+  "referrals": {
+    "title": "বহির্গামী রেফারেল",
+    "patient": "রোগী",
+    "referredTo": "রেফার করা হয়েছে",
+    "referredDate": "রেফারেলের তারিখ",
+    "fileNo": "ফাইল নং.",
+    "reason": "কারণ",
+    "noRecordsFound": "কোনো রেফারেল পাওয়া যায়নি।"
+  },
+  "dischargeTypes": {
+    "normal": "স্বাভাবিক",
+    "lama": "LAMA",
+    "absconded": "পলাতক",
+    "referred": "রেফার্ড",
+    "expired": "মৃত্যুবরণকারী"
+  },
+  "dischargeConditions": {
+    "improved": "উন্নত",
+    "unchanged": "অপরিবর্তিত",
+    "worsened": "অবনতি",
+    "cured": "আরোগ্য"
+  },
+  "modals": {
+    "newRecord": {
+      "title": "নতুন মেডিকেল রেকর্ড",
+      "patientId": "রোগী ID",
+      "fileNumber": "ফাইল নম্বর",
+      "dischargeType": "ডিসচার্জের ধরন",
+      "dischargeCondition": "ডিসচার্জের অবস্থা",
+      "operationConducted": "অপারেশন পরিচালিত হয়েছে",
+      "operationDate": "অপারেশনের তারিখ",
+      "operationDiagnosis": "অপারেশন ডায়াগনোসিস",
+      "referredTo": "রেফার করা হয়েছে",
+      "referralDate": "রেফারেলের তারিখ",
+      "referralReason": "রেফারেলের কারণ",
+      "remarks": "মন্তব্য",
+      "createRecord": "রেকর্ড তৈরি করুন"
+    },
+    "birth": {
+      "title": "জন্ম নিবন্ধন",
+      "mPatientId": "মা রোগী ID",
+      "babyName": "শিশুর নাম",
+      "issuedBy": "জারি করেছেন",
+      "certifiedBy": "সার্টিফাইড করেছেন",
+      "registerBirth": "জন্ম নিবন্ধন"
+    },
+    "death": {
+      "title": "মৃত্যু নিবন্ধন",
+      "patientId": "রোগী ID",
+      "certifiedBy": "সার্টিফাইড করেছেন",
+      "registerDeath": "মৃত্যু নিবন্ধন"
+    }
+  },
+  "placeholders": {
+    "searchRecords": "ফাইল নম্বর বা মন্তব্য দিয়ে খুঁজুন\u2026",
+    "searchIcd10": "ICD-10 কোড বা বিবরণ খুঁজুন (যেমন A00, Cholera)\u2026",
+    "patientId": "যেমন: ১",
+    "fileNumber": "MR-2025-001",
+    "motherPatientId": "যেমন: ৫",
+    "optional": "ঐচ্ছিক",
+    "weightKg": "যেমন: ৩.২",
+    "operationDiagnosis": "অপারেটিভ ফাইন্ডিং\u2026",
+    "referredTo": "হাসপাতাল/ক্লিনিকের নাম",
+    "referralReason": "ক্লিনিক্যাল কারণ\u2026",
+    "remarks": "অতিরিক্ত নোট\u2026",
+    "ageAtDeath": "যেমন: ৬৫ বছর",
+    "primaryCause": "প্রাথমিক কারণ\u2026",
+    "contributingCause": "সহায়ক কারণ\u2026",
+    "doctorName": "ডাক্তারের নাম\u2026"
+  },
+  "pagination": {
+    "total": "মোট: {{total}} {{type}}",
+    "prev": "পূর্ববর্তী",
+    "next": "পরবর্তী"
+  },
+  "toast": {
+    "patientIdRequired": "রোগী ID আবশ্যক",
+    "patientIdAndBirthDateRequired": "রোগী ID এবং জন্ম তারিখ আবশ্যক",
+    "patientIdAndDeathDateRequired": "রোগী ID এবং মৃত্যুর তারিখ আবশ্যক",
+    "recordCreated": "মেডিকেল রেকর্ড তৈরি হয়েছে",
+    "recordCreateFailed": "রেকর্ড তৈরি করতে ব্যর্থ",
+    "birthRecordCreated": "জন্ম রেকর্ড তৈরি হয়েছে",
+    "birthRecordFailed": "জন্ম রেকর্ড তৈরি করতে ব্যর্থ",
+    "deathRecordCreated": "মৃত্যুর রেকর্ড তৈরি হয়েছে",
+    "deathRecordFailed": "মৃত্যুর রেকর্ড তৈরি করতে ব্যর্থ"
+  }
+}

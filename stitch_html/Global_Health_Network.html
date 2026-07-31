@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Clinical Sanctuary | Global Health Network</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1a1c1d",
+                      "surface-container": "#edeef0",
+                      "on-secondary-fixed": "#002022",
+                      "tertiary-container": "#a05f2e",
+                      "surface": "#f9f9fb",
+                      "inverse-surface": "#2f3132",
+                      "primary-container": "#007b83",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#c6e9ec",
+                      "on-surface-variant": "#3e494a",
+                      "secondary-fixed-dim": "#abcdd0",
+                      "inverse-primary": "#7ad5dd",
+                      "surface-bright": "#f9f9fb",
+                      "on-tertiary-fixed": "#301400",
+                      "on-tertiary-container": "#fff1e9",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed": "#96f1fa",
+                      "error": "#ba1a1a",
+                      "primary": "#006067",
+                      "on-primary-fixed-variant": "#004f54",
+                      "tertiary": "#834718",
+                      "surface-container-high": "#e8e8ea",
+                      "secondary": "#446467",
+                      "surface-container-highest": "#e2e2e4",
+                      "tertiary-fixed-dim": "#ffb785",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e2e2e4",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#ffdcc6",
+                      "surface-tint": "#006970",
+                      "primary-fixed-dim": "#7ad5dd",
+                      "on-tertiary-fixed-variant": "#6f3808",
+                      "background": "#f9f9fb",
+                      "outline": "#6e797a",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f3f3f5",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f0f0f2",
+                      "outline-variant": "#bdc9ca",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#2c4c4f",
+                      "on-secondary-container": "#4a6a6d",
+                      "on-primary-container": "#d0fbff",
+                      "surface-dim": "#d9dadc",
+                      "on-surface": "#1a1c1d",
+                      "on-primary-fixed": "#002022",
+                      "secondary-fixed": "#c6e9ec"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1rem",
+                      "3xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, #ffffff, #f9f9fb);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #006067 0%, #007b83 100%);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9fb;
+            color: #1a1c1d;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-secondary-container">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-8 h-20 shadow-[0_12px_40px_rgba(0,96,103,0.06)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-extrabold text-[#006067] dark:text-[#007B83] tracking-tight">The Clinical Sanctuary</span>
+<div class="hidden md:flex items-center space-x-6 text-sm">
+<a class="text-slate-500 hover:bg-slate-100 transition-colors duration-300 px-3 py-2 rounded-lg" href="#">Network Map</a>
+<a class="text-[#006067] font-bold px-3 py-2 rounded-lg" href="#">Connected Hospitals</a>
+<a class="text-slate-500 hover:bg-slate-100 transition-colors duration-300 px-3 py-2 rounded-lg" href="#">Research Access</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 w-64 focus:ring-2 focus:ring-primary-container text-sm" placeholder="Search facilities..." type="text"/>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-100 transition-colors duration-300">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100 transition-colors duration-300">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#f9f9fb] flex flex-col py-8 px-4 border-r border-slate-100 pt-28">
+<div class="mb-8 px-4">
+<p class="font-['Manrope'] font-black text-[#006067] text-lg">Clinical Sanctuary</p>
+<p class="text-[10px] uppercase tracking-widest text-outline-variant font-bold">Global Health Network</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-[#007B83] hover:bg-white/50 transition-all rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">dashboard</span>
+<span class="font-['Inter'] font-medium text-sm">Health Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#006067] font-bold border-r-4 border-[#006067] bg-white rounded-l-xl" href="#">
+<span class="material-symbols-outlined">local_hospital</span>
+<span class="font-['Inter'] font-medium text-sm">Connected Hospitals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-[#007B83] hover:bg-white/50 transition-all rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">history</span>
+<span class="font-['Inter'] font-medium text-sm">Medical History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-[#007B83] hover:bg-white/50 transition-all rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">family_restroom</span>
+<span class="font-['Inter'] font-medium text-sm">Family Records</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:text-[#007B83] hover:bg-white/50 transition-all rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">settings</span>
+<span class="font-['Inter'] font-medium text-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4">
+<button class="w-full premium-gradient text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-primary/20 scale-95 active:scale-90 transition-transform">
+                Emergency Pass
+            </button>
+<div class="pt-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 text-xs font-medium hover:text-primary" href="#">
+<span class="material-symbols-outlined text-lg">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 text-xs font-medium hover:text-error" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-28 px-12 pb-20">
+<!-- Header Section -->
+<header class="mb-12 flex justify-between items-end">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Connected Hospitals</h1>
+<p class="text-on-surface-variant text-lg">Manage your synchronized clinical data across global networks.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-xl border border-outline-variant/20 text-primary font-semibold text-sm hover:bg-surface-container-low transition-colors">
+                    Add New Facility
+                </button>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Connected Hospitals Grid -->
+<section class="col-span-12 lg:col-span-8 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Hospital Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_12px_40px_rgba(0,96,103,0.04)] hover:shadow-xl transition-shadow border border-white">
+<div class="flex justify-between items-start mb-6">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center">
+<img alt="Hospital Logo" class="w-10 h-10 object-contain" data-alt="minimalist modern logo for St. Jude Medical hospital clean geometric teal icon on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASNzsinhSj81d97iEWx0HpvM818zPAdfbQmP_550IKa9WXa5p4FvFXovFvRrbj_Tgow5HfS_gYRJgfQANUzPg7xJTqMVQ1HaHJUAhxTpGkCS1c6c7y0osIOUOcaH1LpRNHL_wv6LufMv2bVRDy94o3SCSpI7HDsHmWkanygj5jps-OiyJYiz5iY961TZM0pDc9utI9aKvY9X_VxXYANAlJoLyMMGgL7vH3ufQSD67xW_fCyfQyHNY2OCeNWmjeGMEYFtmVbB_w-Z4"/>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Synced</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">St. Jude Medical</h3>
+<p class="text-sm text-on-surface-variant mb-6">Last update: 4 hours ago</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary-fixed-dim flex items-center justify-center text-[10px] font-bold text-primary">HR</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-secondary">LB</div>
+</div>
+<button class="text-primary font-bold text-sm hover:underline">View Details</button>
+</div>
+</div>
+<!-- Hospital Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_12px_40px_rgba(0,96,103,0.04)] hover:shadow-xl transition-shadow border border-white">
+<div class="flex justify-between items-start mb-6">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center">
+<img alt="Hospital Logo" class="w-10 h-10 object-contain" data-alt="modern clinical logo for Mayo Clinic prestigious healthcare symbol teal palette professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUGZaZkN9b0cV52cbK6i6W4FgU3uwtWxOLb1k2FXm7KjDFaVAVgGNUBau-OlC6R38v4n1TAW5zyr-oRVGFvDGL3iYdlPo1c8fKYFGj84yMkNKw83mDIzwLIPTXQidldfkyiUNSIHqrOBOMySvFzw2vgXzVk6VUKFDd8rus7eJVLziN2DkC5x9do0xAfDa4_LzMqg7ShwbMNlB2u6GwiNmijx4TeMQJ3CIah6oY5m3BQpihdH7kNxlF6qZyGBuqLJ4fLb9Efxq-Ry4"/>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Synced</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Mayo Clinic</h3>
+<p class="text-sm text-on-surface-variant mb-6">Last update: 12 minutes ago</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary-fixed-dim flex items-center justify-center text-[10px] font-bold text-primary">RD</div>
+</div>
+<button class="text-primary font-bold text-sm hover:underline">View Details</button>
+</div>
+</div>
+<!-- Hospital Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_12px_40px_rgba(0,96,103,0.04)] hover:shadow-xl transition-shadow border border-white">
+<div class="flex justify-between items-start mb-6">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center">
+<img alt="Hospital Logo" class="w-10 h-10 object-contain" data-alt="contemporary hospital logo for Cleveland Clinic minimalist healthcare branding teal and white theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBNdcSZUXgEGqxky52SLzYx-7NrrLm5crcWKqKt8X41XI0mp9fsZMWq2sLx0-kvUug6na-J1mll_PjWQtRgEeq8BXxyorx-jP-njCWWWmTAmXZm55hnS5_iEf6dYIMJT799c1G48pujZuRf4O4vcnnnanCvq519SrnAzgxmza8HTjdBtadqwVQpHVEi9v6u108lEmTW_y6y3hyHZ8MWcgTQSIR98Xkfo0plDik2dCAWEwKwEHIzWCYKTe9WULFIz1GS6YQQuGbEA4"/>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Pending</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Cleveland Clinic</h3>
+<p class="text-sm text-on-surface-variant mb-6">Request sent: Yesterday</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<span class="text-xs text-outline italic">Awaiting verification...</span>
+<button class="text-primary font-bold text-sm hover:underline">Cancel</button>
+</div>
+</div>
+<!-- Add Card -->
+<div class="bg-transparent border-2 border-dashed border-outline-variant/30 p-6 rounded-3xl flex flex-col items-center justify-center text-center group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mb-4 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</div>
+<h3 class="font-bold text-on-surface-variant">Connect Hospital</h3>
+<p class="text-xs text-outline mt-1">Add another provider to your sanctuary</p>
+</div>
+</div>
+<!-- Linked Family Section -->
+<section class="mt-12 bg-surface-container-lowest rounded-3xl p-8 shadow-[0_12px_40px_rgba(0,96,103,0.04)] border border-white">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-2xl font-bold text-on-surface">Linked Family</h2>
+<p class="text-on-surface-variant text-sm">Members with shared clinical record visibility</p>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">person_add</span>
+                            Invite Member
+                        </button>
+</div>
+<div class="flex flex-nowrap overflow-x-auto gap-6 pb-4 scrollbar-hide">
+<!-- Family Member 1 -->
+<div class="flex-shrink-0 w-48 bg-surface-container-low p-4 rounded-2xl flex flex-col items-center text-center group hover:bg-white hover:shadow-md transition-all">
+<div class="w-16 h-16 rounded-full overflow-hidden mb-3 border-2 border-primary/10">
+<img alt="Family Member" class="w-full h-full object-cover" data-alt="portrait of a smiling woman with warm lighting professional and friendly appearance soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxubh_SMNI97IkKveTsly0nB-Bxjbp6wqYGb4VjzslnTILrdWnhtp-ndDf8em5VRNwwJ14Cl01I-raNw99tnE-a0s-2pD6dVP_92nQHMZBMv_gWFdbD8Gj4Chuc_05yGYOa7xF4yIRbEWYRbXP6vacxu6yn0rSNsbNX0uYW-5OD2EUB4ZJDw_ioIyOJRXL_bXHD-D2F4WQw-R9_raa5qMEb-D2g4BbS19eUvzO9jLWKw4PnQJywBz5iIvcgcc8L04p19ITYbUSCpk"/>
+</div>
+<h4 class="font-bold text-on-surface">Sarah Johnson</h4>
+<p class="text-xs text-on-surface-variant mb-4">Spouse</p>
+<a class="text-[11px] font-bold text-primary uppercase tracking-wider hover:opacity-70" href="#">Manage Access</a>
+</div>
+<!-- Family Member 2 -->
+<div class="flex-shrink-0 w-48 bg-surface-container-low p-4 rounded-2xl flex flex-col items-center text-center group hover:bg-white hover:shadow-md transition-all">
+<div class="w-16 h-16 rounded-full overflow-hidden mb-3 border-2 border-primary/10">
+<img alt="Family Member" class="w-full h-full object-cover" data-alt="candid portrait of a young boy smiling in a sunlit garden high quality lifestyle photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQcSY66IH7iitwwg8ctJQNDvOykx9C-9JLyj_5fDKsDhnrsITb6rJknsN2basVGDKE4K_7Nf_lA785iaGVoA3fw10gwRH9trLtdjmTvbHUaSxKsKTvaM0zxeAK69wETI-LJYRHv_ZU4KVkyDZOZfPyha8aVD113xGtW25MNM2G2LX84zJn0ONG1Hy3gKOJ2B8VFarxB9WoqBPPTMOoNYH5Hg6P603zG-Hync3fHIBuexinnfY4ElrC41zHtLWzicE06oFqnjeMhZw"/>
+</div>
+<h4 class="font-bold text-on-surface">Leo Johnson</h4>
+<p class="text-xs text-on-surface-variant mb-4">Son (Minor)</p>
+<a class="text-[11px] font-bold text-primary uppercase tracking-wider hover:opacity-70" href="#">Manage Access</a>
+</div>
+<!-- Family Member 3 -->
+<div class="flex-shrink-0 w-48 bg-surface-container-low p-4 rounded-2xl flex flex-col items-center text-center group hover:bg-white hover:shadow-md transition-all">
+<div class="w-16 h-16 rounded-full overflow-hidden mb-3 border-2 border-primary/10">
+<img alt="Family Member" class="w-full h-full object-cover" data-alt="headshot of a middle-aged man with kind expression and glasses clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlxTwYFAwDw1Mxzn7wsNRZU7R0hPsKguSdscN6qeIbR7AwyHvJG2Y0UrSElM3cbTlyymp7xF9nS3UD6feAXsqg9Pma85t9fzBtdZz-2_YRGlK3kx7OLN94Et9xEaYUl_3RCDx18xFVgwNOY8NUhHmrnS1FrMSXMyDcucQoiO6MmPRG96bvuUZRdBu4c-zHkDwXW4OOOqUoO9HujdgjCqxtEQ_UNio7KQqnzi6eWCrGvogCNv7mMCEHDWL7d43JSOjkufSWP545LNk"/>
+</div>
+<h4 class="font-bold text-on-surface">Mark Davies</h4>
+<p class="text-xs text-on-surface-variant mb-4">Emergency Contact</p>
+<a class="text-[11px] font-bold text-primary uppercase tracking-wider hover:opacity-70" href="#">Manage Access</a>
+</div>
+</div>
+</section>
+</section>
+<!-- Right Column: Emergency Pass & Stats -->
+<aside class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Emergency Visit Pass Card -->
+<div class="premium-gradient p-8 rounded-[2rem] text-white relative overflow-hidden shadow-2xl shadow-primary/30">
+<!-- Decorative background element -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-3xl">emergency_share</span>
+<h2 class="text-xl font-bold font-headline">Emergency Clinical Pass</h2>
+</div>
+<p class="text-sm text-white/80 leading-relaxed mb-8">
+                            Grant temporary 24h record access to non-network providers during urgent care scenarios.
+                        </p>
+<div class="bg-white p-4 rounded-2xl mb-8 flex justify-center shadow-inner">
+<div class="w-40 h-40 bg-white flex items-center justify-center border-4 border-surface-container">
+<img alt="QR Code" class="w-32 h-32 opacity-80" data-alt="clean digital qr code on white background focused and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiDX2fzGqnhYRKBSfD6bnVTGjjDGd9NmzfZzQYrEqZiSIR6uMEjS9koMivZpyEqiDqmohI_b_vUo6BCMKOZk0Mb2JuRJemp4g7fBAZ7e5gNvHIqjzKJzQ1wfZcTh8GSd19U4WS5CohHdTcRzk07-n-cmJZaEZimMgJZhZ45A-XVV5hsjJWp9BTrdEWkL_3rT7wmUfb-fC0Kz2RkPQgCPr_EN699_i85rmleCvYM4N0NbLYK8B3c4duvj4RhwlTfdrk3yLeblpdXZE"/>
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full bg-white text-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-on-primary-container transition-colors">
+                                Generate New Pass
+                            </button>
+<p class="text-[10px] text-center text-white/60 font-medium uppercase tracking-[0.2em]">Expires in 23h 59m</p>
+</div>
+</div>
+</div>
+<!-- Network Status Card -->
+<div class="bg-surface-container-lowest rounded-3xl p-8 border border-white shadow-[0_12px_40px_rgba(0,96,103,0.04)]">
+<h3 class="font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+                        Network Integrity
+                    </h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Global Reach</span>
+<span class="text-sm font-bold text-on-surface">14 Countries</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="w-3/4 h-full premium-gradient rounded-full"></div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-sm text-on-surface-variant">Data Sovereignty</span>
+<span class="text-sm font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                Active
+                            </span>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-surface-container-low">
+<p class="text-xs text-outline-variant leading-relaxed">
+                            All connections are encrypted using sanctuary-grade clinical protocols. Your data remains your property.
+                        </p>
+</div>
+</div>
+<!-- Quick Action List -->
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between p-4 bg-white rounded-2xl border border-transparent hover:border-primary/20 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">print</span>
+</div>
+<span class="font-bold text-on-surface text-sm">Download Full Record</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-white rounded-2xl border border-transparent hover:border-primary/20 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<span class="font-bold text-on-surface text-sm">Secure Message Provider</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Contextual FAB - Restricted to Dashboard/Records -->
+<div class="fixed bottom-8 right-8">
+<button class="w-14 h-14 premium-gradient text-white rounded-2xl shadow-xl flex items-center justify-center group hover:scale-110 transition-transform active:scale-95">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="absolute right-full mr-4 bg-white px-3 py-1 rounded-lg shadow-lg text-primary text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Clinical Help</span>
+</button>
+</div>
+</body></html>

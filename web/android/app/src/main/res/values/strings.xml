@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OzzyLife</string>
+    <string name="title_activity_main">OzzyLife</string>
+    <string name="package_name">com.ozzylife.app</string>
+    <string name="custom_url_scheme">com.ozzylife.app</string>
+</resources>

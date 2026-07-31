@@ -1,0 +1,22 @@
+{
+  "title": "রিপোর্ট ও বিশ্লেষণ",
+  "subtitle": "আর্থিক সংক্ষিপ্ত বিবরণ এবং পারফরম্যান্স মেট্রিক্স",
+  "generate": "রিপোর্ট তৈরি করুন",
+  "dateRange": "তারিখ সীমা",
+  "from": "থেকে",
+  "to": "পর্যন্ত",
+  "revenueReport": "রাজস্ব রিপোর্ট",
+  "patientReport": "রোগী রিপোর্ট",
+  "labReport": "ল্যাব রিপোর্ট",
+  "pharmacyReport": "ফার্মেসি রিপোর্ট",
+  "download": "ডাউনলোড",
+  "export": "রপ্তানি",
+  "exportCsv": "CSV রপ্তানি করুন",
+  "totalRevenue": "মোট রাজস্ব",
+  "totalExpenses": "মোট ব্যয়",
+  "netProfit": "নিট মুনাফা",
+  "revenueSources": "রাজস্বের উৎস",
+  "monthlyRevenueVsExpenses": "মাসিক রাজস্ব বনাম ব্যয়",
+  "revenueBySource": "উৎস অনুযায়ী রাজস্ব",
+  "monthlyBreakdown": "মাসিক বিবরণ"
+}

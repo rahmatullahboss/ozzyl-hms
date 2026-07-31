@@ -1,0 +1,36 @@
+{
+  "title": "Track Anything",
+  "subtitle": "Record and monitor custom patient metrics",
+  "patientSearch": "Patient Search",
+  "searchPlaceholder": "Search by name or code",
+  "trackedData": "Tracked Data",
+  "addRecord": "Add Record",
+  "loading": "Loading...",
+  "noData": "No custom tracked data.",
+  "addFirstRecord": "Add First Record",
+  "table": {
+    "date": "Date",
+    "parameter": "Parameter",
+    "value": "Value",
+    "notes": "Notes",
+    "action": "Action",
+    "edit": "Edit"
+  },
+  "modal": {
+    "title": "New Tracking Record",
+    "parameter": "Parameter to track",
+    "value": "Value",
+    "placeholderValue": "Enter value",
+    "notes": "Notes (Optional)",
+    "placeholderNotes": "Additional context",
+    "cancel": "Cancel",
+    "save": "Save Record",
+    "saving": "Saving...",
+    "select": "-- Select --"
+  },
+  "notifications": {
+    "saveSuccess": "Data tracked successfully",
+    "saveFailed": "Failed to track data",
+    "loadFailed": "Failed to load patient data"
+  }
+}

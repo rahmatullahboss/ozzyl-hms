@@ -1,0 +1,49 @@
+{
+  "doctorPayoutDetail": {
+    "loading": "Loading...",
+    "notFound": "Doctor payout not found",
+    "title": "Doctor Payout",
+    "summary": {
+      "opdVisits": "OPD Visits",
+      "opdIncome": "OPD Income",
+      "procedureIncome": "Procedure Income",
+      "diagnosticShare": "Diagnostic Share",
+      "totalEarnings": "Total Earnings",
+      "balance": "Balance"
+    },
+    "tabs": {
+      "earnings": "Earnings",
+      "payoutHistory": "Payout History",
+      "commissionRules": "Commission Rules"
+    },
+    "empty": {
+      "earnings": "No earnings found",
+      "payouts": "No payouts found",
+      "commissionRules": "No commission rules found"
+    },
+    "earningsTable": {
+      "date": "Date",
+      "patient": "Patient",
+      "service": "Service",
+      "amount": "Amount"
+    },
+    "payoutTable": {
+      "id": "ID",
+      "amount": "Amount",
+      "date": "Date",
+      "method": "Method",
+      "reference": "Reference",
+      "status": "Status"
+    },
+    "commissionTable": {
+      "serviceType": "Service Type",
+      "rate": "Rate (%)",
+      "minAmount": "Min Amount",
+      "maxAmount": "Max Amount"
+    },
+    "statusLabels": {
+      "paid": "Paid",
+      "pending": "Pending"
+    }
+  }
+}

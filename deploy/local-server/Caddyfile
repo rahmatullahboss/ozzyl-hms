@@ -1,0 +1,25 @@
+:80 {
+	encode zstd gzip
+
+	@health path /healthz
+	respond @health "ok" 200
+
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	@monitoring path /monitoring/*
+	handle @monitoring {
+		uri strip_prefix /monitoring
+		reverse_proxy uptime-kuma:3001
+	}
+
+	@glances path /glances/*
+	handle @glances {
+		uri strip_prefix /glances
+		reverse_proxy glances:61208
+	}
+
+	reverse_proxy hms-app:8787
+}

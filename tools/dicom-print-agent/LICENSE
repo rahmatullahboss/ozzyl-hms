@@ -1,0 +1,116 @@
+OZZYL HMS — DICOM PRINT AGENT
+END USER LICENSE AGREEMENT (EULA)
+Version 1.0.0 • Effective Date: April 2026
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Copyright (c) 2026 Ozzyl (ozzyl.com). All rights reserved.
+
+This software ("DICOM Print Agent") is the proprietary intellectual property
+of Ozzyl and its creator. By downloading, installing, or using this software,
+you ("User") agree to be bound by the terms of this Agreement.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+1. LICENSE GRANT
+────────────────
+Ozzyl grants you a limited, non-exclusive, non-transferable, revocable license
+to use this software solely for the purpose of receiving DICOM images from
+medical imaging devices, printing them, and syncing them with Ozzyl HMS cloud
+services. This license is granted free of charge.
+
+2. RESTRICTIONS
+───────────────
+You MAY NOT:
+  a) Copy, modify, adapt, translate, reverse engineer, decompile, disassemble,
+     or create derivative works based on this software, in whole or in part.
+  b) Redistribute, sublicense, sell, rent, lease, or otherwise transfer this
+     software or any portion thereof to any third party without prior written
+     consent from Ozzyl.
+  c) Remove, alter, or obscure any proprietary notices, labels, or marks on
+     the software.
+  d) Use this software for any purpose other than its intended medical imaging
+     workflow within Ozzyl HMS.
+  e) Use this software to develop a competing product or service.
+
+3. INTELLECTUAL PROPERTY
+────────────────────────
+This software contains proprietary code, algorithms, and know-how belonging
+to Ozzyl. No title or ownership of the software is transferred to the User.
+All rights not expressly granted are reserved by Ozzyl.
+
+4. DISCLAIMER OF WARRANTIES
+───────────────────────────
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+Ozzyl does not warrant that:
+  a) The software will meet your specific requirements.
+  b) The software will be uninterrupted, timely, secure, or error-free.
+  c) The results obtained from using the software will be accurate or reliable.
+  d) Any errors in the software will be corrected.
+
+5. LIMITATION OF LIABILITY
+──────────────────────────
+IN NO EVENT SHALL OZZYL, ITS CREATOR, OR ITS AFFILIATES BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING BUT NOT LIMITED TO: LOSS OF DATA, LOSS OF REVENUE, LOSS OF
+BUSINESS, DAMAGE TO HARDWARE OR OTHER EQUIPMENT, PERSONAL INJURY, OR
+INTERRUPTION OF MEDICAL SERVICES) ARISING OUT OF OR IN CONNECTION WITH THE
+USE OR INABILITY TO USE THIS SOFTWARE.
+
+THIS INCLUDES, WITHOUT LIMITATION:
+  • Damage to any printer, X-ray machine, or other hardware
+  • Loss of medical images or patient data
+  • Incorrect or missing prints
+  • Network or connectivity issues
+  • Any business losses incurred due to software malfunction
+
+THE USER ASSUMES ALL RISKS ASSOCIATED WITH THE USE OF THIS SOFTWARE.
+
+6. MEDICAL DISCLAIMER
+─────────────────────
+This software is a utility tool for printing and transferring medical images.
+It is NOT a medical device. It does NOT provide any form of medical diagnosis,
+analysis, or treatment recommendation. All medical decisions must be made by
+qualified medical professionals using properly calibrated medical equipment.
+
+7. DATA HANDLING
+────────────────
+This software processes DICOM medical images locally on the hospital's
+computer. When cloud sync is enabled, images are transmitted to the configured
+Ozzyl HMS cloud endpoint via encrypted HTTPS. The User is responsible for:
+  a) Ensuring compliance with local data protection and patient privacy laws.
+  b) Configuring appropriate security settings on their network.
+  c) Maintaining the confidentiality of API keys and credentials.
+
+8. TERMINATION
+──────────────
+Ozzyl reserves the right to terminate this license at any time if you breach
+any of these terms. Upon termination, you must immediately cease all use of
+the software and destroy all copies in your possession.
+
+9. GOVERNING LAW
+────────────────
+This Agreement shall be governed by the laws of Bangladesh. Any disputes
+arising from this Agreement shall be subject to the exclusive jurisdiction
+of the courts in Dhaka, Bangladesh.
+
+10. ENTIRE AGREEMENT
+────────────────────
+This Agreement constitutes the entire agreement between the User and Ozzyl
+regarding this software and supersedes all prior agreements and
+understandings.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+BY USING THIS SOFTWARE, YOU ACKNOWLEDGE THAT YOU HAVE READ THIS AGREEMENT,
+UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS AND CONDITIONS.
+
+If you do not agree to these terms, do not install or use this software.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Contact: support@ozzyl.com
+Website: https://ozzyl.com

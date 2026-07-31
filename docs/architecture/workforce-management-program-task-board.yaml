@@ -1,0 +1,545 @@
+schema_version: 1
+updated_on: "2026-07-27"
+program: workforce_management_and_duty_roster
+branch: task/workforce-roster-planning-20260726
+worktree: /Users/rahmatullahzisan/Desktop/Dev/hms/.worktrees/workforce-roster-planning-20260726
+base_commit: a98cb0152
+documentation_commit: a129c0f8d
+execution_posture: source_implementation_in_progress
+production_mutation_authorized: false
+canonical_provider_activation_authorized: false
+legacy_retirement_authorized: false
+push_authorized: false
+main_integration_authorized: false
+
+source_documents:
+  audit: docs/reports/2026-07-26-workforce-duty-roster-canonical-readiness-audit.md
+  design: docs/superpowers/specs/2026-07-26-workforce-management-duty-roster-design.md
+  implementation_plan: docs/superpowers/plans/2026-07-26-workforce-management-duty-roster.md
+  continuation: docs/architecture/workforce-management-continuation-prompt.md
+
+canonical_snapshot:
+  branch: program/cdb-main-continuous-20260725
+  checkpoint: CDB-113C-PRACTITIONER-OPERATIONAL-ADOPTION-VERIFIED
+  decisions:
+    - practitioner identity is not employee identity
+    - practitioner employee linkage is optional and exact
+    - no canonical workforce authority is approved in this task
+    - no provider activation or legacy retirement is authorized
+
+modular_snapshot:
+  branch: task/mm-continuous-remaining-program
+  required_target_module: workforce_management
+  identity_access_boundary: authentication_sessions_users_roles_permissions_and_account_links
+  finance_boundary: payroll_calculation_payable_payment_expense_custody_and_accounting
+
+scope:
+  included:
+    - staff operational directory and status
+    - shifts
+    - duty roster
+    - rotation patterns and staff rotations
+    - tenant work calendar and holidays
+    - attendance punches and daily projection
+    - leave balances requests and approvals
+    - biometric punch integration
+    - operational overtime hours and approval
+    - granular workforce permissions
+    - DutyRoster and StaffPage contract hardening
+  excluded:
+    - canonical workforce tables
+    - canonical provider activation
+    - production migrations or backfills
+    - legacy table retirement
+    - payroll financial lifecycle changes
+    - overtime monetary calculation
+    - deployment push or production observation
+
+invariants:
+  - existing route URLs remain stable
+  - public JSON uses camelCase
+  - legacy workforce tables remain operational authority behind a module adapter
+  - practitionerPublicId is nullable and never inferred
+  - all mutations are tenant scoped and permission guarded
+  - all roster and punch mutations define replay and conflict semantics
+  - weekends are tenant policy not hardcoded Saturday and Sunday
+  - raw punches are event facts and daily attendance is a projection
+  - payroll consumes read-only workforce summaries only
+  - no source change starts before planning documents are committed and main is synchronized
+
+limits:
+  maximum_inclusive_date_range_days: 62
+  maximum_bulk_staff_shift_pairs: 50
+  maximum_generated_roster_mutations: 500
+
+status_values:
+  - planned
+  - ready
+  - in_progress
+  - verified
+  - blocked
+  - deferred
+
+current_phase: WFM-COMPLETE-INTEGRATED-LOCAL-MAIN
+exact_next_action: >-
+  Keep production mutation, canonical provider activation, and legacy retirement disabled.
+  The next separately authorized task is a non-production operational observation of biometric
+  retries, overnight shifts, leave-roster-attendance reconciliation, and overtime projections
+  after staging applies migrations 0550 and 0551. Do not push or deploy without separate authorization.
+
+tasks:
+  - id: WFM-000
+    name: Documentation commit and reviewed main synchronization
+    status: verified
+    checkpoint_commit: a129c0f8d
+    dependencies: []
+    owned_paths:
+      - docs/reports/2026-07-26-workforce-duty-roster-canonical-readiness-audit.md
+      - docs/superpowers/specs/2026-07-26-workforce-management-duty-roster-design.md
+      - docs/superpowers/plans/2026-07-26-workforce-management-duty-roster.md
+      - docs/architecture/workforce-management-program-task-board.yaml
+      - docs/architecture/workforce-management-continuation-prompt.md
+      - docs/architecture/module-registry.yaml
+    required_checks:
+      - pnpm worktree:check -- --mode=task --allow-dirty
+      - documentation-only checkpoint commit
+      - git merge main
+      - pnpm worktree:check -- --mode=task
+      - pnpm build:migrations
+      - pnpm exec tsc --noEmit
+    verification:
+      board_yaml: passed
+      migration_manifest: passed_472_migrations
+      typescript: passed
+      clean_worktree: passed
+    checkpoint_commit: a129c0f8d
+
+  - id: WFM-001
+    name: RED public contract characterization
+    status: verified
+    checkpoint_commit: fb88c0671
+    dependencies: [WFM-000]
+    owned_paths:
+      - test/unit/workforce-duty-roster-contract.test.ts
+      - test/integration/routes/hr-roster.test.ts
+      - web/src/pages/DutyRoster.test.ts
+      - web/e2e/hr-module.spec.ts
+    required_checks:
+      - backend request fixtures fail before repair
+      - camelCase response test fails before repair
+      - seven web request-body tests fail before repair
+    verification:
+      schema_exactness: red_expected
+      roster_response_dto: red_expected
+      web_mutation_contracts: red_expected_7_of_7
+      e2e_spec_list: passed_33_tests
+    checkpoint_commit: fb88c0671
+
+  - id: WFM-002
+    name: Stable schemas DTOs mappers and web request bodies
+    status: verified
+    checkpoint_commit: 6ed27b58e
+    dependencies: [WFM-001]
+    owned_paths:
+      - src/schemas/hr.ts
+      - src/modules/workforce-management/transport/dto.ts
+      - src/modules/workforce-management/transport/mappers.ts
+      - src/routes/tenant/hr/roster.ts
+      - src/routes/tenant/hr/biometric.ts
+      - web/src/pages/DutyRoster.tsx
+      - test/unit/workforce-duty-roster-contract.test.ts
+      - test/integration/routes/hr-roster.test.ts
+      - web/src/pages/DutyRoster.test.ts
+    required_checks:
+      - stable request schemas
+      - mapped camelCase responses
+      - nested rotation days
+      - exact frontend request bodies
+    verification:
+      schema_contract: passed_1_of_1
+      backend_roster_routes: passed_18_of_18
+      web_mutation_contracts: passed_7_of_7
+      duty_roster_e2e: passed_8_of_8
+      e2e_spec_list: passed_33_tests
+      typescript: passed
+      web_build: passed
+    checkpoint_commit: 6ed27b58e
+
+  - id: WFM-003
+    name: Workforce domain and public module contracts
+    status: verified
+    checkpoint_commit: 1f067eca2
+    dependencies: [WFM-002]
+    owned_paths:
+      - src/modules/workforce-management/domain
+      - src/modules/workforce-management/application/ports.ts
+      - src/modules/workforce-management/index.ts
+      - test/modules/workforce-management/public-contract.test.ts
+      - test/modules/workforce-management/domain-policies.test.ts
+    required_checks:
+      - public contract test
+      - domain policy tests
+      - pnpm exec tsc --noEmit
+    verification:
+      public_contract: passed_1_of_1
+      domain_policies: passed_5_of_5
+      combined_regression: passed_25_of_25
+      typescript: passed
+    checkpoint_commit: 1f067eca2
+
+  - id: WFM-004
+    name: Legacy workforce directory and optional practitioner link adapter
+    status: verified
+    checkpoint_commit: 88c244be7
+    dependencies: [WFM-003]
+    owned_paths:
+      - src/modules/workforce-management/application/workforce-directory.ts
+      - src/modules/workforce-management/infrastructure/d1-workforce-member-repository.ts
+      - src/modules/workforce-management/infrastructure/practitioner-link-adapter.ts
+      - src/routes/tenant/staff.ts
+      - test/modules/workforce-management/d1-workforce-member-repository.test.ts
+    required_checks:
+      - tenant scoped staff repository
+      - active member and shift validation
+      - optional practitioner link
+      - missing canonical link table compatibility
+    verification:
+      repository_and_guards: passed_7_of_7
+      staff_route_regression: passed_23_of_23
+      combined_focused_suite: passed_30_of_30
+      typescript: passed
+    checkpoint_commit: 88c244be7
+
+  - id: WFM-005
+    name: Additive roster and attendance integrity schema
+    status: verified
+    checkpoint_commit: cd053127f
+    dependencies: [WFM-000]
+    owned_paths:
+      - migrations/0551_workforce_roster_integrity.sql
+      - test/workforce-roster-integrity-schema.test.ts
+      - src/data/schema-migrations.generated.ts
+    required_checks:
+      - additive-only schema contract
+      - pnpm build:migrations
+      - migration number remains available
+    verification:
+      migration_number: available_0550
+      additive_schema_contract: passed_3_of_3
+      migration_safety_regression: passed_21_of_21
+      migration_manifest: passed_473_migrations
+      typescript: passed
+    checkpoint_commit: cd053127f
+
+  - id: WFM-006
+    name: Workforce mutation idempotency and D1 transaction adapter
+    status: verified
+    checkpoint_commit: f9fa61229
+    dependencies: [WFM-003, WFM-005]
+    owned_paths:
+      - src/modules/workforce-management/infrastructure/d1-workforce-idempotency-repository.ts
+      - src/modules/workforce-management/infrastructure/workforce-transaction-adapter.ts
+      - test/modules/workforce-management/workforce-idempotency.test.ts
+    required_checks:
+      - same-key same-hash replay
+      - same-key changed-hash conflict
+      - required-statement failure does not claim completion
+    verification:
+      deterministic_hash_and_generic_idempotency: passed_5_of_5
+      stateful_d1_completion_replay_conflict: passed_1_of_1
+      workforce_module_regression: passed_41_of_41
+      typescript: passed
+    checkpoint_commit: f9fa61229
+
+  - id: WFM-007
+    name: Roster assignment cancellation reactivation and two-way swap
+    status: verified
+    checkpoint_commit: abeb20788
+    dependencies: [WFM-004, WFM-005, WFM-006]
+    owned_paths:
+      - src/modules/workforce-management/application/roster-service.ts
+      - src/modules/workforce-management/infrastructure/d1-roster-repository.ts
+      - src/routes/tenant/hr/roster.ts
+      - test/modules/workforce-management/roster-service.test.ts
+      - test/integration/routes/hr-roster.test.ts
+    required_checks:
+      - tenant and active state guards
+      - assignment replay and conflict
+      - cancellation and reactivation
+      - atomic true two-way swap
+      - rollback failure test
+    verification:
+      roster_application_and_route: passed_31_of_31
+      combined_workforce_regression: passed_54_of_54
+      web_contract: passed_7_of_7
+      duty_roster_e2e: passed_8_of_8
+      typescript: passed
+      web_build: passed
+    checkpoint_commit: abeb20788
+
+  - id: WFM-008
+    name: Rotation work calendar bulk assignment and retry-safe generation
+    status: verified
+    checkpoint_commit: cb44c41b6
+    dependencies: [WFM-007]
+    owned_paths:
+      - src/modules/workforce-management/application/rotation-service.ts
+      - src/modules/workforce-management/application/work-calendar-service.ts
+      - src/modules/workforce-management/infrastructure/d1-rotation-repository.ts
+      - src/modules/workforce-management/infrastructure/d1-work-calendar-repository.ts
+      - src/routes/tenant/hr/roster.ts
+      - test/modules/workforce-management/rotation-calendar.test.ts
+    required_checks:
+      - active rotations only
+      - configured off-days
+      - no hardcoded weekend
+      - second generation pass creates zero rows
+      - manual assignment not overwritten
+      - bounded request limits
+    verification:
+      rotation_calendar_domain_and_d1: passed_16_of_16
+      roster_route_and_schema_contract: passed_19_of_19
+      combined_workforce_regression: passed_70_of_70
+      web_contract: passed_7_of_7
+      duty_roster_e2e: passed_8_of_8
+      typescript: passed
+      web_build: passed
+    checkpoint_commit: cb44c41b6
+
+  - id: WFM-009
+    name: Replay-safe attendance punches and deterministic projection
+    status: verified
+    checkpoint_commit: da2bf5281
+    dependencies: [WFM-004, WFM-005, WFM-006, WFM-008]
+    owned_paths:
+      - src/modules/workforce-management/application/attendance-punch-service.ts
+      - src/modules/workforce-management/application/attendance-query-service.ts
+      - src/modules/workforce-management/infrastructure/d1-attendance-repository.ts
+      - src/routes/tenant/hr/attendance.ts
+      - src/routes/tenant/hr/biometric.ts
+      - test/modules/workforce-management/attendance-punch-service.test.ts
+      - test/integration/routes/hr-new-routes.test.ts
+      - test/integration/routes/hr-biometric.test.ts
+    required_checks:
+      - punch replay and conflict
+      - business timezone and night-shift date
+      - leave and off-day projection
+      - incomplete attendance
+      - expected-worker absence only
+      - punch and projection rollback
+    verification:
+      attendance_policy_and_schema: passed_15_of_15
+      attendance_and_biometric_routes: passed_15_of_15
+      combined_workforce_regression: passed_100_of_100
+      migration_safety: passed_18_of_18
+      migration_manifest: passed_474_migrations
+      web_contract: passed_8_of_8
+      hr_dashboard_e2e: passed_6_of_6
+      typescript: passed
+      web_build: passed
+    checkpoint_commit: da2bf5281
+
+  - id: WFM-010
+    name: Leave calendar roster and attendance reconciliation
+    status: verified
+    dependencies: [WFM-008, WFM-009]
+    owned_paths:
+      - src/modules/workforce-management/application/leave-service.ts
+      - src/modules/workforce-management/infrastructure/d1-leave-repository.ts
+      - src/routes/tenant/hr/leave.ts
+      - test/modules/workforce-management/leave-service.test.ts
+      - test/modules/workforce-management/d1-leave-repository.test.ts
+      - test/integration/routes/hr-new-routes.test.ts
+      - test/integration/routes/leave-request-approver.test.ts
+    required_checks:
+      - working-day leave calculation
+      - tenant and balance validation
+      - visible roster conflict
+      - no automatic roster deletion
+      - attendance reprojection
+    verification:
+      leave_service_and_routes: passed_24_of_24
+      d1_balance_deduction_cas_guard: passed_1_of_1
+      workforce_and_staff_regression: passed_127_of_127
+      typescript: passed
+      diff_check: passed
+    checkpoint_commit: ea3148e5d
+
+  - id: WFM-011
+    name: Operational overtime and finance-safe workforce input query
+    status: verified
+    dependencies: [WFM-009, WFM-010]
+    owned_paths:
+      - src/modules/workforce-management/domain/overtime.ts
+      - src/modules/workforce-management/application/overtime-service.ts
+      - src/modules/workforce-management/application/workforce-payroll-input-query.ts
+      - src/modules/workforce-management/infrastructure/d1-overtime-repository.ts
+      - src/routes/tenant/hr/biometric.ts
+      - web/src/pages/DutyRoster.tsx
+      - web/src/pages/DutyRoster.test.ts
+      - test/modules/workforce-management/overtime-service.test.ts
+      - test/modules/workforce-management/d1-overtime-repository.test.ts
+      - test/modules/workforce-management/payroll-input-query.test.ts
+      - test/integration/routes/hr-biometric.test.ts
+    required_checks:
+      - overtime hour calculation only
+      - tenant-scoped approval
+      - multiplier snapshot
+      - immutable approval and rejection audit evidence
+      - zero payroll expense cash bank or accounting writes
+      - no unreviewed overtime delete action
+    verification:
+      overtime_service_repository_query_and_route: passed_19_of_19
+      workforce_and_staff_regression: passed_144_of_144
+      duty_roster_web_contract: passed_8_of_8
+      typescript: passed
+      web_build: passed
+      string_tenant_overtime_listing: passed
+      audit_batch_and_cas_guard: passed
+    checkpoint_commit: 81bc0cab4
+
+  - id: WFM-012
+    name: Granular workforce RBAC and staff mutation hardening
+    status: verified
+    dependencies: [WFM-004, WFM-007, WFM-009, WFM-010, WFM-011]
+    owned_paths:
+      - packages/shared/src/authz.ts
+      - src/lib/route-permissions.ts
+      - src/lib/route-permissions.js
+      - src/routes/tenant/hr/index.ts
+      - src/routes/tenant/staff.ts
+      - test/integration/routes/workforce-rbac.test.ts
+      - test/integration/routes/staff-access-unification-routes.test.ts
+      - test/integration/routes/staff-extended-fields.test.ts
+      - test/integration/routes/staff-invitation.test.ts
+    required_checks:
+      - exact permission per route action
+      - permission denied before mutation
+      - self scope separated from management scope
+      - hospital admin wildcard compatibility
+      - no automatic practitioner creation
+      - salary and invitation permissions remain outside workforce profile permissions
+    verification:
+      exact_route_permissions_and_denials: passed_23_of_23
+      route_permission_regression: passed_32_of_32
+      focused_workforce_staff_and_rbac: passed_237_of_237
+      staff_invitation_delegation: passed_15_of_15
+      hospital_admin_wildcard: passed
+      typescript: passed
+      web_build: passed
+      diff_check: passed
+    checkpoint_commit: a247a6587
+
+  - id: WFM-013
+    name: DutyRoster and StaffPage UI interaction hardening
+    status: verified
+    dependencies: [WFM-002, WFM-007, WFM-008, WFM-011, WFM-012]
+    owned_paths:
+      - web/src/lib/apiClient.ts
+      - web/src/hooks/useApiQuery.ts
+      - web/src/hooks/useApiQuery.test.tsx
+      - web/src/pages/DutyRoster.tsx
+      - web/src/pages/DutyRoster.test.ts
+      - web/src/pages/StaffPage.tsx
+      - web/src/pages/StaffPage.test.ts
+      - web/src/pages/StaffPage.interaction.test.ts
+      - web/public/locales/en/duty-roster.json
+      - web/public/locales/bn/duty-roster.json
+      - web/e2e/hr-module.spec.ts
+    required_checks:
+      - typed request and response DTOs
+      - pending disabled state
+      - swap and cancel reasons
+      - safe error display
+      - mutation outcome counts
+      - no dead overtime delete action
+      - exact E2E request bodies
+      - URL-only mutation fields are excluded from JSON bodies
+      - ordinary DELETE calls remain body-less
+    verification:
+      duty_roster_interactions: passed_13_of_13
+      staff_page_interactions_and_source_contract: passed_21_of_21
+      mutation_transport_regression: passed_18_of_18
+      focused_web_total: passed_52_of_52
+      hr_e2e_spec_list: passed_33_tests
+      typescript: passed
+      web_build: passed
+      worktree_policy: passed
+      diff_check: passed
+      generated_artifacts: none
+    checkpoint_commit: b144a1cce
+
+  - id: WFM-014
+    name: Full verification and clean integration handoff
+    status: verified
+    dependencies:
+      - WFM-001
+      - WFM-002
+      - WFM-003
+      - WFM-004
+      - WFM-005
+      - WFM-006
+      - WFM-007
+      - WFM-008
+      - WFM-009
+      - WFM-010
+      - WFM-011
+      - WFM-012
+      - WFM-013
+    owned_paths:
+      - docs/reports/2026-07-26-workforce-management-implementation-verification.md
+      - docs/architecture/workforce-management-program-task-board.yaml
+      - docs/architecture/workforce-management-continuation-prompt.md
+    required_checks:
+      - focused workforce backend tests
+      - HR route regression tests
+      - DutyRoster and StaffPage web tests
+      - HR Playwright workflow
+      - web build
+      - TypeScript
+      - migration manifest
+      - current canonical and modular governance when available
+      - final diff ownership review
+      - clean worktree
+    verification:
+      backend_route_staff_rbac_post_sync: passed_26_files_244_tests
+      backend_route_staff_rbac_on_main: passed_26_files_244_tests
+      focused_web_post_sync: passed_4_files_52_tests
+      focused_web_on_main: passed_4_files_52_tests
+      chromium_hr_workflow_post_sync: passed_33_of_33
+      chromium_hr_workflow_on_main: passed_33_of_33
+      typescript_post_sync_and_main: passed
+      web_build_post_sync_and_main: passed
+      migration_manifest_post_sync_and_main: passed_478_migrations
+      canonical_schema_governance_post_sync_and_main: passed_0_issues
+      canonical_authority_check: not_available_on_reviewed_branch
+      canonical_access_check: not_available_on_reviewed_branch
+      modular_boundary_checker: not_available_on_reviewed_branch
+      integrated_module_registry: not_present_on_reviewed_branch
+      prohibited_financial_paths: none
+      prohibited_financial_writes: none
+      generated_artifacts: none
+      synchronized_main_commit: 619e5caa6
+      synchronization_merge_commit: 489c0a46c
+      local_main_integration_commit: 489c0a46c
+      synchronization_conflicts: none
+      production_mutation: not_performed
+      provider_activation: not_performed
+      legacy_retirement: not_performed
+      push: not_performed
+      main_integration: performed_fast_forward
+    checkpoint_commit: "self: docs(workforce): record local-main integration"
+
+blocked_or_deferred:
+  - id: WFM-CANONICAL-WORKFORCE
+    status: deferred
+    reason: no approved canonical workforce authority design exists
+  - id: WFM-PAYROLL-FINANCE
+    status: deferred
+    reason: payroll lifecycle belongs to canonical finance and active finance work overlaps payroll files
+  - id: WFM-PRODUCTION-CUTOVER
+    status: blocked
+    reason: no production mutation provider activation observation or retirement authorization
+  - id: WFM-LARGE-BATCH-JOB
+    status: deferred
+    reason: initial implementation is intentionally bounded to one reviewed D1 transaction boundary

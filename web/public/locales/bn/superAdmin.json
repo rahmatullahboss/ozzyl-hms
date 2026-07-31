@@ -1,0 +1,9 @@
+{
+  "loadPricingFailed": "প্রাইসিং লোড করতে ব্যর্থ হয়েছে",
+  "hospitalNameExample": "e.g. City General Hospital",
+  "subdomainExample": "e.g. city-general",
+  "adminFullNamePlaceholder": "Admin full name",
+  "adminEmailPlaceholder": "admin@hospital.com",
+  "hospitalStatusChanged": "হসপিটালের অবস্থা পরিবর্তন হয়েছে",
+  "statusUpdated": "অবস্থা আপডেট হয়েছে"
+}

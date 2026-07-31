@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "domain": "clinical_document_diagnosis",
+  "provider": {
+    "flagKey": "canonical_clinical_document_diagnosis_provider_v1",
+    "enabledByDefault": false,
+    "defaultMode": "legacy",
+    "rollbackMode": "legacy",
+    "supportedModes": ["legacy", "shadow", "canonical"],
+    "providerPath": "src/lib/canonical/clinical-document-diagnosis-provider.ts",
+    "adapterPath": "src/lib/canonical/clinical-document-diagnosis-read-adapters.ts",
+    "exactSourceMappingRequired": true,
+    "narrativeSimilarityForbidden": true,
+    "shadowEvidencePhiMinimised": true
+  },
+  "selectedAdapters": [
+    {
+      "id": "cdb122e_clinical_document_detail",
+      "kind": "clinical_document",
+      "function": "readClinicalDocumentAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb122e_clinical_diagnosis_detail",
+      "kind": "clinical_diagnosis",
+      "function": "readClinicalDiagnosisAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    }
+  ],
+  "knownReaders": [
+    {
+      "path": "src/routes/tenant/clinical/notes.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": "cdb122e_clinical_document_detail"
+    },
+    {
+      "path": "src/routes/tenant/clinical/diagnosis.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": "cdb122e_clinical_diagnosis_detail"
+    },
+    {
+      "path": "src/routes/tenant/patients-chart.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    },
+    {
+      "path": "src/routes/tenant/healthRecord.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    }
+  ],
+  "summary": {
+    "selectedAdapterCount": 2,
+    "knownReaderCount": 4,
+    "unknownReaderAssignments": 0,
+    "routeActivationCount": 0
+  }
+}

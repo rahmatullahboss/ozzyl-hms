@@ -1,0 +1,104 @@
+{
+  "title": "Blood Bank",
+  "subtitle": "Donor registry, stock, cross-match & transfusion tracking",
+  "tabs": {
+    "stock": "Blood Stock",
+    "donors": "Donors",
+    "donations": "Donations",
+    "cross-match": "Cross-Match",
+    "transfusions": "Transfusions"
+  },
+  "stats": {
+    "totalDonors": "Total Donors",
+    "availableUnits": "Available Units",
+    "pendingXMatch": "Pending X-Match",
+    "todayTransfusions": "Today's Transfusions",
+    "expiringSoon": "Expiring Soon"
+  },
+  "table": {
+    "bloodGroup": "Blood Group",
+    "bloodStockByGroup": "Blood Stock by Group & Component",
+    "component": "Component",
+    "available": "Available",
+    "reserved": "Reserved",
+    "expired": "Expired",
+    "pendingScreen": "Pending Screen",
+    "name": "Name",
+    "type": "Type",
+    "genderAge": "Gender/Age",
+    "phone": "Phone",
+    "lastDonation": "Last Donation",
+    "total": "Total",
+    "eligible": "Eligible",
+    "bagNo": "Bag #",
+    "donor": "Donor",
+    "vol": "Vol",
+    "collected": "Collected",
+    "expiry": "Expiry",
+    "screening": "Screening",
+    "status": "Status",
+    "patient": "Patient",
+    "units": "Units",
+    "urgency": "Urgency",
+    "compatibility": "Compatibility",
+    "issuedAt": "Issued At",
+    "reaction": "Reaction"
+  },
+  "status": {
+    "in_stock": "In Stock",
+    "reserved": "Reserved",
+    "cross_matched": "Cross Matched",
+    "issued": "Issued",
+    "expired": "Expired",
+    "discarded": "Discarded",
+    "quarantine": "Quarantine",
+    "pending": "Pending",
+    "passed": "Passed",
+    "failed": "Failed"
+  },
+  "urgency": {
+    "routine": "Routine",
+    "urgent": "Urgent",
+    "emergency": "Emergency"
+  },
+  "reaction": {
+    "none": "None",
+    "mild": "Mild",
+    "moderate": "Moderate",
+    "severe": "Severe",
+    "fatal": "Fatal"
+  },
+  "compatibility": {
+    "compatible": "Compatible",
+    "incompatible": "Incompatible",
+    "pending": "Pending"
+  },
+  "addDonor": "Add Donor",
+  "registerDonor": "Register Blood Donor",
+  "register": "Register",
+  "never": "Never",
+  "noStock": "No blood stock",
+  "noDonors": "No donors",
+  "noDonations": "No donations",
+  "noCrossMatch": "No cross-match requests",
+  "noTransfusions": "No transfusions recorded",
+  "allGroups": "All Groups",
+  "allStatus": "All Status",
+  "components": {
+    "whole_blood": "Whole Blood",
+    "packed_rbc": "Packed RBC",
+    "ffp": "FFP",
+    "platelets": "Platelets",
+    "cryoprecipitate": "Cryoprecipitate",
+    "plasma": "Plasma"
+  },
+  "donorTypes": {
+    "voluntary": "Voluntary",
+    "replacement": "Replacement"
+  },
+  "genders": {
+    "Male": "Male",
+    "Female": "Female",
+    "Other": "Other"
+  }
+}

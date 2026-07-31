@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Clinical Sanctuary | Health Data Privacy</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdcc6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f3f5",
+                        "on-primary-fixed-variant": "#004f54",
+                        "surface-variant": "#e2e2e4",
+                        "primary-fixed": "#96f1fa",
+                        "inverse-on-surface": "#f0f0f2",
+                        "on-primary-fixed": "#002022",
+                        "surface-bright": "#f9f9fb",
+                        "secondary-container": "#c6e9ec",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#006970",
+                        "error": "#ba1a1a",
+                        "tertiary": "#834718",
+                        "primary-fixed-dim": "#7ad5dd",
+                        "on-tertiary-container": "#fff1e9",
+                        "outline-variant": "#bdc9ca",
+                        "primary": "#006067",
+                        "outline": "#6e797a",
+                        "inverse-surface": "#2f3132",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#c6e9ec",
+                        "surface-container-high": "#e8e8ea",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#002022",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e2e2e4",
+                        "on-background": "#1a1c1d",
+                        "tertiary-container": "#a05f2e",
+                        "on-primary-container": "#d0fbff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#007b83",
+                        "on-secondary-container": "#4a6a6d",
+                        "on-tertiary-fixed": "#301400",
+                        "surface-dim": "#d9dadc",
+                        "surface-container": "#edeef0",
+                        "on-tertiary-fixed-variant": "#6f3808",
+                        "tertiary-fixed-dim": "#ffb785",
+                        "secondary-fixed-dim": "#abcdd0",
+                        "inverse-primary": "#7ad5dd",
+                        "on-surface": "#1a1c1d",
+                        "on-secondary": "#ffffff",
+                        "background": "#f9f9fb",
+                        "surface": "#f9f9fb",
+                        "on-surface-variant": "#3e494a",
+                        "secondary": "#446467",
+                        "on-secondary-fixed-variant": "#2c4c4f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed-dim">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 w-full shadow-[0_12px_40px_rgba(0,96,103,0.06)]">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-[#006067] dark:text-[#007B83] font-['Manrope'] tracking-tight">The Clinical Sanctuary</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8 px-4">
+<a class="text-[#3e494a] hover:text-[#007B83] transition-colors font-['Manrope'] tracking-tight" href="#">Dashboard</a>
+<a class="text-[#006067] font-bold font-['Manrope'] tracking-tight" href="#">Privacy &amp; Consent</a>
+<a class="text-[#3e494a] hover:text-[#007B83] transition-colors font-['Manrope'] tracking-tight" href="#">Clinical Records</a>
+</div>
+<div class="flex items-center gap-4 text-[#006067]">
+<button class="material-symbols-outlined p-2 hover:bg-surface-container rounded-full transition-all">notifications</button>
+<button class="material-symbols-outlined p-2 hover:bg-surface-container rounded-full transition-all">account_circle</button>
+</div>
+</div>
+</nav>
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 flex flex-col gap-2 p-6 h-screen w-72 pt-24 bg-[#f9f9fb] dark:bg-neutral-950 border-none font-['Inter'] text-sm antialiased z-40">
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3 mb-2">
+<img alt="Medical Professional Profile" class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="portrait of a distinguished medical professional with silver hair wearing a minimalist white coat studio lighting teal background soft focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCczpXPXaag2B9FuafYxzTVLegwu678NRDOTnmFou9TMSYU0xbR--KhzsRv2WhFx-E5WC_NU2P8F5n18hwUIvfCmF2JjIPs68r2CxOxqLGtxOW38swO8aQWfRLr1igd5eErxxeMHFQ36EILxGaWbmp4cVA1v8sBOhSIvsTK9wcBrVy40_flnOrzcrTJHgFCLO3NcsX8zFXqzQpzwJrYocegHSZf00SCDUz8Za70hHr_eea6cWAUTUDbCmdC94McK_LK-5HKUlencmM"/>
+<div>
+<p class="font-semibold text-on-surface">Dr. Aris Thorne</p>
+<p class="text-xs text-on-surface-variant">Data Privacy Officer</p>
+</div>
+</div>
+<button class="mt-4 w-full bg-gradient-to-br from-primary to-primary-container text-white py-2.5 rounded-xl font-medium shadow-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Consent Request
+                </button>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#3e494a] hover:bg-neutral-200/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#006067] font-semibold border-r-4 border-[#006067] bg-white/50 dark:bg-white/5 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+                    Privacy &amp; Consent
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#3e494a] hover:bg-neutral-200/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+                    Access Logs
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#3e494a] hover:bg-neutral-200/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+                    Data Export
+                </a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 pt-6 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#3e494a] hover:bg-neutral-200/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#3e494a] hover:bg-neutral-200/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 flex-1 p-12 min-h-[calc(100vh-64px)]">
+<header class="mb-12">
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Consent Management</h1>
+<p class="text-on-surface-variant text-lg max-w-2xl">Manage how your sensitive health information is shared with clinical partners and research institutions.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Section 1: Consent Management -->
+<section class="lg:col-span-5 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_40px_rgba(0,96,103,0.06)] space-y-8">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-primary">Global Permissions</h2>
+<span class="material-symbols-outlined text-outline-variant">info</span>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-start justify-between gap-4 group">
+<div class="flex-1">
+<p class="font-semibold text-on-surface group-hover:text-primary transition-colors">Share Vitals</p>
+<p class="text-sm text-on-surface-variant mt-1">Real-time heart rate, blood pressure, and oxygen saturation data.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between gap-4 group">
+<div class="flex-1">
+<p class="font-semibold text-on-surface group-hover:text-primary transition-colors">Share Lab Reports</p>
+<p class="text-sm text-on-surface-variant mt-1">Detailed blood work, metabolic panels, and screening results.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between gap-4 group">
+<div class="flex-1">
+<p class="font-semibold text-on-surface group-hover:text-primary transition-colors">Share Imaging (MRI/X-Ray)</p>
+<p class="text-sm text-on-surface-variant mt-1">High-resolution radiological scans and diagnostic imagery.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between gap-4 group">
+<div class="flex-1">
+<p class="font-semibold text-on-surface group-hover:text-primary transition-colors">Research Participation</p>
+<p class="text-sm text-on-surface-variant mt-1">Allow anonymized data to be used for authorized medical studies.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="pt-6 border-t border-outline-variant/10">
+<div class="flex items-start justify-between gap-4 group">
+<div class="flex-1">
+<p class="font-bold text-error">Emergency Access</p>
+<p class="text-sm text-on-surface-variant mt-1">Grant immediate override access to critical records in life-threatening events.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-error"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Decorative Editorial Card -->
+<div class="relative overflow-hidden rounded-xl h-48 bg-primary p-8 text-white flex flex-col justify-end">
+<img alt="Abstract medical art" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay" data-alt="abstract medical concept microscopic cells flowing gracefully deep teal background cinematic lighting serene ethereal minimalist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWQ-2wP6a_ClgSIpmmEtsBMKfFYE74c7tA5_uBxDBJhb29GCAc9ClfzTzjIFl8k2eECaEwhYWHBxJniITZh1YrJl3nwie4AAiuVM9AKXjmL76LpyMLxL4UW778zWbRkolFEJdXI_F3VUX1BCmCaV-K_Si5B5Tu8J06g_wLt4F3injvvUs0wN0SyXa8x-1YFMcIYCJ3W5y4QH0sycjlXeFYR_FjWuxPAbqXovJGi2hsnPuDD07RGrowmFpzTvWfMPk6vOq8P9wIxt8"/>
+<div class="relative z-10">
+<h3 class="text-xl font-bold mb-1">Your Data, Your Control.</h3>
+<p class="text-sm text-primary-container brightness-150">Learn more about our zero-knowledge encryption protocols.</p>
+</div>
+</div>
+</section>
+<!-- Section 2: Access Log -->
+<section class="lg:col-span-7">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_40px_rgba(0,96,103,0.06)]">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-extrabold text-on-surface tracking-tight">Recent Access History</h2>
+<div class="flex gap-2">
+<span class="material-symbols-outlined p-2 text-outline cursor-pointer hover:bg-surface-container rounded-lg transition-colors">filter_list</span>
+<span class="material-symbols-outlined p-2 text-outline cursor-pointer hover:bg-surface-container rounded-lg transition-colors">download</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-on-surface-variant text-xs uppercase tracking-widest font-semibold">
+<th class="pb-4 pr-4">Accessed By</th>
+<th class="pb-4 px-4">Data Type</th>
+<th class="pb-4 px-4">Timestamp</th>
+<th class="pb-4 pl-4 text-right">Purpose</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- Row 1 -->
+<tr class="group border-t border-outline-variant/10">
+<td class="py-6 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-xs">JV</div>
+<div>
+<p class="font-semibold text-on-surface">Dr. Julian Vance</p>
+<p class="text-xs text-on-surface-variant">St. Jude Medical</p>
+</div>
+</div>
+</td>
+<td class="py-6 px-4">
+<span class="bg-surface-container px-3 py-1 rounded-full text-on-secondary-container font-medium text-xs">Vitals</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">
+                                            Oct 24, 2023 <br/>
+<span class="text-xs opacity-70">10:45 AM</span>
+</td>
+<td class="py-6 pl-4 text-right">
+<span class="italic text-on-surface-variant">Routine Checkup</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group border-t border-outline-variant/10">
+<td class="py-6 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-xs">SM</div>
+<div>
+<p class="font-semibold text-on-surface">System Monitor</p>
+<p class="text-xs text-on-surface-variant">Automated Sync</p>
+</div>
+</div>
+</td>
+<td class="py-6 px-4">
+<span class="bg-surface-container px-3 py-1 rounded-full text-on-secondary-container font-medium text-xs">Access Logs</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">
+                                            Oct 23, 2023 <br/>
+<span class="text-xs opacity-70">04:12 PM</span>
+</td>
+<td class="py-6 pl-4 text-right">
+<span class="italic text-on-surface-variant">Integrity Audit</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group border-t border-outline-variant/10">
+<td class="py-6 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">ML</div>
+<div>
+<p class="font-semibold text-on-surface">Mayo Lab Tech 4</p>
+<p class="text-xs text-on-surface-variant">Diagnostics Dept</p>
+</div>
+</div>
+</td>
+<td class="py-6 px-4">
+<span class="bg-secondary-container/50 px-3 py-1 rounded-full text-on-secondary-container font-medium text-xs">Lab Reports</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">
+                                            Oct 22, 2023 <br/>
+<span class="text-xs opacity-70">09:30 AM</span>
+</td>
+<td class="py-6 pl-4 text-right">
+<span class="italic text-on-surface-variant">Pending Diagnosis</span>
+</td>
+</tr>
+<!-- Row 4 (Warning State) -->
+<tr class="group border-t border-outline-variant/10 bg-error-container/5">
+<td class="py-6 pr-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error font-bold text-xs">ER</div>
+<div>
+<p class="font-semibold text-on-surface">ER Clinical Team</p>
+<p class="text-xs text-on-surface-variant">Unity Health Emergency</p>
+</div>
+</div>
+</td>
+<td class="py-6 px-4">
+<div class="flex flex-wrap gap-1">
+<span class="bg-error-container px-2 py-0.5 rounded-md text-error font-medium text-[10px] uppercase">All records</span>
+</div>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">
+                                            Oct 19, 2023 <br/>
+<span class="text-xs opacity-70">11:59 PM</span>
+</td>
+<td class="py-6 pl-4 text-right">
+<span class="font-bold text-error">Emergency Override</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/10 flex justify-center">
+<button class="text-primary font-semibold flex items-center gap-2 hover:opacity-70 transition-opacity">
+                                View Full History
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 w-[600px] h-[600px] bg-[#006067]/5 blur-[120px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-tertiary/5 blur-[100px] rounded-full pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
+</body></html>

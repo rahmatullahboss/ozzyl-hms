@@ -1,0 +1,77 @@
+{
+  "inventoryAlerts": {
+    "loading": "Loading...",
+    "title": "Inventory Alerts",
+    "summary": {
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock",
+      "expired": "Expired",
+      "expiring30": "Expiring in 30 Days",
+      "expiring90": "Expiring in 90 Days"
+    },
+    "empty": "No alerts found",
+    "tabs": {
+      "all": "All",
+      "low": "Low Stock",
+      "out": "Out of Stock",
+      "expiring": "Expiring Soon",
+      "expired": "Expired"
+    },
+    "table": {
+      "item": "Item",
+      "category": "Category",
+      "current": "Current",
+      "reorder": "Reorder",
+      "batch": "Batch",
+      "expiry": "Expiry",
+      "status": "Status"
+    },
+    "statusLabels": {
+      "low": "Low Stock",
+      "out": "Out of Stock",
+      "expiring": "Expiring Soon",
+      "expired": "Expired"
+    }
+  },
+  "stockOverview": {
+    "loading": "Loading...",
+    "title": "Stock Overview",
+    "subtitle": "Monitor stock levels, valuation, batches, and expiry risk.",
+    "refresh": "Refresh stock overview",
+    "summary": {
+      "totalItems": "Total Items",
+      "stockValue": "Stock Value",
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock",
+      "nearExpiry": "Near Expiry",
+      "expired": "Expired"
+    },
+    "tabs": {
+      "all": "All",
+      "low": "Low Stock",
+      "out": "Out of Stock",
+      "nearExpiry": "Near Expiry",
+      "expired": "Expired"
+    },
+    "table": {
+      "item": "Item",
+      "category": "Category",
+      "stock": "Stock",
+      "reorderLevel": "Reorder Level",
+      "batch": "Batch",
+      "expiry": "Expiry",
+      "purchase": "Purchase",
+      "selling": "Selling",
+      "status": "Status"
+    },
+    "statusBadges": {
+      "ok": "OK",
+      "low": "Low Stock",
+      "out": "Out of Stock",
+      "expired": "Expired",
+      "nearExpiry": "Near Expiry"
+    },
+    "searchPlaceholder": "Search stock items...",
+    "emptyMessage": "No stock data found"
+  }
+}

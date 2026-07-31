@@ -1,0 +1,87 @@
+{
+  "discountReview": {
+    "title": "Discount Review",
+    "subtitle": "Monitor high discount bills, reference patterns, and staff discount activity.",
+    "date": "Date",
+    "highDiscounts": "High Discounts",
+    "needsReview": "Needs Review",
+    "missingRef": "Missing Reference",
+    "totalDiscountAmount": "Total Discount Amount",
+    "uniqueReferences": "Unique References",
+    "tabs": {
+      "overview": "Overview",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "high": "High Discount",
+      "reference": "Reference Analysis",
+      "staff": "Staff Analysis"
+    },
+    "highDiscountBillsToday": "High Discount Bills Today",
+    "discountBillsToday": "Today’s Discount Bills",
+    "noData": "No data found",
+    "invoice": "Invoice",
+    "total": "Total",
+    "discount": "Discount",
+    "discountPct": "Discount %",
+    "referredBy": "Referred By",
+    "createdBy": "Created By",
+    "time": "Time",
+    "missing": "Missing",
+    "referenceAnalysis": "Reference Analysis",
+    "noReferenceData": "No reference data found",
+    "referredByCol": "Referred By",
+    "totalDiscounts": "Total Discounts",
+    "totalAmount": "Total Amount",
+    "avgDiscountPct": "Avg Discount %",
+    "risk": "Risk",
+    "riskHigh": "High",
+    "riskMedium": "Medium",
+    "riskLow": "Low",
+    "staffAnalysis": "Staff Analysis",
+    "noStaffData": "No staff data found",
+    "staff": "Staff",
+    "discountCount": "Discount Count",
+    "highDiscountBills": "High Discount Bills",
+    "highDiscountRequired": "Bills with discounts above the configured threshold require admin review.",
+    "missingRefRow": "Missing reference",
+    "pendingHint": "Pending discount approvals will appear here after approval workflow is connected.",
+    "approvedHint": "Approved discount requests will appear here after approval workflow is connected.",
+    "rejectedHint": "Rejected discount requests will appear here after approval workflow is connected.",
+    "unknown": "Unknown"
+  },
+  "discountReferenceAnalytics": {
+    "loading": "Loading...",
+    "title": "Discount Reference Analytics",
+    "summary": {
+      "totalReferences": "Total References",
+      "totalStaff": "Total Staff",
+      "totalDiscountAmount": "Total Discount Amount",
+      "highDiscounts": "High Discounts (>20%)"
+    },
+    "tabs": {
+      "referenceWise": "Reference-wise",
+      "staffWise": "Staff-wise"
+    },
+    "empty": {
+      "reference": "No reference data found",
+      "staff": "No staff data found"
+    },
+    "table": {
+      "referenceName": "Reference Name",
+      "type": "Type",
+      "totalDiscounts": "Total Discounts",
+      "discountAmount": "Discount Amount",
+      "patients": "Patients",
+      "avgDiscount": "Avg Discount",
+      "highDiscount": "High Discount",
+      "staffName": "Staff Name",
+      "role": "Role"
+    },
+    "typeLabels": {
+      "doctor": "Doctor",
+      "staff": "Staff",
+      "external": "External"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "provider": "emergency_case_triage",
+  "providerFlag": "canonical_emergency_case_triage_provider_v1",
+  "providerModule": "src/lib/canonical/emergency-case-triage-provider.ts",
+  "adapterModule": "src/lib/canonical/emergency-case-triage-read-adapters.ts",
+  "enabledByDefault": false,
+  "defaultMode": "legacy",
+  "rollbackMode": "legacy",
+  "selectedAdapters": [
+    {
+      "consumerId": "cdb127e_emergency_board_worklist",
+      "function": "readEmergencyBoardAdapter",
+      "surface": "emergency board/worklist and current acuity detail",
+      "runtimeActivated": false
+    },
+    {
+      "consumerId": "cdb127e_patient_timeline_summary",
+      "function": "readEmergencyPatientTimelineAdapter",
+      "surface": "patient timeline and emergency clinical summary",
+      "runtimeActivated": false
+    },
+    {
+      "consumerId": "cdb127e_disposition_handoff",
+      "function": "readEmergencyDispositionHandoffAdapter",
+      "surface": "disposition, admission and discharge handoff detail",
+      "runtimeActivated": false
+    }
+  ],
+  "writers": [
+    {
+      "path": "src/routes/tenant/emergency.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "active ER registration, mutable triage, finalization and discharge-summary compatibility writer"
+    },
+    {
+      "path": "src/routes/tenant/reception.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "quick-admit emergency patient and visit compatibility writer"
+    },
+    {
+      "path": "src/routes/tenant/admissions.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "separate emergency admission and bed writer retained under admission authority"
+    },
+    {
+      "path": "src/routes/tenant/appointments.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "visit-type compatibility writer that can create emergency visits"
+    }
+  ],
+  "readers": [
+    {
+      "path": "src/routes/tenant/emergency.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "active ER board, statistics and detail reader"
+    },
+    {
+      "path": "src/routes/tenant/qualityKpi.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "stale emergency_visits KPI projection dependency"
+    },
+    {
+      "path": "src/routes/tenant/doctors.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "doctor report emergency visit/admission aggregate reader"
+    },
+    {
+      "path": "src/routes/tenant/ipdReports.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "inpatient report reader of admission emergency flags"
+    },
+    {
+      "path": "src/routes/tenant/patients-timeline.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "selected future patient timeline adapter surface; current dedicated ER history remains absent"
+    },
+    {
+      "path": "src/lib/patient-reference-registry.ts",
+      "assignment": "legacy_unchanged",
+      "reason": "legacy emergency patient-reference move/merge registry"
+    }
+  ],
+  "knownWriterCount": 4,
+  "knownReaderCount": 6,
+  "selectedAdapterCount": 3,
+  "unknownWriterAssignments": 0,
+  "unknownReaderAssignments": 0,
+  "routeActivationCount": 0
+}

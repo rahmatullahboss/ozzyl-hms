@@ -1,0 +1,29 @@
+{
+  "categories": "Categories",
+  "noCategories": "No categories found",
+  "noItemsInSubcategory": "No items in this subcategory",
+  "searchPatient": "Search patient by name or code…",
+  "newAssessment": "New Assessment",
+  "pastAssessments": "Past Assessments",
+  "assessmentTitle": "Assessment Title",
+  "assessmentTitlePlaceholder": "e.g. PHQ-9 Depression Screening",
+  "liveScore": "Live Score",
+  "selectSubcategoryHint": "Select a subcategory from the left panel to load assessment items",
+  "clinicalNotes": "Clinical Notes",
+  "clinicalNotesPlaceholder": "Optional clinical observations, recommendations…",
+  "submitAssessment": "Submit Assessment",
+  "assessmentHistory": "Assessment History",
+  "selectPatientHistory": "Select a patient to view their assessment history",
+  "noPastAssessments": "No past assessments for this patient",
+  "toast": {
+    "loadCategoriesFailed": "Failed to load categories",
+    "loadSubcategoriesFailed": "Failed to load subcategories",
+    "loadItemsFailed": "Failed to load assessment items",
+    "loadHistoryFailed": "Failed to load assessment history",
+    "selectPatient": "Select a patient first",
+    "assessmentTitleRequired": "Assessment title is required",
+    "selectSubcategory": "Select a subcategory to load assessment items",
+    "assessmentSaved": "Assessment saved",
+    "saveAssessmentFailed": "Failed to save assessment"
+  }
+}

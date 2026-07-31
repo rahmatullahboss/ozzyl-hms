@@ -1,0 +1,255 @@
+{
+  "cashDrawerDetail": {
+    "loading": "লোড হচ্ছে...",
+    "titleFallback": "ক্যাশ ড্রয়ার বিস্তারিত",
+    "shift": "শিফট",
+    "summaryCards": {
+      "openingFloat": "ওপেনিং ফ্লোট",
+      "collection": "কালেকশন",
+      "refund": "রিফান্ড",
+      "expense": "খরচ",
+      "transfer": "ট্রান্সফার",
+      "bankDeposit": "ব্যাংক ডিপোজিট",
+      "expectedClosing": "প্রত্যাশিত ক্লোজিং"
+    },
+    "tabs": {
+      "summary": "সারাংশ",
+      "transactions": "লেনদেন",
+      "handoverHistory": "হ্যান্ডওভার হিস্টরি"
+    },
+    "cashFlowSummary": "ক্যাশ ফ্লো সারাংশ",
+    "flow": {
+      "openingFloat": "ওপেনিং ফ্লোট",
+      "patientCollection": "+ রোগী কালেকশন",
+      "refunds": "- রিফান্ড",
+      "expenses": "- খরচ",
+      "drawerTransfer": "- ড্রয়ার ট্রান্সফার",
+      "bankDeposit": "- ব্যাংক ডিপোজিট",
+      "expectedClosingBalance": "প্রত্যাশিত ক্লোজিং ব্যালেন্স"
+    },
+    "transactions": {
+      "empty": "কোনো লেনদেন পাওয়া যায়নি",
+      "table": {
+        "time": "সময়",
+        "type": "ধরন",
+        "description": "বিবরণ",
+        "amount": "পরিমাণ",
+        "balance": "ব্যালেন্স",
+        "reference": "রেফারেন্স"
+      }
+    },
+    "handover": {
+      "empty": "কোনো হ্যান্ডওভার রেকর্ড পাওয়া যায়নি",
+      "table": {
+        "time": "সময়",
+        "from": "কার কাছ থেকে",
+        "to": "কার কাছে",
+        "declared": "ঘোষিত",
+        "received": "গৃহীত",
+        "variance": "পার্থক্য",
+        "status": "স্ট্যাটাস"
+      }
+    },
+    "statusLabels": {
+      "active": "সক্রিয়",
+      "handover pending": "হ্যান্ডওভার পেন্ডিং",
+      "disputed": "বিতর্কিত",
+      "closed": "বন্ধ",
+      "verified": "ভেরিফায়েড",
+      "pending": "পেন্ডিং"
+    }
+  },
+  "shiftHandoverDetail": {
+    "loading": "লোড হচ্ছে...",
+    "notFound": "হ্যান্ডওভার রেকর্ড পাওয়া যায়নি",
+    "title": "শিফট হ্যান্ডওভার",
+    "session": "সেশন",
+    "outgoingStaff": "আউটগোয়িং স্টাফ",
+    "incomingStaff": "ইনকামিং স্টাফ",
+    "handoverTime": "হ্যান্ডওভার সময়",
+    "cashSummary": "ক্যাশ সারাংশ",
+    "flow": {
+      "shiftOpenAmount": "শিফট ওপেনিং এমাউন্ট",
+      "totalCashReceived": "+ মোট ক্যাশ গ্রহণ",
+      "totalCashPaidOut": "- মোট ক্যাশ প্রদান",
+      "declaredCash": "ঘোষিত ক্যাশ"
+    },
+    "denominationBreakdown": "নোট/কয়েন ব্রেকডাউন",
+    "noDenominationData": "কোনো নোট/কয়েন ডাটা নেই",
+    "denominationTable": {
+      "noteCoin": "নোট / কয়েন",
+      "count": "সংখ্যা",
+      "total": "মোট"
+    },
+    "variance": {
+      "noVariance": "কোনো পার্থক্য নেই",
+      "variance": "পার্থক্য",
+      "over": "বেশি",
+      "under": "কম",
+      "declared": "ঘোষিত",
+      "received": "গৃহীত"
+    },
+    "notes": "নোট",
+    "statusLabels": {
+      "verified": "ভেরিফায়েড",
+      "disputed": "বিতর্কিত",
+      "pending": "পেন্ডিং"
+    }
+  },
+  "dailyCollection": {
+    "loading": "লোড হচ্ছে...",
+    "title": "দৈনিক কালেকশন রিপোর্ট",
+    "actions": {
+      "export": "এক্সপোর্ট",
+      "print": "প্রিন্ট"
+    },
+    "summary": {
+      "totalCollection": "মোট কালেকশন",
+      "totalRefund": "মোট রিফান্ড",
+      "totalExpense": "মোট খরচ",
+      "netCollection": "নেট কালেকশন",
+      "activeCounters": "সক্রিয় কাউন্টার"
+    },
+    "tabs": {
+      "counterWise": "কাউন্টার অনুযায়ী",
+      "departmentWise": "বিভাগ অনুযায়ী",
+      "paymentMethod": "পেমেন্ট মেথড"
+    },
+    "empty": {
+      "counter": "কোনো কাউন্টার ডাটা পাওয়া যায়নি",
+      "department": "কোনো বিভাগীয় ডাটা পাওয়া যায়নি",
+      "payment": "কোনো পেমেন্ট ডাটা পাওয়া যায়নি"
+    },
+    "counterTable": {
+      "counter": "কাউন্টার",
+      "staff": "স্টাফ",
+      "opening": "ওপেনিং",
+      "collection": "কালেকশন",
+      "refund": "রিফান্ড",
+      "expense": "খরচ",
+      "expected": "প্রত্যাশিত",
+      "actual": "বাস্তব",
+      "variance": "পার্থক্য"
+    },
+    "departmentTable": {
+      "department": "বিভাগ",
+      "invoices": "ইনভয়েস",
+      "revenue": "রেভিনিউ",
+      "discount": "ডিসকাউন্ট",
+      "net": "নেট"
+    },
+    "paymentTable": {
+      "paymentMethod": "পেমেন্ট মেথড",
+      "amount": "পরিমাণ",
+      "percentage": "শতাংশ"
+    }
+  },
+  "refundDetail": {
+    "title": "রিফান্ড বিস্তারিত",
+    "subtitle": "রিফান্ড রিকোয়েস্ট রিভিউ ও মনিটর করুন",
+    "summary": {
+      "pending": "পেন্ডিং",
+      "approved": "অনুমোদিত",
+      "totalRequests": "মোট রিকোয়েস্ট",
+      "totalAmount": "মোট পরিমাণ"
+    },
+    "tabs": {
+      "pending": "পেন্ডিং",
+      "approved": "অনুমোদিত",
+      "rejected": "রিজেক্টেড",
+      "completed": "সম্পন্ন",
+      "flagged": "ফ্ল্যাগড"
+    },
+    "noData": "কোনো {{tab}} রিফান্ড রিকোয়েস্ট পাওয়া যায়নি",
+    "refundId": "রিফান্ড আইডি",
+    "bill": "বিল",
+    "patient": "রোগী",
+    "amount": "পরিমাণ",
+    "reason": "কারণ",
+    "requestedBy": "রিকোয়েস্ট করেছেন",
+    "status": "স্ট্যাটাস",
+    "date": "তারিখ",
+    "statusLabels": {
+      "pending": "পেন্ডিং",
+      "approved": "অনুমোদিত",
+      "rejected": "রিজেক্টেড",
+      "completed": "সম্পন্ন",
+      "flagged": "ফ্ল্যাগড"
+    }
+  },
+  "cashControlLedger": {
+    "title": "ক্যাশ কন্ট্রোল লেজার",
+    "subtitle": "লাইভ কাউন্টার ক্যাশ, হ্যান্ডওভার, খরচ, রসিদ, ভেরিয়েন্স ও ক্যাশ মুভমেন্ট এক জায়গায়।",
+    "actions": {
+      "today": "আজ",
+      "yesterday": "গতকাল",
+      "refreshAria": "ক্যাশ কন্ট্রোল লেজার রিফ্রেশ করুন"
+    },
+    "errors": {
+      "loadFailed": "ক্যাশ কন্ট্রোল ডাটা লোড করা যায়নি। আবার রিফ্রেশ করুন।"
+    },
+    "filters": {
+      "title": "রিভিউ ফিল্টার",
+      "subtitle": "কাউন্টার, অপারেটর, মুভমেন্ট টাইপ, মিসিং রসিদ বা ভেরিয়েন্স ধরে দ্রুত রিভিউ করুন।",
+      "clear": "ফিল্টার ক্লিয়ার করুন",
+      "counter": "কাউন্টার",
+      "allCounters": "সব কাউন্টার",
+      "operator": "অপারেটর / ইউজার",
+      "allUsers": "সব ইউজার",
+      "movementType": "মুভমেন্ট টাইপ",
+      "allMovements": "সব মুভমেন্ট",
+      "missingReceiptOnly": "শুধু মিসিং রসিদ",
+      "varianceHandoversOnly": "শুধু ভেরিয়েন্স হ্যান্ডওভার",
+      "showingSummary": "{{totalMovements}}টির মধ্যে {{visibleMovements}}টি মুভমেন্ট, {{totalCounters}}টির মধ্যে {{visibleCounters}}টি সক্রিয় কাউন্টার, {{totalHandovers}}টির মধ্যে {{visibleHandovers}}টি হ্যান্ডওভার দেখানো হচ্ছে।"
+    },
+    "summaryCards": {
+      "activeCounterCash": {
+        "label": "সক্রিয় কাউন্টার ক্যাশ",
+        "detail": "{{count}}টি সক্রিয় কাউন্টার"
+      },
+      "pendingCash": {
+        "label": "পেন্ডিং / ট্রানজিট ক্যাশ",
+        "ledgerDetail": "রিসিভ হয়নি এমন ট্রান্সফার / ব্যাংক ডিপোজিট পেন্ডিং",
+        "legacyDetail": "{{count}}টি হ্যান্ডওভার অপেক্ষায়"
+      },
+      "custody": {
+        "label": "অ্যাডমিন / ব্যাংক কাস্টডি",
+        "detail": "অ্যাডমিন/কাউন্টার/ব্যাংক রিসিভ করেছে"
+      },
+      "disputed": {
+        "label": "ডিসপিউট / ভেরিয়েন্স",
+        "ledgerDetail": "{{count}}টি আনরিজলভড ক্যাশ আইটেম",
+        "legacyDetail": "{{count}}টি ক্লোজড সেশন"
+      }
+    },
+    "cashIn": {
+      "patientBill": "রোগীর বিল / ডিউ কালেকশন",
+      "manualDrawerReceive": "ম্যানুয়াল ড্রয়ার ক্যাশ রিসিভ"
+    },
+    "cashOut": {
+      "refund": "রিফান্ড / রোগীকে ফেরত",
+      "expensePayout": "ড্রয়ার থেকে খরচ / পেআউট"
+    },
+    "custody": {
+      "counterHandoverReceived": "কাউন্টার হ্যান্ডওভার রিসিভড",
+      "cashDrop": "ক্যাশ ড্রপ / এমডি / ব্যাংক কাস্টডি"
+    },
+    "sections": {
+      "operationalCashIn": {
+        "title": "অপারেশনাল ক্যাশ ইন",
+        "subtitle": "রোগী কালেকশন এবং ড্রয়ার ক্যাশ রিসিভ",
+        "total": "মোট অপারেশনাল ইন"
+      },
+      "operationalCashOut": {
+        "title": "অপারেশনাল ক্যাশ আউট",
+        "subtitle": "শুধু রিফান্ড, খরচ এবং পেআউট",
+        "total": "মোট অপারেশনাল আউট"
+      },
+      "custodyTransfer": {
+        "title": "কাস্টডি ট্রান্সফার",
+        "subtitle": "হ্যান্ডওভার/ট্রান্সফার; এটি খরচ হিসেবে কাউন্ট হবে না",
+        "total": "মোট কাস্টডি মুভড"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "ozzyl-hl7-agent",
+  "version": "1.0.0",
+  "description": "Local hospital middleware to bridge HL7 MLLP machines to Ozzyl HMS Cloudflare Workers via HTTPS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "hl7-standard": "^1.1.2"
+  }
+}

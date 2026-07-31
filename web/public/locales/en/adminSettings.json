@@ -1,0 +1,18 @@
+{
+  "hospitalProfile": {
+    "loading": "Loading...",
+    "title": "Hospital Profile",
+    "basicInformation": "Basic Information",
+    "hospitalName": "Hospital Name",
+    "address": "Address",
+    "hotline": "Hotline",
+    "email": "Email",
+    "website": "Website",
+    "registrationNumber": "Registration Number",
+    "quickStats": "Quick Stats",
+    "branches": "Branches",
+    "departments": "Departments",
+    "beds": "Beds",
+    "established": "Established"
+  }
+}

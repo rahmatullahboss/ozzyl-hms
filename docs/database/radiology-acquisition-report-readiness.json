@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "domain": "radiology_acquisition_report",
+  "checkpoint": "CDB-126E",
+  "claims": {
+    "localReady": true,
+    "productionReady": false,
+    "providerEnabled": false,
+    "routeCutoverPerformed": false,
+    "productionObservationPresent": false,
+    "rollbackExecutionEvidencePresent": false,
+    "ownerAuthorizationPresent": false,
+    "legacyRetirementApproved": false,
+    "productionMutationPerformed": false,
+    "productionQueryPerformed": false,
+    "localSyncActivated": false,
+    "pushPerformed": false,
+    "mainIntegrationPerformed": false
+  },
+  "verifiedContracts": {
+    "schema": true,
+    "commands": true,
+    "boundedBackfill": true,
+    "backfillPartitionCount": 10,
+    "reconciliationCheckCount": 30,
+    "providerDefaultLegacy": true,
+    "providerDisabledSafe": true,
+    "exactSourceMappingRequired": true,
+    "similarityIdentityForbidden": true,
+    "acquisitionHistoryVisible": true,
+    "dicomHierarchyVisible": true,
+    "provenanceHashHistoryVisible": true,
+    "reportVersionHistoryVisible": true,
+    "signedHistoryVisible": true,
+    "correctionRetractionErrorHistoryVisible": true,
+    "projectionsSeparated": true,
+    "rawDicomPayloadStored": false,
+    "shadowEvidencePhiMinimised": true,
+    "rollbackMode": "legacy",
+    "runtimeRoutesUnchanged": true
+  },
+  "requiredEvidence": [
+    { "kind": "design", "path": "docs/superpowers/specs/2026-07-28-cdb-126a-radiology-acquisition-report-authority-design.md" },
+    { "kind": "schema", "path": "migrations/0559_canonical_radiology_acquisition_report.sql" },
+    { "kind": "commands", "path": "src/lib/canonical/commands/manage-radiology-acquisition-report.ts" },
+    { "kind": "backfill", "path": "scripts/canonical/backfill-radiology-acquisition-report.ts" },
+    { "kind": "reconciliation", "path": "scripts/canonical/reconcile-radiology-acquisition-report.ts" },
+    { "kind": "provider", "path": "src/lib/canonical/radiology-acquisition-report-provider.ts" },
+    { "kind": "adapters", "path": "src/lib/canonical/radiology-acquisition-report-read-adapters.ts" },
+    { "kind": "coverage", "path": "docs/database/canonical-radiology-acquisition-report-provider-coverage.json" },
+    { "kind": "backfill_receipt", "path": "docs/database/migration-runs/P12-canonical-radiology-acquisition-report-backfill-reconciliation.md" }
+  ],
+  "blockedGates": [
+    {
+      "gate": "production_activation",
+      "status": "blocked",
+      "reason": "Production migration, exact bounded production backfill, reconciliation, shadow observation, rollback execution evidence, and owner authorization are absent."
+    },
+    {
+      "gate": "legacy_retirement",
+      "status": "blocked",
+      "reason": "Legacy requisition, report, RIS, PACS, DICOM, storage, film, billing, rendering, and downstream readers/writers remain active and must be retained."
+    }
+  ]
+}

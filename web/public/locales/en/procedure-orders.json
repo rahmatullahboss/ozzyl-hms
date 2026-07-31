@@ -1,0 +1,53 @@
+{
+  "title": "Procedure Orders",
+  "subtitle": "Manage lab, imaging, and external referrals",
+  "newOrder": "New Order",
+  "loading": "Loading...",
+  "noOrders": "No procedure orders found.",
+  "createFirst": "Create First Order",
+  "table": {
+    "id": "ID",
+    "date": "Date",
+    "patientId": "Patient ID",
+    "type": "Type",
+    "priority": "Priority",
+    "status": "Status",
+    "action": "Action",
+    "view": "View",
+    "pending": "Pending",
+    "complete": "Complete",
+    "canceled": "Canceled",
+    "routed": "Routed"
+  },
+  "modal": {
+    "title": "Create Procedure Order",
+    "patientId": "Patient ID",
+    "providerId": "Provider ID",
+    "orderType": "Order Type",
+    "priority": "Priority",
+    "procedureCode": "Procedure Code",
+    "procedureName": "Procedure Name",
+    "diagnosis": "Clinical Diagnosis / Indication",
+    "cancel": "Cancel",
+    "create": "Create Order",
+    "creating": "Creating..."
+  },
+  "types": {
+    "laboratory_test": "Laboratory Test",
+    "radiology": "Radiology",
+    "cardiology": "Cardiology",
+    "referral": "Referral",
+    "other": "Other"
+  },
+  "priorities": {
+    "routine": "Routine",
+    "stat": "STAT",
+    "urgent": "Urgent",
+    "asap": "ASAP"
+  },
+  "notifications": {
+    "created": "Procedure order created successfully",
+    "failed": "Failed to create order",
+    "fillRequired": "Please fill all required fields"
+  }
+}

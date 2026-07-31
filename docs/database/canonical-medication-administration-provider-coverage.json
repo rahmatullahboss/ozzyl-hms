@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "domain": "medication_administration",
+  "provider": {
+    "flagKey": "canonical_medication_administration_provider_v1",
+    "enabledByDefault": false,
+    "defaultMode": "legacy",
+    "rollbackMode": "legacy",
+    "supportedModes": ["legacy", "shadow", "canonical"],
+    "providerPath": "src/lib/canonical/medication-administration-provider.ts",
+    "adapterPath": "src/lib/canonical/medication-administration-read-adapters.ts",
+    "exactSourceMappingRequired": true,
+    "textTimeSimilarityForbidden": true,
+    "correctionHistoryVisible": true,
+    "reconciliationHistoryVisible": true,
+    "shadowEvidencePhiMinimised": true
+  },
+  "selectedAdapters": [
+    {
+      "id": "cdb124e_mar_detail",
+      "kind": "library_adapter",
+      "function": "readMedicationAdministrationDetailAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    },
+    {
+      "id": "cdb124e_reconciliation_summary",
+      "kind": "library_adapter",
+      "function": "readMedicationReconciliationSummaryAdapter",
+      "routeActivated": false,
+      "rollbackMode": "legacy"
+    }
+  ],
+  "knownReaders": [
+    {
+      "path": "src/routes/tenant/nursing/medication-due.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    },
+    {
+      "path": "src/routes/tenant/nursing/clinical-summary.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    },
+    {
+      "path": "src/routes/tenant/patients-timeline.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    },
+    {
+      "path": "src/routes/tenant/patients-chart.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    },
+    {
+      "path": "src/lib/health-summary.ts",
+      "assignment": "legacy_unchanged",
+      "selectedAdapterId": null
+    }
+  ],
+  "summary": {
+    "selectedAdapterCount": 2,
+    "knownReaderCount": 5,
+    "unknownReaderAssignments": 0,
+    "routeActivationCount": 0
+  }
+}

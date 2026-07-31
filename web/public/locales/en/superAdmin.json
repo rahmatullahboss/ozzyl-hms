@@ -1,0 +1,9 @@
+{
+  "loadPricingFailed": "Failed to load pricing data",
+  "hospitalNameExample": "e.g. City General Hospital",
+  "subdomainExample": "e.g. city-general",
+  "adminFullNamePlaceholder": "Admin full name",
+  "adminEmailPlaceholder": "admin@hospital.com",
+  "hospitalStatusChanged": "Hospital {{status}}",
+  "statusUpdated": "Status updated to {{status}}"
+}

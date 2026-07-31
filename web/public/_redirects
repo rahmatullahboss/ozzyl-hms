@@ -1,0 +1,9 @@
+# Static asset entry rewrites. Wildcard SPA rewrites to /index.html-style files
+# are rejected by Workers Assets as redirect loops, so deep patient routes stay
+# Worker-first and are handled by src/index.ts.
+/admin /admin/index.html 200
+/patient /patient/index.html 200
+
+# Legacy operator links.
+/tutorial-page /tutorial-page/ 301
+/TESTING_TUTORIAL /tutorial-page/ 301

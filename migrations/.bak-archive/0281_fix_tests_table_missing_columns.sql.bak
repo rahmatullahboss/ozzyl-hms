@@ -1,0 +1,36 @@
+-- Migration 0281: Fix tests table and create bill_items table
+-- Already applied to production D1 on 2026-05-31
+-- NOTE: ALTER TABLE ADD COLUMN is NOT idempotent in SQLite.
+--       If re-running on a fresh DB, run the full block.
+--       If already applied, the CREATE TABLE/INDEX IF NOT EXISTS are safe.
+
+-- Step 1: Add missing columns to tests table
+-- (Skip if already applied — will error on duplicate column)
+ALTER TABLE tests ADD COLUMN patient_id INTEGER;
+ALTER TABLE tests ADD COLUMN test_name TEXT;
+ALTER TABLE tests ADD COLUMN result TEXT;
+ALTER TABLE tests ADD COLUMN date DATETIME;
+ALTER TABLE tests ADD COLUMN status TEXT DEFAULT 'pending';
+ALTER TABLE tests ADD COLUMN tenant_id TEXT;
+ALTER TABLE tests ADD COLUMN created_at DATETIME;
+
+CREATE INDEX IF NOT EXISTS idx_tests_patient ON tests(patient_id);
+CREATE INDEX IF NOT EXISTS idx_tests_tenant ON tests(tenant_id);
+
+-- Step 2: Create bill_items table if missing
+CREATE TABLE IF NOT EXISTS bill_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  bill_id INTEGER NOT NULL,
+  item_category TEXT DEFAULT 'consultation',
+  description TEXT,
+  quantity INTEGER DEFAULT 1,
+  unit_price REAL DEFAULT 0,
+  line_total REAL DEFAULT 0,
+  reference_id INTEGER,
+  status TEXT DEFAULT 'active',
+  tenant_id INTEGER NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_bill_items_bill ON bill_items(bill_id);
+CREATE INDEX IF NOT EXISTS idx_bill_items_tenant ON bill_items(tenant_id);

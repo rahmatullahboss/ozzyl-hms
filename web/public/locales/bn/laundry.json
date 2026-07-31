@@ -1,0 +1,46 @@
+{
+  "title": "লন্ড্রি",
+  "subtitle": "লিনেন সংগ্রহ, ধোয়া ট্র্যাকিং এবং ওয়ার্ড ডেলিভারি",
+  "tabs": {
+    "collections": "সংগ্রহ",
+    "linenTypes": "লিনেন প্রকার"
+  },
+  "stats": {
+    "todayCollections": "আজকের সংগ্রহ",
+    "inProcess": "প্রক্রিয়াধীন",
+    "readyForDelivery": "ডেলিভারির জন্য প্রস্তুত",
+    "todayItems": "আজকের আইটেম"
+  },
+  "table": {
+    "collectionNo": "সংগ্রহ নং",
+    "from": "থেকে",
+    "date": "তারিখ",
+    "items": "আইটেম",
+    "status": "অবস্থা",
+    "linenName": "লিনেনের নাম",
+    "category": "বিভাগ",
+    "parLevel": "পার লেভেল"
+  },
+  "noCollections": "কোন সংগ্রহ পাওয়া যায়নি",
+  "noLinenTypes": "কোন লিনেন প্রকার পাওয়া যায়নি",
+  "newCollection": "নতুন সংগ্রহ",
+  "addType": "নতুন প্রকার যোগ করুন",
+  "modals": {
+    "newCollection": "নতুন লন্ড্রি সংগ্রহ",
+    "addLinenType": "লিিনেন প্রকার যোগ করুন",
+    "selectLinen": "লিনেন নির্বাচন করুন...",
+    "addItem": "+ আইটেম যোগ করুন"
+  },
+  "status": {
+    "collected": "সংগৃহীত",
+    "washing": "ধোয়া হচ্ছে",
+    "drying": "শুকানো হচ্ছে",
+    "ironing": "ইস্ত্রি করা হচ্ছে",
+    "ready": "প্রস্তুত",
+    "delivered": "ডেলিভারি করা হয়েছে"
+  },
+  "toasts": {
+    "collectionRecorded": "সংগ্রহ সফলভাবে নথিভুক্ত করা হয়েছে",
+    "wardAndItemRequired": "ওয়ার্ড এবং অন্তত একটি আইটেম প্রয়োজনীয়"
+  }
+}

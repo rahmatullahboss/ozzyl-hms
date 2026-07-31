@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozzyl HMS - Testing Guide | টেস্টিং গাইড</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Nikosh', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            padding: 20px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 24pt;
+            color: #1a365d;
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #1a365d;
+        }
+        
+        h2 {
+            font-size: 16pt;
+            color: #2c5282;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding: 8px 15px;
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+        }
+        
+        h3 {
+            font-size: 13pt;
+            color: #2d3748;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background: #f7fafc;
+            border-left: 3px solid #4a5568;
+        }
+        
+        h4 {
+            font-size: 11pt;
+            color: #4a5568;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 9pt;
+        }
+        
+        th, td {
+            border: 1px solid #cbd5e0;
+            padding: 6px 8px;
+            text-align: left;
+        }
+        
+        th {
+            background: #2c5282;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        tr:hover {
+            background: #ebf8ff;
+        }
+        
+        .role-section {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            margin: 20px 0;
+            padding: 15px;
+            page-break-inside: avoid;
+        }
+        
+        .role-header {
+            background: #2c5282;
+            color: white;
+            padding: 10px 15px;
+            margin: -15px -15px 15px -15px;
+            font-size: 14pt;
+            font-weight: 600;
+        }
+        
+        .test-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .test-list li {
+            padding: 4px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .test-list li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #4a5568;
+        }
+        
+        .checklist {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .checklist li::before {
+            content: "☐";
+        }
+        
+        .workflow {
+            background: #faf5ff;
+            border: 1px solid #d6bcfa;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-arrow {
+            color: #805ad5;
+            font-size: 14pt;
+            margin: 0 10px;
+        }
+        
+        .sample-data {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 9pt;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #3182ce;
+            color: white;
+            font-size: 8pt;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+        
+        .badge-admin { background: #c53030; }
+        .badge-doctor { background: #2c5282; }
+        .badge-nurse { background: #2f855a; }
+        .badge-reception { background: #d69e2e; }
+        
+        .header-info {
+            text-align: center;
+            font-size: 10pt;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            font-size: 9pt;
+            color: #718096;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .box {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            margin: 10px 0;
+            background: #f7fafc;
+        }
+
+        .critical {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-left: 4px solid #c53030;
+            padding: 12px 15px;
+            margin: 15px 0;
+        }
+
+        .success {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-left: 4px solid #2f855a;
+            padding: 12px 15px;
+            margin: 15px 0;
+        }
+
+        .warning {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-left: 4px solid #d69e2e;
+            padding: 12px 15px;
+            margin: 15px 0;
+        }
+
+        .formula {
+            background: #edf2f7;
+            border: 1px dashed #718096;
+            padding: 8px 10px;
+            margin: 8px 0;
+            font-family: monospace;
+            font-size: 9pt;
+        }
+
+        .mini-check li {
+            margin-bottom: 6px;
+        }
+
+        .route {
+            display: inline-block;
+            background: #e6fffa;
+            color: #234e52;
+            border: 1px solid #81e6d9;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 8.5pt;
+        }
+
+        .status-pass {
+            color: #276749;
+            font-weight: 600;
+        }
+
+        .status-risk {
+            color: #975a16;
+            font-weight: 600;
+        }
+
+        .status-block {
+            color: #9b2c2c;
+            font-weight: 600;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+        
+        code {
+            background: #edf2f7;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 9pt;
+        }
+        
+        .two-col {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .two-col > div {
+            flex: 1;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .role-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ozzyl HMS - টেস্টিং গাইড</h1>
+<p class="header-info">সম্পূর্ণ হসপিটাল ম্যানেজমেন্ট সিস্টেম টেস্টিং ডকুমেন্ট | সংস্করণ ২.০ | মে ২০২৬</p>
+
+<div class="sample-data">
+    <strong>ইউজার ক্রেডেনশিয়াল:</strong> সব পাসওয়ার্ড: <strong>Demo@1234</strong><br>
+    Hospital: <strong>demo-hospital</strong><br>
+    admin@demo-hospital.com / Demo@1234 (hospital_admin)<br>
+    md@demo-hospital.com / Demo@1234 (md)<br>
+    director@demo-hospital.com / Demo@1234 (director)<br>
+    doctor@demo-hospital.com / Demo@1234 (doctor)<br>
+    nurse@demo-hospital.com / Demo@1234 (nurse)<br>
+    reception@demo-hospital.com / Demo@1234 (reception)<br>
+    lab@demo-hospital.com / Demo@1234 (laboratory)<br>
+    pharmacy@demo-hospital.com / Demo@1234 (pharmacist)<br>
+    accounts@demo-hospital.com / Demo@1234 (accountant)
+</div>
+
+<div class="success">
+    <h4>এই ডকুমেন্ট কীভাবে ব্যবহার করবেন</h4>
+    <p>প্রথমে <strong>Role-wise UAT</strong> করবেন, তারপর <strong>End-to-End Patient Flow</strong>, শেষে <strong>Financial Reconciliation</strong> করবেন। প্রতিটি টেস্টে expected result না মিললে production go-live করা যাবে না।</p>
+    <p><strong>Production URL:</strong> <code>https://hms.ozzyl.com</code> | <strong>Hospital:</strong> <code>demo-hospital</code> | <strong>Common password:</strong> <code>Demo@1234</code></p>
+</div>
+
+<div class="critical">
+    <h4>Production Ready বলার Minimum Rule</h4>
+    <p>একটি দিন শেষে নিচের তিনটি হিসাব অবশ্যই মিলতে হবে: <strong>Invoice Total = Collection + Due + Adjusted/Refunded</strong>, <strong>Daily Cash = Cash Ledger Total</strong>, এবং <strong>Doctor Payable = Approved Commission Entries</strong>। কোনো cancelled/not-done test payable commission-এ থাকবে না।</p>
+</div>
+
+<h2>১. ইউজার রোল পরিচিতি</h2>
+
+<table>
+    <tr>
+        <th>রোল</th>
+        <th>কোড</th>
+        <th>Frontend Route</th>
+        <th>API Endpoints</th>
+    </tr>
+    <tr>
+        <td><span class="badge badge-admin">অ্যাডমিন</span></td>
+        <td><code>hospital_admin</code></td>
+        <td>/ (main dashboard)</td>
+        <td>/api/settings, /api/staff, /api/reports, /api/audit</td>
+    </tr>
+    <tr>
+        <td><span class="badge">এমডি</span></td>
+        <td><code>md</code></td>
+        <td>/ (md dashboard)</td>
+        <td>/api/dashboard, /api/profit, /api/income, /api/expenses</td>
+    </tr>
+    <tr>
+        <td><span class="badge badge-doctor">ডাক্তার</span></td>
+        <td><code>doctor</code></td>
+        <td>/doctor</td>
+        <td>/api/patients, /api/prescriptions, /api/lab, /api/visits</td>
+    </tr>
+    <tr>
+        <td><span class="badge badge-nurse">নার্স</span></td>
+        <td><code>nurse</code></td>
+        <td>/nurse-station</td>
+        <td>/api/nurse-station, /api/vitals, /api/nursing</td>
+    </tr>
+    <tr>
+        <td><span class="badge badge-reception">রিসেপশনিস্ট</span></td>
+        <td><code>reception</code></td>
+        <td>/reception</td>
+        <td>/api/patients, /api/appointments, /api/billing, /api/visits</td>
+    </tr>
+    <tr>
+        <td><span class="badge">ফার্মাসিস্ট</span></td>
+        <td><code>pharmacist</code></td>
+        <td>/pharmacy</td>
+        <td>/api/pharmacy, /api/pharmacy/medicines</td>
+    </tr>
+    <tr>
+        <td><span class="badge">ল্যাব</span></td>
+        <td><code>laboratory</code></td>
+        <td>/lab</td>
+        <td>/api/lab, /api/lab/orders, /api/lab/items</td>
+    </tr>
+    <tr>
+        <td><span class="badge">অ্যাকাউন্ট্যান্ট</span></td>
+        <td><code>accountant</code></td>
+        <td>/accountant</td>
+        <td>/api/income, /api/expenses, /api/journal</td>
+    </tr>
+</table>
+
+<h2>২. রোল অনুযায়ী টেস্ট কেস</h2>
+
+<div class="role-section">
+    <div class="role-header">২.১ রিসেপশনিস্ট (Receptionist)</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Reception role → Dashboard | <strong>API:</strong> /api/patients, /api/appointments, /api/billing, /api/admissions</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>নতুন পেশেন্ট রেজিস্ট্রেশন করো (নাম, ফোন, জন্মতারিখ, লিঙ্গ)</li>
+        <li>ফোন নম্বর দিয়ে পেশেন্ট সার্চ করো</li>
+        <li>ডাক্তারের জন্য অ্যাপয়েন্টমেন্ট বুকিং করো</li>
+        <li>আজকের অ্যাপয়েন্টমেন্ট লিস্ট দেখো</li>
+        <li>OPD পেশেন্টের জন্য বিল তৈরি করো</li>
+        <li>ক্যাশ দিয়ে পেমেন্ট রেকর্ড করো</li>
+        <li>কার্ড দিয়ে পেমেন্ট রেকর্ড করো</li>
+        <li>Ward-A তে Bed #101 তে পেশেন্ট অ্যাডমিট করো</li>
+        <li>বেড অকুপ্যান্সি স্ট্যাটাস দেখো</li>
+        <li>রসিদ প্রিন্ট করো</li>
+        <li>CBC ল্যাব টেস্ট অর্ডার করো</li>
+        <li>নার্স স্টেশনে পেশেন্ট ট্রান্সফার করো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.২ নার্স (Nurse)</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Nurse role → Nurse Station | <strong>API:</strong> /api/nurse-station, /api/vitals</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>অ্যাডমিটেড পেশেন্টসহ ড্যাশবোর্ড দেখো</li>
+        <li>পেশেন্ট vitals রেকর্ড করো (BP: 120/80, Temp: 98.6°F, HR: 72, SpO2: 98%)</li>
+        <li>সময়ের সাথে vital trends দেখো</li>
+        <li>নার্সিং প্রগ্রেস নোট যোগ করো</li>
+        <li>মেডিকেশন দেওয়া রেকর্ড করো (MAR)</li>
+        <li>ফ্লুইড input/output রেকর্ড করো</li>
+        <li>পেশেন্ট অ্যাডমিশন ডিটেলস দেখো</li>
+        <li>পেশেন্ট প্রেসক্রিপশন লিস্ট দেখো</li>
+        <li>abnormal vitals এর জন্য alert চেক করো</li>
+        <li>শিফট হ্যান্ডওভার নোটস লেখো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.৩ ডাক্তার (Doctor)</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Doctor role → Doctor Dashboard | <strong>API:</strong> /api/patients, /api/prescriptions, /api/lab, /api/doctors</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>আজকের অ্যাপয়েন্টমেন্টসহ ড্যাশবোর্ড দেখো</li>
+        <li>পেশেন্টের সম্পূর্ণ হিস্ট্রি দেখো</li>
+        <li>নতুন প্রেসক্রিপশন লেখো (মেডিকেশন, ডোজেজ)</li>
+        <li>ল্যাব টেস্ট অর্ডার করো (CBC, Lipid Profile)</li>
+        <li>ল্যাব রেজাল্ট দেখো</li>
+        <li>ক্লিনিক্যাল নোটস যোগ করো</li>
+        <li>provisional diagnosis আপডেট করো</li>
+        <li>ডিসচার্জ সামারি লেখো</li>
+        <li>টেলিমেডিসিন ভিডিও কল শুরু করো</li>
+        <li>পেশেন্ট vitals ও নার্সিং নোটস দেখো</li>
+        <li>স্পেশালিস্টে রেফারাল তৈরি করো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.৪ হসপিটাল অ্যাডমিন</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Hospital Admin role → Dashboard | <strong>API:</strong> /api/settings, /api/users, /api/staff, /api/reports, /api/audit</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>KPIs সহ হসপিটাল ড্যাশবোর্ড দেখো</li>
+        <li>রিসেপশন রোলে নতুন ইউজার তৈরি করো</li>
+        <li>নার্স রোলে নতুন ইউজার তৈরি করো</li>
+        <li>ডাক্তার রোলে নতুন ইউজার তৈরি করো</li>
+        <li>রোল পারমিশন মডিফাই করো</li>
+        <li>হসপিটাল ডিটেলস কনফিগার করো (নাম, ঠিকানা, লোগো)</li>
+        <li>অডিট লগ দেখো</li>
+        <li>ডেইলি কালেকশন রিপোর্ট জেনারেট করো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.৫ ম্যানেজিং ডাইরেক্টর (MD)</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → MD role → MD Dashboard | <strong>API:</strong> /api/dashboard, /api/reports, /api/profit, /api/income, /api/expenses</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>KPIs সহ বিজনেস ড্যাশবোর্ড দেখো</li>
+        <li>রিভিনিউ রিপোর্ট দেখো (দৈনিক, সাপ্তাহিক, মাসিক)</li>
+        <li>খরচ রিপোর্ট দেখো</li>
+        <li>প্রফিট/লস ক্যাল্কুলেট করো</li>
+        <li>স্টাফ রোস্টার দেখো</li>
+        <li>অ্যাকাউন্টিং এন্ট্রি দেখো</li>
+        <li>বিজনেস রিপোর্ট জেনারেট করো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.৬ ফার্মাসিস্ট (Pharmacist)</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Pharmacist role → Pharmacy Dashboard | <strong>API:</strong> /api/pharmacy, /api/pharmacy/medicines, /api/prescriptions</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>ফার্মেসি ড্যাশবোর্ড দেখো</li>
+        <li>পেন্ডিং প্রেসক্রিপশন দেখো</li>
+        <li>ভ্যালিড Rx এর বিপরীতে মেডিসিন ডিসপেন্স করো</li>
+        <li>ইনভেন্টরি আপডেট করো</li>
+        <li>বর্তমান স্টক লেভেল দেখো</li>
+        <li>মেডিসিন রিটার্ন রেকর্ড করো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.৭ ল্যাবরেটরি স্টাফ</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Laboratory role → Lab Dashboard | <strong>API:</strong> /api/lab, /api/lab/orders, /api/lab/items</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>পেন্ডিং টেস্টসহ ল্যাব ড্যাশবোর্ড দেখো</li>
+        <li>টেস্ট অর্ডার লিস্ট দেখো</li>
+        <li>স্যাম্পল কালেক্টেড মার্ক করো</li>
+        <li>টেস্ট রেজাল্ট এন্ট্রি করো (CBC ভ্যালু)</li>
+        <li>রেজাল্ট ভেরিফাই করো</li>
+        <li>টেস্ট রিপোর্ট প্রিন্ট করো</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">২.৮ অ্যাকাউন্ট্যান্ট</div>
+    <p><strong>লগইন:</strong> <code>/h/demo-hospital/login</code> → Accountant role → Accounting Dashboard | <strong>API:</strong> /api/income, /api/expenses, /api/journal, /api/accounting</p>
+    
+    <h4>টেস্ট কেস:</h4>
+    <ul class="test-list">
+        <li>ফাইন্যান্স ড্যাশবোর্ড দেখো</li>
+        <li>ডেইলি কালেকশন দেখো</li>
+        <li>খরচ এন্ট্রি রেকর্ড করো</li>
+        <li>লেজার এন্ট্রি দেখো</li>
+        <li>আয়/খরচ রিপোর্ট জেনারেট করো</li>
+    </ul>
+</div>
+
+<h2>৩. কোম্প্লিট পেশেন্ট ফ্লো (API সহ)</h2>
+
+<div class="workflow">
+    <h4>৩.১ OPD ভিজিট ফ্লো</h4>
+    <div class="workflow-step">
+        <span>১. রিসেপশন → POST /api/patients (রেজিস্ট্রেশন)</span>
+    </div>
+    <div class="workflow-step">
+        <span>২. POST /api/appointments (অ্যাপয়েন্টমেন্ট বুকিং)</span>
+    </div>
+    <div class="workflow-step">
+        <span>৩. ডাক্তার → GET /api/visits?date=today</span>
+    </div>
+    <div class="workflow-step">
+        <span>৪. POST /api/prescriptions (প্রেসক্রিপশন)</span>
+    </div>
+    <div class="workflow-step">
+        <span>৫. POST /api/billing (বিল তৈরি)</span>
+    </div>
+    <div class="workflow-step">
+        <span>৬. POST /api/income (পেমেন্ট)</span>
+    </div>
+    <div class="workflow-step">
+        <span>৭. ফার্মেসি → POST /api/pharmacy/dispense (ডিসপেন্স)</span>
+    </div>
+</div>
+
+<div class="workflow">
+    <h4>৩.২ IPD অ্যাডমিশন ফ্লো</h4>
+    <div class="workflow-step">
+        <span>রিসেপশন → POST /api/admissions → বেড অ্যালোকেট →</span>
+    </div>
+    <div class="workflow-step">
+        <span>নার্স → POST /api/nurse-station/vitals → POST /api/nursing</span>
+    </div>
+    <div class="workflow-step">
+        <span>ডাক্তার → GET /api/patients/:id → POST /api/lab/orders → POST /api/prescriptions</span>
+    </div>
+    <div class="workflow-step">
+        <span>নার্স → POST /api/nurse-station/vitals (MAR) →</span>
+    </div>
+    <div class="workflow-step">
+        <span>ডাক্তার → POST /api/discharge →</span>
+    </div>
+    <div class="workflow-step">
+        <span>বিলিং → POST /api/ip-billing → POST /api/income →</span>
+    </div>
+    <div class="workflow-step">
+        <span>রিসেপশন → পেমেন্ট → Discharge complete</span>
+    </div>
+</div>
+
+<div class="workflow">
+    <h4>৩.৩ ইমার্জেন্সি ফ্লো</h4>
+    <div class="workflow-step">
+        <span>ইমার্জেন্সি → ট্রায়াজ (vitals) → স্ট্যাবিলাইজ → অ্যাডমিশন/ডিসচার্জ → কন্টিনিউয়াস মনিটরিং → ট্রিটমেন্ট</span>
+    </div>
+</div>
+
+<h2>৪. স্যাম্পল টেস্ট ডেটা</h2>
+
+<div class="sample-data">
+    <strong>স্যাম্পল পেশেন্ট:</strong><br>
+    রহিম হাসান, পুরুষ, ৪৫ বছর, ফোন: ০১৭১০০০০০১<br>
+    ফাতেমা বেগম, মহিলা, ৩২ বছর, ফোন: ০১৭১০০০০০২<br>
+    করিম আহমেদ, পুরুষ, ৫৮ বছর, ফোন: ০১৭১০০০০০৩
+</div>
+
+<div class="sample-data">
+    <strong>স্যাম্পল সার্ভিস ও প্রাইস:</strong><br>
+    OPD কনসাল্টেশন: ৫০০ টাকা<br>
+    IPD বেড (জেনারেল): ১০০০ টাকা/রাত<br>
+    IPD বেড (ক্যাবিন): ২৫০০ টাকা/রাত<br>
+    CBC টেস্ট: ৪০০ টাকা<br>
+    Lipid Profile: ১২০০ টাকা
+</div>
+
+<h2>৫. চেকলিস্ট</h2>
+
+<div class="checklist">
+    <h4>প্রি-ফ্লাইট টেস্ট (Pre-Flight):</h4>
+    <ul class="test-list">
+        <li>সব ইউজার সফলভাবে লগইন করতে পারে</li>
+        <li>পাসওয়ার্ড রিসেট ফাংশন কাজ করে</li>
+        <li>প্রতিটি রোলের ড্যাশবোর্ড লোড হয়</li>
+        <li>ন্যাভিগেশন মেনু সঠিক মডিউল দেখায়</li>
+    </ul>
+</div>
+
+<div class="checklist">
+    <h4>কোর ফাংশন টেস্ট:</h4>
+    <ul class="test-list">
+        <li>পেশেন্ট রেজিস্ট্রেশন → তৈরি → সার্চ → দেখা</li>
+        <li>অ্যাপয়েন্টমেন্ট → তৈরি → দেখা → ক্যান্সেল</li>
+        <li>বিলিং → ইনভয়েস → পেমেন্ট → রসিদ</li>
+        <li>IPD → অ্যাডমিট → Vitals → ডিসচার্জ</li>
+    </ul>
+</div>
+
+<div class="checklist">
+    <h4>ইন্টিগ্রেশন টেস্ট:</h4>
+    <ul class="test-list">
+        <li>রিসেপশন → ডাক্তার → ফার্মেসি সম্পূর্ণ ফ্লো</li>
+        <li>বিলিং → অ্যাকাউন্টিং ডেটা সিঙ্ক</li>
+        <li>রিপোর্ট → ডেটা অ্যাকিউরেসি</li>
+    </ul>
+</div>
+
+<h2>৬. এজ কেস</h2>
+
+<table>
+    <tr>
+        <th>রোল</th>
+        <th>এজ কেস</th>
+    </tr>
+    <tr>
+        <td>রিসেপশনিস্ট</td>
+        <td>ডুপ্লিকেট ফোন, ডুবল বুকিং, অবৈধ ফোন নম্বর, পেমেন্ট গেটওয়ে ব্যর্থতা</td>
+    </tr>
+    <tr>
+        <td>নার্স</td>
+        <td>abnormal vitals (alert), পেশেন্ট পাওয়া যাচ্ছে না, অ্যাডমিশন ID মিসিং</td>
+    </tr>
+    <tr>
+        <td>ডাক্তার</td>
+        <td>বন্ধ মেডিকেশন প্রেসক্রাইব, অ্যালার্জি চেক মিসিং, ডুপ্লিকেট প্রেসক্রিপশন</td>
+    </tr>
+    <tr>
+        <td>অ্যাডমিন</td>
+        <td>অ্যাক্টিভ সেশনে ইউজার ডিলিট, পারমিশন পরিবর্তন লগড-ইন ইউজারে</td>
+    </tr>
+</table>
+
+<h2>৭. পরিচিত সমস্যা</h2>
+
+<ul>
+    <li><strong>টু-ফ্যাক্টর অথেনটিকেশন:</strong> এখনো ইমপ্লিমেন্ট হয়নি</li>
+    <li><strong>ইমেইল নোটিফিকেশন:</strong> SMTP কনফিগারেশন দরকার</li>
+    <li><strong>এসএমএস:</strong> API key কনফিগারেশন দরকার</li>
+    <li><strong>HL7 ইন্টিগ্রেশন:</strong> শুধু প্লেসহোল্ডার</li>
+</ul>
+
+<h2>৮. ক্যালকুলেশন ও ব্যালেন্স চেক</h2>
+
+<div class="box">
+    <h4>৮.১ আয়-খরচ-লাভ চেক</h4>
+    <ul class="test-list">
+        <li>সব পেমেন্টের যোগফল = মোট আয়</li>
+        <li>সব খরচের যোগফল = মোট খরচ</li>
+        <li>মোট আয় - মোট খরচ = লাভ/ক্ষতি</li>
+        <li>Profit Report এর সাথে Manual হিসাব মিলাও</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৮.২ বিলিং ব্যালেন্স চেক</h4>
+    <ul class="test-list">
+        <li>সব Invoice (paid + unpaid) = মোট বিল</li>
+        <li>Paid Invoice = প্রাপ্ত অর্থ</li>
+        <li>মোট বিল - প্রাপ্ত অর্থ = মোট পাওনা</li>
+        <li>Advance Deposit যোগ করা হয়েছে কি?</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৮.৩ মেডিসিন ইনভেন্টরি চেক</h4>
+    <ul class="test-list">
+        <li>প্রতিটি medicine এর পরিমাণ × দাম = Stock Value</li>
+        <li>সব medicine এর stock value যোগ = মোট inventory value</li>
+        <li>Dispense হওয়া medicine এর পরিমাণ × দাম = Sold Value</li>
+        <li>Opening + Received - Sold - Returned = Current Stock</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৮.৪ ল্যাব রিপোর্ট চেক</h4>
+    <ul class="test-list">
+        <li>আজকের মোট Order = Pending + Completed + Cancelled</li>
+        <li>Completed Test × Fee = Collection</li>
+        <li>Pending Test = Order করা হয়েছে কিন্তু Result Enter হয়নি</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৮.৫ পেশেন্ট কাউন্ট চেক</h4>
+    <ul class="test-list">
+        <li>মোট Registered Patient = Patient Table এর Count</li>
+        <li>আজকের Visit = আজকের Appointment + Walk-in</li>
+        <li>বর্তমান IPD = Active Admission</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৮.৬ বেড অকুপ্যান্সি চেক</h4>
+    <ul class="test-list">
+        <li>মোট Bed = Ward × Bed Count</li>
+        <li>Occupied Bed = Status = Occupied</li>
+        <li>Available = Total - Occupied</li>
+        <li>Occupancy % = (Occupied / Total) × 100</li>
+    </ul>
+</div>
+
+<h2>৯. ক্রস-মডিউল চেক</h2>
+
+<div class="box">
+    <h4>৯.১ Patient Linkages</h4>
+    <ul class="test-list">
+        <li>Visit এর Patient = Patient Table এর Patient?</li>
+        <li>Prescription এর Patient = Patient Table এর Patient?</li>
+        <li>Lab Order এর Patient = Patient Table এর Patient?</li>
+        <li>Bill এর Patient = Patient Table এর Patient?</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৯.২ Billing → Accounting</h4>
+    <ul class="test-list">
+        <li>Invoice Paid হলে = Income Entry তৈরি হয়েছে?</li>
+        <li>Expense Entry হলে = Journal Entry তৈরি হয়েছে?</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>৯.৩ Pharmacy</h4>
+    <ul class="test-list">
+        <li>Prescription করা হলে = Dispense করা যায়?</li>
+        <li>Dispense হলে = Stock কমেছে?</li>
+        <li>Purchase Order করলে = Stock বেড়েছে?</li>
+    </ul>
+</div>
+
+<h2>১০. Data Integrity চেক</h2>
+
+<div class="box">
+    <ul class="test-list">
+        <li>Foreign Key: patient_id সব জায়গায় valid?</li>
+        <li>Orphan Record: কোনো bill এর patient_id null/invalid নেই?</li>
+        <li>Negative Values: কোনো stock/balance negative নেই?</li>
+        <li>Future Dates: কোনো admission date ভবিষ্যতে নেই?</li>
+        <li>Blank Fields: Name/Phone খালি নেই?</li>
+    </ul>
+</div>
+
+<h2 class="page-break">১১. Production UAT Master Tutorial</h2>
+
+<div class="warning">
+    <h4>UAT করার নিয়ম</h4>
+    <p>একজন tester একই দিনে ৩ ধরনের evidence রাখবে: screen result, receipt/report number, এবং manual calculation। শুধু page open হলেই pass নয়; টাকা, status, stock, commission, audit log এবং role restriction মিললে pass হবে।</p>
+</div>
+
+<table>
+    <tr>
+        <th>Gate</th>
+        <th>কি চেক করবেন</th>
+        <th>Pass Criteria</th>
+    </tr>
+    <tr>
+        <td>Functional</td>
+        <td>প্রতিটি role নিজের কাজ করতে পারে</td>
+        <td>নতুন record save হয়, পরে search/report-এ পাওয়া যায়</td>
+    </tr>
+    <tr>
+        <td>Financial</td>
+        <td>bill, payment, due, deposit, credit note, commission</td>
+        <td>manual calculation ও system report এক টাকা পর্যন্ত মিলে</td>
+    </tr>
+    <tr>
+        <td>Security</td>
+        <td>role permission, audit log, sensitive edit history</td>
+        <td>wrong role blocked, sensitive action audit log-এ থাকে</td>
+    </tr>
+    <tr>
+        <td>Operational</td>
+        <td>queue, lab status, pharmacy stock, bed status</td>
+        <td>status পরিবর্তন linked modules-এ সাথে সাথে দেখা যায়</td>
+    </tr>
+</table>
+
+<div class="box">
+    <h4>১১.১ Reference Benchmark Principles</h4>
+    <ul class="test-list mini-check">
+        <li>Epic-style revenue cycle thinking: registration, scheduling, charging, billing, payment, patient estimate, and financial reporting should be integrated in one workflow. Reference: <code>https://www.epic.com/software/access-and-revenue-cycle/</code></li>
+        <li>Oracle Health-style approach: front revenue cycle, clinical/financial data link, patient accounting, and near real-time operational visibility should not be separated into disconnected systems. Reference: <code>https://www.oracle.com/health/revenue-cycle/</code></li>
+        <li>Healthcare audit control principle: systems that handle sensitive health information need user activity review, audit controls, access review, and security incident tracking. Reference: <code>https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/audit/protocol/index.html</code></li>
+    </ul>
+</div>
+
+<h2>১২. Role-wise Detailed Testing Guide</h2>
+
+<div class="role-section">
+    <div class="role-header">১২.১ Receptionist / Cash Counter</div>
+    <p><strong>Login:</strong> <code>reception@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/reception/dashboard</span> <span class="route">/h/demo-hospital/reception/patients/new</span> <span class="route">/h/demo-hospital/billing</span> <span class="route">/h/demo-hospital/payments</span> <span class="route">/h/demo-hospital/deposits</span> <span class="route">/h/demo-hospital/credit-notes</span> <span class="route">/h/demo-hospital/settlements</span> <span class="route">/h/demo-hospital/reception/reports</span></p>
+
+    <h4>Patient Registration</h4>
+    <ul class="test-list mini-check">
+        <li>নতুন patient তৈরি করুন: নাম, phone, gender, age/date of birth, address পূরণ করুন। Expected: unique patient ID তৈরি হবে।</li>
+        <li>একই phone দিয়ে আবার registration চেষ্টা করুন। Expected: duplicate warning/search suggestion আসবে অথবা duplicate creation block হবে।</li>
+        <li>পুরোনো patient phone/name দিয়ে search করুন। Expected: আগের visit, due, deposit balance, pending bill দেখা যাবে।</li>
+    </ul>
+
+    <h4>OPD Visit + Consultation Fee</h4>
+    <ul class="test-list mini-check">
+        <li>Doctor select করে visit/appointment তৈরি করুন। Expected: queue/token তৈরি হবে এবং doctor dashboard-এ patient visible হবে।</li>
+        <li>Consultation fee bill করুন। Expected: invoice subtotal = doctor/service fee, discount valid হলে total কমবে।</li>
+        <li>Discount subtotal-এর বেশি দিন। Expected: system reject করবে, negative bill তৈরি হবে না।</li>
+        <li>Cash payment নিন। Expected: bill paid/due আপডেট হবে, payment entry এবং daily collection ledger-এ cash entry যাবে।</li>
+    </ul>
+
+    <h4>Due / Partial Payment</h4>
+    <ul class="test-list mini-check">
+        <li>৳২০০০ bill-এ ৳১০০০ payment নিন। Expected: paid ৳১০০০, due ৳১০০০, invoice status partial/pending।</li>
+        <li>Due collection পরে করুন। Expected: second receipt তৈরি হবে, total paid ৳২০০০, due ৳০।</li>
+        <li>Payment amount bill due-এর বেশি হলে gateway/verify flow-এ excess patient deposit হবে। Expected: bill overpaid হবে না।</li>
+    </ul>
+
+    <h4>Cancel / Refund / Credit Note</h4>
+    <ul class="test-list mini-check">
+        <li>Unpaid bill cancel করুন। Expected: bill cancelled, linked unpaid lab order/item cancelled, payable commission নেই।</li>
+        <li>Paid bill cancel চেষ্টা করুন। Expected: direct cancel block হবে; credit note/return path ব্যবহার করতে বলবে।</li>
+        <li>Credit note issue করুন। Expected: refund amount bill paid-এর বেশি হবে না, income reverse হবে, cash transaction SalesReturn হবে।</li>
+        <li>Refund report ও daily collection report মিলান। Expected: net collection থেকে refund বাদ যাবে।</li>
+    </ul>
+
+    <h4>Receptionist Negative Permission</h4>
+    <ul class="test-list mini-check">
+        <li>Doctor clinical note edit করার চেষ্টা করুন। Expected: blocked/forbidden।</li>
+        <li>Commission approval/payment করার চেষ্টা করুন। Expected: blocked/forbidden।</li>
+        <li>Audit log delete করার চেষ্টা করুন। Expected: blocked/forbidden।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.২ Doctor</div>
+    <p><strong>Login:</strong> <code>doctor@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/doctor-dashboard</span> <span class="route">/h/demo-hospital/consultations</span> <span class="route">/h/demo-hospital/prescriptions</span> <span class="route">/h/demo-hospital/lab/orders</span></p>
+
+    <h4>Consultation</h4>
+    <ul class="test-list mini-check">
+        <li>Today queue থেকে patient open করুন। Expected: patient demographics, vitals, previous visits দেখা যাবে।</li>
+        <li>Chief complaint, diagnosis, advice, follow-up date save করুন। Expected: save-এর পর same visit-এ data থাকে।</li>
+        <li>Medicine prescription লিখুন। Expected: pharmacy pending prescription-এ visible হবে।</li>
+        <li>Visit close করুন। Expected: closed status/report visible; unauthorized user clinical note change করতে পারবে না।</li>
+    </ul>
+
+    <h4>Test Ordering</h4>
+    <ul class="test-list mini-check">
+        <li>CBC এবং Lipid Profile order করুন। Expected: lab order তৈরি হবে, billable items তৈরি হবে, referring doctor linked থাকবে।</li>
+        <li>Doctor change করে test order edit করার চেষ্টা করুন। Expected: audit log থাকবে; commission old/new doctor mismatch হবে না।</li>
+        <li>Duplicate same test একই visit-এ দিন। Expected: system policy অনুযায়ী duplicate warning/block অথবা quantity clearly shown।</li>
+    </ul>
+
+    <h4>Doctor Negative Permission</h4>
+    <ul class="test-list mini-check">
+        <li>Payment edit/refund করার চেষ্টা করুন। Expected: blocked।</li>
+        <li>নিজের commission amount edit করার চেষ্টা করুন। Expected: blocked।</li>
+        <li>অন্য doctor-এর private queue/settlement open করুন। Expected: blocked or read-limited।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.৩ Laboratory Staff</div>
+    <p><strong>Login:</strong> <code>lab@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/lab/dashboard</span> <span class="route">/h/demo-hospital/lab/orders</span> <span class="route">/h/demo-hospital/lab/catalog</span> <span class="route">/h/demo-hospital/lab/reports</span></p>
+
+    <h4>Lab Status Flow</h4>
+    <ul class="test-list mini-check">
+        <li>Doctor ordered test lab queue-তে দেখুন। Expected: status Ordered/Pending।</li>
+        <li>Payment না হলে sample collect করার চেষ্টা করুন। Expected: hospital policy অনুযায়ী block বা clear due warning।</li>
+        <li>Sample Collected করুন। Expected: sample time/user audit থাকবে; billing status unchanged থাকবে।</li>
+        <li>In Progress করুন। Expected: queue count pending থেকে in-progress-এ যাবে।</li>
+        <li>Result enter করে Done/Verified করুন। Expected: report printable, doctor view-তে visible।</li>
+        <li>Delivered mark করুন। Expected: delivered time/user saved।</li>
+    </ul>
+
+    <h4>Cancellation / Not Done</h4>
+    <ul class="test-list mini-check">
+        <li>Unpaid Ordered test cancel করুন। Expected: bill item cancel/adjust হবে, commission reversed/zero।</li>
+        <li>Paid test cancel করতে চাইলে credit note path ব্যবহার করুন। Expected: direct silent cancel হবে না।</li>
+        <li>Patient test করতে না চাইলে Not Done/Pending status দিন। Expected: done count বাড়বে না, commission payable হবে না।</li>
+    </ul>
+
+    <h4>Reagent / Consumable Cost</h4>
+    <ul class="test-list mini-check">
+        <li>Test catalog-এ consumable recipe থাকলে result complete-এর পর stock movement দেখুন। Expected: recipe quantity × completed test count stock থেকে কমবে।</li>
+        <li>Low stock consumable দিয়ে test complete করার চেষ্টা করুন। Expected: warning/block according to stock policy।</li>
+        <li>Lab profitability report খুলুন। Expected: revenue - consumable cost - doctor commission = gross profit।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.৪ Accountant / Accounts Officer</div>
+    <p><strong>Login:</strong> <code>accounts@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/accounting</span> <span class="route">/h/demo-hospital/payments</span> <span class="route">/h/demo-hospital/deposits</span> <span class="route">/h/demo-hospital/credit-notes</span> <span class="route">/h/demo-hospital/settlements</span> <span class="route">/h/demo-hospital/commissions</span> <span class="route">/h/demo-hospital/reception/reports</span></p>
+
+    <h4>Daily Closing</h4>
+    <ul class="test-list mini-check">
+        <li>আজকের bill total, paid, due, discount, refund export করুন। Expected: invoice summary এবং daily collection report মিলে।</li>
+        <li>Cash/Card/bKash/Nagad আলাদা filter করুন। Expected: payment method-wise total bank/cash drawer-এর সাথে মিলে।</li>
+        <li>Credit note total দেখুন। Expected: income reverse এবং cash refund report-এ একই amount।</li>
+        <li>Deposit collection/refund/adjustment মিলান। Expected: deposit balance কখনো negative নয়।</li>
+    </ul>
+
+    <h4>Doctor Commission</h4>
+    <ul class="test-list mini-check">
+        <li>Doctor-wise commission report খুলুন। Expected: doctor, patient, visit, test, bill, paid amount, commission base, commission amount visible।</li>
+        <li>Fixed commission rule টেস্ট করুন। Example: CBC fixed ৳৫০ হলে completed/paid CBC-তে ৳৫০ accrual।</li>
+        <li>Percentage rule টেস্ট করুন। Example: net basis ৳৯০০ × ২০% = ৳১৮০।</li>
+        <li>Cancelled/Not Done test report-এ দেখুন। Expected: payable commission ৳০ বা reversed status।</li>
+        <li>Doctor settlement করুন। Expected: commission status Paid, duplicate settlement blocked।</li>
+    </ul>
+
+    <h4>Accounting Negative Permission</h4>
+    <ul class="test-list mini-check">
+        <li>Clinical diagnosis edit করুন। Expected: blocked।</li>
+        <li>Lab result change করুন। Expected: blocked।</li>
+        <li>নিজের cash transaction delete করুন। Expected: blocked or audited reversal only।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.৫ Pharmacist</div>
+    <p><strong>Login:</strong> <code>pharmacy@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/pharmacy</span> <span class="route">/h/demo-hospital/pharmacy/new</span> <span class="route">/h/demo-hospital/pharmacy/invoices</span> <span class="route">/h/demo-hospital/pharmacy/returns</span> <span class="route">/h/demo-hospital/pharmacy/stock</span></p>
+
+    <h4>Prescription to Sale</h4>
+    <ul class="test-list mini-check">
+        <li>Doctor prescription থেকে medicine sale করুন। Expected: invoice তৈরি, stock batch decrease, receipt printable।</li>
+        <li>Out-of-stock medicine sell করার চেষ্টা করুন। Expected: blocked।</li>
+        <li>Expired batch sell করার চেষ্টা করুন। Expected: blocked।</li>
+        <li>Medicine return করুন। Expected: sale return entry, stock increase/return stock, refund/credit note policy applied।</li>
+    </ul>
+
+    <h4>Pharmacy Calculation</h4>
+    <ul class="test-list mini-check">
+        <li>Sale value = quantity × sale price - discount।</li>
+        <li>COGS = quantity × batch cost price।</li>
+        <li>Gross profit = sale value - COGS - return adjustment।</li>
+        <li>Current stock = opening + purchase + return-in - sale - supplier-return - write-off।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.৬ Inventory / Store</div>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/inventory</span> <span class="route">/h/demo-hospital/pharmacy/purchase-orders</span> <span class="route">/h/demo-hospital/pharmacy/goods-receipts</span> <span class="route">/h/demo-hospital/pharmacy/requisitions</span> <span class="route">/h/demo-hospital/pharmacy/dispatches</span> <span class="route">/h/demo-hospital/pharmacy/write-offs</span></p>
+
+    <ul class="test-list mini-check">
+        <li>Purchase Order তৈরি করুন। Expected: approval ছাড়া stock বাড়বে না।</li>
+        <li>Goods Receipt করুন। Expected: batch/expiry/costসহ stock বাড়বে।</li>
+        <li>Department requisition approve করে dispatch করুন। Expected: store stock কমবে, department movement log থাকবে।</li>
+        <li>Write-off করুন। Expected: reason required, stock কমবে, audit log থাকবে।</li>
+        <li>Negative stock scenario test করুন। Expected: blocked।</li>
+        <li>Low stock ও expiring alert খুলুন। Expected: threshold/expiry date অনুযায়ী item দেখাবে।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.৭ Nurse / IPD Ward</div>
+    <p><strong>Login:</strong> <code>nurse@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/nurse-station</span> <span class="route">/h/demo-hospital/admissions</span> <span class="route">/h/demo-hospital/ip-billing</span></p>
+
+    <ul class="test-list mini-check">
+        <li>Admitted patient list দেখুন। Expected: ward/bed/current doctor visible।</li>
+        <li>Vitals enter করুন। Expected: vitals trend visible, abnormal value alert।</li>
+        <li>Nursing note/MAR/fluid input-output save করুন। Expected: timestamp/userসহ visible।</li>
+        <li>Bed transfer test করুন। Expected: old bed available, new bed occupied, bed charge policy correct।</li>
+        <li>Discharge billing preview করুন। Expected: daily bed charge, nursing/procedure/lab/pharmacy dues included।</li>
+    </ul>
+</div>
+
+<div class="role-section">
+    <div class="role-header">১২.৮ Hospital Admin / MD / Director</div>
+    <p><strong>Login:</strong> <code>admin@demo-hospital.com</code>, <code>md@demo-hospital.com</code>, <code>director@demo-hospital.com</code> / <code>Demo@1234</code></p>
+    <p><strong>Primary pages:</strong> <span class="route">/h/demo-hospital/dashboard</span> <span class="route">/h/demo-hospital/md/dashboard</span> <span class="route">/h/demo-hospital/director/dashboard</span> <span class="route">/h/demo-hospital/staff</span> <span class="route">/h/demo-hospital/settings</span> <span class="route">/h/demo-hospital/audit</span></p>
+
+    <ul class="test-list mini-check">
+        <li>Staff user create/update/deactivate করুন। Expected: inactive user login করতে পারবে না।</li>
+        <li>Role permission change করুন। Expected: affected user menu/API permission change হবে এবং audit log থাকবে।</li>
+        <li>Doctor profile, visit fee, commission rule configure করুন। Expected: next visit/test order-এ নতুন fee/rule applied।</li>
+        <li>Daily/monthly revenue dashboard খুলুন। Expected: cash, due, refund, discount, doctor payable totals accountant report-এর সাথে মিলে।</li>
+        <li>Audit log filter করুন। Expected: bill edit, credit note, commission approval, user permission change সব sensitive action logged।</li>
+    </ul>
+</div>
+
+<h2>১৩. Financial Calculation Matrix</h2>
+
+<div class="box">
+    <h4>১৩.১ Billing Formula</h4>
+    <div class="formula">line_subtotal = unit_price × quantity</div>
+    <div class="formula">invoice_subtotal = sum(line_subtotal)</div>
+    <div class="formula">invoice_total = invoice_subtotal - invoice_discount + adjustment</div>
+    <div class="formula">due = invoice_total - paid - deposit_adjusted</div>
+    <ul class="test-list mini-check">
+        <li>Discount কখনো subtotal-এর বেশি হবে না।</li>
+        <li>Paid কখনো bill total-এর বেশি হবে না; বেশি payment হলে excess deposit হবে।</li>
+        <li>Due কখনো negative হবে না।</li>
+        <li>Bill edit হলে old/new values audit log-এ থাকবে।</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>১৩.২ Daily Collection Formula</h4>
+    <div class="formula">net_collection = CashSales - SalesReturn + DepositDeduct - ReturnDeposit + CollectionFromReceivable - CashDiscountGiven</div>
+    <ul class="test-list mini-check">
+        <li>Cash payment করলে <code>payments</code>, <code>income</code>, এবং <code>emp_cash_transactions</code> তিন জায়গায় trace থাকবে।</li>
+        <li>Credit note করলে income negative/reversal এবং cash transaction SalesReturn হবে।</li>
+        <li>Deposit refund করলে ReturnDeposit হিসেবে daily collection থেকে বাদ যাবে।</li>
+        <li>Cash drawer count = net cash collection হতে হবে।</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>১৩.৩ Deposit Formula</h4>
+    <div class="formula">deposit_balance = total_deposits - total_refunds - total_adjustments</div>
+    <ul class="test-list mini-check">
+        <li>Admission deposit collect করলে deposit receipt তৈরি হবে।</li>
+        <li>Deposit adjust করলে bill due কমবে এবং deposit balance কমবে।</li>
+        <li>Refund amount deposit balance-এর বেশি হলে block হবে।</li>
+        <li>Concurrent refund/adjustment হলে negative balance হতে পারবে না।</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>১৩.৪ Doctor Commission Formula</h4>
+    <div class="formula">gross_basis_commission = test_price × rate%</div>
+    <div class="formula">net_basis_commission = (test_price - line_discount) × rate%</div>
+    <div class="formula">fixed_commission = configured_fixed_amount</div>
+    <ul class="test-list mini-check">
+        <li>Commission rule doctor-wise, test-wise, department-wise configurable হতে হবে।</li>
+        <li>Commission final হবে payment received বা test completed policy অনুযায়ী; শুধু order দিলেই payable হবে না।</li>
+        <li>Status: Pending → Approved/Payable → Paid; cancel হলে Reversed।</li>
+        <li>Manual example: Test ৳১০০০, discount ৳১০০, net ৳৯০০, ২০% net basis = ৳১৮০।</li>
+        <li>Cancelled/Not Done/Refunded item payable report-এ থাকবে না।</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>১৩.৫ Lab Profit Formula</h4>
+    <div class="formula">lab_gross_profit = lab_revenue - reagent_consumable_cost - doctor_commission - refund_adjustment</div>
+    <ul class="test-list mini-check">
+        <li>Completed paid tests only revenue হিসেবে ধরুন।</li>
+        <li>Consumable cost recipe/batch cost থেকে আসবে।</li>
+        <li>Cancelled tests count হবে কিন্তু revenue/profit বাড়াবে না।</li>
+        <li>Doctor-wise test count = completed + pending + cancelled breakdown-সহ দেখুন।</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h4>১৩.৬ Pharmacy / Inventory Formula</h4>
+    <div class="formula">closing_stock = opening + purchase + sale_return - sale - supplier_return - dispatch - write_off</div>
+    <div class="formula">pharmacy_profit = net_sales - cost_of_goods_sold - return_adjustment</div>
+    <ul class="test-list mini-check">
+        <li>Batch/expiry ছাড়া medicine receive করা যাবে না।</li>
+        <li>Expired/out-of-stock sale blocked হবে।</li>
+        <li>Sale return stock policy অনুযায়ী usable/quarantine stock-এ যাবে।</li>
+    </ul>
+</div>
+
+<h2>১৪. End-to-End Scenarios</h2>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Scenario</th>
+        <th>Steps</th>
+        <th>Expected Result</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>OPD full paid visit</td>
+        <td>Register patient → create visit → doctor consult → bill ৳৫০০ → cash payment</td>
+        <td>Invoice paid, due ৳০, receipt, daily collection +৳৫০০</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>OPD partial due</td>
+        <td>Bill ৳২০০০ → pay ৳১০০০ → collect due later ৳১০০০</td>
+        <td>First state due ৳১০০০, final due ৳০, two payment receipts</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Lab order to delivery</td>
+        <td>Doctor orders CBC → bill/pay → collect sample → result → delivered</td>
+        <td>Lab status delivered, report printable, commission generated per rule</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Cancelled unpaid test</td>
+        <td>Order CBC → no payment → cancel bill item/order</td>
+        <td>Bill adjusted/cancelled, lab item cancelled, commission zero/reversed</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Paid test refund</td>
+        <td>Order/pay test → patient refuses → issue credit note</td>
+        <td>Direct cancel blocked, credit note refund, income/cash reversed, commission reversed</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Gateway overpayment</td>
+        <td>Bill due ৳১২০০ → gateway confirms ৳১৫০০</td>
+        <td>Bill paid ৳১২০০, deposit ৳৩০০, no negative due/overpaid bill</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Pharmacy sale and return</td>
+        <td>Doctor prescription → pharmacy sale → return one item</td>
+        <td>Stock decreases then adjusts, sale return/refund visible, profit recalculated</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Inventory purchase to dispatch</td>
+        <td>PO → goods receipt → requisition → dispatch → stock ledger</td>
+        <td>Batch stock increases then decreases, no negative stock, audit trail</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>IPD admission to discharge</td>
+        <td>Admit → deposit → bed charge → lab/pharmacy → discharge bill → payment</td>
+        <td>Bed released, all charges included, deposit adjusted, final due correct</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Role security</td>
+        <td>Each role opens unrelated sensitive module/API</td>
+        <td>403/blocked; allowed read-only views remain usable</td>
+    </tr>
+</table>
+
+<h2>১৫. Edge Case Pack</h2>
+
+<table>
+    <tr>
+        <th>Area</th>
+        <th>Must Test</th>
+        <th>Expected</th>
+    </tr>
+    <tr>
+        <td>Billing</td>
+        <td>discount > subtotal, refund > paid, duplicate invoice number, zero/negative amount</td>
+        <td>Rejected with clear error; no ledger mutation</td>
+    </tr>
+    <tr>
+        <td>Payment</td>
+        <td>gateway failed, duplicate verify callback, overpayment, partial payment</td>
+        <td>Idempotent; no double paid amount; excess deposit</td>
+    </tr>
+    <tr>
+        <td>Lab</td>
+        <td>done without sample, cancel after payment, duplicate order, not-done test</td>
+        <td>Policy block/warning; commission not double counted</td>
+    </tr>
+    <tr>
+        <td>Commission</td>
+        <td>fixed vs percentage, gross vs net, cancelled/refunded, settlement duplicate</td>
+        <td>Correct amount/status; no duplicate payable</td>
+    </tr>
+    <tr>
+        <td>Inventory</td>
+        <td>negative stock, expired batch, missing batch, concurrent sale</td>
+        <td>Blocked or safely retried; stock ledger remains accurate</td>
+    </tr>
+    <tr>
+        <td>Security</td>
+        <td>wrong role, inactive user, direct API call, patient data access</td>
+        <td>403/401; audit log for sensitive actions</td>
+    </tr>
+</table>
+
+<h2>১৬. Production Go-live Checklist</h2>
+
+<div class="critical">
+    <h4>Go-live করার আগে এগুলো sign-off না হলে production hospital-এ দিবেন না</h4>
+    <ul class="test-list mini-check">
+        <li>Real hospital master data loaded: doctors, departments, service price list, lab catalog, medicine/items, wards/beds।</li>
+        <li>Doctor fee এবং commission rule লিখিতভাবে hospital authority approve করেছে।</li>
+        <li>VAT/tax/discount/refund policy hospital authority approve করেছে।</li>
+        <li>All users individual account পেয়েছে; shared password বন্ধ; default demo password production hospital-এ রাখা যাবে না।</li>
+        <li>Role permission matrix admin/owner sign-off করেছে।</li>
+        <li>Receipt, lab report, prescription, discharge summary printer templates real printer দিয়ে test করা হয়েছে।</li>
+        <li>SMS/email/bKash/Nagad/live payment credentials configure করে sandbox/live transaction test করা হয়েছে।</li>
+        <li>D1 production database migration applied এবং backup/restore drill করা হয়েছে।</li>
+        <li>R2 upload bucket, KV cache, Vectorize/AI bindings production env-এ verified।</li>
+        <li>Audit log retention, access review, and incident response owner assigned।</li>
+        <li>Daily closing drill অন্তত ২ দিন real-like data দিয়ে মিলেছে।</li>
+        <li>Hospital staff training complete: reception, doctor, lab, pharmacy, accounts, admin।</li>
+        <li>Rollback plan ready: previous deployment version, data backup, emergency manual receipt book।</li>
+    </ul>
+</div>
+
+<div class="warning">
+    <h4>Production Risk Notes</h4>
+    <ul class="test-list mini-check">
+        <li><span class="status-risk">2FA</span> এখনো known gap হিসেবে আছে; production hospital account-এর জন্য 2FA চালু করা recommended।</li>
+        <li><span class="status-risk">Notification providers</span> SMTP/SMS/payment gateway live secrets ছাড়া patient-facing notification fully verified বলা যাবে না।</li>
+        <li><span class="status-risk">Medical/legal policy</span> clinical report correction, refund approval, commission basis hospital authority লিখিতভাবে approve করতে হবে।</li>
+        <li><span class="status-risk">Performance</span> production-like large dataset দিয়ে peak-hour load test চালানো দরকার।</li>
+        <li><span class="status-risk">Build warnings</span> large JS chunks এবং Wrangler Durable Object migration warning production hardening backlog-এ রাখতে হবে।</li>
+    </ul>
+</div>
+
+<h2>১৭. Automation Commands for Developer/QA</h2>
+
+<div class="box">
+    <h4>Local verification gates</h4>
+    <div class="formula">pnpm test</div>
+    <div class="formula">pnpm build</div>
+    <div class="formula">pnpm test:e2e:prod</div>
+    <div class="formula">pnpm test:e2e:prod:auth</div>
+    <div class="formula">pnpm build &amp;&amp; wrangler deploy --env production</div>
+    <p>Financial code change হলে নিচের targeted suite আগে চালান, তারপর full suite চালান।</p>
+    <div class="formula">pnpm test test/integration/data-integrity/financial-accuracy.test.ts test/payments.test.ts test/integration/routes/reception-billing.test.ts test/integration/routes/credit-notes.test.ts test/integration/routes/settlements.test.ts test/lab-cancellation-workflow.test.ts test/doctor-commission-routes.test.ts test/lab-consumables-automation.test.ts test/ip-billing-calculations.test.ts test/accounting.test.ts</div>
+</div>
+
+<h2>১৮. Latest Verification Log</h2>
+
+<table>
+    <tr>
+        <th>Check</th>
+        <th>Status</th>
+        <th>Notes</th>
+    </tr>
+    <tr>
+        <td>Financial calculation tests</td>
+        <td class="status-pass">PASS</td>
+        <td>May 5, 2026: targeted finance/calculation suite 20 files, 560 tests passed. Covered bill discount, overpayment deposit, daily cash ledger, refund/credit-note, deposit balance, commission, lab consumable, IP billing, accounting, pharmacy, inventory.</td>
+    </tr>
+    <tr>
+        <td>Full unit/integration test suite</td>
+        <td class="status-pass">PASS</td>
+        <td>May 5, 2026: full <code>pnpm test</code> passed: 335 files, 10,551 tests.</td>
+    </tr>
+    <tr>
+        <td>Production smoke/E2E</td>
+        <td class="status-pass">PASS</td>
+        <td>May 5, 2026: deployed production version <code>0595258b-e887-4ef4-8e43-74e46d0ddd92</code>. Production smoke/API E2E 328 tests passed; authenticated production checks passed; browser smoke rendered dashboard, reception reports, payments, deposits, credit notes, commissions, lab, pharmacy, and accounting without fatal UI/console errors.</td>
+    </tr>
+    <tr>
+        <td>Hospital UAT</td>
+        <td class="status-block">Manual sign-off required</td>
+        <td>Real hospital data, real printer, live payment provider, signed doctor commission policy, and 2-day daily closing drill are still required before claiming final hospital go-live.</td>
+    </tr>
+</table>
+
+<div class="footer">
+    <p><strong>Ozzyl HMS - Testing Guide</strong></p>
+    <p>সংস্করণ ২.০ | মে ২০২৬</p>
+    <p>এই ডকুমেন্টটি প্রিন্ট করে PDF হিসেবে সেভ করা যায় (Ctrl+P → Save as PDF)</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Clinical Ethereal - Patient Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#341100",
+                      "tertiary-fixed": "#ffdbcb",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "outline": "#6e7979",
+                      "outline-variant": "#bdc9c8",
+                      "primary-fixed-dim": "#76d6d5",
+                      "on-surface": "#191c1d",
+                      "secondary-container": "#c2e7e6",
+                      "background": "#f8fafb",
+                      "inverse-surface": "#2e3132",
+                      "on-tertiary-fixed-variant": "#733512",
+                      "tertiary": "#8b4823",
+                      "on-secondary-fixed-variant": "#2b4c4c",
+                      "surface-container-high": "#e6e8e9",
+                      "surface-variant": "#e1e3e4",
+                      "surface-tint": "#006a6a",
+                      "secondary-fixed": "#c5e9e9",
+                      "inverse-on-surface": "#eff1f2",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#002020",
+                      "inverse-primary": "#76d6d5",
+                      "on-primary-container": "#e3fffe",
+                      "secondary": "#436464",
+                      "on-secondary-container": "#476868",
+                      "on-surface-variant": "#3e4949",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "on-background": "#191c1d",
+                      "surface-dim": "#d8dadb",
+                      "on-primary": "#ffffff",
+                      "primary": "#006565",
+                      "surface": "#f8fafb",
+                      "surface-bright": "#f8fafb",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#002020",
+                      "surface-container": "#eceeef",
+                      "surface-container-low": "#f2f4f5",
+                      "on-error": "#ffffff",
+                      "primary-container": "#008080",
+                      "on-error-container": "#93000a",
+                      "surface-container-highest": "#e1e3e4",
+                      "primary-fixed": "#93f2f2",
+                      "on-tertiary-container": "#fff9f7",
+                      "tertiary-container": "#a96039",
+                      "secondary-fixed-dim": "#aacdcc",
+                      "tertiary-fixed-dim": "#ffb692"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .glow-orb {
+            box-shadow: 0 0 20px 2px rgba(0, 101, 101, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-white/80 backdrop-blur-xl shadow-sm">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-teal-800">The Clinical Ethereal</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-teal-700 border-b-2 border-teal-600 font-bold pb-1 text-sm font-headline tracking-tight" href="#">Health Records</a>
+<a class="text-slate-500 hover:text-teal-600 transition-colors text-sm font-headline tracking-tight" href="#">Appointments</a>
+<a class="text-slate-500 hover:text-teal-600 transition-colors text-sm font-headline tracking-tight" href="#">Messages</a>
+<a class="text-slate-500 hover:text-teal-600 transition-colors text-sm font-headline tracking-tight" href="#">Billing</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-surface-container">
+<img alt="Patient Profile Avatar" class="h-full w-full object-cover" data-alt="Close-up portrait of a professional woman with a calm and friendly expression in a brightly lit environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIEAq1FuTPmuPS_SfFRuc8R7ho4C2q5IJYilnesl4I3uo6BUbCBpwRsRRt6Y7PMyAoQuW1svK4Kho85YQ39UBUyv7Adg0BEtRT3rlKu1KwLHxUvotKZP53s3E0BTcI7tDvWY0aZ60pEvRSqoCowKl1uPaL4cAREdTTgYT0CrfMvhkmSkU_GLQYHQC_xPQc4Ri7MG5gFydhlbQCkK5HDnPQR46-iu-UDMShCdzro18rwNBZgbcjw4mM9lxVkiufdPgfIoRPxIw1-nM"/>
+</div>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen">
+<!-- Sidebar Navigation Shell -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-4rem)] sticky left-0 top-16 p-4 w-64 bg-slate-50">
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="h-12 w-12 rounded-xl overflow-hidden shadow-sm">
+<img alt="Patient Profile Picture" class="h-full w-full object-cover" data-alt="Natural portrait of a smiling woman in her 30s with soft sunlight and a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YNWxSogsDeie_35c4uOFLHMfag6GCERItmwv7RRsV5elMVXiWNq248sLDNav7NvoAKiEmoLqDHxeBJSnRGuhn8EM0S5NwX_u5QFgxiRJM2FCy2aESyPWr7gzEd2kWEPNAcef_uFmkj3w_70m130orRV0ioM1RXBMee5OcCHMa7t8zxSoAfnNlG6vjPUQr657VX0HcPuzt5tTAn7cn5045k0t2GFmMlxGgorDu3NIprdIJYy3o-ANdjdJ0xKlGM0P2NxYltK5HrI"/>
+</div>
+<div>
+<h3 class="text-sm font-bold font-headline text-on-surface">Sarah Mitchell</h3>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Patient ID: 8829-X</p>
+</div>
+</div>
+<div class="p-4 bg-teal-50 rounded-xl">
+<p class="text-xs font-bold text-teal-800 font-headline">Welcome back</p>
+<p class="text-[11px] text-teal-700/70">Your sanctuary is ready</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-teal-50 text-teal-800 rounded-xl font-bold text-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+                    Health Records
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-teal-50/50 rounded-xl text-sm transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+                    Appointments
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-teal-50/50 rounded-xl text-sm transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                    Messages
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-teal-50/50 rounded-xl text-sm transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Billing
+                </a>
+</nav>
+<div class="mt-auto space-y-1 pt-4 border-t border-slate-200/50">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-teal-600 text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-error text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Log Out
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-8 bg-surface">
+<!-- Hero Header -->
+<header class="mb-12">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-3 h-3 rounded-full bg-primary glow-orb"></div>
+<span class="text-xs font-semibold text-primary tracking-widest uppercase">System Status: Live</span>
+</div>
+<h1 class="text-4xl font-extrabold font-headline tracking-tighter text-teal-900 mb-2">Welcome back, Sarah</h1>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed">Your health dashboard is updated with your latest lab results from Monday. Take a moment to review your upcoming schedule.</p>
+</header>
+<!-- Key Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Appointment Card -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm flex flex-col justify-between border border-white/40">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-secondary-container rounded-xl">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+</span>
+<span class="text-[10px] font-bold text-primary px-2 py-1 bg-primary/10 rounded-full">UPCOMING</span>
+</div>
+<h3 class="text-lg font-bold font-headline text-teal-950">Dr. Julian Smith</h3>
+<p class="text-sm text-on-surface-variant">General Cardiology</p>
+</div>
+<div class="mt-6">
+<p class="text-sm font-semibold text-teal-800">Friday, Oct 27 • 10:00 AM</p>
+<p class="text-xs text-on-surface-variant">Saint Luke's Medical Center</p>
+</div>
+</div>
+<!-- Lab Results Card -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm flex flex-col justify-between border border-white/40">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-tertiary-fixed rounded-xl">
+<span class="material-symbols-outlined text-tertiary" data-icon="biotech">biotech</span>
+</span>
+<span class="text-[10px] font-bold text-tertiary px-2 py-1 bg-tertiary/10 rounded-full">NEW RESULT</span>
+</div>
+<h3 class="text-lg font-bold font-headline text-teal-950">Blood Panel Results</h3>
+<p class="text-sm text-on-surface-variant">Comprehensive Metabolic</p>
+</div>
+<div class="mt-6 flex items-center gap-2">
+<span class="text-sm font-bold text-tertiary">Ready for review</span>
+<span class="material-symbols-outlined text-xs text-tertiary" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Outstanding Bills Card -->
+<div class="glass-panel p-6 rounded-2xl shadow-sm flex flex-col justify-between border border-white/40">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="p-2 bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_balance_wallet">account_balance_wallet</span>
+</span>
+</div>
+<h3 class="text-lg font-bold font-headline text-teal-950">$120.00</h3>
+<p class="text-sm text-on-surface-variant">Current Balance Due</p>
+</div>
+<div class="mt-6">
+<button class="w-full py-2 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all">Pay Balance</button>
+</div>
+</div>
+</div>
+<!-- Content Split Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Recent Visits (Left 8 cols) -->
+<div class="lg:col-span-8">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-2xl font-bold font-headline text-teal-900 tracking-tight">Recent Visits</h2>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">View All Records</a>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-5 rounded-2xl flex items-center gap-4 hover:bg-white transition-colors">
+<div class="h-12 w-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold font-headline text-on-surface">Dr. Elena Rodriguez</h4>
+<p class="text-xs text-on-surface-variant">Annual Wellness Checkup</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-on-surface">Oct 12, 2023</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">COMPLETED</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl flex items-center gap-4 hover:bg-white transition-colors">
+<div class="h-12 w-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="dentistry">dentistry</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold font-headline text-on-surface">Dr. Kevin Park</h4>
+<p class="text-xs text-on-surface-variant">Dental Cleaning &amp; X-Ray</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-on-surface">Sep 28, 2023</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">COMPLETED</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl flex items-center gap-4 hover:bg-white transition-colors">
+<div class="h-12 w-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="healing">healing</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold font-headline text-on-surface">Express Care Clinic</h4>
+<p class="text-xs text-on-surface-variant">Seasonal Flu Vaccination</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-on-surface">Sep 15, 2023</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">COMPLETED</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions (Right 4 cols) -->
+<div class="lg:col-span-4">
+<h2 class="text-2xl font-bold font-headline text-teal-900 tracking-tight mb-6">Quick Actions</h2>
+<div class="flex flex-col gap-3">
+<button class="flex items-center gap-4 p-4 bg-primary text-white rounded-2xl hover:bg-primary-container transition-all group">
+<span class="material-symbols-outlined p-2 bg-white/20 rounded-xl" data-icon="add_circle">add_circle</span>
+<span class="font-bold text-sm">Book Appointment</span>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="flex items-center gap-4 p-4 bg-surface-container-low text-teal-800 rounded-2xl hover:bg-surface-container-high transition-all group">
+<span class="material-symbols-outlined p-2 bg-white rounded-xl text-primary" data-icon="upload_file">upload_file</span>
+<span class="font-bold text-sm">Upload Document</span>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="flex items-center gap-4 p-4 bg-surface-container-low text-teal-800 rounded-2xl hover:bg-surface-container-high transition-all group">
+<span class="material-symbols-outlined p-2 bg-white rounded-xl text-primary" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-bold text-sm">Message Doctor</span>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="flex items-center gap-4 p-4 bg-surface-container-low text-teal-800 rounded-2xl hover:bg-surface-container-high transition-all group">
+<span class="material-symbols-outlined p-2 bg-white rounded-xl text-primary" data-icon="medication">medication</span>
+<span class="font-bold text-sm">Refill Prescription</span>
+<span class="material-symbols-outlined ml-auto opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Subtle Promo/Alert Card -->
+<div class="mt-8 relative overflow-hidden rounded-2xl bg-teal-900 p-6 text-white">
+<div class="relative z-10">
+<h4 class="font-bold font-headline mb-2">Telehealth Available</h4>
+<p class="text-xs text-teal-100/80 leading-relaxed mb-4">Can't make it to the clinic? Speak with your doctor from home.</p>
+<button class="text-xs font-bold underline">Learn more</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="videocam">videocam</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Shell -->
+<footer class="w-full px-8 py-8 mt-auto flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-50">
+<div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+<span class="text-sm font-bold text-teal-900">The Clinical Ethereal Sanctuary</span>
+<div class="flex gap-4">
+<a class="text-xs font-inter text-slate-500 hover:text-teal-600 underline decoration-teal-500/30" href="#">Privacy Policy</a>
+<a class="text-xs font-inter text-slate-500 hover:text-teal-600 underline decoration-teal-500/30" href="#">Terms of Service</a>
+<a class="text-xs font-inter text-slate-500 hover:text-teal-600 underline decoration-teal-500/30" href="#">Emergency Contacts</a>
+<a class="text-xs font-inter text-slate-500 hover:text-teal-600 underline decoration-teal-500/30" href="#">HIPAA Compliance</a>
+</div>
+</div>
+<p class="text-xs font-inter text-slate-500 opacity-80">© 2024 Clinical Ethereal Sanctuary. All rights reserved.</p>
+</footer>
+<!-- FAB Suppression Rule Active - No FAB on Dashboard unless context specifically requires action focus -->
+</body></html>

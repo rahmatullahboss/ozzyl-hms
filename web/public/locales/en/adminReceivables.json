@@ -1,0 +1,218 @@
+{
+  "collectionFollowup": {
+    "loading": "Loading...",
+    "title": "Collection Follow-up",
+    "subtitle": "Track due collection calls, promised payments, escalation, and follow-up ownership.",
+    "refresh": "Refresh collection follow-ups",
+    "totalPending": "Total Pending",
+    "contacted": "Contacted",
+    "promised": "Promised",
+    "escalated": "Escalated",
+    "totalDue": "Total Due",
+    "all": "All",
+    "pending": "Pending",
+    "noData": "No follow-up tasks found",
+    "patient": "Patient",
+    "phone": "Phone",
+    "invoice": "Invoice",
+    "due": "Due",
+    "daysOverdue": "Days Overdue",
+    "followups": "Follow-ups",
+    "assignedTo": "Assigned To",
+    "nextFollowup": "Next Follow-up",
+    "status": "Status",
+    "statusLabels": {
+      "pending": "Pending",
+      "contacted": "Contacted",
+      "promised": "Promised",
+      "escalated": "Escalated",
+      "writtenOff": "Written off"
+    }
+  },
+  "dueReceivables": {
+    "loading": "Loading collections...",
+    "title": "Collections",
+    "subtitle": "Work outstanding invoices from first contact through promise, dispute, escalation, payment, or controlled write-off.",
+    "error": "Collections could not be loaded. Try again.",
+    "empty": "No receivables match these filters.",
+    "conflict": "This collection case changed after you opened it. Refresh before taking another action.",
+    "authority": {
+      "legacy": "Legacy financial authority",
+      "shadow": "Shadow comparison mode",
+      "canonical": "Canonical financial authority",
+      "unavailable": "Financial authority is unavailable",
+      "unavailableDescription": "The configured canonical receivable projection is incomplete. Collections are blocked instead of falling back to an untrusted balance.",
+      "shadowMismatches": "Shadow mismatches"
+    },
+    "summary": {
+      "label": "Collection summary",
+      "totalDue": "Total due",
+      "current": "0-7 days",
+      "days30": "8-30 days",
+      "days60": "31-60 days",
+      "days90Plus": "60+ days",
+      "followupDue": "Follow-ups due",
+      "invoices": "Invoices",
+      "mixedCurrency": "Amounts span multiple currencies. Totals are shown separately by currency."
+    },
+    "filters": {
+      "label": "Collection filters",
+      "status": "Workflow status",
+      "followup": "Follow-up timing",
+      "ageBucket": "Invoice age",
+      "sort": "Sort by",
+      "search": "Search patient or invoice"
+    },
+    "status": {
+      "active": "Active",
+      "new": "New",
+      "contact_due": "Contact due",
+      "contacted": "Contacted",
+      "promised": "Promised",
+      "disputed": "Disputed",
+      "escalated": "Escalated",
+      "write_off_requested": "Write-off requested",
+      "closed": "Closed",
+      "all": "All statuses"
+    },
+    "followupFilter": {
+      "all": "Any follow-up",
+      "due": "Due now",
+      "upcoming": "Upcoming",
+      "none": "No follow-up scheduled"
+    },
+    "ageBucket": {
+      "all": "Any age",
+      "0-7": "0-7 days",
+      "8-30": "8-30 days",
+      "31-60": "31-60 days",
+      "60+": "60+ days"
+    },
+    "sort": {
+      "exposure": "Highest exposure",
+      "oldest": "Oldest invoice",
+      "followup": "Next follow-up"
+    },
+    "table": {
+      "label": "Outstanding invoice collections",
+      "patient": "Patient",
+      "invoice": "Invoice",
+      "due": "Due",
+      "age": "Age (days)",
+      "status": "Workflow status",
+      "followup": "Next follow-up",
+      "actions": "Actions"
+    },
+    "actions": {
+      "refresh": "Refresh",
+      "retry": "Try again",
+      "open": "Open",
+      "openCase": "Open {{invoice}}",
+      "previous": "Previous",
+      "next": "Next",
+      "close": "Close collection case",
+      "refreshCase": "Refresh case"
+    },
+    "pagination": {
+      "label": "Collection pages"
+    },
+    "drawer": {
+      "title": "Collection case"
+    },
+    "amount": {
+      "total": "Invoice total",
+      "paid": "Paid",
+      "credited": "Credited",
+      "due": "Live due"
+    },
+    "payment": {
+      "collect": "Collect payment",
+      "canonicalRequired": "This invoice is under canonical authority. Use the canonical payment command when that payment surface is enabled."
+    },
+    "contact": {
+      "title": "Record contact",
+      "channel": "Contact channel",
+      "outcome": "Outcome",
+      "note": "Contact note",
+      "nextFollowupAtUtc": "Next follow-up (UTC)",
+      "submit": "Record contact"
+    },
+    "channel": {
+      "phone": "Phone",
+      "sms": "SMS",
+      "whatsapp": "WhatsApp",
+      "in_person": "In person",
+      "other": "Other"
+    },
+    "followup": {
+      "title": "Schedule follow-up",
+      "nextFollowupAtUtc": "Next follow-up (UTC)",
+      "note": "Follow-up note",
+      "submit": "Schedule follow-up"
+    },
+    "promise": {
+      "title": "Promise to pay",
+      "date": "Promise date",
+      "amount": "Promise amount",
+      "note": "Promise note",
+      "submit": "Record promise"
+    },
+    "dispute": {
+      "title": "Record dispute",
+      "reason": "Dispute reason",
+      "note": "Dispute evidence or note",
+      "submit": "Mark disputed"
+    },
+    "escalate": {
+      "title": "Escalate collection",
+      "reason": "Escalation reason",
+      "note": "Escalation note",
+      "assignedTo": "Assign to user ID (optional)",
+      "submit": "Escalate"
+    },
+    "writeOff": {
+      "title": "Controlled write-off request",
+      "warning": "This does not change the balance now. It creates a high-risk request that requires two independent approvals.",
+      "open": "Request write-off",
+      "duplicate": "A write-off request is already pending. Refresh the case before trying again.",
+      "error": "The request could not be submitted. Your entered values have been retained.",
+      "amount": "Write-off amount",
+      "amountInvalid": "Enter a positive amount that does not exceed the live due.",
+      "reason": "Write-off reason",
+      "reasonPlaceholder": "Select a reason",
+      "reasonCodes": {
+        "uncollectible": "Uncollectible after documented recovery attempts",
+        "financialHardship": "Financial hardship",
+        "billingDispute": "Billing dispute adjustment",
+        "deceased": "Patient deceased",
+        "administrativeAdjustment": "Administrative adjustment",
+        "other": "Other documented reason"
+      },
+      "note": "Write-off explanation",
+      "noteHelp": "Explain the recovery attempts and why collection is no longer reasonably expected.",
+      "evidence": "Evidence URLs",
+      "evidencePlaceholder": "One HTTP or HTTPS URL per line (optional)",
+      "evidenceInvalid": "Use no more than 10 valid HTTP or HTTPS URLs.",
+      "acknowledgement": "Recovery is not reasonably expected for this amount.",
+      "cancel": "Cancel",
+      "submitting": "Submitting write-off request…",
+      "submit": "Submit write-off request",
+      "pending": "Write-off request pending approval"
+    },
+    "timeline": {
+      "title": "Case timeline",
+      "empty": "No collection events yet.",
+      "system": "System"
+    },
+    "event": {
+      "contacted": "Contact recorded",
+      "follow_up_scheduled": "Follow-up scheduled",
+      "promise_recorded": "Promise recorded",
+      "disputed": "Dispute recorded",
+      "escalated": "Collection escalated",
+      "auto_closed_paid": "Closed after payment",
+      "auto_closed_cancelled": "Closed after cancellation",
+      "auto_closed_reversed": "Closed after reversal"
+    }
+  }
+}

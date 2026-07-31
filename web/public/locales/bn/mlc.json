@@ -1,0 +1,92 @@
+{
+  "title": "মেডিকো-লিগ্যাল কেস",
+  "subtitle": "এমএলসি নিবন্ধন, আঘাতের নথিভুক্তকরণ এবং পুলিশ লিয়াজোঁ",
+  "newMlc": "নতুন এমএলসি",
+  "total": "মোট কেস",
+  "active": "সক্রিয়",
+  "closed": "বন্ধ",
+  "allTypes": "সব ধরণ",
+  "allStatus": "সব অবস্থা",
+  "noCases": "কোনো এমএলসি কেস পাওয়া যায়নি",
+  "table": {
+    "mlcNumber": "এমএলসি নং",
+    "patient": "রোগী",
+    "type": "ধরণ",
+    "date": "তারিখ",
+    "policeStation": "থানা",
+    "firNumber": "এফআইআর নং",
+    "nature": "প্রকৃতি",
+    "status": "অবস্থা"
+  },
+  "form": {
+    "registerTitle": "নতুন এমএলসি কেস নিবন্ধন",
+    "broughtBy": "নিয়ে এসেছেন",
+    "policeRelativePlaceholder": "যেমন: পুলিশ, আত্মীয়",
+    "policeStation": "থানা",
+    "firNumber": "এফআইআর নং",
+    "officerName": "অফিসারের নাম",
+    "informantName": "তথ্যদাতার নাম",
+    "informantPhone": "তথ্যদাতার ফোন",
+    "incidentPlace": "ঘটনার স্থান",
+    "incidentDescription": "ঘটনার বর্ণনা",
+    "generalCondition": "সাধারণ অবস্থা",
+    "natureOfInjury": "আঘাতের প্রকৃতি",
+    "injuryDescription": "আঘাতের বর্ণনা",
+    "alcoholSmell": "অ্যালকোহলের গন্ধ",
+    "examiningDoctor": "পরীক্ষাকারী ডাক্তার",
+    "registerBtn": "এমএলসি নিবন্ধন করুন",
+    "saving": "সংরক্ষণ হচ্ছে..."
+  },
+  "detail": {
+    "incident": "ঘটনা",
+    "injuries": "আঘাতসমূহ",
+    "notesTimeline": "নোট এবং টাইমলাইন",
+    "addNote": "নোট যোগ করুন",
+    "notePlaceholder": "নোটের টেক্সট...",
+    "add": "যোগ করুন",
+    "title": "এমএলসি {{mlcNumber}}"
+  },
+  "types": {
+    "accident": "দুর্ঘটনা",
+    "assault": "আক্রমণ",
+    "poisoning": "বিষক্রিয়া",
+    "burns": "পোড়া",
+    "sexual_assault": "যৌন হয়রানি",
+    "suicide_attempt": "আত্মহত্যার চেষ্টা",
+    "snake_bite": "সাপের কামড়",
+    "dog_bite": "কুকুরের কামড়",
+    "industrial": "শিল্প দুর্ঘটনা",
+    "drowning": "ডুবে যাওয়া",
+    "hanging": "ঝুলে পড়া",
+    "firearm": "অস্ত্রের আঘাত",
+    "stabbing": "ছুরিকাঘাত",
+    "other": "অন্যান্য"
+  },
+  "status": {
+    "active": "সক্রিয়",
+    "discharged": "ছাড়পত্রপ্রাপ্ত",
+    "referred": "রেফার করা",
+    "absconded": "পালিয়ে যাওয়া",
+    "expired": "মৃত",
+    "closed": "বন্ধ"
+  },
+  "nature": {
+    "simple": "সাধারণ",
+    "grievous": "গুরুতর",
+    "dangerous": "বিপজ্জনক",
+    "fatal": "মারাত্মক"
+  },
+  "conditions": {
+    "conscious": "সচেতন",
+    "semiconscious": "অর্ধ-সচেতন",
+    "unconscious": "অচেতন",
+    "dead": "মৃত"
+  },
+  "notification": {
+    "mlcRegistered": "এমএলসি নিবন্ধিত হয়েছে: {{mlcNumber}}",
+    "failed": "অপারেশন ব্যর্থ হয়েছে",
+    "failedToLoadDetails": "এমএলসি বিস্তারিত লোড করতে ব্যর্থ হয়েছে",
+    "patientIdRequired": "রোগীর আইডি প্রয়োজন",
+    "noteAdded": "নোট সফলভাবে যোগ করা হয়েছে"
+  }
+}
