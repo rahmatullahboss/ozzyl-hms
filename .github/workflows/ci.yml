@@ -53,6 +53,9 @@ jobs:
       - name: Run production unit tests
         run: pnpm test:production:unit
 
+      - name: Run LIS clinical release safety tests
+        run: pnpm exec vitest run test/unit/lis-clinical-release-policy.test.ts test/unit/lis-validation-fail-closed.test.ts
+
       - name: Install Playwright (Chromium only)
         run: pnpm exec playwright install --with-deps chromium
 
