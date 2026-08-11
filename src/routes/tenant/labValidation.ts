@@ -127,6 +127,42 @@ export interface ValidationOutcome {
   warnings: string[];
 }
 
+function isConfigObject(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function validationConfigurationError(
+  ruleId: number,
+  ruleType: string,
+  config: Record<string, unknown>,
+): string | null {
+  switch (ruleType) {
+    case 'range':
+      return typeof config.min === 'number' && Number.isFinite(config.min)
+        && typeof config.max === 'number' && Number.isFinite(config.max)
+        && config.min <= config.max
+        ? null
+        : `Validation configuration invalid for rule #${ruleId} (range)`;
+    case 'mandatory':
+      return null;
+    case 'delta':
+      return typeof config.max_change_percent === 'number'
+        && Number.isFinite(config.max_change_percent)
+        && config.max_change_percent >= 0
+        ? null
+        : `Validation configuration invalid for rule #${ruleId} (delta)`;
+    case 'dependency':
+      return Number.isInteger(Number(config.depends_on_test_id))
+        && Number(config.depends_on_test_id) > 0
+        && config.expected_value !== undefined
+        && config.expected_value !== null
+        ? null
+        : `Validation configuration invalid for rule #${ruleId} (dependency)`;
+    default:
+      return `Validation configuration invalid for rule #${ruleId}: unknown rule type '${ruleType}'`;
+  }
+}
+
 export async function validateLabResult(
   db: ReturnType<typeof getDb>,
   tenantId: number | string,
@@ -153,10 +189,22 @@ export async function validateLabResult(
   const warnings: string[] = [];
 
   for (const rule of rules.results ?? []) {
-    let config: Record<string, unknown>;
+    let parsedConfig: unknown;
     try {
-      config = JSON.parse(rule.rule_config);
+      parsedConfig = JSON.parse(rule.rule_config);
     } catch {
+      blocking.push(`Validation configuration invalid for rule #${rule.id}: malformed JSON`);
+      continue;
+    }
+
+    if (!isConfigObject(parsedConfig)) {
+      blocking.push(`Validation configuration invalid for rule #${rule.id}: configuration must be an object`);
+      continue;
+    }
+    const config = parsedConfig;
+    const configurationError = validationConfigurationError(rule.id, rule.rule_type, config);
+    if (configurationError) {
+      blocking.push(configurationError);
       continue;
     }
 
@@ -164,8 +212,10 @@ export async function validateLabResult(
 
     switch (rule.rule_type) {
       case 'range': {
-        if (resultNumeric !== null && typeof config.min === 'number' && typeof config.max === 'number') {
-          if (resultNumeric < config.min || resultNumeric > config.max) {
+        if (resultNumeric !== null) {
+          const min = config.min as number;
+          const max = config.max as number;
+          if (resultNumeric < min || resultNumeric > max) {
             failed = true;
           }
         }
@@ -178,7 +228,7 @@ export async function validateLabResult(
         break;
       }
       case 'delta': {
-        if (resultNumeric !== null && patientId && typeof config.max_change_percent === 'number') {
+        if (resultNumeric !== null && patientId) {
           const prev = await db.$client.prepare(`
             SELECT lr.result_numeric
             FROM lab_results lr
@@ -194,7 +244,7 @@ export async function validateLabResult(
 
           if (prev && prev.result_numeric !== null && prev.result_numeric !== undefined && prev.result_numeric !== 0) {
             const changePercent = Math.abs((resultNumeric - prev.result_numeric) / prev.result_numeric) * 100;
-            if (changePercent > config.max_change_percent) {
+            if (changePercent > (config.max_change_percent as number)) {
               failed = true;
             }
           }
@@ -202,8 +252,7 @@ export async function validateLabResult(
         break;
       }
       case 'dependency': {
-        // Basic dependency: if config.depends_on_test_id has config.expected_value
-        if (config.depends_on_test_id && config.expected_value && patientId) {
+        if (patientId) {
           const dep = await db.$client.prepare(`
             SELECT lr.result_value
             FROM lab_results lr
