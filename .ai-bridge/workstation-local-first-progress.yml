@@ -4,13 +4,34 @@ started_at: 2026-08-12
 base_main_sha: e0ef588f9d9c85191c343e7b287053d0d112c778
 status: in_progress
 architecture:
-  central_local_server_required: false
+  browser_endpoint: workstation_localhost
   workstation_node_required: true
-  browser_only_mutation_queue_authority: false
-  local_runtime: cloudflare-worker-local
-  local_database: persistent_d1_compatible_wrangler_state
+  lan_coordinator:
+    required_for_operation: false
+    preferred_when_available: true
+    purpose:
+      - shared_coordination
+      - sequence_range_leasing_future
+      - semantic_conflict_reduction
+      - cloud_sync_proxy_future
   cloud_authority: production_d1
+  workstation_runtime: cloudflare_worker_local
+  workstation_database: persistent_d1_compatible_wrangler_state
+  browser_only_mutation_queue_authority: false
   sync_pattern: durable_outbox_plus_cloud_pull
+  upstream_policy:
+    - lan_coordinator_when_healthy_and_compatible
+    - direct_cloud_fallback
+    - local_only_when_all_upstreams_unavailable
+identity:
+  authoritative_origin: hms-workstation-uuid
+  readable_code: WS-XXXXXXXX
+  persisted_files:
+    - ~/.ozzyl-hms/workstation/node-id
+    - ~/.ozzyl-hms/workstation/node-code
+  persisted_database_table: workstation_node_identity
+  sequence_namespace_enabled: true
+  local_sequence_example: INV-A-2026-WS-A1B2C3D4-000042
 completed:
   - specification
   - design
@@ -18,6 +39,18 @@ completed:
   - audited_existing_browser_offline_queue
   - audited_existing_local_server_sync_protocol
   - identified_core_sync_coverage_gaps
+  - per_workstation_launcher
+  - private_workstation_configuration
+  - loopback_only_binding
+  - windows_autostart_task
+  - windows_local_hms_shortcut
+  - automatic_sync_worker_lifecycle
+  - stable_workstation_uuid_generation
+  - stable_readable_workstation_code_generation
+  - workstation_identity_database_persistence
+  - workstation_scoped_prefixed_sequence_formatting
+  - workstation_sequence_unit_tests
+  - optional_lan_coordinator_configuration
 findings:
   existing_cloud_apply_types:
     - ipd_doctor_round
@@ -26,7 +59,7 @@ findings:
     - global_patient_identity
     - patient_health_links
     - medicine_catalog_entry
-  core_gaps:
+  core_sync_gaps:
     - appointments
     - visits
     - bills
@@ -35,16 +68,27 @@ findings:
     - billing_deposits
     - admissions
     - queue_entries
+  conflict_classes_not_solved_by_node_id:
+    - same_bed_allocated_from_two_isolated_nodes
+    - stale_patient_or_admission_edits
+    - duplicate_real_world_payment_entry
+    - cancellation_or_refund_racing_finalization
+    - signed_clinical_record_concurrent_change
   security_note: >-
     Browser access token and secure-store key are memory-only, so browser-only cold-start
     offline authority is intentionally not being used for financial/clinical writes.
 next:
-  - implement per-workstation launcher and private configuration
-  - generate stable unique workstation node identity
-  - bind runtime to loopback by default
-  - add automatic local sync worker lifecycle
-  - add bootstrap/readiness checks
-  - expand core entity sync coverage with id mapping and conflict guards
+  - add workstation/LAN coordinator compatibility and health handshake
+  - preserve original workstation origin through future LAN relay
+  - add sequence lease coordinator contract
+  - add explicit semantic conflict registry and reconciliation states
+  - expand core entity sync coverage with dependency ID mapping
+  - add first-online workstation tenant bootstrap/readiness command
+  - add outage/restart/reconnect rehearsal tests
 production_gate:
   tenant_102_cutover_allowed: false
-  reason: core reception/IPD/billing sync coverage and outage/reconnect clone rehearsal incomplete
+  reasons:
+    - core reception_IPD_billing sync coverage incomplete
+    - LAN relay/origin preservation incomplete
+    - semantic conflict reconciliation incomplete
+    - outage_restart_reconnect clone rehearsal incomplete
