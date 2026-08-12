@@ -86,7 +86,7 @@ if (typeof window !== 'undefined') {
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(startBackgroundSync, { timeout: 1500 });
   } else {
-    window.setTimeout(startBackgroundSync, 250);
+    globalThis.setTimeout(startBackgroundSync, 250);
   }
 }
 
