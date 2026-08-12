@@ -6,14 +6,14 @@ This file defines the canonical connector routing for this HMS project. Agents m
 
 | Target environment / service | Required connector |
 | --- | --- |
-| Mac development environment | **SMS connector** |
-| HMS server environment | **PKR Server connector** |
+| Mac development environment | **HMS connector** |
+| HMS server environment | **Pcare Server connector** |
 | GitHub repository operations | **GitHub connector** |
 
 ## Mandatory routing rules
 
-1. For work on the Mac/local HMS repository, use the **SMS connector**.
-2. For work on the HMS server, use the **PKR Server connector**.
+1. For work on the Mac/local HMS repository, use the **HMS connector**.
+2. For work on the HMS server, use the **Pcare Server connector**.
 3. For GitHub repository, branch, commit, PR, and remote file operations, use the **GitHub connector**.
 4. Do **not** search for, guess, or switch to other Mac/server connectors unless the user explicitly changes this rule.
 5. If a canonical connector appears unavailable, verify the named connector itself before concluding that Mac/server access is unavailable.
@@ -21,4 +21,4 @@ This file defines the canonical connector routing for this HMS project. Agents m
 
 ## Source of truth
 
-User-confirmed project routing rule, recorded on 2026-08-12.
+User-confirmed project routing rule, corrected on 2026-08-12.
