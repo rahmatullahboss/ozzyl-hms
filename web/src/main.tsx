@@ -78,8 +78,17 @@ if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
   void purgeAuthApiCache();
 }
 
-// Start background sync engine (processes offline queue when connection restores)
-syncEngine.start();
+// Browser offline replay is important, but checking/decrypting IndexedDB does
+// not need to compete with React's first paint. Start it after the browser gets
+// an idle window, with a short timeout fallback so queued writes still replay.
+if (typeof window !== 'undefined') {
+  const startBackgroundSync = () => syncEngine.start();
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(startBackgroundSync, { timeout: 1500 });
+  } else {
+    window.setTimeout(startBackgroundSync, 250);
+  }
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
