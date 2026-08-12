@@ -11,6 +11,7 @@ VARS_FILE="${HMS_WORKSTATION_VARS_FILE:-$NODE_HOME/.dev.vars.workstation}"
 PORT="${HMS_WORKSTATION_PORT:-8787}"
 PID_DIR="$NODE_HOME/pids"
 NODE_ID_FILE="$NODE_HOME/node-id"
+NODE_CODE_FILE="$NODE_HOME/node-code"
 JWT_SECRET_FILE="$NODE_HOME/jwt-secret"
 
 mkdir -p "$NODE_HOME" "$STATE_DIR" "$PID_DIR"
@@ -35,11 +36,28 @@ random_uuid() {
 if [[ ! -f "$NODE_ID_FILE" ]]; then
   printf 'hms-workstation-%s\n' "$(random_uuid)" > "$NODE_ID_FILE"
 fi
+
+NODE_ID="$(tr -d '\r\n' < "$NODE_ID_FILE")"
+if [[ ! "$NODE_ID" =~ ^hms-workstation-[0-9a-f-]{36}$ ]]; then
+  echo "Invalid workstation node ID in $NODE_ID_FILE" >&2
+  exit 2
+fi
+
+if [[ ! -f "$NODE_CODE_FILE" ]]; then
+  UUID_PART="${NODE_ID#hms-workstation-}"
+  NODE_CODE_SUFFIX="$(printf '%s' "$UUID_PART" | tr -d '-' | cut -c1-8 | tr '[:lower:]' '[:upper:]')"
+  printf 'WS-%s\n' "$NODE_CODE_SUFFIX" > "$NODE_CODE_FILE"
+fi
+
+NODE_CODE="$(tr -d '\r\n' < "$NODE_CODE_FILE" | tr '[:lower:]' '[:upper:]')"
+if [[ ! "$NODE_CODE" =~ ^WS-[A-Z0-9]{6,12}$ ]]; then
+  echo "Invalid workstation node code in $NODE_CODE_FILE" >&2
+  exit 2
+fi
+
 if [[ ! -f "$JWT_SECRET_FILE" ]]; then
   random_hex > "$JWT_SECRET_FILE"
 fi
-
-NODE_ID="$(tr -d '\r\n' < "$NODE_ID_FILE")"
 JWT_SECRET="$(tr -d '\r\n' < "$JWT_SECRET_FILE")"
 
 if [[ -f "$CONFIG_FILE" ]]; then
@@ -53,20 +71,25 @@ TENANT_ID="${HMS_WORKSTATION_TENANT_ID:-${LOCAL_TENANT_ID:-}}"
 TENANT_SUBDOMAIN="${HMS_WORKSTATION_TENANT_SUBDOMAIN:-${LOCAL_TENANT_SUBDOMAIN:-}}"
 CLOUD_BASE_URL="${HMS_WORKSTATION_CLOUD_BASE_URL:-${CLOUD_SYNC_BASE_URL:-https://hms.ozzyl.com}}"
 CLOUD_TOKEN="${HMS_WORKSTATION_CLOUD_SYNC_TOKEN:-${CLOUD_SYNC_TOKEN:-}}"
+LAN_COORDINATOR_URL="${HMS_WORKSTATION_LAN_COORDINATOR_URL:-${LAN_COORDINATOR_URL:-}}"
+LAN_COORDINATOR_TOKEN="${HMS_WORKSTATION_LAN_COORDINATOR_TOKEN:-${LAN_COORDINATOR_TOKEN:-}}"
 
 if [[ -z "$TENANT_ID" ]]; then
   echo "HMS workstation is not provisioned: tenant ID is missing." >&2
-  echo "Set HMS_WORKSTATION_TENANT_ID (and cloud sync credentials) once, then run again." >&2
+  echo "Set HMS_WORKSTATION_TENANT_ID (and sync credentials) once, then run again." >&2
   exit 2
 fi
 
 cat > "$VARS_FILE" <<EOF
 JWT_SECRET="$JWT_SECRET"
 LOCAL_SERVER_ID="$NODE_ID"
+LOCAL_WORKSTATION_CODE="$NODE_CODE"
 LOCAL_TENANT_ID="$TENANT_ID"
 LOCAL_TENANT_SUBDOMAIN="$TENANT_SUBDOMAIN"
 CLOUD_SYNC_BASE_URL="$CLOUD_BASE_URL"
 CLOUD_SYNC_TOKEN="$CLOUD_TOKEN"
+LAN_COORDINATOR_URL="$LAN_COORDINATOR_URL"
+LAN_COORDINATOR_TOKEN="$LAN_COORDINATOR_TOKEN"
 EOF
 chmod 600 "$VARS_FILE" 2>/dev/null || true
 
@@ -88,6 +111,16 @@ if [[ ! -f "$STATE_DIR/.workstation-schema-ready" ]]; then
   touch "$STATE_DIR/.workstation-schema-ready"
 fi
 
+# Persist the immutable origin UUID and human-readable code inside the local DB.
+# Sequence generation reads this singleton row to namespace externally-visible
+# numbers. Cloud databases do not have/populate this row and keep legacy formats.
+pnpm exec wrangler d1 execute hms-local-server \
+  --env local_server \
+  --local \
+  --persist-to "$STATE_DIR" \
+  --command "CREATE TABLE IF NOT EXISTS workstation_node_identity (singleton_id INTEGER PRIMARY KEY CHECK (singleton_id = 1), node_id TEXT NOT NULL UNIQUE, node_code TEXT NOT NULL UNIQUE, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP); INSERT INTO workstation_node_identity (singleton_id, node_id, node_code, created_at, updated_at) VALUES (1, '$NODE_ID', '$NODE_CODE', datetime('now'), datetime('now')) ON CONFLICT(singleton_id) DO UPDATE SET node_id = excluded.node_id, node_code = excluded.node_code, updated_at = datetime('now');" \
+  >/dev/null
+
 if [[ ! -f web/dist/index.html ]]; then
   echo "Local web bundle not found; building workstation UI..."
   pnpm --filter web build
@@ -97,9 +130,13 @@ APP_LOG="$NODE_HOME/app.log"
 SYNC_LOG="$NODE_HOME/sync.log"
 
 echo "Starting Ozzyl HMS workstation node: $NODE_ID"
+echo "Workstation code: $NODE_CODE"
 echo "Tenant: $TENANT_ID"
 echo "Local URL: http://127.0.0.1:$PORT"
 echo "Persistent state: $STATE_DIR"
+if [[ -n "$LAN_COORDINATOR_URL" ]]; then
+  echo "LAN coordinator configured: $LAN_COORDINATOR_URL"
+fi
 
 bash scripts/local-server/start.sh >"$APP_LOG" 2>&1 &
 APP_PID=$!
