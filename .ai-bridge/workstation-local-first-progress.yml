@@ -1,0 +1,50 @@
+workstream: workstation-local-first-offline
+branch: feat/internet-outage-resilience-20260812
+started_at: 2026-08-12
+base_main_sha: e0ef588f9d9c85191c343e7b287053d0d112c778
+status: in_progress
+architecture:
+  central_local_server_required: false
+  workstation_node_required: true
+  browser_only_mutation_queue_authority: false
+  local_runtime: cloudflare-worker-local
+  local_database: persistent_d1_compatible_wrangler_state
+  cloud_authority: production_d1
+  sync_pattern: durable_outbox_plus_cloud_pull
+completed:
+  - specification
+  - design
+  - implementation_plan
+  - audited_existing_browser_offline_queue
+  - audited_existing_local_server_sync_protocol
+  - identified_core_sync_coverage_gaps
+findings:
+  existing_cloud_apply_types:
+    - ipd_doctor_round
+    - billing_provisional_doctor_round
+    - patients
+    - global_patient_identity
+    - patient_health_links
+    - medicine_catalog_entry
+  core_gaps:
+    - appointments
+    - visits
+    - bills
+    - invoice_items
+    - payments
+    - billing_deposits
+    - admissions
+    - queue_entries
+  security_note: >-
+    Browser access token and secure-store key are memory-only, so browser-only cold-start
+    offline authority is intentionally not being used for financial/clinical writes.
+next:
+  - implement per-workstation launcher and private configuration
+  - generate stable unique workstation node identity
+  - bind runtime to loopback by default
+  - add automatic local sync worker lifecycle
+  - add bootstrap/readiness checks
+  - expand core entity sync coverage with id mapping and conflict guards
+production_gate:
+  tenant_102_cutover_allowed: false
+  reason: core reception/IPD/billing sync coverage and outage/reconnect clone rehearsal incomplete
