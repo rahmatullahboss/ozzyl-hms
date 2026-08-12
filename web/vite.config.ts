@@ -36,12 +36,26 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Allow larger JS bundles to be precached (default is 2 MiB).
-        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
-        // Exclude HTML from precache so index.html is always fetched from the
-        // network (served by the Cloudflare Worker). This ensures users always
-        // get the latest JS bundle references after deployment.
-        globPatterns: ['**/*.{js,css,ico,png,svg,woff2}'],
+        // Keep the install/update payload bounded. Route-level chunks are loaded
+        // on demand and use content-hashed filenames, so precaching every JS file
+        // makes PWA updates unnecessarily expensive on mobile/unstable networks.
+        maximumFileSizeToCacheInBytes: 2 * 1024 * 1024,
+        // Precache the app shell and lightweight shared vendors only. Heavy route
+        // chunks stay on-demand; Cloudflare/browser caching handles repeat visits.
+        globPatterns: [
+          '**/*.{css,ico,png,svg,woff2}',
+          '**/assets/index-*.js',
+          '**/assets/vendor-react-*.js',
+          '**/assets/vendor-query-*.js',
+          '**/assets/vendor-icons-*.js',
+          '**/assets/vendor-i18n-*.js',
+          '**/assets/vendor-utils-*.js',
+          '**/assets/vendor-*.js',
+        ],
+        globIgnores: [
+          '**/assets/vendor-pdf-*.js',
+          '**/assets/vendor-charts-*.js',
+        ],
         // Keep existing tabs stable; updates are picked up on the next normal navigation.
         skipWaiting: false,
         clientsClaim: false,
