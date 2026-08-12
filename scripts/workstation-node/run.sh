@@ -111,15 +111,27 @@ if [[ ! -f "$STATE_DIR/.workstation-schema-ready" ]]; then
   touch "$STATE_DIR/.workstation-schema-ready"
 fi
 
-# Persist the immutable origin UUID and human-readable code inside the local DB.
-# Sequence generation reads this singleton row to namespace externally-visible
-# numbers. Cloud databases do not have/populate this row and keep legacy formats.
-pnpm exec wrangler d1 execute hms-local-server \
-  --env local_server \
-  --local \
-  --persist-to "$STATE_DIR" \
-  --command "CREATE TABLE IF NOT EXISTS workstation_node_identity (singleton_id INTEGER PRIMARY KEY CHECK (singleton_id = 1), node_id TEXT NOT NULL UNIQUE, node_code TEXT NOT NULL UNIQUE, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP); INSERT INTO workstation_node_identity (singleton_id, node_id, node_code, created_at, updated_at) VALUES (1, '$NODE_ID', '$NODE_CODE', datetime('now'), datetime('now')) ON CONFLICT(singleton_id) DO UPDATE SET node_id = excluded.node_id, node_code = excluded.node_code, updated_at = datetime('now');" \
-  >/dev/null
+D1=(pnpm exec wrangler d1 execute hms-local-server --env local_server --local --persist-to "$STATE_DIR")
+"${D1[@]}" --command "CREATE TABLE IF NOT EXISTS workstation_node_identity (singleton_id INTEGER PRIMARY KEY CHECK (singleton_id = 1), node_id TEXT NOT NULL UNIQUE, node_code TEXT NOT NULL UNIQUE, created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP);" >/dev/null
+
+# The database identity is authoritative once a workstation has local data. If
+# node-id/node-code files are accidentally deleted or replaced, never silently
+# reassign the existing database to a new sync origin.
+EXISTING_IDENTITY="$("${D1[@]}" --command "SELECT node_id, node_code FROM workstation_node_identity WHERE singleton_id = 1;" 2>&1 || true)"
+if printf '%s' "$EXISTING_IDENTITY" | grep -q 'hms-workstation-'; then
+  if ! printf '%s' "$EXISTING_IDENTITY" | grep -Fq "$NODE_ID"; then
+    echo "Workstation identity mismatch: local DB belongs to a different node ID." >&2
+    echo "Refusing startup to protect sync/idempotency history. Restore the original $NODE_ID_FILE." >&2
+    exit 3
+  fi
+  if ! printf '%s' "$EXISTING_IDENTITY" | grep -Fq "$NODE_CODE"; then
+    echo "Workstation identity mismatch: local DB has a different workstation code." >&2
+    echo "Refusing startup to protect sequence namespace history. Restore the original $NODE_CODE_FILE." >&2
+    exit 3
+  fi
+else
+  "${D1[@]}" --command "INSERT INTO workstation_node_identity (singleton_id, node_id, node_code, created_at, updated_at) VALUES (1, '$NODE_ID', '$NODE_CODE', datetime('now'), datetime('now'));" >/dev/null
+fi
 
 if [[ ! -f web/dist/index.html ]]; then
   echo "Local web bundle not found; building workstation UI..."
