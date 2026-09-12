@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import tenantLabEn from '../../public/locales/en/tenantLab.json';
+import tenantLabBn from '../../public/locales/bn/tenantLab.json';
 
 const isProd = import.meta.env.PROD;
 const silentLogger = {
@@ -28,6 +30,16 @@ i18n
     load: 'languageOnly',
     debug: !isProd,
     ...(isProd ? { logger: silentLogger } : {}),
+
+    // Keep the LIS namespace inside the application bundle so the laboratory
+    // dashboard never renders raw translation keys when a runtime locale JSON
+    // request is unavailable, stale, or temporarily out of sync with the JS
+    // deployment. Other namespaces continue to load through the HTTP backend.
+    partialBundledLanguages: true,
+    resources: {
+      en: { tenantLab: tenantLabEn },
+      bn: { tenantLab: tenantLabBn },
+    },
 
     // Each namespace corresponds to a feature area / file
     ns: ['common', 'sidebar', 'dashboard', 'auth', 'patients', 'billing',
