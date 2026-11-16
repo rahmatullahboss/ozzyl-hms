@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+import type { Context } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { HTTPException } from 'hono/http-exception';
 import { createStaffSchema, updateStaffSchema, paySalarySchema } from '../../schemas/staff';
@@ -9,6 +10,8 @@ import type { Env, Variables } from '../../types';
 import { requireTenantId, requireUserId } from '../../lib/context-helpers';
 import { getDb } from '../../db';
 import { requirePermission, resolveUserPermissions } from '../../middleware/rbac';
+import { hasEffectivePermission } from '../../lib/effective-permission-policy';
+import { projectStaffDirectoryRow } from '../../lib/hr-staff-confidentiality';
 import { createAuditLog } from '../../lib/accounting-helpers';
 import { assertAccountingPeriodOpen } from '../../lib/accounting-hardening';
 import { getTodayGMT6 } from '../../lib/date-utils';
@@ -18,6 +21,34 @@ import { createD1WorkforceDirectoryRepository } from '../../modules/workforce-ma
 
 
 const staffRoutes = new Hono<{ Bindings: Env; Variables: Variables }>();
+type StaffContext = Context<{ Bindings: Env; Variables: Variables }>;
+
+async function staffCan(c: StaffContext, permission: string): Promise<boolean> {
+  const role = c.get('role');
+  if (role === 'hospital_admin' || role === 'super_admin') return true;
+  if (!role) return false;
+  const cached = c.get('effectivePermissions');
+  const permissions = Array.isArray(cached) ? cached : await resolveUserPermissions(
+    c.env.DB, requireTenantId(c), String(role), String(requireUserId(c)),
+  );
+  if (!Array.isArray(cached)) c.set('effectivePermissions', permissions);
+  return hasEffectivePermission(permissions, permission);
+}
+
+async function requireSensitiveChange(c: StaffContext, data: { salary?: number; bankAccount?: string }, create: boolean) {
+  if ((!create && data.salary !== undefined) || (create && Number(data.salary ?? 0) > 0)) {
+    if (!(await staffCan(c, 'payroll:configure'))) throw new HTTPException(403, { message: 'Missing permission: payroll:configure' });
+  }
+  if (data.bankAccount !== undefined && !(await staffCan(c, 'staff:bank:write'))) {
+    throw new HTTPException(403, { message: 'Missing permission: staff:bank:write' });
+  }
+}
+
+staffRoutes.use('*', async (c, next) => {
+  c.header('Cache-Control', 'private, no-store, max-age=0');
+  c.header('Pragma', 'no-cache');
+  await next();
+});
 
 function auditMeta(c: any) {
   return {
@@ -33,7 +64,9 @@ staffRoutes.get('/', requirePermission('workforce:read'), async (c) => {
 
   try {
     const staff = await directory.listActiveDirectoryEntries(tenantId);
-    return c.json({ staff });
+    const compensationRead = await staffCan(c, 'payroll:read');
+    const bankMetadataRead = await staffCan(c, 'staff:bank:read');
+    return c.json({ staff: staff.map((entry) => projectStaffDirectoryRow(entry, { compensationRead, bankMetadataRead })) });
   } catch {
     throw new HTTPException(500, { message: 'Failed to fetch staff' });
   }
@@ -41,7 +74,7 @@ staffRoutes.get('/', requirePermission('workforce:read'), async (c) => {
 
 // GET /api/staff/salary-report?month=YYYY-MM — monthly salary report for all staff
 // ⚠ MUST be defined BEFORE /:id to prevent 'salary-report' from matching as :id
-staffRoutes.get('/salary-report', requirePermission('staff:read'), async (c) => {
+staffRoutes.get('/salary-report', requirePermission('payroll:read'), async (c) => {
   const db = getDb(c.env.DB);
   const tenantId = requireTenantId(c);
   const month = c.req.query('month') || new Date().toISOString().slice(0, 7);
@@ -73,6 +106,18 @@ staffRoutes.get('/salary-report', requirePermission('staff:read'), async (c) => 
   }
 });
 
+// Full bank account disclosure requires an explicit, separate, tenant-scoped workflow.
+staffRoutes.get('/:id/bank-account', requirePermission('staff:bank:reveal'), async (c) => {
+  const tenantId = requireTenantId(c);
+  const staffId = Number(c.req.param('id'));
+  if (!Number.isSafeInteger(staffId) || staffId <= 0) {
+    throw new HTTPException(400, { message: 'Invalid staff id' });
+  }
+  const member = await createD1WorkforceDirectoryRepository(c.env.DB).getDirectoryEntry(tenantId, staffId);
+  if (!member) throw new HTTPException(404, { message: 'Staff not found' });
+  return c.json({ staffId, bankAccount: member.bank_account || null });
+});
+
 // GET /api/staff/:id
 staffRoutes.get('/:id', requirePermission('workforce:read'), async (c) => {
   const tenantId = requireTenantId(c);
@@ -86,7 +131,10 @@ staffRoutes.get('/:id', requirePermission('workforce:read'), async (c) => {
   try {
     const member = await directory.getDirectoryEntry(tenantId, staffId);
     if (!member) throw new HTTPException(404, { message: 'Staff not found' });
-    return c.json({ staff: member });
+    return c.json({ staff: projectStaffDirectoryRow(member, {
+      compensationRead: await staffCan(c, 'payroll:read'),
+      bankMetadataRead: await staffCan(c, 'staff:bank:read'),
+    }) });
   } catch (error) {
     if (error instanceof HTTPException) throw error;
     throw new HTTPException(500, { message: 'Failed to fetch staff' });
@@ -99,6 +147,7 @@ staffRoutes.post('/', requirePermission('workforce:write'), zValidator('json', c
   const tenantId = requireTenantId(c);
   const userId = requireUserId(c);
   const data = c.req.valid('json');
+  await requireSensitiveChange(c, data, true);
 
   try {
     const result = await db.$client.prepare(
@@ -150,6 +199,7 @@ staffRoutes.put('/:id', requirePermission('workforce:write'), zValidator('json',
   const userId = requireUserId(c);
   const id = c.req.param('id');
   const data = c.req.valid('json');
+  await requireSensitiveChange(c, data, false);
 
   try {
     const existing = await db.$client.prepare(
@@ -161,8 +211,6 @@ staffRoutes.put('/:id', requirePermission('workforce:write'), zValidator('json',
       name: existing['name'],
       address: existing['address'],
       position: existing['position'],
-      salary: existing['salary'],
-      bank_account: existing['bank_account'],
       mobile: existing['mobile'],
       department: existing['department'],
       emergency_contact: existing['emergency_contact'],
@@ -203,8 +251,8 @@ staffRoutes.put('/:id', requirePermission('workforce:write'), zValidator('json',
       name: data.name ?? existing['name'],
       address: data.address !== undefined ? (data.address ?? '') : existing['address'],
       position: data.position ?? existing['position'],
-      salary: data.salary !== undefined ? data.salary : existing['salary'],
-      bank_account: data.bankAccount !== undefined ? (data.bankAccount ?? '') : existing['bank_account'],
+      salaryChanged: data.salary !== undefined,
+      bankingChanged: data.bankAccount !== undefined,
       mobile: data.mobile !== undefined ? (data.mobile ?? '') : existing['mobile'],
       department: data.department !== undefined ? data.department : existing['department'],
       emergency_contact: data.emergencyContact !== undefined ? (data.emergencyContact ?? null) : existing['emergency_contact'],
@@ -252,7 +300,7 @@ staffRoutes.delete('/:id', requirePermission('workforce:deactivate'), async (c) 
 });
 
 // POST /api/staff/:id/salary — pay salary with bonus & deduction
-staffRoutes.post('/:id/salary', requirePermission('staff:write'), zValidator('json', paySalarySchema), async (c) => {
+staffRoutes.post('/:id/salary', requirePermission('payroll:payout'), zValidator('json', paySalarySchema), async (c) => {
   const db = getDb(c.env.DB);
   const id = c.req.param('id');
   const tenantId = requireTenantId(c);
@@ -328,7 +376,7 @@ staffRoutes.post('/:id/salary', requirePermission('staff:write'), zValidator('js
 });
 
 // GET /api/staff/:id/salary — salary history for one staff member
-staffRoutes.get('/:id/salary', requirePermission('staff:read'), async (c) => {
+staffRoutes.get('/:id/salary', requirePermission('payroll:read'), async (c) => {
   const db = getDb(c.env.DB);
   const id = c.req.param('id');
   const tenantId = requireTenantId(c);
