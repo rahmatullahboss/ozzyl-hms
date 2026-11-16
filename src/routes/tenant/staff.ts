@@ -182,7 +182,8 @@ staffRoutes.post('/', requirePermission('workforce:write'), zValidator('json', c
     await createAuditLog(c.env, tenantId, userId, 'CREATE', 'staff', result.meta.last_row_id as number, null, {
       name: data.name,
       position: data.position,
-      salary: data.salary,
+      compensationChanged: Number(data.salary ?? 0) > 0,
+      bankingChanged: data.bankAccount !== undefined,
       department: data.department,
     }, ipAddress, userAgent);
 
