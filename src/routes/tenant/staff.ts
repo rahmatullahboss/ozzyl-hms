@@ -23,6 +23,13 @@ import { createD1WorkforceDirectoryRepository } from '../../modules/workforce-ma
 const staffRoutes = new Hono<{ Bindings: Env; Variables: Variables }>();
 type StaffContext = Context<{ Bindings: Env; Variables: Variables }>;
 
+function strictStaffId(raw: string): number {
+  if (!/^[1-9]\\d*$/.test(raw) || !Number.isSafeInteger(Number(raw))) {
+    throw new HTTPException(400, { message: 'Invalid staff id' });
+  }
+  return Number(raw);
+}
+
 async function staffCan(c: StaffContext, permission: string): Promise<boolean> {
   const role = c.get('role');
   if (role === 'hospital_admin' || role === 'super_admin') return true;
@@ -109,7 +116,7 @@ staffRoutes.get('/salary-report', requirePermission('payroll:read'), async (c) =
 // Full bank account disclosure requires an explicit, separate, tenant-scoped workflow.
 staffRoutes.get('/:id/bank-account', requirePermission('staff:bank:reveal'), async (c) => {
   const tenantId = requireTenantId(c);
-  const staffId = Number(c.req.param('id'));
+  const staffId = strictStaffId(c.req.param('id'));
   if (!Number.isSafeInteger(staffId) || staffId <= 0) {
     throw new HTTPException(400, { message: 'Invalid staff id' });
   }
@@ -121,7 +128,7 @@ staffRoutes.get('/:id/bank-account', requirePermission('staff:bank:reveal'), asy
 // GET /api/staff/:id
 staffRoutes.get('/:id', requirePermission('workforce:read'), async (c) => {
   const tenantId = requireTenantId(c);
-  const staffId = Number(c.req.param('id'));
+  const staffId = strictStaffId(c.req.param('id'));
   const directory = createD1WorkforceDirectoryRepository(c.env.DB);
 
   if (!Number.isInteger(staffId) || staffId <= 0) {
@@ -198,7 +205,7 @@ staffRoutes.put('/:id', requirePermission('workforce:write'), zValidator('json',
   const db = getDb(c.env.DB);
   const tenantId = requireTenantId(c);
   const userId = requireUserId(c);
-  const id = c.req.param('id');
+  const id = strictStaffId(c.req.param('id'));
   const data = c.req.valid('json');
   await requireSensitiveChange(c, data, false);
 
@@ -278,7 +285,7 @@ staffRoutes.delete('/:id', requirePermission('workforce:deactivate'), async (c) 
   const db = getDb(c.env.DB);
   const tenantId = requireTenantId(c);
   const userId = requireUserId(c);
-  const id = c.req.param('id');
+  const id = strictStaffId(c.req.param('id'));
 
   try {
     const existing = await db.$client.prepare(
@@ -303,7 +310,7 @@ staffRoutes.delete('/:id', requirePermission('workforce:deactivate'), async (c) 
 // POST /api/staff/:id/salary — pay salary with bonus & deduction
 staffRoutes.post('/:id/salary', requirePermission('payroll:payout'), zValidator('json', paySalarySchema), async (c) => {
   const db = getDb(c.env.DB);
-  const id = c.req.param('id');
+  const id = strictStaffId(c.req.param('id'));
   const tenantId = requireTenantId(c);
   const userId = requireUserId(c);
   const data = c.req.valid('json');
@@ -376,7 +383,7 @@ staffRoutes.post('/:id/salary', requirePermission('payroll:payout'), zValidator(
 // GET /api/staff/:id/salary — salary history for one staff member
 staffRoutes.get('/:id/salary', requirePermission('payroll:read'), async (c) => {
   const db = getDb(c.env.DB);
-  const id = c.req.param('id');
+  const id = strictStaffId(c.req.param('id'));
   const tenantId = requireTenantId(c);
 
   try {
@@ -396,7 +403,7 @@ staffRoutes.post('/:id/invite', requirePermission('staff:write'), async (c) => {
   const tenantId = requireTenantId(c);
   const callerId = requireUserId(c);
   const callerRole = c.get('role');
-  const staffId  = Number(c.req.param('id'));
+  const staffId = strictStaffId(c.req.param('id'));
   if (!Number.isInteger(staffId) || staffId <= 0) {
     return c.json({ error: 'Invalid staff id' }, 400);
   }
