@@ -49,27 +49,21 @@ export type ReviewOvertimeInput = {
   status: Exclude<OvertimeStatus, 'pending'>;
 };
 
-function assertFiniteNonNegative(value: number, name: string): void {
-  if (!Number.isFinite(value) || value < 0) {
-    throw new RangeError(`${name} must be a finite non-negative number`);
-  }
-}
-
 export function calculateApprovedOvertimeHours(input: {
   scheduledMinutes: number;
   actualMinutes: number;
   minMinutesBeforeOvertime: number;
   maxOvertimeMinutes: number;
 }): number {
-  assertFiniteNonNegative(input.scheduledMinutes, 'scheduledMinutes');
-  assertFiniteNonNegative(input.actualMinutes, 'actualMinutes');
-  assertFiniteNonNegative(input.minMinutesBeforeOvertime, 'minMinutesBeforeOvertime');
-  assertFiniteNonNegative(input.maxOvertimeMinutes, 'maxOvertimeMinutes');
-
-  const threshold = Math.max(input.scheduledMinutes, input.minMinutesBeforeOvertime);
-  const eligibleMinutes = Math.max(0, input.actualMinutes - threshold);
-  const approvedMinutes = Math.min(eligibleMinutes, input.maxOvertimeMinutes);
-  return Math.round((approvedMinutes / 60) * 10_000) / 10_000;
+  // Compatibility interface: canonical eligibility is minute-based; legacy review persists hours.
+  const eligibleMinutes = calculateDailyEligibleMinutes({
+    scheduledMinutes: input.scheduledMinutes,
+    workedMinutes: input.actualMinutes,
+    thresholdMinutes: input.minMinutesBeforeOvertime,
+    minimumEligibleMinutes: 0,
+    maximumMinutesPerDay: input.maxOvertimeMinutes,
+  });
+  return Math.round((eligibleMinutes / 60) * 10_000) / 10_000;
 }
 
 function resolveDayType(day: Awaited<ReturnType<WorkCalendarService['evaluateDay']>>): Exclude<OvertimeAppliesOn, 'all'> {
