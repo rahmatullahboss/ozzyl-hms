@@ -24,7 +24,7 @@ const staffRoutes = new Hono<{ Bindings: Env; Variables: Variables }>();
 type StaffContext = Context<{ Bindings: Env; Variables: Variables }>;
 
 function strictStaffId(raw: string): number {
-  if (!/^[1-9]\\d*$/.test(raw) || !Number.isSafeInteger(Number(raw))) {
+  if (!/^[1-9]\d*$/.test(raw) || !Number.isSafeInteger(Number(raw))) {
     throw new HTTPException(400, { message: 'Invalid staff id' });
   }
   return Number(raw);
