@@ -50,6 +50,7 @@
 - `src/lib/route-permissions.ts` — separate capabilities and sensitive route matrix entries.
 - `test/integration/routes/hr03-staff-confidentiality.test.ts` — DTO negative/positive, nested leakage, short account masking.
 - `test/integration/routes/hr03-confidential-permissions.test.ts` — endpoint matrix regressions.
+- `test/integration/routes/hr03-sensitive-route-denials.test.ts` — unauthorized salary/bank GET, bank write, and manipulated direct-ID cases.
 
 No payroll calculation, transactional payout writer, SQL migration, source bank account data or canonical ledger has been changed.
 
@@ -58,6 +59,7 @@ No payroll calculation, transactional payout writer, SQL migration, source bank 
 | Check | Verdict | Evidence |
 |---|---|---|
 | Reproduce original leak by source audit | **FAIL — baseline** | Legacy directory projected raw `salary` and `bank_account` to `workforce:read` clients |
+| GitHub branch source static invariant inspection | **PASS (16/16 checks)** | Route/permission/DTO source assertions; static-only, not an HTTP authorization proof |
 | Pure projection smoke test | **PASS (5 assertions)** | Node 22 `--experimental-strip-types` on local new helper: operational redaction, payroll-only salary, masked bank, short mask |
 | New Vitest regression suite | **SKIP/BLOCKED** | `pnpm exec vitest` fails environment resolution: `Cannot find module '/node_modules/vitest/vitest.mjs'`; not a test failure/success verdict |
 | Exact candidate TypeScript | **SKIP/BLOCKED** | GitHub task branch and local detached HEAD differ; no clean dependencies-ready QA checkout |
@@ -71,10 +73,16 @@ No payroll calculation, transactional payout writer, SQL migration, source bank 
 2. Make `/api/staff` mandatory central RBAC alongside route-local guards on the reconciled source. Verify effective user/role overrides and explicit revocation precedence.
 3. Run same-hospital positive + other-hospital negative, raw direct ID, query-param tamper, role-revoke and operational-read-only denial tests for **both** legacy-protected and canonical-greenfield staff repositories.
 4. Prove sensitive input is denied before any write for operational-only staff editors; no bank account is unintentionally overwritten by blank/unmodified browser forms.
-5. Supply explicit bank reveal workflow UI only to granted roles; mask by default. Confirm payroll processing, payout approval and payment reconciliation remain available to the intentionally granted finance roles.
+5. Reconcile `payroll:read/configure/payout` and `staff:bank:read/reveal/write` with canonical effective permission grant catalogs and role/user overrides, without silently granting operational roles. Supply explicit bank reveal workflow UI only to granted roles; mask by default. Confirm payroll processing, payout approval and payment reconciliation remain available to the intentionally granted finance roles.
 6. Keep API `Cache-Control: private, no-store`; verify browser/mobile service-worker and local persistence do not cache sensitive responses or signed exports.
 7. Audit remaining salary/bank exports, nested DTOs, errors, reports and old audit records. Never destructively rewrite historical audit evidence: restrict historical raw-record readers and introduce appropriate retention/redaction controls.
 8. Coordinate HR-06 employee self-service identity contract; no trust in caller-supplied staff IDs.
 9. Run focused Vitest, TypeScript, SQL tenant-isolation, Chromium/mobile and D1 cost/security gates against one exact A00 integration SHA; obtain PASS receipts before any GO.
 
 **NO-GO** until all applicable security regression checks are executable and pass, and the version discrepancy is resolved.
+
+## Exact candidate evidence
+
+- Last verified staff route code commit: `74e899b750399a413d54b92593c00dbd58c1e4fe`.
+- Latest negative route test commit: `ab93b22ef5bd3eadc59b77443f557d1fd1c1c638`.
+- The document commit may advance the branch head without changing runtime code. Read branch HEAD when A00 begins integration.
