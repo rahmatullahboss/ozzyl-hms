@@ -1,4 +1,5 @@
 import type { WorkforceClock } from './ports';
+import { calculateDailyEligibleMinutes } from '../domain/canonical-overtime-calculation';
 import type { WorkCalendarService } from './work-calendar-service';
 import { WorkforceError } from '../domain/errors';
 import type {
