@@ -246,7 +246,13 @@ export const ROUTE_PERMISSIONS = {
 
   // ── Workforce / Staff / Roster ──
   'staff:read': 'Read legacy staff salary and account-linked details',
-  'staff:write': 'Manage legacy staff salary and invitation flows',
+  'staff:write': 'Manage legacy staff invitation flows',
+  'staff:bank:read': 'Read masked staff banking metadata only',
+  'staff:bank:reveal': 'Reveal a full staff bank account for an authorized workflow',
+  'staff:bank:write': 'Maintain staff banking details',
+  'payroll:read': 'Read confidential compensation, payslips and salary reports',
+  'payroll:configure': 'Configure employee compensation values',
+  'payroll:payout': 'Execute authorized payroll settlement',
   'workforce:read': 'Read staff operational profiles',
   'workforce:write': 'Create and update staff operational profiles',
   'workforce:deactivate': 'Deactivate staff operational profiles',
@@ -828,11 +834,14 @@ export function getRequiredRoutePermission(path: string, method: string): RouteP
   // Staff salary and invitation remain legacy identity/finance operations rather
   // than workforce-profile mutations. Resolve them before the broad /api/staff rule.
   if (normalized === 'GET' && /^\/api\/staff\/salary-report\/?$/.test(path)) {
-    return { prefix: '/api/staff', permission: ['staff:read'] };
+    return { prefix: '/api/staff', permission: ['payroll:read'] };
+  }
+  if (/^\/api\/staff\/[^/]+\/bank-account\/?$/.test(path)) {
+    return { prefix: '/api/staff', permission: normalized === 'GET' ? ['staff:bank:reveal'] : [] };
   }
   if (/^\/api\/staff\/[^/]+\/salary\/?$/.test(path)) {
-    if (normalized === 'GET') return { prefix: '/api/staff', permission: ['staff:read'] };
-    if (normalized === 'POST') return { prefix: '/api/staff', permission: ['staff:write'] };
+    if (normalized === 'GET') return { prefix: '/api/staff', permission: ['payroll:read'] };
+    if (normalized === 'POST') return { prefix: '/api/staff', permission: ['payroll:payout'] };
   }
   if (normalized === 'POST' && /^\/api\/staff\/[^/]+\/invite\/?$/.test(path)) {
     return { prefix: '/api/staff', permission: ['staff:write'] };
