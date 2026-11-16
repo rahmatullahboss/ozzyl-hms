@@ -358,12 +358,9 @@ staffRoutes.post('/:id/salary', requirePermission('payroll:payout'), zValidator(
     const { ipAddress, userAgent } = auditMeta(c);
     await createAuditLog(c.env, tenantId, userId, 'PAYMENT', 'salary_payments', expenseId as number, null, {
       staffId: id,
-      staffName: member.name,
       month: data.month,
-      baseSalary: member.salary,
-      bonus,
-      deduction,
-      netSalary,
+      compensationPayloadRedacted: true,
+      payoutSource: 'salary_payments',
     }, ipAddress, userAgent);
 
     return c.json({
