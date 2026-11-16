@@ -382,7 +382,7 @@ staffRoutes.get('/:id/salary', requirePermission('payroll:read'), async (c) => {
   try {
     const payments = await db.$client.prepare(
       `SELECT sp.*, s.name as staff_name, s.position
-       FROM salary_payments sp JOIN staff s ON sp.staff_id = s.id
+       FROM salary_payments sp JOIN staff s ON sp.staff_id = s.id AND s.tenant_id = sp.tenant_id
        WHERE sp.staff_id = ? AND sp.tenant_id = ? ORDER BY sp.payment_date DESC`,
     ).bind(id, tenantId).all();
     return c.json({ payments: payments.results });
